@@ -1,11 +1,138 @@
 ﻿# CMakeList.txt: MCDRCPP 的 CMake 项目，在此处包括源代码并定义
 # 项目特定的逻辑。
 #
-cmake_minimum_required (VERSION 3.8)
+cmake_minimum_required(VERSION 3.16)
+project(MCDReforged_By_CPP)
 
-project ("MCDRCPP")
+set(CMAKE_CXX_STANDARD 20)
 
-# 将源代码添加到此项目的可执行文件。
-add_executable (MCDRCPP "MCDRCPP.cpp" "MCDRCPP.h")
+include_directories(.)
+include_directories(include)
+include_directories(include/internal)
+include_directories(includes)
+
+add_executable(MCDReforged_By_CPP
+        include/internal/ceval.h
+        include/internal/condvar.h
+        include/internal/context.h
+        include/internal/gil.h
+        include/internal/hamt.h
+        include/internal/hash.h
+        include/internal/import.h
+        include/internal/mem.h
+        include/internal/pygetopt.h
+        include/internal/pystate.h
+        include/internal/warnings.h
+        include/abstract.h
+        include/accu.h
+        include/asdl.h
+        include/ast.h
+        include/bitset.h
+        include/bltinmodule.h
+        include/boolobject.h
+        include/bytearrayobject.h
+        include/bytes_methods.h
+        include/bytesobject.h
+        include/cellobject.h
+        include/ceval.h
+        include/classobject.h
+        include/code.h
+        include/codecs.h
+        include/compile.h
+        include/complexobject.h
+        include/context.h
+        include/datetime.h
+        include/descrobject.h
+        include/dictobject.h
+        include/dtoa.h
+        include/dynamic_annotations.h
+        include/enumobject.h
+        include/errcode.h
+        include/eval.h
+        include/fileobject.h
+        include/fileutils.h
+        include/floatobject.h
+        include/frameobject.h
+        include/funcobject.h
+        include/genobject.h
+        include/graminit.h
+        include/grammar.h
+        include/import.h
+        include/intrcheck.h
+        include/iterobject.h
+        include/listobject.h
+        include/longintrepr.h
+        include/longobject.h
+        include/marshal.h
+        include/memoryobject.h
+        include/metagrammar.h
+        include/methodobject.h
+        include/modsupport.h
+        include/moduleobject.h
+        include/namespaceobject.h
+        include/node.h
+        include/object.h
+        include/objimpl.h
+        include/odictobject.h
+        include/opcode.h
+        include/osdefs.h
+        include/osmodule.h
+        include/parsetok.h
+        include/patchlevel.h
+        include/pgen.h
+        include/pgenheaders.h
+        include/py_curses.h
+        include/pyarena.h
+        include/pyatomic.h
+        include/pycapsule.h
+        include/pyconfig.h
+        include/pyctype.h
+        include/pydebug.h
+        include/pydtrace.h
+        include/pyerrors.h
+        include/pyexpat.h
+        include/pyfpe.h
+        include/pyhash.h
+        include/pylifecycle.h
+        include/pymacconfig.h
+        include/pymacro.h
+        include/pymath.h
+        include/pymem.h
+        include/pyport.h
+        include/pystate.h
+        include/pystrcmp.h
+        include/pystrhex.h
+        include/pystrtod.h
+        include/Python-ast.h
+        include/Python.h
+        include/pythonrun.h
+        include/pythread.h
+        include/pytime.h
+        include/rangeobject.h
+        include/setobject.h
+        include/sliceobject.h
+        include/structmember.h
+        include/structseq.h
+        include/symtable.h
+        include/sysmodule.h
+        include/token.h
+        include/traceback.h
+        include/tupleobject.h
+        include/typeslots.h
+        include/ucnhash.h
+        include/unicodeobject.h
+        include/warnings.h
+        include/weakrefobject.h
+        includes/cppplugin.h
+        includes/errorcore.h
+        includes/findfiles.h
+        includes/pyplugin.h
+        includes/SysInit.h
+        source/cppplugin.cpp
+        source/pyplugin.cpp
+        source/SysInit.cpp
+        MCDRCPP.cpp
+        MCDRCPP.h)
+
 
 # TODO: 如有需要，请添加测试并安装目标。

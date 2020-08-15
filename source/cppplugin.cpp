@@ -39,7 +39,7 @@ int CppPluginCore::LoadPlugin() {	//用于加载所有C/C++插件的函数
 		if (FuncLoad == NULL) {
 			continue;	//后面再来做错误逻辑吧=-=
 		}
-		int iRet = FuncLoad();
+	    iRet = FuncLoad();
 		if (iRet == -1) {
 			continue;	//后面再来做错误逻辑吧=-=
 		}
@@ -49,4 +49,5 @@ int CppPluginCore::LoadPlugin() {	//用于加载所有C/C++插件的函数
 
 int CppPluginCore::RegPlugin(_CppPluginRegInfo info) {
 	CppPluginRegInfo.push_back(info);
+	return 0;
 }

@@ -511,7 +511,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "C:/Users/34376/source/repos/MCDRCPP/MCDReforged_By_CPP/out/build/x64-Debug"
+			"value" : "C:/Users/34376/source/repos/MCDRCPP/MCDReforged_By_CPP/out/install/x64-Debug"
 		},
 		{
 			"name" : "CMAKE_LINKER",
@@ -695,7 +695,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "MCDRCPP"
+			"value" : "MCDReforged_By_CPP"
 		},
 		{
 			"name" : "CMAKE_RC_COMPILER",
@@ -1039,6 +1039,30 @@
 		},
 		{
 			"name" : "MCDRCPP_SOURCE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "C:/Users/34376/source/repos/MCDRCPP/MCDReforged_By_CPP"
+		},
+		{
+			"name" : "MCDReforged_By_CPP_BINARY_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake"
+				}
+			],
+			"type" : "STATIC",
+			"value" : "C:/Users/34376/source/repos/MCDRCPP/MCDReforged_By_CPP/out/build/x64-Debug"
+		},
+		{
+			"name" : "MCDReforged_By_CPP_SOURCE_DIR",
 			"properties" : 
 			[
 				{

@@ -11,7 +11,7 @@
 # =============================================================================
 
 # =============================================================================
-# Project: MCDRCPP
+# Project: MCDReforged_By_CPP
 # Configurations: Debug
 # =============================================================================
 
@@ -35,40 +35,65 @@ CONFIGURATION = Debug
 include rules.ninja
 
 # =============================================================================
-# Object build statements for EXECUTABLE target MCDRCPP
+# Object build statements for EXECUTABLE target MCDReforged_By_CPP
 
 
 #############################################
-# Order-only phony target for MCDRCPP
+# Order-only phony target for MCDReforged_By_CPP
 
-build cmake_object_order_depends_target_MCDRCPP_Debug: phony || CMakeFiles\MCDRCPP.dir
+build cmake_object_order_depends_target_MCDReforged_By_CPP_Debug: phony || CMakeFiles\MCDReforged_By_CPP.dir
 
-build CMakeFiles\MCDRCPP.dir\MCDRCPP.cpp.obj: CXX_COMPILER__MCDRCPP_Debug ..\..\..\MCDRCPP.cpp || cmake_object_order_depends_target_MCDRCPP_Debug
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
-  OBJECT_DIR = CMakeFiles\MCDRCPP.dir
-  OBJECT_FILE_DIR = CMakeFiles\MCDRCPP.dir
-  TARGET_COMPILE_PDB = CMakeFiles\MCDRCPP.dir\
-  TARGET_PDB = MCDRCPP.pdb
+build CMakeFiles\MCDReforged_By_CPP.dir\source\cppplugin.cpp.obj: CXX_COMPILER__MCDReforged_By_CPP_Debug ..\..\..\source\cppplugin.cpp || cmake_object_order_depends_target_MCDReforged_By_CPP_Debug
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -MDd   -std:c++latest
+  INCLUDES = -I..\..\..\. -I..\..\..\include -I..\..\..\include\internal -I..\..\..\includes
+  OBJECT_DIR = CMakeFiles\MCDReforged_By_CPP.dir
+  OBJECT_FILE_DIR = CMakeFiles\MCDReforged_By_CPP.dir\source
+  TARGET_COMPILE_PDB = CMakeFiles\MCDReforged_By_CPP.dir\
+  TARGET_PDB = MCDReforged_By_CPP.pdb
+
+build CMakeFiles\MCDReforged_By_CPP.dir\source\pyplugin.cpp.obj: CXX_COMPILER__MCDReforged_By_CPP_Debug ..\..\..\source\pyplugin.cpp || cmake_object_order_depends_target_MCDReforged_By_CPP_Debug
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -MDd   -std:c++latest
+  INCLUDES = -I..\..\..\. -I..\..\..\include -I..\..\..\include\internal -I..\..\..\includes
+  OBJECT_DIR = CMakeFiles\MCDReforged_By_CPP.dir
+  OBJECT_FILE_DIR = CMakeFiles\MCDReforged_By_CPP.dir\source
+  TARGET_COMPILE_PDB = CMakeFiles\MCDReforged_By_CPP.dir\
+  TARGET_PDB = MCDReforged_By_CPP.pdb
+
+build CMakeFiles\MCDReforged_By_CPP.dir\source\SysInit.cpp.obj: CXX_COMPILER__MCDReforged_By_CPP_Debug ..\..\..\source\SysInit.cpp || cmake_object_order_depends_target_MCDReforged_By_CPP_Debug
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -MDd   -std:c++latest
+  INCLUDES = -I..\..\..\. -I..\..\..\include -I..\..\..\include\internal -I..\..\..\includes
+  OBJECT_DIR = CMakeFiles\MCDReforged_By_CPP.dir
+  OBJECT_FILE_DIR = CMakeFiles\MCDReforged_By_CPP.dir\source
+  TARGET_COMPILE_PDB = CMakeFiles\MCDReforged_By_CPP.dir\
+  TARGET_PDB = MCDReforged_By_CPP.pdb
+
+build CMakeFiles\MCDReforged_By_CPP.dir\MCDRCPP.cpp.obj: CXX_COMPILER__MCDReforged_By_CPP_Debug ..\..\..\MCDRCPP.cpp || cmake_object_order_depends_target_MCDReforged_By_CPP_Debug
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -MDd   -std:c++latest
+  INCLUDES = -I..\..\..\. -I..\..\..\include -I..\..\..\include\internal -I..\..\..\includes
+  OBJECT_DIR = CMakeFiles\MCDReforged_By_CPP.dir
+  OBJECT_FILE_DIR = CMakeFiles\MCDReforged_By_CPP.dir
+  TARGET_COMPILE_PDB = CMakeFiles\MCDReforged_By_CPP.dir\
+  TARGET_PDB = MCDReforged_By_CPP.pdb
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target MCDRCPP
+# Link build statements for EXECUTABLE target MCDReforged_By_CPP
 
 
 #############################################
-# Link the executable MCDRCPP.exe
+# Link the executable MCDReforged_By_CPP.exe
 
-build MCDRCPP.exe: CXX_EXECUTABLE_LINKER__MCDRCPP_Debug CMakeFiles\MCDRCPP.dir\MCDRCPP.cpp.obj
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+build MCDReforged_By_CPP.exe: CXX_EXECUTABLE_LINKER__MCDReforged_By_CPP_Debug CMakeFiles\MCDReforged_By_CPP.dir\source\cppplugin.cpp.obj CMakeFiles\MCDReforged_By_CPP.dir\source\pyplugin.cpp.obj CMakeFiles\MCDReforged_By_CPP.dir\source\SysInit.cpp.obj CMakeFiles\MCDReforged_By_CPP.dir\MCDRCPP.cpp.obj
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
-  OBJECT_DIR = CMakeFiles\MCDRCPP.dir
+  OBJECT_DIR = CMakeFiles\MCDReforged_By_CPP.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = CMakeFiles\MCDRCPP.dir\
-  TARGET_FILE = MCDRCPP.exe
-  TARGET_IMPLIB = MCDRCPP.lib
-  TARGET_PDB = MCDRCPP.pdb
+  TARGET_COMPILE_PDB = CMakeFiles\MCDReforged_By_CPP.dir\
+  TARGET_FILE = MCDReforged_By_CPP.exe
+  TARGET_IMPLIB = MCDReforged_By_CPP.lib
+  TARGET_PDB = MCDReforged_By_CPP.pdb
 
 
 #############################################
@@ -96,7 +121,7 @@ build rebuild_cache: phony CMakeFiles\rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
-build MCDRCPP: phony MCDRCPP.exe
+build MCDReforged_By_CPP: phony MCDReforged_By_CPP.exe
 
 # =============================================================================
 # Folder targets.
@@ -106,7 +131,7 @@ build MCDRCPP: phony MCDRCPP.exe
 #############################################
 # Folder: C:/Users/34376/source/repos/MCDRCPP/MCDReforged_By_CPP/out/build/x64-Debug
 
-build all: phony MCDRCPP.exe
+build all: phony MCDReforged_By_CPP.exe
 
 # =============================================================================
 # Built-in targets
