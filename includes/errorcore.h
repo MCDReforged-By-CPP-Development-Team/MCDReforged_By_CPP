@@ -4,7 +4,7 @@
 #define UseErrPolicy(Name) ErrPolicy##Name
 #define UseMajorPolicyGroup(Name) MajorPolicyGroup##Name
 #define UseMinorPolicyGroup(Name) MinorPolicyGroup##Name
-#define MakeErrMajorPolicy(Name) struct MajorPolicyGroup##Name
+#define MakeErrMajorPolicy(Name) struct MajorPolicyGroup##Name{}
 #define MakeErrMinorPolicy(Name, Major) struct MinorPolicyGroup##Name : UseMajorPolicyGroup(Major) {\
 	using MajorPolicy = UseMajorPolicyGroup(Major);\
 }
@@ -13,7 +13,7 @@
 	using MinorPolicyGroup = UseMinorPolicyGroup(Minor);\
 }
 #define MakeSetErr(ErrPolicyName, Code, Cate, Name, Desc) template<>\
-constexpr int SetErrRet<UseErrPolicy(ErrPolicyName)> = _ErrorCore::_SetError<Code, Cate, Name, Desc>
+constexpr int SetErrRet<UseErrPolicy(ErrPolicyName)> = _ErrorCore::_SetError(Code, Cate, Name, Desc)
 using namespace std;
 
 struct _ErrorInfo {
@@ -24,21 +24,22 @@ struct _ErrorInfo {
 };
 
 struct _ErrorCore {
-	_ErrorInfo ErrorInfo;
-	template<DWORD ErrorCode, const char* Cate, const char* Name, const char* Desc>
-	constexpr int _SetError() {
+	static _ErrorInfo ErrorInfo;
+	constexpr int _SetError(DWORD ErrorCode, const char* Cate, const char* Name, const char* Desc) {
 		ErrorInfo.ErrorCode = ErrorCode;
 		ErrorInfo.ErrorCate = Cate;
 		ErrorInfo.ErrorName = Name;
 		ErrorInfo.ErrorDescription = Desc;
 		return 0;
 	}
-
-	template<>
-	constexpr int _SetError<0x00000000, NULL, NULL, NULL>() {
-		return 0;
-	}
 };
+
+MakeErrMajorPolicy(Error);
+MakeErrMinorPolicy(PluginException, Error);
+
+MakeErrPolicy(CannotLoadCppPlugins, Error, PluginException);
 
 template<class ErrPolicy>
 constexpr int SetErrRet = _ErrorCore::_SetError<0x00000000, NULL, NULL, NULL>();
+
+MakeSetErr(CannotLoadCppPlugins, 0x000000001, "ERROR_CPP_PLUGIN", "CANNOT_LOAD_CPP_PLUGINS", "LoadLibraryA() cannot load cpp plugins.");
