@@ -124,7 +124,6 @@ add_executable(MCDReforged_By_CPP
         include/warnings.h
         include/weakrefobject.h
         includes/cppplugin.h
-        includes/errorcore.h
         includes/findfiles.h
         includes/pyplugin.h
         includes/SysInit.h
