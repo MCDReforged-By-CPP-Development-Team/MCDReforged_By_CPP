@@ -4,5 +4,8 @@
 #pragma once
 
 #include <iostream>
+#include "includes/errorcore.h"
+#include "includes/SysInit.h"
+
 
 // TODO: 在此处引用程序需要的其他标头。
