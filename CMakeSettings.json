@@ -1,16 +1,32 @@
 ﻿{
-  // 请参阅 https://go.microsoft.com//fwlink//?linkid=834763 了解有关此文件的详细信息。
   "configurations": [
     {
-      "name": "x64-Debug",
-      "generator": "Ninja",
-      "configurationType": "Debug",
-      "inheritEnvironments": [ "msvc_x64_x64" ],
-      "buildRoot": "${projectDir}\\out\\build\\${name}",
-      "installRoot": "${projectDir}\\out\\install\\${name}",
-      "cmakeCommandArgs": "",
       "buildCommandArgs": "",
-      "ctestCommandArgs": ""
+      "buildRoot": "${projectDir}\\out\\build\\${name}",
+      "cmakeCommandArgs": "",
+      "configurationType": "Debug",
+      "ctestCommandArgs": "",
+      "generator": "Ninja",
+      "inheritEnvironments": [ "msvc_x64_x64" ],
+      "installRoot": "${projectDir}\\out\\install\\${name}",
+      "name": "x64-Debug",
+      "variables": [
+        {
+          "name": "CMAKE_INSTALL_PREFIX",
+          "type": "PATH",
+          "value": "C:/Users/34376/source/repos/MCDRCPP/MCDReforged_By_CPP/out/build/x64-Debug"
+        },
+        {
+          "name": "CMAKE_MAKE_PROGRAM",
+          "type": "FILEPATH",
+          "value": "D:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe"
+        },
+        {
+          "name": "CMAKE_BUILD_TYPE",
+          "type": "STRING",
+          "value": "Debug"
+        }
+      ]
     }
   ]
 }

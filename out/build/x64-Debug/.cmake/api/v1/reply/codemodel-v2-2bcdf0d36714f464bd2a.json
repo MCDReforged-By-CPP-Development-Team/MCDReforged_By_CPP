@@ -48,8 +48,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/34376/source/repos/MCDRCPP/out/build/x64-Debug (默认值)",
-		"source" : "C:/Users/34376/source/repos/MCDRCPP"
+		"build" : "C:/Users/34376/source/repos/MCDRCPP/MCDReforged_By_CPP/out/build/x64-Debug",
+		"source" : "C:/Users/34376/source/repos/MCDRCPP/MCDReforged_By_CPP"
 	},
 	"version" : 
 	{

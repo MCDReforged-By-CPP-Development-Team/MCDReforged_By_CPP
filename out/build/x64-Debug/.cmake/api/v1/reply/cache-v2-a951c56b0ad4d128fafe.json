@@ -23,7 +23,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/Users/34376/source/repos/MCDRCPP/out/build/x64-Debug (默认值)"
+			"value" : "c:/Users/34376/source/repos/MCDRCPP/MCDReforged_By_CPP/out/build/x64-Debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -499,7 +499,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Users/34376/source/repos/MCDRCPP"
+			"value" : "C:/Users/34376/source/repos/MCDRCPP/MCDReforged_By_CPP/"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -511,7 +511,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "C:/Users/34376/source/repos/MCDRCPP/out/install/x64-Debug (默认值)"
+			"value" : "C:/Users/34376/source/repos/MCDRCPP/MCDReforged_By_CPP/out/build/x64-Debug"
 		},
 		{
 			"name" : "CMAKE_LINKER",
@@ -539,7 +539,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "D:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe"
+			"value" : "D:/PROGRA~1/MICROS~1/2019/ENTERP~1/Common7/IDE/COMMON~1/MICROS~1/CMake/Ninja/ninja.exe"
 		},
 		{
 			"name" : "CMAKE_MODULE_LINKER_FLAGS",
@@ -1035,7 +1035,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/34376/source/repos/MCDRCPP/out/build/x64-Debug (默认值)"
+			"value" : "C:/Users/34376/source/repos/MCDRCPP/MCDReforged_By_CPP/out/build/x64-Debug"
 		},
 		{
 			"name" : "MCDRCPP_SOURCE_DIR",
@@ -1047,7 +1047,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/34376/source/repos/MCDRCPP"
+			"value" : "C:/Users/34376/source/repos/MCDRCPP/MCDReforged_By_CPP"
 		}
 	],
 	"kind" : "cache",
