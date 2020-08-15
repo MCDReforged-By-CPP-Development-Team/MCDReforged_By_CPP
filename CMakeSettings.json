@@ -12,8 +12,13 @@
       "variables": [
         {
           "name": "CMAKE_MAKE_PROGRAM",
-          "type": "FILEPATH",
-          "value": "D:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe"
+          "value": "D:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe",
+          "type": "FILEPATH"
+        },
+        {
+          "name": "CMAKE_INSTALL_PREFIX",
+          "value": "C:\\Users\\34376\\source\\repos\\MCDReforged-By-CPP-Development-Team\\MCDReforged_By_CPP\\MCDReforged_By_CPP\\out\\install\\x64-Debug",
+          "type": "PATH"
         }
       ]
     }
