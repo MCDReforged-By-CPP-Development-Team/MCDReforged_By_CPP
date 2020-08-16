@@ -100,7 +100,7 @@ build MCDReforged_By_CPP.exe: CXX_EXECUTABLE_LINKER__MCDReforged_By_CPP_Debug CM
 # Utility command for edit_cache
 
 build CMakeFiles\edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\34376\source\repos\MCDRCPP\MCDReforged_By_CPP\out\build\x64-Debug && "D:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = cmd.exe /C "cd /D C:\Users\34376\source\repos\MCDReforged-By-CPP-Development-Team\MCDReforged_By_CPP\MCDReforged_By_CPP\out\build\x64-Debug && "D:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -111,7 +111,7 @@ build edit_cache: phony CMakeFiles\edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\34376\source\repos\MCDRCPP\MCDReforged_By_CPP\out\build\x64-Debug && "D:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SC:\Users\34376\source\repos\MCDRCPP\MCDReforged_By_CPP -BC:\Users\34376\source\repos\MCDRCPP\MCDReforged_By_CPP\out\build\x64-Debug"
+  COMMAND = cmd.exe /C "cd /D C:\Users\34376\source\repos\MCDReforged-By-CPP-Development-Team\MCDReforged_By_CPP\MCDReforged_By_CPP\out\build\x64-Debug && "D:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SC:\Users\34376\source\repos\MCDReforged-By-CPP-Development-Team\MCDReforged_By_CPP\MCDReforged_By_CPP -BC:\Users\34376\source\repos\MCDReforged-By-CPP-Development-Team\MCDReforged_By_CPP\MCDReforged_By_CPP\out\build\x64-Debug"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -129,7 +129,7 @@ build MCDReforged_By_CPP: phony MCDReforged_By_CPP.exe
 # =============================================================================
 
 #############################################
-# Folder: C:/Users/34376/source/repos/MCDRCPP/MCDReforged_By_CPP/out/build/x64-Debug
+# Folder: C:/Users/34376/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/MCDReforged_By_CPP/out/build/x64-Debug
 
 build all: phony MCDReforged_By_CPP.exe
 

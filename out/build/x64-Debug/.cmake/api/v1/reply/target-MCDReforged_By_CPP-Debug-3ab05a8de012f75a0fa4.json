@@ -73,28 +73,28 @@
 			[
 				{
 					"backtrace" : 2,
-					"path" : "C:/Users/34376/source/repos/MCDRCPP/MCDReforged_By_CPP/."
+					"path" : "C:/Users/34376/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/MCDReforged_By_CPP/."
 				},
 				{
 					"backtrace" : 3,
-					"path" : "C:/Users/34376/source/repos/MCDRCPP/MCDReforged_By_CPP/include"
+					"path" : "C:/Users/34376/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/MCDReforged_By_CPP/include"
 				},
 				{
 					"backtrace" : 4,
-					"path" : "C:/Users/34376/source/repos/MCDRCPP/MCDReforged_By_CPP/include/internal"
+					"path" : "C:/Users/34376/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/MCDReforged_By_CPP/include/internal"
 				},
 				{
 					"backtrace" : 5,
-					"path" : "C:/Users/34376/source/repos/MCDRCPP/MCDReforged_By_CPP/includes"
+					"path" : "C:/Users/34376/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/MCDReforged_By_CPP/includes"
 				}
 			],
 			"language" : "CXX",
 			"sourceIndexes" : 
 			[
+				115,
 				116,
 				117,
-				118,
-				119
+				118
 			]
 		}
 	],
@@ -246,18 +246,17 @@
 				112,
 				113,
 				114,
-				115,
-				120
+				119
 			]
 		},
 		{
 			"name" : "Source Files",
 			"sourceIndexes" : 
 			[
+				115,
 				116,
 				117,
-				118,
-				119
+				118
 			]
 		}
 	],
@@ -821,11 +820,6 @@
 		{
 			"backtrace" : 1,
 			"path" : "includes/cppplugin.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"path" : "includes/errorcore.h",
 			"sourceGroupIndex" : 0
 		},
 		{

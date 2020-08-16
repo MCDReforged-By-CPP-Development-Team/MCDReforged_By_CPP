@@ -23,7 +23,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/Users/34376/source/repos/MCDRCPP/MCDReforged_By_CPP/out/build/x64-Debug"
+			"value" : "c:/Users/34376/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/MCDReforged_By_CPP/out/build/x64-Debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -499,7 +499,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Users/34376/source/repos/MCDRCPP/MCDReforged_By_CPP/"
+			"value" : "C:/Users/34376/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/MCDReforged_By_CPP/"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -511,7 +511,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "C:/Users/34376/source/repos/MCDRCPP/MCDReforged_By_CPP/out/install/x64-Debug"
+			"value" : "C:/Users/34376/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/MCDReforged_By_CPP/out/install/x64-Debug"
 		},
 		{
 			"name" : "CMAKE_LINKER",
@@ -1035,7 +1035,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/34376/source/repos/MCDRCPP/MCDReforged_By_CPP/out/build/x64-Debug"
+			"value" : "C:/Users/34376/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/MCDReforged_By_CPP/out/install/x64-Debug"
 		},
 		{
 			"name" : "MCDRCPP_SOURCE_DIR",
@@ -1047,7 +1047,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/34376/source/repos/MCDRCPP/MCDReforged_By_CPP"
+			"value" : "C:/Users/34376/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/MCDReforged_By_CPP/"
 		},
 		{
 			"name" : "MCDReforged_By_CPP_BINARY_DIR",
@@ -1059,7 +1059,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/34376/source/repos/MCDRCPP/MCDReforged_By_CPP/out/build/x64-Debug"
+			"value" : "C:/Users/34376/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/MCDReforged_By_CPP/out/build/x64-Debug"
 		},
 		{
 			"name" : "MCDReforged_By_CPP_SOURCE_DIR",
@@ -1071,7 +1071,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/34376/source/repos/MCDRCPP/MCDReforged_By_CPP"
+			"value" : "C:/Users/34376/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/MCDReforged_By_CPP"
 		}
 	],
 	"kind" : "cache",
