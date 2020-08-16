@@ -1,3 +1,3 @@
 #include"include/Python.h"
 
-#pragma comment(lib, "libs/python37.lib")
+#pragma comment(lib, "libs/python37_d.lib")
