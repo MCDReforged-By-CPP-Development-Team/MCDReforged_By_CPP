@@ -32,12 +32,12 @@ int LoadConfig::LoadConfigFile() {
 
         string cfgPath = strCfgPath;
 
-        ReadCfgFile(cfgPath);
+        return ReadCfgFile(cfgPath);
         return 0;
     }
     else {
         CreateCfgFile();
-        ReadCfgFile();
+        return ReadCfgFile();
         return -1;
     }
 }
