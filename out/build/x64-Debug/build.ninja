@@ -45,7 +45,7 @@ build cmake_object_order_depends_target_MCDReforged_By_CPP_Debug: phony || CMake
 
 build CMakeFiles\MCDReforged_By_CPP.dir\source\cppplugin.cpp.obj: CXX_COMPILER__MCDReforged_By_CPP_Debug ..\..\..\source\cppplugin.cpp || cmake_object_order_depends_target_MCDReforged_By_CPP_Debug
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -MDd   -std:c++latest
-  INCLUDES = -I..\..\..\. -I..\..\..\include -I..\..\..\include\internal -I..\..\..\includes
+  INCLUDES = -I..\..\..\. -I..\..\..\include -I..\..\..\include\internal -I..\..\..\includes -I..\..\..\tinyxml2-8.0.0
   OBJECT_DIR = CMakeFiles\MCDReforged_By_CPP.dir
   OBJECT_FILE_DIR = CMakeFiles\MCDReforged_By_CPP.dir\source
   TARGET_COMPILE_PDB = CMakeFiles\MCDReforged_By_CPP.dir\
@@ -53,7 +53,7 @@ build CMakeFiles\MCDReforged_By_CPP.dir\source\cppplugin.cpp.obj: CXX_COMPILER__
 
 build CMakeFiles\MCDReforged_By_CPP.dir\source\pyplugin.cpp.obj: CXX_COMPILER__MCDReforged_By_CPP_Debug ..\..\..\source\pyplugin.cpp || cmake_object_order_depends_target_MCDReforged_By_CPP_Debug
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -MDd   -std:c++latest
-  INCLUDES = -I..\..\..\. -I..\..\..\include -I..\..\..\include\internal -I..\..\..\includes
+  INCLUDES = -I..\..\..\. -I..\..\..\include -I..\..\..\include\internal -I..\..\..\includes -I..\..\..\tinyxml2-8.0.0
   OBJECT_DIR = CMakeFiles\MCDReforged_By_CPP.dir
   OBJECT_FILE_DIR = CMakeFiles\MCDReforged_By_CPP.dir\source
   TARGET_COMPILE_PDB = CMakeFiles\MCDReforged_By_CPP.dir\
@@ -61,7 +61,7 @@ build CMakeFiles\MCDReforged_By_CPP.dir\source\pyplugin.cpp.obj: CXX_COMPILER__M
 
 build CMakeFiles\MCDReforged_By_CPP.dir\source\SysInit.cpp.obj: CXX_COMPILER__MCDReforged_By_CPP_Debug ..\..\..\source\SysInit.cpp || cmake_object_order_depends_target_MCDReforged_By_CPP_Debug
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -MDd   -std:c++latest
-  INCLUDES = -I..\..\..\. -I..\..\..\include -I..\..\..\include\internal -I..\..\..\includes
+  INCLUDES = -I..\..\..\. -I..\..\..\include -I..\..\..\include\internal -I..\..\..\includes -I..\..\..\tinyxml2-8.0.0
   OBJECT_DIR = CMakeFiles\MCDReforged_By_CPP.dir
   OBJECT_FILE_DIR = CMakeFiles\MCDReforged_By_CPP.dir\source
   TARGET_COMPILE_PDB = CMakeFiles\MCDReforged_By_CPP.dir\
@@ -69,9 +69,17 @@ build CMakeFiles\MCDReforged_By_CPP.dir\source\SysInit.cpp.obj: CXX_COMPILER__MC
 
 build CMakeFiles\MCDReforged_By_CPP.dir\MCDRCPP.cpp.obj: CXX_COMPILER__MCDReforged_By_CPP_Debug ..\..\..\MCDRCPP.cpp || cmake_object_order_depends_target_MCDReforged_By_CPP_Debug
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -MDd   -std:c++latest
-  INCLUDES = -I..\..\..\. -I..\..\..\include -I..\..\..\include\internal -I..\..\..\includes
+  INCLUDES = -I..\..\..\. -I..\..\..\include -I..\..\..\include\internal -I..\..\..\includes -I..\..\..\tinyxml2-8.0.0
   OBJECT_DIR = CMakeFiles\MCDReforged_By_CPP.dir
   OBJECT_FILE_DIR = CMakeFiles\MCDReforged_By_CPP.dir
+  TARGET_COMPILE_PDB = CMakeFiles\MCDReforged_By_CPP.dir\
+  TARGET_PDB = MCDReforged_By_CPP.pdb
+
+build CMakeFiles\MCDReforged_By_CPP.dir\tinyxml2-8.0.0\tinyxml2.cpp.obj: CXX_COMPILER__MCDReforged_By_CPP_Debug ..\..\..\tinyxml2-8.0.0\tinyxml2.cpp || cmake_object_order_depends_target_MCDReforged_By_CPP_Debug
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -MDd   -std:c++latest
+  INCLUDES = -I..\..\..\. -I..\..\..\include -I..\..\..\include\internal -I..\..\..\includes -I..\..\..\tinyxml2-8.0.0
+  OBJECT_DIR = CMakeFiles\MCDReforged_By_CPP.dir
+  OBJECT_FILE_DIR = CMakeFiles\MCDReforged_By_CPP.dir\tinyxml2-8.0.0
   TARGET_COMPILE_PDB = CMakeFiles\MCDReforged_By_CPP.dir\
   TARGET_PDB = MCDReforged_By_CPP.pdb
 
@@ -83,7 +91,7 @@ build CMakeFiles\MCDReforged_By_CPP.dir\MCDRCPP.cpp.obj: CXX_COMPILER__MCDReforg
 #############################################
 # Link the executable MCDReforged_By_CPP.exe
 
-build MCDReforged_By_CPP.exe: CXX_EXECUTABLE_LINKER__MCDReforged_By_CPP_Debug CMakeFiles\MCDReforged_By_CPP.dir\source\cppplugin.cpp.obj CMakeFiles\MCDReforged_By_CPP.dir\source\pyplugin.cpp.obj CMakeFiles\MCDReforged_By_CPP.dir\source\SysInit.cpp.obj CMakeFiles\MCDReforged_By_CPP.dir\MCDRCPP.cpp.obj
+build MCDReforged_By_CPP.exe: CXX_EXECUTABLE_LINKER__MCDReforged_By_CPP_Debug CMakeFiles\MCDReforged_By_CPP.dir\source\cppplugin.cpp.obj CMakeFiles\MCDReforged_By_CPP.dir\source\pyplugin.cpp.obj CMakeFiles\MCDReforged_By_CPP.dir\source\SysInit.cpp.obj CMakeFiles\MCDReforged_By_CPP.dir\MCDRCPP.cpp.obj CMakeFiles\MCDReforged_By_CPP.dir\tinyxml2-8.0.0\tinyxml2.cpp.obj
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib

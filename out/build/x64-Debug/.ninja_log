@@ -13,3 +13,10 @@
 0	666	619273679	CMakeFiles/MCDReforged_By_CPP.dir/MCDRCPP.cpp.obj	24378bd6e13ee740
 1	459	619286657	CMakeFiles/MCDReforged_By_CPP.dir/source/pyplugin.cpp.obj	970464ad3e829bb3
 1	1289	619352546	CMakeFiles/MCDReforged_By_CPP.dir/source/cppplugin.cpp.obj	143c010e54f34fb7
+1	296	619362036	build.ninja	fe30403fcd9e9ef2
+23	934	619362037	CMakeFiles/MCDReforged_By_CPP.dir/source/SysInit.cpp.obj	48deffbe87362c6
+13	934	619362037	CMakeFiles/MCDReforged_By_CPP.dir/source/pyplugin.cpp.obj	780e3267adbf6b4e
+33	1250	619362038	CMakeFiles/MCDReforged_By_CPP.dir/MCDRCPP.cpp.obj	5673440bb76c27e
+1	1420	619362038	CMakeFiles/MCDReforged_By_CPP.dir/source/cppplugin.cpp.obj	dc38e61a837f048e
+0	198	619362124	build.ninja	fe30403fcd9e9ef2
+1	374	619362124	CMakeFiles/MCDReforged_By_CPP.dir/tinyxml2-8.0.0/tinyxml2.cpp.obj	37482f428a478f4b

@@ -10,6 +10,7 @@ include_directories(.)
 include_directories(include)
 include_directories(include/internal)
 include_directories(includes)
+include_directories(tinyxml2-8.0.0)
 
 add_executable(MCDReforged_By_CPP
         include/internal/ceval.h
@@ -131,7 +132,9 @@ add_executable(MCDReforged_By_CPP
         source/pyplugin.cpp
         source/SysInit.cpp
         MCDRCPP.cpp
-        MCDRCPP.h)
+        MCDRCPP.h
+        tinyxml2-8.0.0/tinyxml2.cpp
+        tinyxml2-8.0.0/tinyxml2.h)
 
 
 # TODO: 如有需要，请添加测试并安装目标。
