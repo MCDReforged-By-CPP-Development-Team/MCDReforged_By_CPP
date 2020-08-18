@@ -1,0 +1,5 @@
+"C:\Users\apple\AppData\Local\JetBrains\CLion 2020.2\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Release PYTHON_INCLUDE_DIR=C:/Users/apple/AppData/Local/Programs/Python/Python38/libs -G "CodeBlocks - NMake Makefiles" Z:\Desktop\github\MCDReforged_By_CPP
+-- Cmakingonwindowsx86_64
+-- Configuring done
+-- Generating done
+-- Build files have been written to: Z:/Desktop/github/MCDReforged_By_CPP/cmake-build-release-visual-studio

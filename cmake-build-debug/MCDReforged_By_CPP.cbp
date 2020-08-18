@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="MCDReforged_By_CPP"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="msvc8"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="Z:/Desktop/github/MCDReforged_By_CPP/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f Z:\Desktop\github\MCDReforged_By_CPP\cmake-build-debug\Makefile VERBOSE=1 all"/>
+					<CompileFile command="nmake /NOLOGO /f Z:\Desktop\github\MCDReforged_By_CPP\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f Z:\Desktop\github\MCDReforged_By_CPP\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f Z:\Desktop\github\MCDReforged_By_CPP\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="MCDReforged_By_CPP">
+				<Option output="Z:/Desktop/github/MCDReforged_By_CPP/cmake-build-debug/MCDReforged_By_CPP.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="Z:/Desktop/github/MCDReforged_By_CPP/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="msvc8"/>
+				<Compiler>
+					<Add directory="C:/Users/apple/AppData/Local/Programs/Python/Python38/include"/>
+					<Add directory="Z:/Desktop/github/MCDReforged_By_CPP/."/>
+					<Add directory="Z:/Desktop/github/MCDReforged_By_CPP/includes"/>
+					<Add directory="Z:/Desktop/github/MCDReforged_By_CPP/include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\cppwinrt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f Z:\Desktop\github\MCDReforged_By_CPP\cmake-build-debug\Makefile VERBOSE=1 MCDReforged_By_CPP"/>
+					<CompileFile command="nmake /NOLOGO /f Z:\Desktop\github\MCDReforged_By_CPP\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f Z:\Desktop\github\MCDReforged_By_CPP\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f Z:\Desktop\github\MCDReforged_By_CPP\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="MCDReforged_By_CPP/fast">
+				<Option output="Z:/Desktop/github/MCDReforged_By_CPP/cmake-build-debug/MCDReforged_By_CPP.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="Z:/Desktop/github/MCDReforged_By_CPP/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="msvc8"/>
+				<Compiler>
+					<Add directory="C:/Users/apple/AppData/Local/Programs/Python/Python38/include"/>
+					<Add directory="Z:/Desktop/github/MCDReforged_By_CPP/."/>
+					<Add directory="Z:/Desktop/github/MCDReforged_By_CPP/includes"/>
+					<Add directory="Z:/Desktop/github/MCDReforged_By_CPP/include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\ATLMFC\include"/>
+					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\ucrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\shared"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\um"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\winrt"/>
+					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.18362.0\cppwinrt"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f Z:\Desktop\github\MCDReforged_By_CPP\cmake-build-debug\Makefile VERBOSE=1 MCDReforged_By_CPP/fast"/>
+					<CompileFile command="nmake /NOLOGO /f Z:\Desktop\github\MCDReforged_By_CPP\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f Z:\Desktop\github\MCDReforged_By_CPP\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f Z:\Desktop\github\MCDReforged_By_CPP\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="Z:/Desktop/github/MCDReforged_By_CPP/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f Z:\Desktop\github\MCDReforged_By_CPP\cmake-build-debug\Makefile VERBOSE=1 edit_cache"/>
+					<CompileFile command="nmake /NOLOGO /f Z:\Desktop\github\MCDReforged_By_CPP\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f Z:\Desktop\github\MCDReforged_By_CPP\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f Z:\Desktop\github\MCDReforged_By_CPP\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="Z:/Desktop/github/MCDReforged_By_CPP/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="nmake /NOLOGO /f Z:\Desktop\github\MCDReforged_By_CPP\cmake-build-debug\Makefile VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="nmake /NOLOGO /f Z:\Desktop\github\MCDReforged_By_CPP\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="nmake /NOLOGO /f Z:\Desktop\github\MCDReforged_By_CPP\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<DistClean command="nmake /NOLOGO /f Z:\Desktop\github\MCDReforged_By_CPP\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/Users/apple/AppData/Local/Programs/Python/Python38/include/Python.h">
+			<Option target="MCDReforged_By_CPP"/>
+		</Unit>
+		<Unit filename="Z:/Desktop/github/MCDReforged_By_CPP/MCDRCPP.cpp">
+			<Option target="MCDReforged_By_CPP"/>
+		</Unit>
+		<Unit filename="Z:/Desktop/github/MCDReforged_By_CPP/MCDRCPP.h">
+			<Option target="MCDReforged_By_CPP"/>
+		</Unit>
+		<Unit filename="Z:/Desktop/github/MCDReforged_By_CPP/includes/SysInit.h">
+			<Option target="MCDReforged_By_CPP"/>
+		</Unit>
+		<Unit filename="Z:/Desktop/github/MCDReforged_By_CPP/includes/cppplugin.h">
+			<Option target="MCDReforged_By_CPP"/>
+		</Unit>
+		<Unit filename="Z:/Desktop/github/MCDReforged_By_CPP/includes/findfiles.h">
+			<Option target="MCDReforged_By_CPP"/>
+		</Unit>
+		<Unit filename="Z:/Desktop/github/MCDReforged_By_CPP/includes/pyplugin.h">
+			<Option target="MCDReforged_By_CPP"/>
+		</Unit>
+		<Unit filename="Z:/Desktop/github/MCDReforged_By_CPP/includes/rewriteio.h">
+			<Option target="MCDReforged_By_CPP"/>
+		</Unit>
+		<Unit filename="Z:/Desktop/github/MCDReforged_By_CPP/source/SysInit.cpp">
+			<Option target="MCDReforged_By_CPP"/>
+		</Unit>
+		<Unit filename="Z:/Desktop/github/MCDReforged_By_CPP/source/cppplugin.cpp">
+			<Option target="MCDReforged_By_CPP"/>
+		</Unit>
+		<Unit filename="Z:/Desktop/github/MCDReforged_By_CPP/source/pyplugin.cpp">
+			<Option target="MCDReforged_By_CPP"/>
+		</Unit>
+		<Unit filename="Z:/Desktop/github/MCDReforged_By_CPP/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
