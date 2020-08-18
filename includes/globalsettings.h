@@ -4,23 +4,30 @@ globalsettings.h
 */
 
 #include<string>
+#include"cmdsys.h"
+#include"cfgfile.h"
 
 using namespace std;
 
-int iMsTimerScriptExec;
-int iExecTimerScriptTimes;
+class Globalsettings {
+private:
+	static int iMsTimerScriptExec;
+	static int iExecTimerScriptTimes;
 
-bool bLoadCppPlugins;
-bool bLoadPyPlugins;
-bool bExecInitScript;
-bool bReadCppPluginsCfg;
-bool bReagPyPluginCfg;
-bool bExecTimerScriptLoop;
+	static bool bLoadCppPlugins;
+	static bool bLoadPyPlugins;
+	static bool bExecInitScript;
+	static bool bReadCppPluginsCfg;
+	static bool bReagPyPluginCfg;
+	static bool bExecTimerScriptLoop;
 
-string strJavaPath;
-string strServerWorkingDir;
-string strMinecraftServerFileName;
-string strCppPluginPath;
-string strPyPluginPath;
-string strInitScriptPath;
-string strTimerScriptPath;
+	static string strJavaPath;
+	static string strServerWorkingDir;
+	static string strMinecraftServerFileName;
+	static string strCppPluginPath;
+	static string strPyPluginPath;
+	static string strInitScriptPath;
+	static string strTimerScriptPath;
+	friend class LoadConfig;
+	friend AnalyzeAndExecCommand(string command);
+};

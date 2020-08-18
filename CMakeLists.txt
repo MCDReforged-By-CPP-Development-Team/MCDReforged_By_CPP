@@ -128,9 +128,16 @@ add_executable(MCDReforged_By_CPP
         includes/findfiles.h
         includes/pyplugin.h
         includes/SysInit.h
+        includes/cfgfile.h
+        includes/cmdsys.h
+        includes/globalsettings.h
+        includes/logsys.h
         source/cppplugin.cpp
         source/pyplugin.cpp
         source/SysInit.cpp
+        source/cfgfile.cpp
+        source/cmdsys.cpp
+        source/logsys.cpp
         MCDRCPP.cpp
         MCDRCPP.h
         tinyxml2-8.0.0/tinyxml2.cpp

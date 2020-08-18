@@ -1,5 +1,5 @@
-#include<includes/cmdsys.h>
+#include"cmdsys.h"
 
-AnalyzeAndExecCommand(string command) {
-
+int AnalyzeAndExecCommand(string command) {
+	return 0;
 }

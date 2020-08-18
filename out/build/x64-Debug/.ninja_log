@@ -1,0 +1,9 @@
+# ninja log v5
+45	718	619452585	CMakeFiles/MCDReforged_By_CPP.dir/source/SysInit.cpp.obj	135f047dccb94cc6
+9	724	619452585	CMakeFiles/MCDReforged_By_CPP.dir/source/pyplugin.cpp.obj	e4bac248d6969d84
+68	792	619452586	CMakeFiles/MCDReforged_By_CPP.dir/tinyxml2-8.0.0/tinyxml2.cpp.obj	3892175bac95a75f
+57	1164	619452586	CMakeFiles/MCDReforged_By_CPP.dir/MCDRCPP.cpp.obj	6ed1b850dfc19996
+0	1523	619452586	CMakeFiles/MCDReforged_By_CPP.dir/source/cppplugin.cpp.obj	9f334b6ae9f691e1
+35	1714	619452586	CMakeFiles/MCDReforged_By_CPP.dir/source/logsys.cpp.obj	c3fcfbd8fbce55fa
+0	520	619453185	CMakeFiles/MCDReforged_By_CPP.dir/source/cmdsys.cpp.obj	4e252b76f88a6e94
+10	756	619453185	CMakeFiles/MCDReforged_By_CPP.dir/source/cfgfile.cpp.obj	c3b27006fc4032e9

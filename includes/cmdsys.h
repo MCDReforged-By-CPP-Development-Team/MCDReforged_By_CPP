@@ -2,4 +2,4 @@
 
 using namespace std;
 
-AnalyzeAndExecCommand(string command);
+int AnalyzeAndExecCommand(string command);
