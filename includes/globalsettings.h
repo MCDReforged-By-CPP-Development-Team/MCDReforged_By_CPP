@@ -5,7 +5,6 @@ globalsettings.h
 
 #include<string>
 #include"cmdsys.h"
-#include"cfgfile.h"
 
 using namespace std;
 
@@ -17,9 +16,11 @@ private:
 	static bool bLoadCppPlugins;
 	static bool bLoadPyPlugins;
 	static bool bExecInitScript;
+	static bool bExecTimerScript;
 	static bool bReadCppPluginsCfg;
 	static bool bReagPyPluginCfg;
 	static bool bExecTimerScriptLoop;
+	static bool bEnableMinecraftCommandQueue;
 
 	static string strJavaPath;
 	static string strServerWorkingDir;
@@ -29,5 +30,5 @@ private:
 	static string strInitScriptPath;
 	static string strTimerScriptPath;
 	friend class LoadConfig;
-	friend AnalyzeAndExecCommand(string command);
+	friend int AnalyzeAndExecCommand(string command);
 };

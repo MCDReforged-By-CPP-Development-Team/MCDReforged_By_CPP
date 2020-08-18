@@ -145,7 +145,7 @@ add_executable(MCDReforged_By_CPP
         tinyxml2-8.0.0/tinyxml.cpp
         tinyxml2-8.0.0/tinyxml.h
         tinyxml2-8.0.0/tinyxmlerror.cpp
-        tinyxml2-8.0.0/tinyxmlparser.h)
+        tinyxml2-8.0.0/tinyxmlparser.cpp)
 
 
 # TODO: 如有需要，请添加测试并安装目标。
