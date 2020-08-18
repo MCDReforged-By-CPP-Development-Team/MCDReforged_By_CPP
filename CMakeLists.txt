@@ -25,6 +25,10 @@ IF(WIN32)
 
     add_executable(MCDReforged_By_CPP
             ${PYINCLUDE}/Python.h
+            includes/cfgfile.h
+            includes/cmdsys.h
+            includes/globalsettings.h
+            includes/logsys.h
             includes/cppplugin.h
             includes/findfiles.h
             includes/pyplugin.h
@@ -33,12 +37,15 @@ IF(WIN32)
             source/cppplugin.cpp
             source/pyplugin.cpp
             source/SysInit.cpp
+            source/cfgfile.cpp
+            source/cmdsys.cpp
+            source/logsys.cpp
             tinyxml2-8.0.0/tinystr.cpp
             tinyxml2-8.0.0/tinystr.h
             tinyxml2-8.0.0/tinyxml.cpp
             tinyxml2-8.0.0/tinyxml.h
             tinyxml2-8.0.0/tinyxmlerror.cpp
-            tinyxml2-8.0.0/tinyxmlparser.h
+            tinyxml2-8.0.0/tinyxmlparser.cpp
             MCDRCPP.cpp
             MCDRCPP.h)
 ELSEIF(APPLE)
@@ -49,6 +56,10 @@ ELSEIF(APPLE)
     include_directories(tinyxml2-8.0.0)
 
     add_executable(MCDReforged_By_CPP
+            includes/cfgfile.h
+            includes/cmdsys.h
+            includes/globalsettings.h
+            includes/logsys.h
             includes/cppplugin.h
             includes/findfiles.h
             includes/pyplugin.h
@@ -57,6 +68,9 @@ ELSEIF(APPLE)
             source/cppplugin.cpp
             source/pyplugin.cpp
             source/SysInit.cpp
+            source/cfgfile.cpp
+            source/cmdsys.cpp
+            source/logsys.cpp
             tinyxml2-8.0.0/tinystr.cpp
             tinyxml2-8.0.0/tinystr.h
             tinyxml2-8.0.0/tinyxml.cpp
