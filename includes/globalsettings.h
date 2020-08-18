@@ -5,6 +5,8 @@ globalsettings.h
 
 #include<string>
 
+using namespace std;
+
 int iMsTimerScriptExec;
 int iExecTimerScriptTimes;
 
@@ -20,3 +22,5 @@ string strServerWorkingDir;
 string strMinecraftServerFileName;
 string strCppPluginPath;
 string strPyPluginPath;
+string strInitScriptPath;
+string strTimerScriptPath;
