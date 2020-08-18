@@ -1,5 +1,6 @@
 #include<string>
 #include<vector>
+
 #include<Windows.h>
 
 using namespace std;
@@ -29,11 +30,11 @@ struct _CppPluginRegInfo {
 	}
 };
 
-struct CppPluginCore{	//采用结构体封装函数避免用户误用,函数实现放在cppplugin.cpp里面 awa
-private:
-	int RegPlugin(_CppPluginRegInfo info);
-	vector<_CppPluginRegInfo> CppPluginRegInfo;	//保存C/C++插件描述结构体的vector
-public:
-	int LoadPlugin();
-	int OnCmd();
+struct CppPluginCore {	//采用结构体封装函数避免用户误用,函数实现放在cppplugin.cpp里面 awa
+    private:
+	    int RegPlugin(_CppPluginRegInfo info);
+	    vector<_CppPluginRegInfo> CppPluginRegInfo;	//保存C/C++插件描述结构体的vector
+    public:
+	    int LoadPlugin();
+	    int OnCmd();
 };
