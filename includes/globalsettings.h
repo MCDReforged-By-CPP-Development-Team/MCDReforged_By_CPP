@@ -4,12 +4,10 @@ globalsettings.h
 */
 
 #include<string>
-#include"cmdsys.h"
 
 using namespace std;
 
-class Globalsettings {
-private:
+namespace Globalsettings {
 	static int iMsTimerScriptExec;
 	static int iExecTimerScriptTimes;
 
@@ -29,6 +27,4 @@ private:
 	static string strPyPluginPath;
 	static string strInitScriptPath;
 	static string strTimerScriptPath;
-	friend class LoadConfig;
-	friend int AnalyzeAndExecCommand(string command);
 };
