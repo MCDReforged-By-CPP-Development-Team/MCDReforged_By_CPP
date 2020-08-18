@@ -5,7 +5,8 @@ cfgfile.h
 
 #include<string>
 #include<Windows.h>
-#include"tinyxml2-8.0.0/tinyxml2.h"
+#include "tinyxml2-8.0.0/tinystr.h"  
+#include "tinyxml2-8.0.0/tinyxml.h"
 
 using namespace std;
 

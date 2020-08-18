@@ -140,8 +140,12 @@ add_executable(MCDReforged_By_CPP
         source/logsys.cpp
         MCDRCPP.cpp
         MCDRCPP.h
-        tinyxml2-8.0.0/tinyxml2.cpp
-        tinyxml2-8.0.0/tinyxml2.h)
+        tinyxml2-8.0.0/tinystr.cpp
+        tinyxml2-8.0.0/tinystr.h
+        tinyxml2-8.0.0/tinyxml.cpp
+        tinyxml2-8.0.0/tinyxml.h
+        tinyxml2-8.0.0/tinyxmlerror.cpp
+        tinyxml2-8.0.0/tinyxmlparser.h)
 
 
 # TODO: 如有需要，请添加测试并安装目标。
