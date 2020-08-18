@@ -11,8 +11,8 @@ set(CMAKE_CXX_STANDARD 20)
 
 IF(WIN32)
     MESSAGE(STATUS Cmaking on windowsx86_64)
-    set(PYINCLUDE C:/Users/apple/AppData/Local/Programs/Python/Python38/include)
-    set(PYLIB C:/Users/apple/AppData/Local/Programs/Python/Python38/libs)
+    set(PYINCLUDE "D:/Program Files (x86)/Microsoft Visual Studio/Shared/Python37_64/include")
+    set(PYLIB "D:/Program Files (x86)/Microsoft Visual Studio/Shared/Python37_64/libs")
 
     link_directories(${PYLIB})
     #link_libraries(此编译选项为玄学选项，请填写自己计算机的python lib 路径. ps: 系统环境变量不能用，我试过了 请不要把这个选项改动后推到github)
