@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<MCDReforgedByCppConfig>
+	<SystemSettings>
+		<LoadCppPlugins>true</LoadCppPlugins>
+		<LoadPythonPlugins>true</LoadPythonPlugins>
+		<LoadCppPluginsConfig>true</LoadCppPluginsConfig>
+		<LoadPythonPluginsConfig>true</LoadPythonPluginsConfig>
+		<CppPluginsDir>cppplugins</CppPluginsDir>
+		<PythonPluginsDir>pyplugins</PythonPluginsDir>
+		<ExecInitScript>true</ExecInitScript>
+		<ExecTimerScript>true</ExecTimerScript>
+		<ServerDir>server</ServerDir>
+		<ServerName>server.jar</ServerName>
+		<JavaPath></JavaPath>
+		<EnableMinecraftCommandQueue>true</EnableMinecraftCommandQueue>
+	</SystemSettings>
+</MCDReforgedByCppConfig>
