@@ -31,3 +31,6 @@
 1	696	619465126	CMakeFiles/MCDReforged_By_CPP.dir/source/cfgfile.cpp.obj	c4c01815676e37c9
 0	881	619465258	CMakeFiles/MCDReforged_By_CPP.dir/source/cfgfile.cpp.obj	c4c01815676e37c9
 883	1513	619465259	MCDReforged_By_CPP.exe	630e66a556f36426
+1	1426	619545749	CMakeFiles/MCDReforged_By_CPP.dir/source/cfgfile.cpp.obj	c4c01815676e37c9
+0	795	619546582	CMakeFiles/MCDReforged_By_CPP.dir/source/serverparser.cpp.obj	b82a705877878015
+796	1646	619546583	MCDReforged_By_CPP.exe	b5eac3f60ca943d7
