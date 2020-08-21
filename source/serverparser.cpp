@@ -38,6 +38,13 @@ int Parser(pServerParser pResult, int parserCode, string rawText) {
 }
 
 int VanillaParser(pServerParser pResult, string rawText) {
+	regex regexDate("^\[\d*:\d*:\d*\]");
+	cmatch match;
+	auto ret = regex_search(rawText.c_str(), match, regexDate);
+	string matchStr = match.str(0);
+	ParserDebugPrint("match.str(0):" + match.str(0));
+	rawText.replace(0, matchStr.size(), "");
+	regex regexThreadState("^\[\]");
 	return 0;
 }
 

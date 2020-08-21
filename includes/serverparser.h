@@ -1,6 +1,7 @@
 #include<regex>
 #include<string>
 #include<ctime>
+#include<iostream>
 
 #define VANILLA_PARSER_CODE 0
 #define BUKKIT_PARSER_CODE 1
@@ -60,3 +61,7 @@ int Bukkit14Parser(pServerParser pResult, string rawText);
 int BungeeCordParser(pServerParser pResult, string rawText);
 int CatParser(pServerParser pResult, string rawText);
 int WaterfallParser(pServerParser pResult, string rawText);
+
+int ParserDebugPrint(string str) {
+	cout << "[ParserDebugPrint]" << str << endl;
+}
