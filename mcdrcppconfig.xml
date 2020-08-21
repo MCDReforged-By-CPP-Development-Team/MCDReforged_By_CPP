@@ -14,5 +14,6 @@
 		<ServerName>server.jar</ServerName>
 		<JavaPath></JavaPath>
 		<EnableMinecraftCommandQueue>true</EnableMinecraftCommandQueue>
+		<ServerParser>VanillaParser</ServerParser>
 	</SystemSettings>
 </MCDReforgedByCppConfig>

@@ -47,7 +47,11 @@ IF(WIN32)
             tinyxml2-8.0.0/tinyxmlerror.cpp
             tinyxml2-8.0.0/tinyxmlparser.cpp
             MCDRCPP.cpp
-            MCDRCPP.h)
+            MCDRCPP.h 
+            includes/serverparser.h
+            source/serverparser.cpp
+            includes/messagesys.h
+            source/messagesys.cpp)
 ELSEIF(APPLE)
     MESSAGE(STATUS Cmaking on APPLE MacOS)
     include_directories(.)
@@ -78,5 +82,9 @@ ELSEIF(APPLE)
             tinyxml2-8.0.0/tinyxmlerror.cpp
             tinyxml2-8.0.0/tinyxmlparser.h
             MCDRCPP.cpp
-            MCDRCPP.h)
+            MCDRCPP.h
+            includes/serverparser.h
+            source/serverparser.cpp
+            includes/messagesys.h
+            source/messagesys.cpp)
 ENDIF()

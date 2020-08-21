@@ -2,6 +2,7 @@
 
 using namespace std;
 
+
 bool LoadConfig::ConfigFileExisting() {
     char strCfgPath[MAX_PATH];
     GetModuleFileName(NULL, strCfgPath, MAX_PATH);
@@ -107,6 +108,10 @@ int LoadConfig::ReadCfgFile(string cfgFilePath) {
     if (pElem == NULL) return -1;
     Globalsettings::bEnableMinecraftCommandQueue = StringToBool(pElem->GetText());
 
+    GetNodePointerByName(pRootEle, (string)"ServerParser", pElem);
+    if (pElem == NULL) return -1;
+    Globalsettings::iParserType = StringToParserCode(pElem->GetText());
+
     return 0;
 }
 
@@ -130,4 +135,30 @@ bool LoadConfig::StringToBool(string Temp) {
     if (Temp == "true" || Temp == "TRUE" || Temp == "True") return true;
     else if (Temp == "false" || Temp == "FALSE" || Temp == "False") return false;
     return false;
+}
+
+int LoadConfig::StringToParserCode(string parserName) {
+    if (parserName == "VanillaParser") {
+        return VANILLA_PARSER_CODE;
+    }
+
+    if (parserName == "BukkitParser") {
+        return BUKKIT_PARSER_CODE;
+    }
+
+    if (parserName == "Bukkit14Parser") {
+        return BUKKIT_14_PARSER_CODE;
+    }
+
+    if (parserName == "BungeeCordParser") {
+        return BUNGEECORD_PARSER_CODE;
+    }
+
+    if (parserName == "CatServerParser") {
+        return CAT_SERVER_PARSER_CODE;
+    }
+
+    if (parserName == "WaterfallParser") {
+        return WATERFALL_PARSER_CODE;
+    }
 }

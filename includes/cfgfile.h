@@ -8,6 +8,7 @@ cfgfile.h
 #include"tinyxml2-8.0.0/tinystr.h"  
 #include"tinyxml2-8.0.0/tinyxml.h"
 #include"globalsettings.h"
+#include"serverparser.h"
 
 using namespace std;
 
@@ -18,6 +19,7 @@ private:
 	static bool ConfigFileExisting();
 	static bool StringToBool(string Temp);
 	static bool GetNodePointerByName(TiXmlElement* pRootEle, std::string& strNodeName, TiXmlElement*& Node);
+	static int StringToParserCode(string parserName);
 public:
 	static int LoadConfigFile();
 };

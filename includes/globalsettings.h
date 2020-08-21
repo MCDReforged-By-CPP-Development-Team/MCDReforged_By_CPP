@@ -10,6 +10,7 @@ using namespace std;
 namespace Globalsettings {
 	static int iMsTimerScriptExec;
 	static int iExecTimerScriptTimes;
+	static int iParserType;
 
 	static bool bLoadCppPlugins;
 	static bool bLoadPyPlugins;
