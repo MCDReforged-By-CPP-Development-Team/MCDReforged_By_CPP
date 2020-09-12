@@ -51,7 +51,8 @@ IF(WIN32)
             includes/serverparser.h
             source/serverparser.cpp
             includes/messagesys.h
-            source/messagesys.cpp)
+            source/messagesys.cpp
+            includes/common.h)
 ELSEIF(APPLE)
     MESSAGE(STATUS Cmaking on APPLE MacOS)
     include_directories(.)
@@ -86,5 +87,6 @@ ELSEIF(APPLE)
             includes/serverparser.h
             source/serverparser.cpp
             includes/messagesys.h
-            source/messagesys.cpp)
+            source/messagesys.cpp
+            includes/common.h)
 ENDIF()

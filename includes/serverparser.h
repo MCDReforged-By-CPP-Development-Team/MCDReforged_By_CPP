@@ -3,6 +3,8 @@
 #include<ctime>
 #include<iostream>
 
+#include"common.h"
+
 #define VANILLA_PARSER_CODE 0
 #define BUKKIT_PARSER_CODE 1
 #define BUKKIT_14_PARSER_CODE 2
@@ -26,6 +28,11 @@ using namespace std;
 struct Advancement {
 	string playerName;
 	string advancement;
+
+	void operator+(Advancement* in) {
+		this->playerName = in->playerName;
+		this->advancement = in->advancement;
+	}
 };
 
 struct PlayerMsg {
@@ -41,6 +48,7 @@ typedef struct _ServerParser {
 	~_ServerParser() { }
 	tm messageTime;
 	string status;
+	string messager;
 	int messageCate;
 	union MajorMessage {
 		MajorMessage() { }
@@ -51,17 +59,19 @@ typedef struct _ServerParser {
 		Advancement advancement;
 		int loadInTime;
 		string rconRunningIpAndPort;
+		string playerMessage;
 	}MajorMessage;
 }ServerParser, *pServerParser;
 
-int Parser(pServerParser pResult, int parserCode, string rawText);
-int VanillaParser(pServerParser pResult, string rawText);
-int BukkitParser(pServerParser pResult, string rawText);
-int Bukkit14Parser(pServerParser pResult, string rawText);
-int BungeeCordParser(pServerParser pResult, string rawText);
-int CatParser(pServerParser pResult, string rawText);
-int WaterfallParser(pServerParser pResult, string rawText);
+int stdfuncallconv Parser(pServerParser pResult, int parserCode, string rawText);
+int stdfuncallconv VanillaParser(pServerParser pResult, string rawText);
+int stdfuncallconv BukkitParser(pServerParser pResult, string rawText);
+int stdfuncallconv Bukkit14Parser(pServerParser pResult, string rawText);
+int stdfuncallconv BungeeCordParser(pServerParser pResult, string rawText);
+int stdfuncallconv CatParser(pServerParser pResult, string rawText);
+int stdfuncallconv WaterfallParser(pServerParser pResult, string rawText);
 
-int ParserDebugPrint(string str) {
+int stdfuncallconv ParserDebugPrint(string str) {
 	cout << "[ParserDebugPrint]" << str << endl;
+	return 0;
 }

@@ -10,7 +10,7 @@
 using namespace std;
 
 
-int LOGSYS::SetLogFile(FILE* file, const char* str,const char* InfType)
+int stdfuncallconv LOGSYS::SetLogFile(FILE* file, const char* str,const char* InfType)
 {
 	time_t time_ = time(NULL);
 	char t[50] = { 0 };
@@ -21,7 +21,7 @@ int LOGSYS::SetLogFile(FILE* file, const char* str,const char* InfType)
 	char* tmp= NULL;
 	tmp = strcat(t, ".mcdrlog");
 	char dir[MAX_PATH];
-	_getcwd(dir,MAX_PATH);
+	auto getcwdret = _getcwd(dir,MAX_PATH);
 	logname = strcat(dir, "\\");
 	tmp = strcat(logname,tmp);
 	//cout << dir << endl;
@@ -61,7 +61,7 @@ int LOGSYS::SetLogFile(FILE* file, const char* str,const char* InfType)
 	return 1;
 }
 
-int LOGSYS::SetSTDOUT(const char* str,int InformationType)
+int stdfuncallconv LOGSYS::SetSTDOUT(const char* str,int InformationType)
 {
 	time_t time_ = time(NULL);
 	char t[50] = { 0 };
@@ -104,7 +104,7 @@ int LOGSYS::SetSTDOUT(const char* str,int InformationType)
 	return 1;
 }
 
-int CreateDirectory(const string folder) {
+int stdfuncallconv CreateDirectory(const string folder) {
 	string folder_builder;
 	string sub;
 	sub.reserve(folder.size());
@@ -126,7 +126,7 @@ int CreateDirectory(const string folder) {
 	return 1;
 }
 
-int LOGSYS::MakeLogFloderExists()
+int stdfuncallconv LOGSYS::MakeLogFloderExists()
 {
 	int FileExists = access("logs", 0);
 	if (FileExists == -1)

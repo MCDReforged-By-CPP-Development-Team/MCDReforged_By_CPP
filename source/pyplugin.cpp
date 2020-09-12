@@ -6,30 +6,30 @@
 #include "pyplugin.h"
 
 
-void PyPluginCore::GetPyPluginPath() {
+void stdfuncallconv PyPluginCore::GetPyPluginPath() {
 
 }
 
-void PyPluginCore::LoadSinglePlugin() {
+void stdfuncallconv PyPluginCore::LoadSinglePlugin() {
 
 }
 
-void PyPluginCore::UnloadSinglePlugin() {
+void stdfuncallconv PyPluginCore::UnloadSinglePlugin() {
 
 }
 
-void PyPluginCore::ReloadSinglePlugin() {
+void stdfuncallconv PyPluginCore::ReloadSinglePlugin() {
 
 }
 
-void PyPluginCore::LoadAllPyPlugins() {
+void stdfuncallconv PyPluginCore::LoadAllPyPlugins() {
 
 }
 
-void PyPluginCore::UnLoadAllPyPlugins() {
+void stdfuncallconv PyPluginCore::UnLoadAllPyPlugins() {
 
 }
 
-void PyPluginCore::ReLoadAllPyPlugins() {
+void stdfuncallconv PyPluginCore::ReLoadAllPyPlugins() {
 
 }

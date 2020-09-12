@@ -10,7 +10,7 @@
 
 using namespace std;
 
-int CppPluginCore::LoadPlugin() {	//用于加载所有C/C++插件的函数
+int stdfuncallconv CppPluginCore::LoadPlugin() {	//用于加载所有C/C++插件的函数
 	vector<string> PluginFileNames;
 	char pathBuf[MAX_PATH];
 	GetCurrentDirectoryA(sizeof(pathBuf), pathBuf);
@@ -51,7 +51,7 @@ int CppPluginCore::LoadPlugin() {	//用于加载所有C/C++插件的函数
 	return 0;
 }
 
-int CppPluginCore::RegPlugin(_CppPluginRegInfo info) {
+int stdfuncallconv CppPluginCore::RegPlugin(_CppPluginRegInfo info) {
 	CppPluginRegInfo.push_back(info);
 	return 0;
 }

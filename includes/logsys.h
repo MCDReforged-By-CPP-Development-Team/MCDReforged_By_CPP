@@ -9,6 +9,8 @@
 #include <direct.h>
 #include<ctime>
 
+#include"common.h"
+
 #define PATH_DELIMITER '\\'
 
 #define INFO 0
@@ -18,8 +20,8 @@
 struct LOGSYS
 {
 private:
-	int SetLogFile(FILE *file , const char* str, const char* InfType);
+	int stdfuncallconv SetLogFile(FILE *file , const char* str, const char* InfType);
 public:
-	int SetSTDOUT(const char* str,int InformationType);
-	int MakeLogFloderExists();
+	int stdfuncallconv SetSTDOUT(const char* str,int InformationType);
+	int stdfuncallconv MakeLogFloderExists();
 };

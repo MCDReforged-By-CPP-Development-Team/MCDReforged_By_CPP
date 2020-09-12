@@ -1,6 +1,8 @@
 #include <string>
 #include <vector>
 
+#include "common.h"
+
 #ifndef __MACH__
 #include <Python.h>
 #endif
@@ -33,13 +35,13 @@ struct PyPlugin {
 
 struct PyPluginCore {
 private:
-    void GetPyPluginPath();
+    void stdfuncallconv GetPyPluginPath();
     vector<PyPlugin> PyPlugins;
 public:
-    void LoadAllPyPlugins();
-    void UnLoadAllPyPlugins();
-    void ReLoadAllPyPlugins();
-    void LoadSinglePlugin();
-    void UnloadSinglePlugin();
-    void ReloadSinglePlugin();
+    void stdfuncallconv LoadAllPyPlugins();
+    void stdfuncallconv UnLoadAllPyPlugins();
+    void stdfuncallconv ReLoadAllPyPlugins();
+    void stdfuncallconv LoadSinglePlugin();
+    void stdfuncallconv UnloadSinglePlugin();
+    void stdfuncallconv ReloadSinglePlugin();
 };

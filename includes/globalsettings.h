@@ -23,7 +23,7 @@ namespace Globalsettings {
 
 	static string strJavaPath;
 	static string strServerWorkingDir;
-	static string strMinecraftServerFileName;
+	static string strMinecraftServerStartupCommandLine;
 	static string strCppPluginPath;
 	static string strPyPluginPath;
 	static string strInitScriptPath;

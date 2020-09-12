@@ -96,9 +96,9 @@ int LoadConfig::ReadCfgFile(string cfgFilePath) {
     if (pElem == NULL) return -1;
     Globalsettings::strServerWorkingDir = pElem->GetText();
 
-    GetNodePointerByName(pRootEle, (string)"PythonPluginsDir", pElem);
+    GetNodePointerByName(pRootEle, (string)"ServerStartupCommand", pElem);
     if (pElem == NULL) return -1;
-    Globalsettings::strMinecraftServerFileName = pElem->GetText();
+    Globalsettings::strMinecraftServerStartupCommandLine = pElem->GetText();
 
     GetNodePointerByName(pRootEle, (string)"JavaPath", pElem);
     if (pElem == NULL) return -1;

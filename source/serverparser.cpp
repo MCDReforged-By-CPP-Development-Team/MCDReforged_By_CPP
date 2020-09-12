@@ -1,6 +1,6 @@
 #include"serverparser.h"
 
-int Parser(pServerParser pResult, int parserCode, string rawText) {
+int stdfuncallconv Parser(pServerParser pResult, int parserCode, string rawText) {
 	pServerParser resultTemp;
 	int iRet = 0;
 
@@ -37,33 +37,111 @@ int Parser(pServerParser pResult, int parserCode, string rawText) {
 	return iRet;
 }
 
-int VanillaParser(pServerParser pResult, string rawText) {
-	regex regexDate("^\[\d*:\d*:\d*\]");
+int stdfuncallconv VanillaParser(pServerParser pResult, string rawText) {
+	regex regexDate("^[\\d+:\\d+:\\d+]");
+	regex regexLoadupLower("^Done ([[1-9]\d*\.\d*|0\.\d*[1-9]\d*s)! For help, type \"help\"$");
+	regex regexLoadupHigher("^Done ([1-9]\d*\.\d*|0\.\d*[1-9]\d*s)! For help, type \"help\" or \"?\"$");
+	regex regexAdvan("^\\w{1,16} has made the advancement$");
+	regex regexThreadState("^[\\w+/\\w+]");
+	regex regexPlayer("^<\\w+>");
+	regex regexPlayerLogin("^\\w+ joined the game");
+	regex regexPlayerLogout("^\\w+ left the game");
+	regex regexPlayerMessage("^<\\w+>\\w*$");
+
 	cmatch match;
-	auto ret = regex_search(rawText.c_str(), match, regexDate);
-	string matchStr = match.str(0);
-	ParserDebugPrint("match.str(0):" + match.str(0));
+
+	bool ret = regex_search(rawText.c_str(), match, regexDate);
+	string matchStr = match.str(1);
+	ParserDebugPrint("Time::" + match.str(1));
 	rawText.replace(0, matchStr.size(), "");
-	regex regexThreadState("^\[\]");
+
+	ret = regex_search(rawText.c_str(), match, regexThreadState);
+	ParserDebugPrint("Thread&State:" + match.str(1));
+	matchStr = match.str(1);
+	size_t index = matchStr.find("/");
+
+	pResult->messager = matchStr.substr(1, index);
+	ParserDebugPrint("messager:" + pResult->messager);
+
+	pResult->status = matchStr.substr(index, matchStr.size() - 1);
+	ParserDebugPrint("status:" + pResult->status);
+	rawText.replace(0, matchStr.size(), "");
+
+	ret = regex_search(rawText.c_str(), match, regexPlayer);
+
+	if (!ret) {
+		ret = regex_match(rawText.c_str(), match, regexPlayerMessage);
+		if (!ret) {
+			ret = regex_match(rawText.c_str(), match, regexAdvan);
+			string matchStr = match.str(0);
+			ParserDebugPrint("Advancement:" + match.str(1));
+			if (!ret) {
+				ret = regex_match(rawText.c_str(), match, regexLoadupLower);
+				string matchStr = match.str(0);
+				ParserDebugPrint("LoadupLower:" + match.str(1));
+				if (!ret) {
+					ret = regex_match(rawText.c_str(), match, regexLoadupHigher);
+					string matchStr = match.str(0);
+					ParserDebugPrint("LoadupHigher:" + match.str(1));
+					if (!ret) {
+						ret = regex_match(rawText.c_str(), match, regexPlayerLogin);
+						if (!ret) {
+
+						}
+						else {
+							regex_match(rawText.c_str(), match, regexPlayer);
+							pResult->MajorMessage.playerName = match.str(1);
+						}
+					}
+					else {
+						regex_match(rawText.c_str(), match, regexPlayer);
+						index = rawText.find(match.str(1));
+						rawText.replace(0, matchStr.size(), "");
+						pResult->MajorMessage.playerMessage = rawText;
+					}
+				}
+				else {
+					regex_match(rawText.c_str(), match, regexPlayer);
+					index = rawText.find(match.str(1));
+					rawText.replace(0, matchStr.size(), "");
+					pResult->MajorMessage.playerMessage = rawText;
+				}
+			}
+			else {
+				index = rawText.find(match.str(1));
+				rawText.replace(0, matchStr.size(), "");
+				pResult->MajorMessage.advancement = rawText;
+			}
+		}
+		else {
+			index = rawText.find(match.str(1));
+			rawText.replace(0, matchStr.size(), "");
+			pResult->MajorMessage.playerMessage = rawText;
+		}
+	}
+	else {
+
+	}
+
 	return 0;
 }
 
-int BukkitParser(pServerParser pResult, string rawText) {
+int stdfuncallconv BukkitParser(pServerParser pResult, string rawText) {
 	return 0;
 }
 
-int Bukkit14Parser(pServerParser pResult, string rawText) {
+int stdfuncallconv Bukkit14Parser(pServerParser pResult, string rawText) {
 	return 0;
 }
 
-int BungeeCordParser(pServerParser pResult, string rawText) {
+int stdfuncallconv BungeeCordParser(pServerParser pResult, string rawText) {
 	return 0;
 }
 
-int CatParser(pServerParser pResult, string rawText) {
+int stdfuncallconv CatParser(pServerParser pResult, string rawText) {
 	return 0;
 }
 
-int WaterfallParser(pServerParser pResult, string rawText) {
+int stdfuncallconv WaterfallParser(pServerParser pResult, string rawText) {
 	return 0;
 }
