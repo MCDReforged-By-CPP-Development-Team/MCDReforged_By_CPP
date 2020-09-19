@@ -37,3 +37,11 @@
 12	683	619708676	CMakeFiles/MCDReforged_By_CPP.dir/source/messagesys.cpp.obj	30725daff79162f4
 1	1277	619708730	CMakeFiles/MCDReforged_By_CPP.dir/source/serverparser.cpp.obj	b82a705877878015
 1279	2382	619708731	MCDReforged_By_CPP.exe	9eff1d40c0f41d2c
+0	1295	622226589	CMakeFiles/MCDReforged_By_CPP.dir/source/pyplugin.cpp.obj	5871c06fc2137c7e
+10	1470	622226589	CMakeFiles/MCDReforged_By_CPP.dir/source/cppplugin.cpp.obj	ab23bb94f3732eea
+22	1728	622226590	CMakeFiles/MCDReforged_By_CPP.dir/source/logsys.cpp.obj	1f0360ec724a997e
+28	1889	622226590	CMakeFiles/MCDReforged_By_CPP.dir/source/cfgfile.cpp.obj	c4c01815676e37c9
+1	1331	622227036	CMakeFiles/MCDReforged_By_CPP.dir/source/cfgfile.cpp.obj	c4c01815676e37c9
+11	1137	622227395	CMakeFiles/MCDReforged_By_CPP.dir/source/serverparser.cpp.obj	b82a705877878015
+12	1169	622227818	CMakeFiles/MCDReforged_By_CPP.dir/source/serverparser.cpp.obj	b82a705877878015
+1	1285	622227818	CMakeFiles/MCDReforged_By_CPP.dir/source/SysInit.cpp.obj	c2ea57401a5f7a74
