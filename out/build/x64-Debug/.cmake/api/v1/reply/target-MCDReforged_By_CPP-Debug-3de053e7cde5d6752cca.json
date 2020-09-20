@@ -108,19 +108,19 @@
 			"language" : "CXX",
 			"sourceIndexes" : 
 			[
+				9,
 				10,
 				11,
 				12,
 				13,
 				14,
 				15,
-				16,
-				18,
+				17,
+				19,
 				20,
-				21,
 				22,
-				25,
-				27
+				24,
+				26
 			]
 		}
 	],
@@ -171,32 +171,30 @@
 				6,
 				7,
 				8,
-				9,
-				17,
-				19,
+				16,
+				18,
+				21,
 				23,
-				24,
-				26,
-				28
+				25
 			]
 		},
 		{
 			"name" : "Source Files",
 			"sourceIndexes" : 
 			[
+				9,
 				10,
 				11,
 				12,
 				13,
 				14,
 				15,
-				16,
-				18,
+				17,
+				19,
 				20,
-				21,
 				22,
-				25,
-				27
+				24,
+				26
 			]
 		}
 	],
@@ -230,11 +228,6 @@
 		{
 			"backtrace" : 1,
 			"path" : "includes/cppplugin.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"path" : "includes/findfiles.h",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -324,17 +317,6 @@
 		},
 		{
 			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "MCDRCPP.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "MCDRCPP.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
 			"path" : "includes/serverparser.h",
 			"sourceGroupIndex" : 0
 		},
@@ -359,6 +341,12 @@
 			"backtrace" : 1,
 			"path" : "includes/common.h",
 			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "source/mainprogram.cpp",
+			"sourceGroupIndex" : 1
 		}
 	],
 	"type" : "EXECUTABLE"
