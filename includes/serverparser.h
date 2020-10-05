@@ -1,3 +1,5 @@
+#pragma once
+
 #include<regex>
 #include<string>
 #include<ctime>
@@ -25,53 +27,15 @@ using namespace std;
 // 1.13 - Done(3.500s)!For help, type "help" or "?"
 // RCON running on 0.0.0.0:25575
 
-struct Advancement {
-	string playerName;
-	string advancement;
+struct Advancement;
+struct PlayerMsg;
+struct ServerParser;
 
-	void operator+(Advancement* in) {
-		this->playerName = in->playerName;
-		this->advancement = in->advancement;
-	}
-};
-
-struct PlayerMsg {
-	string playerName;
-	string playerMsg;
-};
-
-typedef struct _ServerParser {
-	_ServerParser() {
-		messageCate = 0;
-		messageTime = { 0 };
-	}
-	~_ServerParser() { }
-	tm messageTime;
-	string status;
-	string messager;
-	int messageCate;
-	union MajorMessage {
-		MajorMessage() { }
-
-		~MajorMessage() { }
-
-		string playerName;
-		Advancement advancement;
-		int loadInTime;
-		string rconRunningIpAndPort;
-		string playerMessage;
-	}MajorMessage;
-}ServerParser, *pServerParser;
-
-int stdfuncallconv Parser(pServerParser pResult, int parserCode, string rawText);
-int stdfuncallconv VanillaParser(pServerParser pResult, string rawText);
-int stdfuncallconv BukkitParser(pServerParser pResult, string rawText);
-int stdfuncallconv Bukkit14Parser(pServerParser pResult, string rawText);
-int stdfuncallconv BungeeCordParser(pServerParser pResult, string rawText);
-int stdfuncallconv CatParser(pServerParser pResult, string rawText);
-int stdfuncallconv WaterfallParser(pServerParser pResult, string rawText);
-
-int stdfuncallconv ParserDebugPrint(string str) {
-	cout << "[ParserDebugPrint]" << str << endl;
-	return 0;
-}
+int stdfuncallconv Parser(ServerParser* pResult, int parserCode, string rawText);
+int stdfuncallconv VanillaParser(ServerParser* pResult, string rawText);
+int stdfuncallconv BukkitParser(ServerParser* pResult, string rawText);
+int stdfuncallconv Bukkit14Parser(ServerParser* pResult, string rawText);
+int stdfuncallconv BungeeCordParser(ServerParser* pResult, string rawText);
+int stdfuncallconv CatParser(ServerParser* pResult, string rawText);
+int stdfuncallconv WaterfallParser(ServerParser* pResult, string rawText);
+int stdfuncallconv ParserDebugPrint(string str);

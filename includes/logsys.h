@@ -1,4 +1,5 @@
 #pragma once
+
 #ifndef LOGSYS_H
 #define LOGSYS_H
 #endif 

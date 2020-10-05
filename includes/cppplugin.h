@@ -1,9 +1,10 @@
+#pragma once
+
 #include<string>
 #include<vector>
-
 #include<Windows.h>
-
 #include"common.h"
+#include"ReadSpecExtendsFile.h"
 
 using namespace std;
 

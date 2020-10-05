@@ -30,7 +30,6 @@ IF(WIN32)
             includes/globalsettings.h
             includes/logsys.h
             includes/cppplugin.h
-            includes/findfiles.h
             includes/pyplugin.h
             includes/rewriteio.h
             includes/SysInit.h
@@ -46,13 +45,14 @@ IF(WIN32)
             tinyxml2-8.0.0/tinyxml.h
             tinyxml2-8.0.0/tinyxmlerror.cpp
             tinyxml2-8.0.0/tinyxmlparser.cpp
-            MCDRCPP.cpp
-            MCDRCPP.h 
             includes/serverparser.h
             source/serverparser.cpp
             includes/messagesys.h
             source/messagesys.cpp
-            includes/common.h)
+            includes/common.h
+            source/mainprogram.cpp 
+            includes/ReadSpecExtendsFile.h
+            source/globalsettings.cpp)
 ELSEIF(APPLE)
     MESSAGE(STATUS Cmaking on APPLE MacOS)
     include_directories(.)
@@ -66,7 +66,6 @@ ELSEIF(APPLE)
             includes/globalsettings.h
             includes/logsys.h
             includes/cppplugin.h
-            includes/findfiles.h
             includes/pyplugin.h
             includes/rewriteio.h
             includes/SysInit.h
@@ -82,11 +81,12 @@ ELSEIF(APPLE)
             tinyxml2-8.0.0/tinyxml.h
             tinyxml2-8.0.0/tinyxmlerror.cpp
             tinyxml2-8.0.0/tinyxmlparser.h
-            MCDRCPP.cpp
-            MCDRCPP.h
             includes/serverparser.h
             source/serverparser.cpp
             includes/messagesys.h
             source/messagesys.cpp
-            includes/common.h)
+            includes/common.h
+            source/mainprogram.cpp
+            includes/ReadSpecExtendsFile.h
+            source/globalsettings.cpp)
 ENDIF()

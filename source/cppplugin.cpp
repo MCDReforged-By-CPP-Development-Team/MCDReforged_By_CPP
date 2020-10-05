@@ -1,14 +1,4 @@
-//c++ & c headers begin...
-#include <string>
-#include <vector>
-//end; SB Windows Header begin...
-#include <Windows.h>
-//end; Header in Project...
 #include "cppplugin.h"
-#include "findfiles.h"
-//end;
-
-using namespace std;
 
 int stdfuncallconv CppPluginCore::LoadPlugin() {	//用于加载所有C/C++插件的函数
 	vector<string> PluginFileNames;
@@ -16,7 +6,7 @@ int stdfuncallconv CppPluginCore::LoadPlugin() {	//用于加载所有C/C++插件的函数
 	GetCurrentDirectoryA(sizeof(pathBuf), pathBuf);
 	string tempStr = pathBuf;
 	string pluginFolderPath = tempStr + "\\plugins";	//存放插件文件夹路径
-	GetFiles(pluginFolderPath, CppPluginExtension, PluginFileNames);	//遍历插件文件夹下所有.dll的插件文件
+	FilesRead(pluginFolderPath, PluginFileNames);	//遍历插件文件夹下所有.dll的插件文件
 	if (PluginFileNames.size() <= 0) {
 		return 0;	//后面再来做错误逻辑吧=-=
 	}

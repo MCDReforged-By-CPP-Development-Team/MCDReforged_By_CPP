@@ -47,6 +47,40 @@ int LoadConfig::LoadConfigFile() {
 }
 
 int LoadConfig::CreateCfgFile() {
+    char strCfgPath[MAX_PATH];
+    char strCfgFile[] = "<?xml version=\"1.0\" encoding=\"utf - 8\"?>"\
+        "<MCDReforgedByCppConfig>"\
+        "<LoadCppPlugins>true</LoadCppPlugins>"\
+        "<LoadPythonPlugins>true</LoadPythonPlugins>"\
+        "<LoadCppPluginsConfig>true</LoadCppPluginsConfig>"\
+        "<LoadPythonPluginsConfig>true</LoadPythonPluginsConfig>"\
+        "<CppPluginsDir>cppplugins</CppPluginsDir>"\
+        "<PythonPluginsDir>pyplugins</PythonPluginsDir>"\
+        "<ExecInitScript>true</ExecInitScript>"\
+        "<ExecTimerScript>true</ExecTimerScript>"\
+        "<ServerDir>server</ServerDir>"\
+        "<ServerStartupCommand>server.jar</ServerStartupCommand>"\
+        "<JavaPath></JavaPath>"\
+        "<EnableMinecraftCommandQueue>true</EnableMinecraftCommandQueue>"\
+        "<ServerParser>VanillaParser</ServerParser>"\
+        "</MCDReforgedByCppConfig>";
+    DWORD dwWriteBytes;
+
+    GetModuleFileName(NULL, strCfgPath, MAX_PATH);
+    (strrchr(strCfgPath, '\\'))[1] = 0;
+    strcat_s(strCfgPath, "mcdrcppcfg.ini"); //获取mcdrcpp配置文件路径
+
+    HANDLE hFile = ::CreateFile(
+        strCfgPath,
+        GENERIC_WRITE,
+        FILE_SHARE_READ | FILE_SHARE_WRITE,
+        NULL,
+        OPEN_ALWAYS,
+        FILE_ATTRIBUTE_NORMAL,
+        0);
+    if (hFile == INVALID_HANDLE_VALUE) return false;    //判断mcdrcpp配置文件是否存在
+    WriteFile(hFile, strCfgFile, sizeof(strCfgFile), &dwWriteBytes, NULL);
+    CloseHandle(hFile);
     return 0;
 }
 
@@ -62,55 +96,55 @@ int LoadConfig::ReadCfgFile(string cfgFilePath) {
 
     GetNodePointerByName(pRootEle, (string)"LoadCppPlugins", pElem);
     if (pElem == NULL) return -1;
-    Globalsettings::bLoadCppPlugins = StringToBool(pElem->GetText());
+    Globalsettings.bLoadCppPlugins = StringToBool(pElem->GetText());
 
     GetNodePointerByName(pRootEle, (string)"LoadPythonPlugins", pElem);
     if (pElem == NULL) return -1;
-    Globalsettings::bLoadPyPlugins = StringToBool(pElem->GetText());
+    Globalsettings.bLoadPyPlugins = StringToBool(pElem->GetText());
 
     GetNodePointerByName(pRootEle, (string)"LoadCppPluginsConfig", pElem);
     if (pElem == NULL) return -1;
-    Globalsettings::bReadCppPluginsCfg = StringToBool(pElem->GetText());
+    Globalsettings.bReadCppPluginsCfg = StringToBool(pElem->GetText());
 
     GetNodePointerByName(pRootEle, (string)"LoadPythonPluginsConfig", pElem);
     if (pElem == NULL) return -1;
-    Globalsettings::bReagPyPluginCfg = StringToBool(pElem->GetText());
+    Globalsettings.bReagPyPluginCfg = StringToBool(pElem->GetText());
 
     GetNodePointerByName(pRootEle, (string)"CppPuginsDir", pElem);
     if (pElem == NULL) return -1;
-    Globalsettings::strCppPluginPath = pElem->GetText();
+    Globalsettings.strCppPluginPath = pElem->GetText();
 
     GetNodePointerByName(pRootEle, (string)"PythonPluginsDir", pElem);
     if (pElem == NULL) return -1;
-    Globalsettings::strPyPluginPath = pElem->GetText();
+    Globalsettings.strPyPluginPath = pElem->GetText();
 
     GetNodePointerByName(pRootEle, (string)"ExecInitScript", pElem);
     if (pElem == NULL) return -1;
-    Globalsettings::bExecInitScript = StringToBool(pElem->GetText());
+    Globalsettings.bExecInitScript = StringToBool(pElem->GetText());
 
     GetNodePointerByName(pRootEle, (string)"LoadCppPlugins", pElem);
     if (pElem == NULL) return -1;
-    Globalsettings::bExecTimerScript = StringToBool(pElem->GetText());
+    Globalsettings.bExecTimerScript = StringToBool(pElem->GetText());
 
     GetNodePointerByName(pRootEle, (string)"ServerDir", pElem);
     if (pElem == NULL) return -1;
-    Globalsettings::strServerWorkingDir = pElem->GetText();
+    Globalsettings.strServerWorkingDir = pElem->GetText();
 
     GetNodePointerByName(pRootEle, (string)"ServerStartupCommand", pElem);
     if (pElem == NULL) return -1;
-    Globalsettings::strMinecraftServerStartupCommandLine = pElem->GetText();
+    Globalsettings.strMinecraftServerStartupCommandLine = pElem->GetText();
 
     GetNodePointerByName(pRootEle, (string)"JavaPath", pElem);
     if (pElem == NULL) return -1;
-    Globalsettings::strJavaPath = pElem->GetText();
+    Globalsettings.strJavaPath = pElem->GetText();
 
     GetNodePointerByName(pRootEle, (string)"EnableMinecraftCommandQueue", pElem);
     if (pElem == NULL) return -1;
-    Globalsettings::bEnableMinecraftCommandQueue = StringToBool(pElem->GetText());
+    Globalsettings.bEnableMinecraftCommandQueue = StringToBool(pElem->GetText());
 
     GetNodePointerByName(pRootEle, (string)"ServerParser", pElem);
     if (pElem == NULL) return -1;
-    Globalsettings::iParserType = StringToParserCode(pElem->GetText());
+    Globalsettings.iParserType = StringToParserCode(pElem->GetText());
 
     return 0;
 }

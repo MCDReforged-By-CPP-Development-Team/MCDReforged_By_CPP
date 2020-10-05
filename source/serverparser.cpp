@@ -1,7 +1,50 @@
 #include"serverparser.h"
 
-int stdfuncallconv Parser(pServerParser pResult, int parserCode, string rawText) {
-	pServerParser resultTemp;
+struct PlayerMsg {
+	string playerName;
+	string playerMsg;
+};
+
+struct Advancement {
+	string playerName;
+	string advancement;
+
+	void operator=(Advancement* in) {
+		this->playerName = in->playerName;
+		this->advancement = in->advancement;
+	}
+};
+
+struct ServerParser {
+	ServerParser() {
+		messageCate = 0;
+		messageTime = { 0 };
+	}
+	~ServerParser() { }
+	tm messageTime;
+	string status;
+	string messager;
+	int messageCate;
+	union MajorMessage {
+		MajorMessage() { }
+
+		~MajorMessage() { }
+
+		string playerName;
+		Advancement advancement;
+		int loadInTime;
+		string rconRunningIpAndPort;
+		string playerMessage;
+	}MajorMessage;
+};
+
+int stdfuncallconv ParserDebugPrint(string str) {
+	cout << "[ParserDebugPrint]" << str << endl;
+	return 0;
+}
+
+int stdfuncallconv Parser(ServerParser* pResult, int parserCode, string rawText) {
+	ServerParser* resultTemp;
 	int iRet = 0;
 
 	switch (parserCode) {
@@ -37,7 +80,7 @@ int stdfuncallconv Parser(pServerParser pResult, int parserCode, string rawText)
 	return iRet;
 }
 
-int stdfuncallconv VanillaParser(pServerParser pResult, string rawText) {
+int stdfuncallconv VanillaParser(ServerParser* pResult, string rawText) {
 	regex regexDate("^[\\d+:\\d+:\\d+]");
 	regex regexLoadupLower("^Done ([[1-9]\d*\.\d*|0\.\d*[1-9]\d*s)! For help, type \"help\"$");
 	regex regexLoadupHigher("^Done ([1-9]\d*\.\d*|0\.\d*[1-9]\d*s)! For help, type \"help\" or \"?\"$");
@@ -110,7 +153,7 @@ int stdfuncallconv VanillaParser(pServerParser pResult, string rawText) {
 			else {
 				index = rawText.find(match.str(1));
 				rawText.replace(0, matchStr.size(), "");
-				pResult->MajorMessage.advancement = rawText;
+				pResult->MajorMessage.advancement.advancement = rawText;
 			}
 		}
 		else {
@@ -126,22 +169,23 @@ int stdfuncallconv VanillaParser(pServerParser pResult, string rawText) {
 	return 0;
 }
 
-int stdfuncallconv BukkitParser(pServerParser pResult, string rawText) {
+int stdfuncallconv BukkitParser(ServerParser* pResult, string rawText) {
 	return 0;
 }
 
-int stdfuncallconv Bukkit14Parser(pServerParser pResult, string rawText) {
+int stdfuncallconv Bukkit14Parser(ServerParser* pResult, string rawText) {
 	return 0;
 }
 
-int stdfuncallconv BungeeCordParser(pServerParser pResult, string rawText) {
+int stdfuncallconv BungeeCordParser(ServerParser* pResult, string rawText) {
 	return 0;
 }
 
-int stdfuncallconv CatParser(pServerParser pResult, string rawText) {
+int stdfuncallconv CatParser(ServerParser* pResult, string rawText) {
 	return 0;
 }
 
-int stdfuncallconv WaterfallParser(pServerParser pResult, string rawText) {
+int stdfuncallconv WaterfallParser(ServerParser* pResult, string rawText) {
 	return 0;
 }
+
