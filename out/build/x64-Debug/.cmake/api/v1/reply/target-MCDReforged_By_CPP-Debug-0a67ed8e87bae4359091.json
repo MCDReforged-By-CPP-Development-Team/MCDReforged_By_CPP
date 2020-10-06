@@ -108,20 +108,19 @@
 			"language" : "CXX",
 			"sourceIndexes" : 
 			[
+				8,
 				9,
 				10,
 				11,
 				12,
 				13,
 				14,
-				15,
-				17,
+				16,
+				18,
 				19,
-				20,
-				22,
-				24,
-				26,
-				28
+				21,
+				23,
+				25
 			]
 		}
 	],
@@ -171,33 +170,31 @@
 				5,
 				6,
 				7,
-				8,
-				16,
-				18,
-				21,
-				23,
-				25,
-				27
+				15,
+				17,
+				20,
+				22,
+				24,
+				26
 			]
 		},
 		{
 			"name" : "Source Files",
 			"sourceIndexes" : 
 			[
+				8,
 				9,
 				10,
 				11,
 				12,
 				13,
 				14,
-				15,
-				17,
+				16,
+				18,
 				19,
-				20,
-				22,
-				24,
-				26,
-				28
+				21,
+				23,
+				25
 			]
 		}
 	],
@@ -216,11 +213,6 @@
 		{
 			"backtrace" : 1,
 			"path" : "includes/cmdsys.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"path" : "includes/globalsettings.h",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -355,12 +347,6 @@
 			"backtrace" : 1,
 			"path" : "includes/ReadSpecExtendsFile.h",
 			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "source/globalsettings.cpp",
-			"sourceGroupIndex" : 1
 		}
 	],
 	"type" : "EXECUTABLE"
