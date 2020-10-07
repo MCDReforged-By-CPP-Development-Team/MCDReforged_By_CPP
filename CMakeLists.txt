@@ -27,7 +27,6 @@ IF(WIN32)
             ${PYINCLUDE}/Python.h
             includes/cfgfile.h
             includes/cmdsys.h
-            includes/globalsettings.h
             includes/logsys.h
             includes/cppplugin.h
             includes/pyplugin.h
@@ -51,8 +50,7 @@ IF(WIN32)
             source/messagesys.cpp
             includes/common.h
             source/mainprogram.cpp 
-            includes/ReadSpecExtendsFile.h
-            source/globalsettings.cpp)
+            includes/ReadSpecExtendsFile.h)
 ELSEIF(APPLE)
     MESSAGE(STATUS Cmaking on APPLE MacOS)
     include_directories(.)
@@ -63,7 +61,6 @@ ELSEIF(APPLE)
     add_executable(MCDReforged_By_CPP
             includes/cfgfile.h
             includes/cmdsys.h
-            includes/globalsettings.h
             includes/logsys.h
             includes/cppplugin.h
             includes/pyplugin.h
@@ -87,6 +84,5 @@ ELSEIF(APPLE)
             source/messagesys.cpp
             includes/common.h
             source/mainprogram.cpp
-            includes/ReadSpecExtendsFile.h
-            source/globalsettings.cpp)
+            includes/ReadSpecExtendsFile.h)
 ENDIF()

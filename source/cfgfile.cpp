@@ -96,55 +96,55 @@ int LoadConfig::ReadCfgFile(string cfgFilePath) {
 
     GetNodePointerByName(pRootEle, (string)"LoadCppPlugins", pElem);
     if (pElem == NULL) return -1;
-    Globalsettings.bLoadCppPlugins = StringToBool(pElem->GetText());
+    bLoadCppPlugins = StringToBool(pElem->GetText());
 
     GetNodePointerByName(pRootEle, (string)"LoadPythonPlugins", pElem);
     if (pElem == NULL) return -1;
-    Globalsettings.bLoadPyPlugins = StringToBool(pElem->GetText());
+    bLoadPyPlugins = StringToBool(pElem->GetText());
 
     GetNodePointerByName(pRootEle, (string)"LoadCppPluginsConfig", pElem);
     if (pElem == NULL) return -1;
-    Globalsettings.bReadCppPluginsCfg = StringToBool(pElem->GetText());
+    bReadCppPluginsCfg = StringToBool(pElem->GetText());
 
     GetNodePointerByName(pRootEle, (string)"LoadPythonPluginsConfig", pElem);
     if (pElem == NULL) return -1;
-    Globalsettings.bReagPyPluginCfg = StringToBool(pElem->GetText());
+    bReadPyPluginCfg = StringToBool(pElem->GetText());
 
     GetNodePointerByName(pRootEle, (string)"CppPuginsDir", pElem);
     if (pElem == NULL) return -1;
-    Globalsettings.strCppPluginPath = pElem->GetText();
+    strCppPluginPath = pElem->GetText();
 
     GetNodePointerByName(pRootEle, (string)"PythonPluginsDir", pElem);
     if (pElem == NULL) return -1;
-    Globalsettings.strPyPluginPath = pElem->GetText();
+    strPyPluginPath = pElem->GetText();
 
     GetNodePointerByName(pRootEle, (string)"ExecInitScript", pElem);
     if (pElem == NULL) return -1;
-    Globalsettings.bExecInitScript = StringToBool(pElem->GetText());
+    bExecInitScript = StringToBool(pElem->GetText());
 
     GetNodePointerByName(pRootEle, (string)"LoadCppPlugins", pElem);
     if (pElem == NULL) return -1;
-    Globalsettings.bExecTimerScript = StringToBool(pElem->GetText());
+    bExecTimerScript = StringToBool(pElem->GetText());
 
     GetNodePointerByName(pRootEle, (string)"ServerDir", pElem);
     if (pElem == NULL) return -1;
-    Globalsettings.strServerWorkingDir = pElem->GetText();
+    strServerWorkingDir = pElem->GetText();
 
     GetNodePointerByName(pRootEle, (string)"ServerStartupCommand", pElem);
     if (pElem == NULL) return -1;
-    Globalsettings.strMinecraftServerStartupCommandLine = pElem->GetText();
+    strMinecraftServerStartupCommandLine = pElem->GetText();
 
     GetNodePointerByName(pRootEle, (string)"JavaPath", pElem);
     if (pElem == NULL) return -1;
-    Globalsettings.strJavaPath = pElem->GetText();
+    strJavaPath = pElem->GetText();
 
     GetNodePointerByName(pRootEle, (string)"EnableMinecraftCommandQueue", pElem);
     if (pElem == NULL) return -1;
-    Globalsettings.bEnableMinecraftCommandQueue = StringToBool(pElem->GetText());
+    bEnableMinecraftCommandQueue = StringToBool(pElem->GetText());
 
     GetNodePointerByName(pRootEle, (string)"ServerParser", pElem);
     if (pElem == NULL) return -1;
-    Globalsettings.iParserType = StringToParserCode(pElem->GetText());
+    iParserType = StringToParserCode(pElem->GetText());
 
     return 0;
 }
