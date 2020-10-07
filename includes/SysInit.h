@@ -4,10 +4,11 @@ SysInit.h
 */
 #pragma once
 
-#include<iostream>
-
 #include"common.h"
-#include"cfgfile.h"
+
+#include<string>
+#include<Windows.h>
+#include<iostream>
 
 using namespace std;
 

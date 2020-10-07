@@ -7,7 +7,7 @@ bool LoadConfig::ConfigFileExisting() {
     char strCfgPath[MAX_PATH];
     GetModuleFileName(NULL, strCfgPath, MAX_PATH);
     (strrchr(strCfgPath, '\\'))[1] = 0;
-    strcat_s(strCfgPath, "mcdrcppcfg.ini"); //获取mcdrcpp配置文件路径
+    strcat_s(strCfgPath, "mcdrcppcfg.xml"); //获取mcdrcpp配置文件路径
 
     HANDLE hFile = ::CreateFile(
         strCfgPath,
@@ -48,27 +48,27 @@ int LoadConfig::LoadConfigFile() {
 
 int LoadConfig::CreateCfgFile() {
     char strCfgPath[MAX_PATH];
-    char strCfgFile[] = "<?xml version=\"1.0\" encoding=\"utf - 8\"?>"\
-        "<MCDReforgedByCppConfig>"\
-        "<LoadCppPlugins>true</LoadCppPlugins>"\
-        "<LoadPythonPlugins>true</LoadPythonPlugins>"\
-        "<LoadCppPluginsConfig>true</LoadCppPluginsConfig>"\
-        "<LoadPythonPluginsConfig>true</LoadPythonPluginsConfig>"\
-        "<CppPluginsDir>cppplugins</CppPluginsDir>"\
-        "<PythonPluginsDir>pyplugins</PythonPluginsDir>"\
-        "<ExecInitScript>true</ExecInitScript>"\
-        "<ExecTimerScript>true</ExecTimerScript>"\
-        "<ServerDir>server</ServerDir>"\
-        "<ServerStartupCommand>server.jar</ServerStartupCommand>"\
-        "<JavaPath></JavaPath>"\
-        "<EnableMinecraftCommandQueue>true</EnableMinecraftCommandQueue>"\
-        "<ServerParser>VanillaParser</ServerParser>"\
+    char strCfgFile[] = "<?xml version=\"1.0\" encoding=\"utf - 8\"?>\r\n"\
+        "<MCDReforgedByCppConfig>\r\n"\
+        "\t<LoadCppPlugins>true</LoadCppPlugins>\r\n"\
+        "\t<LoadPythonPlugins>true</LoadPythonPlugins>\r\n"\
+        "\t<LoadCppPluginsConfig>true</LoadCppPluginsConfig>\r\n"\
+        "\t<LoadPythonPluginsConfig>true</LoadPythonPluginsConfig>\r\n"\
+        "\t<CppPluginsDir>cppplugins</CppPluginsDir>\r\n"\
+        "\t<PythonPluginsDir>pyplugins</PythonPluginsDir>\r\n"\
+        "\t<ExecInitScript>true</ExecInitScript>\r\n"\
+        "\t<ExecTimerScript>true</ExecTimerScript>\r\n"\
+        "\t<ServerDir>server</ServerDir>\r\n"\
+        "\t<ServerStartupCommand>server.jar</ServerStartupCommand>\r\n"\
+        "\t<JavaPath></JavaPath>\r\n"\
+        "\t<EnableMinecraftCommandQueue>true</EnableMinecraftCommandQueue>\r\n"\
+        "\t<ServerParser>VanillaParser</ServerParser>\r\n"\
         "</MCDReforgedByCppConfig>";
     DWORD dwWriteBytes;
 
     GetModuleFileName(NULL, strCfgPath, MAX_PATH);
     (strrchr(strCfgPath, '\\'))[1] = 0;
-    strcat_s(strCfgPath, "mcdrcppcfg.ini"); //获取mcdrcpp配置文件路径
+    strcat_s(strCfgPath, "mcdrcppcfg.xml");
 
     HANDLE hFile = ::CreateFile(
         strCfgPath,

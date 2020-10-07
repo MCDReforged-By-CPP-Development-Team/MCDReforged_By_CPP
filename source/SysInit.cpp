@@ -1,5 +1,8 @@
 #include"SysInit.h"
 
+#include"common.h"
+#include"cfgfile.h"
+
 #define IOBUFSIZE 4096
 
 //定义句柄: 构成stdin管道的两端句柄
