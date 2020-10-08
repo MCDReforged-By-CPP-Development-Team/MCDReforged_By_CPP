@@ -120,6 +120,19 @@ int stdfuncallconv GetJvmPath(string* strPath) {
     return 0;
 }
 
+bool CheckFolderExist(const string& strPath)
+{
+    WIN32_FIND_DATA  wfd;
+    bool rValue = false;
+    HANDLE hFind = FindFirstFile(strPath.c_str(), &wfd);
+    if ((hFind != INVALID_HANDLE_VALUE) && (wfd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
+    {
+        rValue = true;
+    }
+    FindClose(hFind);
+    return rValue;
+}
+
 int stdfuncallconv DetectDir() {
     return 0;
 }

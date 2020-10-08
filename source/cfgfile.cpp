@@ -63,6 +63,7 @@ int LoadConfig::CreateCfgFile() {
         "\t<JavaPath></JavaPath>\r\n"\
         "\t<EnableMinecraftCommandQueue>true</EnableMinecraftCommandQueue>\r\n"\
         "\t<ServerParser>VanillaParser</ServerParser>\r\n"\
+        "\t<Instructionprefix>!!mcdr < / Instructionprefix>\r\n"\
         "</MCDReforgedByCppConfig>";
     DWORD dwWriteBytes;
 
