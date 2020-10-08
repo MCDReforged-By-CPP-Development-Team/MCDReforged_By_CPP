@@ -19,19 +19,18 @@ IF(WIN32)
 
     include_directories(${PYINCLUDE})
     include_directories(.)
-    include_directories(includes)
     include_directories(include)
     include_directories(tinyxml2-8.0.0)
 
     add_executable(MCDReforged_By_CPP
             ${PYINCLUDE}/Python.h
-            includes/cfgfile.h
-            includes/cmdsys.h
-            includes/logsys.h
-            includes/cppplugin.h
-            includes/pyplugin.h
-            includes/rewriteio.h
-            includes/SysInit.h
+            include/cfgfile.h
+            include/cmdsys.h
+            include/logsys.h
+            include/cppplugin.h
+            include/pyplugin.h
+            include/rewriteio.h
+            include/SysInit.h
             source/cppplugin.cpp
             source/pyplugin.cpp
             source/SysInit.cpp
@@ -44,28 +43,31 @@ IF(WIN32)
             tinyxml2-8.0.0/tinyxml.h
             tinyxml2-8.0.0/tinyxmlerror.cpp
             tinyxml2-8.0.0/tinyxmlparser.cpp
-            includes/serverparser.h
+            include/serverparser.h
             source/serverparser.cpp
-            includes/messagesys.h
+            include/messagesys.h
             source/messagesys.cpp
-            includes/common.h
+            include/common.h
             source/mainprogram.cpp 
-            includes/ReadSpecExtendsFile.h)
+            include/ReadSpecExtendsFile.h
+            source/debugprint.cpp
+            include/debugprint.h
+            source/execscript.cpp
+            include/execscript.h)
 ELSEIF(APPLE)
     MESSAGE(STATUS Cmaking on APPLE MacOS)
     include_directories(.)
-    include_directories(includes)
     include_directories(include)
     include_directories(tinyxml2-8.0.0)
 
     add_executable(MCDReforged_By_CPP
-            includes/cfgfile.h
-            includes/cmdsys.h
-            includes/logsys.h
-            includes/cppplugin.h
-            includes/pyplugin.h
-            includes/rewriteio.h
-            includes/SysInit.h
+            include/cfgfile.h
+            include/cmdsys.h
+            include/logsys.h
+            include/cppplugin.h
+            include/pyplugin.h
+            include/rewriteio.h
+            include/SysInit.h
             source/cppplugin.cpp
             source/pyplugin.cpp
             source/SysInit.cpp
@@ -78,11 +80,15 @@ ELSEIF(APPLE)
             tinyxml2-8.0.0/tinyxml.h
             tinyxml2-8.0.0/tinyxmlerror.cpp
             tinyxml2-8.0.0/tinyxmlparser.h
-            includes/serverparser.h
+            include/serverparser.h
             source/serverparser.cpp
-            includes/messagesys.h
+            include/messagesys.h
             source/messagesys.cpp
-            includes/common.h
+            include/common.h
             source/mainprogram.cpp
-            includes/ReadSpecExtendsFile.h)
+            include/ReadSpecExtendsFile.h
+            source/debugprint.cpp
+            include/debugprint.h
+            source/execscript.cpp
+            include/execscript.h)
 ENDIF()

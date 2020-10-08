@@ -4,11 +4,12 @@ SysInit.h
 */
 #pragma once
 
-#include"common.h"
-
 #include<string>
 #include<Windows.h>
 #include<iostream>
+
+#include"common.h"
+#include"debugprint.h"
 
 using namespace std;
 
@@ -18,4 +19,4 @@ int stdfuncallconv Finalize();
 
 int stdfuncallconv GetJvmPath(string* strPath);
 
-int stdfuncallconv InitDebugPrint(string str);
+int stdfuncallconv DetectDir();

@@ -31,11 +31,11 @@ BOOL stdfuncallconv WriteToPipe(char* in_buffer, DWORD& dwSize);
 int stdfuncallconv AnalyzeServerOutput(char* output);
 
 int stdfuncallconv Initialize(){
-    InitDebugPrint("Enter Initialize Function,start init now.");
+    DebugPrint("Enter Initialize Function,start init now.");
 
-    InitDebugPrint("Call LoadConfigFile Funtion");
+    DebugPrint("Call LoadConfigFile Funtion");
     auto loadcfgfileret = LoadConfig::LoadConfigFile();
-    InitDebugPrint("LoadConfigFileReturns:" + loadcfgfileret);
+    DebugPrint("LoadConfigFileReturns:" + loadcfgfileret);
 
 	if (!CreatePipe(&hStdInRead, &hStdInWrite, &sa_attr_struct, 0))
 		return -1;
@@ -116,7 +116,10 @@ int stdfuncallconv Finalize() {
     return 0;
 }
 
-int stdfuncallconv InitDebugPrint(string str) {
-	cout << "[InitDebugPrint] : " << str << endl;
-	return 0;
+int stdfuncallconv GetJvmPath(string* strPath) {
+    return 0;
+}
+
+int stdfuncallconv DetectDir() {
+    return 0;
 }
