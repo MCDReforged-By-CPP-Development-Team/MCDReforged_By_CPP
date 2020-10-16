@@ -52,23 +52,7 @@ int LoadConfig::LoadConfigFile() {
 
 int LoadConfig::CreateCfgFile() {
     char strCfgPath[MAX_PATH];
-    char strCfgFile[] = "<?xml version=\"1.0\" encoding=\"utf - 8\"?>\r\n"\
-        "<MCDReforgedByCppConfig>\r\n"\
-        "\t<LoadCppPlugins>true</LoadCppPlugins>\r\n"\
-        "\t<LoadPythonPlugins>true</LoadPythonPlugins>\r\n"\
-        "\t<LoadCppPluginsConfig>true</LoadCppPluginsConfig>\r\n"\
-        "\t<LoadPythonPluginsConfig>true</LoadPythonPluginsConfig>\r\n"\
-        "\t<CppPluginsDir>cppplugins</CppPluginsDir>\r\n"\
-        "\t<PythonPluginsDir>pyplugins</PythonPluginsDir>\r\n"\
-        "\t<ExecInitScript>true</ExecInitScript>\r\n"\
-        "\t<ExecTimerScript>true</ExecTimerScript>\r\n"\
-        "\t<ServerDir>server</ServerDir>\r\n"\
-        "\t<ServerStartupCommand>server.jar</ServerStartupCommand>\r\n"\
-        "\t<JavaPath></JavaPath>\r\n"\
-        "\t<EnableMinecraftCommandQueue>true</EnableMinecraftCommandQueue>\r\n"\
-        "\t<ServerParser>VanillaParser</ServerParser>\r\n"\
-        "\t<Instructionprefix>!!mcdr < / Instructionprefix>\r\n"\
-        "</MCDReforgedByCppConfig>\r\n";
+    char strCfgFile[] = COMMOM_CFG;
     DWORD dwWriteBytes;
 
     GetModuleFileName(NULL, strCfgPath, MAX_PATH);
@@ -91,20 +75,20 @@ int LoadConfig::CreateCfgFile() {
 
 int LoadConfig::ReadCfgFile(string cfgFilePath) {
     DebugPrint("Enter ReadCfgFile()!");
-    TiXmlDocument *pDoc = new TiXmlDocument;
+    TiXmlDocument *pDoc = new TiXmlDocument(cfgFilePath.c_str());
     if (pDoc == NULL) {
         DebugPrint("new TiXmlDocument failed.");
         return -1;
     }
 
-    bool bret = pDoc->LoadFile(cfgFilePath.c_str(), TIXML_ENCODING_UTF8);
+    bool bret = pDoc->LoadFile();
     if (!bret) {
-        DebugPrint("pDoc->LoadFile(cfgFilePath.c_str()) failed.");
+        DebugPrint("pDoc->LoadFile() failed.");
         return -1;
     }
     TiXmlElement* pRootEle = pDoc->RootElement();
     if (pRootEle == NULL) { 
-        DebugPrint("pDoc->LoadFile(cfgFilePath.c_str()); failed.");
+        DebugPrint("pDoc->LoadFile(); failed.");
         return -1; 
     }
 
