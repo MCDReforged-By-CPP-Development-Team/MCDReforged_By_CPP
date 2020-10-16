@@ -23,10 +23,13 @@ bool LoadConfig::ConfigFileExisting() {
 }
 
 int LoadConfig::LoadConfigFile() {
+    DebugPrint("Enter LoadConfigFile()!");
+    DebugPrint(ConfigFileExisting());
     if (ConfigFileExisting()) {
         char pathBuf[MAX_PATH];
         GetCurrentDirectoryA(sizeof(pathBuf), pathBuf);
-        strcat_s(pathBuf, "mcdrcppconfig.xml");
+        strcat_s(pathBuf, "\\mcdrcppconfig.xml");
+        DebugPrint(pathBuf);
 
         string cfgPath = pathBuf;
 
@@ -37,7 +40,8 @@ int LoadConfig::LoadConfigFile() {
         CreateCfgFile();
         char pathBuf[MAX_PATH];
         GetCurrentDirectoryA(sizeof(pathBuf), pathBuf);
-        strcat_s(pathBuf, "mcdrcppconfig.xml");
+        strcat_s(pathBuf, "\\mcdrcppconfig.xml");
+        DebugPrint(pathBuf);
 
         string cfgPath = pathBuf;
 
@@ -64,7 +68,7 @@ int LoadConfig::CreateCfgFile() {
         "\t<EnableMinecraftCommandQueue>true</EnableMinecraftCommandQueue>\r\n"\
         "\t<ServerParser>VanillaParser</ServerParser>\r\n"\
         "\t<Instructionprefix>!!mcdr < / Instructionprefix>\r\n"\
-        "</MCDReforgedByCppConfig>";
+        "</MCDReforgedByCppConfig>\r\n";
     DWORD dwWriteBytes;
 
     GetModuleFileName(NULL, strCfgPath, MAX_PATH);
@@ -86,12 +90,23 @@ int LoadConfig::CreateCfgFile() {
 }
 
 int LoadConfig::ReadCfgFile(string cfgFilePath) {
+    DebugPrint("Enter ReadCfgFile()!");
     TiXmlDocument *pDoc = new TiXmlDocument;
-    if (pDoc == NULL) return -1;
+    if (pDoc == NULL) {
+        DebugPrint("new TiXmlDocument failed.");
+        return -1;
+    }
 
-    pDoc->LoadFile(cfgFilePath.c_str());
+    bool bret = pDoc->LoadFile(cfgFilePath.c_str(), TIXML_ENCODING_UTF8);
+    if (!bret) {
+        DebugPrint("pDoc->LoadFile(cfgFilePath.c_str()) failed.");
+        return -1;
+    }
     TiXmlElement* pRootEle = pDoc->RootElement();
-    if (pRootEle == NULL) return -1;
+    if (pRootEle == NULL) { 
+        DebugPrint("pDoc->LoadFile(cfgFilePath.c_str()); failed.");
+        return -1; 
+    }
 
     TiXmlElement* pElem = NULL;
 

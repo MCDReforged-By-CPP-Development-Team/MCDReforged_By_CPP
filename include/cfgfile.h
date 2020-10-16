@@ -7,6 +7,7 @@ cfgfile.h
 #include<string>
 #include<Windows.h>
 #include"serverparser.h"
+#include"debugprint.h"
 #include"tinyxml2-8.0.0/tinystr.h"  
 #include"tinyxml2-8.0.0/tinyxml.h"
 

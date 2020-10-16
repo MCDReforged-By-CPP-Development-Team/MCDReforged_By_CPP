@@ -20,3 +20,5 @@ int stdfuncallconv Finalize();
 int stdfuncallconv GetJvmPath(string* strPath);
 
 int stdfuncallconv DetectDir();
+
+int stdfuncallconv WelcomeMessage();

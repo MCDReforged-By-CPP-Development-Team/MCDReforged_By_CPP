@@ -34,7 +34,7 @@ int stdfuncallconv Initialize(){
     DebugPrint("Enter Initialize Function,start init now.");
 
     DebugPrint("Call LoadConfigFile Funtion");
-    auto loadcfgfileret = LoadConfig::LoadConfigFile();
+    int loadcfgfileret = LoadConfig::LoadConfigFile();
     DebugPrint("LoadConfigFileReturns:" + loadcfgfileret);
 
 	if (!CreatePipe(&hStdInRead, &hStdInWrite, &sa_attr_struct, 0))
@@ -134,5 +134,12 @@ bool CheckFolderExist(const string& strPath)
 }
 
 int stdfuncallconv DetectDir() {
+    return 0;
+}
+
+int stdfuncallconv WelcomeMessage() {
+    cout << "Welcome to MCDReforged By C++!Current Version : " << MCDRCPP_VER << '-' << MCDRCPP_DEV_STATUS << endl;
+    cout << "You can check the new version at : " << MCDRCPP_RELEASES << endl;
+    if (!MCDRCPP_ISSTABLE) cout << "This is not a stable version, If you find a bug, please send the program output, screenshot and the plugins you installed at the time of the error to the mailbox mcdrcpp_devteam@outlook.com" << endl;
     return 0;
 }
