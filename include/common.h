@@ -27,4 +27,7 @@ common.h by noFe
         "\t<EnableMinecraftCommandQueue>true</EnableMinecraftCommandQueue>\r\n"\
         "\t<ServerParser>VanillaParser</ServerParser>\r\n"\
         "\t<Instructionprefix>!!mcdr < / Instructionprefix>\r\n"\
+        "\t<LogFilePath>log</LogFilePath>\r\n"\
         "</MCDReforgedByCppConfig>\r\n";
+
+#define CFGFILENAME "mcdrcppconfig.xml"

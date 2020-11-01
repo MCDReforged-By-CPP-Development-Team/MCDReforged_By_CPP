@@ -11,8 +11,6 @@ cfgfile.h
 #include"tinyxml2-8.0.0/tinystr.h"  
 #include"tinyxml2-8.0.0/tinyxml.h"
 
-volatile static int iMsTimerScriptExec;
-volatile static int iExecTimerScriptTimes;
 volatile static int iParserType;
 
 volatile static bool bLoadCppPlugins;
@@ -31,12 +29,14 @@ static std::string strCppPluginPath;
 static std::string strPyPluginPath;
 static std::string strInitScriptPath;
 static std::string strTimerScriptPath;
+static std::string strInstructionPrefix;
+static std::string strLogFilePath;
 
 using namespace std;
 
 class LoadConfig {
 private:
-	static int ReadCfgFile(string cfgFilePath);
+	static int ReadCfgFile();
 	static int CreateCfgFile();
 	static bool ConfigFileExisting();
 	static bool StringToBool(string Temp);
@@ -44,5 +44,6 @@ private:
 	static int StringToParserCode(string parserName);
 public:
 	static int LoadConfigFile();
+	static int Default();
 };
 

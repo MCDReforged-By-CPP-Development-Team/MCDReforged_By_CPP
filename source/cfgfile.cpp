@@ -2,7 +2,6 @@
 
 using namespace std;
 
-
 bool LoadConfig::ConfigFileExisting() {
     char strCfgPath[MAX_PATH];
     GetModuleFileName(NULL, strCfgPath, MAX_PATH);
@@ -26,28 +25,40 @@ int LoadConfig::LoadConfigFile() {
     DebugPrint("Enter LoadConfigFile()!");
     DebugPrint(ConfigFileExisting());
     if (ConfigFileExisting()) {
-        char pathBuf[MAX_PATH];
-        GetCurrentDirectoryA(sizeof(pathBuf), pathBuf);
-        strcat_s(pathBuf, "\\mcdrcppconfig.xml");
-        DebugPrint(pathBuf);
-
-        string cfgPath = pathBuf;
-
-        return ReadCfgFile(cfgPath);
+        return ReadCfgFile();
         return 0;
     }
     else {
         CreateCfgFile();
-        char pathBuf[MAX_PATH];
-        GetCurrentDirectoryA(sizeof(pathBuf), pathBuf);
-        strcat_s(pathBuf, "\\mcdrcppconfig.xml");
-        DebugPrint(pathBuf);
-
-        string cfgPath = pathBuf;
-
-        return ReadCfgFile(pathBuf);
+        
+        return ReadCfgFile();
         return -1;
     }
+}
+
+int LoadConfig::Default()
+{
+    iParserType = VANILLA_PARSER_CODE;
+
+    bLoadCppPlugins = true;
+    bLoadPyPlugins = true;
+    bExecInitScript = true;
+    bExecTimerScript = true;
+    bReadCppPluginsCfg = true;
+    bReadPyPluginCfg = true;
+    bExecTimerScriptLoop = true;
+    bEnableMinecraftCommandQueue = true;
+
+    strJavaPath = "";
+    strServerWorkingDir = "server";
+    strMinecraftServerStartupCommandLine = "-nogui";
+    strCppPluginPath = "plugins";
+    strPyPluginPath = "plugins";
+    strInitScriptPath = "script";
+    strTimerScriptPath = "script";
+    strInstructionPrefix = "!!mcdr";
+    strLogFilePath = "log";
+    return 0;
 }
 
 int LoadConfig::CreateCfgFile() {
@@ -55,13 +66,9 @@ int LoadConfig::CreateCfgFile() {
     char strCfgFile[] = COMMOM_CFG;
     DWORD dwWriteBytes;
 
-    GetModuleFileName(NULL, strCfgPath, MAX_PATH);
-    (strrchr(strCfgPath, '\\'))[1] = 0;
-    strcat_s(strCfgPath, "mcdrcppcfg.xml");
-
     HANDLE hFile = ::CreateFile(
-        strCfgPath,
-        GENERIC_WRITE,
+        CFGFILENAME,
+        GENERIC_WRITE|GENERIC_READ,
         FILE_SHARE_READ | FILE_SHARE_WRITE,
         NULL,
         OPEN_ALWAYS,
@@ -73,22 +80,22 @@ int LoadConfig::CreateCfgFile() {
     return 0;
 }
 
-int LoadConfig::ReadCfgFile(string cfgFilePath) {
+int LoadConfig::ReadCfgFile() {
     DebugPrint("Enter ReadCfgFile()!");
-    TiXmlDocument *pDoc = new TiXmlDocument(cfgFilePath.c_str());
-    if (pDoc == NULL) {
-        DebugPrint("new TiXmlDocument failed.");
-        return -1;
-    }
+    TiXmlDocument Doc(CFGFILENAME);
 
-    bool bret = pDoc->LoadFile();
+    bool bret = Doc.LoadFile(TIXML_ENCODING_UTF8);
+    string tinyxmlerror = "ErrorID:" + Doc.ErrorId();
+    tinyxmlerror += "ErrorDesc:";
+    tinyxmlerror += Doc.ErrorDesc();
     if (!bret) {
-        DebugPrint("pDoc->LoadFile() failed.");
+        DebugPrint("Doc.LoadFile() failed.");
+        DebugPrint(tinyxmlerror);
         return -1;
     }
-    TiXmlElement* pRootEle = pDoc->RootElement();
+    TiXmlElement* pRootEle = Doc.RootElement();
     if (pRootEle == NULL) { 
-        DebugPrint("pDoc->LoadFile(); failed.");
+        DebugPrint("Doc.RootElement(); failed.");
         return -1; 
     }
 
@@ -145,6 +152,14 @@ int LoadConfig::ReadCfgFile(string cfgFilePath) {
     GetNodePointerByName(pRootEle, (string)"ServerParser", pElem);
     if (pElem == NULL) return -1;
     iParserType = StringToParserCode(pElem->GetText());
+
+    GetNodePointerByName(pRootEle, (string)"Instructionprefix", pElem);
+    if (pElem == NULL) return -1;
+    strInstructionPrefix = pElem->GetText();
+
+    GetNodePointerByName(pRootEle, (string)"LogFilePath", pElem);
+    if (pElem == NULL) return -1;
+    strLogFilePath = pElem->GetText();
 
     return 0;
 }

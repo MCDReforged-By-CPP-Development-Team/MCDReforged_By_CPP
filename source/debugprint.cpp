@@ -6,7 +6,7 @@ int stdfuncallconv DebugPrint(const char* outstr) {
 	return 0;
 }
 
-int stdfuncallconv DebugPrint(string* outstr) {
+int stdfuncallconv DebugPrint(string outstr) {
 	cout << DEBUGPRINTSTR << outstr << '\n';
 	fflush(stdout);
 	return 0;

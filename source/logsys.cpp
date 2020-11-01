@@ -1,155 +1,93 @@
 #include "logsys.h"
-#include <Windows.h>
-#ifndef _CRT_SECURE_NO_WARNINGS
-	#define _CRT_SECURE_NO_WARNINGS
-#endif
-
-#pragma warning(disable:4996)
-
 
 using namespace std;
 
-
-int stdfuncallconv LOGSYS::SetLogFile(FILE* file, const char* str,const char* InfType)
+int stdfuncallconv MCDRCPPLog::InitLogSystem()
 {
-	time_t time_ = time(NULL);
-	char t[50] = { 0 };
-	strftime(t, sizeof(t), "%Y-%m-%d-%H-%M-%S", localtime(&time_));
-	FILE* pf = NULL;
-	pf = file;
-	char* logname = NULL;
-	char* tmp= NULL;
-	tmp = strcat(t, ".mcdrlog");
-	char dir[MAX_PATH];
-	auto getcwdret = _getcwd(dir,MAX_PATH);
-	logname = strcat(dir, "\\");
-	tmp = strcat(logname,tmp);
-	//cout << dir << endl;
-	pf = fopen(tmp, "a+");
-	if (fputs("[", pf) != EOF)
-	{
-		if (fputs(t, pf) != EOF)
-		{
-			if (fputs("]", pf) != EOF)
-			{
-				if (fputs("[", pf) != EOF)
-				{
-					if (fputs(InfType, pf) != EOF)
-					{
-						if (fputs("]", pf) != EOF)
-						{
-							if (fputs(str, pf) != EOF)
-							{
-								return 114514;
-							}
-							else
-							{
-								return -1;
-							}
-						}
-					
-					}
-					
-				}
-				
-			}
-			
-		}
-		
-	}
-	fclose(pf);
-	return 1;
+	time_t t = time(0);
+	char logfilename[64];
+	strftime(logfilename, sizeof(logfilename), "%Y-%m-%d-%H-%M-%S", localtime(&t)); //年-月-日-时-分-秒
+
+	string logfilepath = strLogFilePath + "\\" + logfilename;
+	LogFileHandle = CreateFile(logfilepath.c_str()
+		, GENERIC_READ|GENERIC_WRITE
+		, FILE_SHARE_READ
+		, NULL
+		, OPEN_ALWAYS
+		, FILE_ATTRIBUTE_NORMAL|FILE_FLAG_SEQUENTIAL_SCAN|FILE_FLAG_WRITE_THROUGH
+		, NULL);
+
+	if(LogFileHandle != 0)
+		return 0;
+	return -1;
 }
 
-int stdfuncallconv LOGSYS::SetSTDOUT(const char* str,int InformationType)
+int stdfuncallconv MCDRCPPLog::WriteLog()
 {
-	time_t time_ = time(NULL);
-	char t[50] = { 0 };
-	strftime(t, sizeof(t), "%Y-%m-%d-%H-%M-%S", localtime(&time_));
-	FILE* fp = NULL;
-	cout << "[";
-	cout << t;
-	cout << "]";
-	switch (InformationType)
-	{
-	case INFO:
-		cout << "[";
-		cout << "INFO";
-		cout << "]";
-		cout << "  ";
-		cout << str;
-		SetLogFile(fp, str, "INFO");
-		break;
-	case WARN:
-		cout << "[";
-		cout << "WARN";
-		cout << "]";
-		cout << "  ";
-		cout << str;
-		SetLogFile(fp, str, "WARN");
-		break;
-	case ERR:
-		cout << "[";
-		cout << "ERROR";
-		cout << "]";
-		cout << "  ";
-		cout << str;
-		SetLogFile(fp, str, "ERROR");
-		break;
-	default:
-		return -134;
-		break;
-	}
-
-	return 1;
+	return 0;
 }
 
-int stdfuncallconv CreateDirectory(const string folder) {
-	string folder_builder;
-	string sub;
-	sub.reserve(folder.size());
-	for (auto it = folder.begin(); it != folder.end(); ++it) {
-		const char c = *it;
-		sub.push_back(c);
-		if (c == PATH_DELIMITER || it == folder.end() - 1) {
-			folder_builder.append(sub);
-			if (0 != ::_access(folder_builder.c_str(), 0)) {
-				// 没有此文件夹
-				if (0 != ::_mkdir(folder_builder.c_str())) {
-					// 创建文件夹失败
-					return -1;
-				}
-			}
-			sub.clear();
-		}
-	}
-	return 1;
-}
-
-int stdfuncallconv LOGSYS::MakeLogFloderExists()
+HANDLE stdfuncallconv MCDRCPPLog::RawLogFileHandle()
 {
-	int FileExists = access("logs", 0);
-	if (FileExists == -1)
-	{
-		SetSTDOUT("找不到logs文件夹\n", WARN);
-		if (CreateDirectory("logs") == 1)
-		{
-			SetSTDOUT("已创建logs文件夹\n", INFO);
-			return 114514;
-
-		}
-		else
-		{
-			SetSTDOUT("无法创建logs文件夹\n", ERROR);
-			return -114514;
-		}
-	}
-	else
-	{
-		SetSTDOUT("找到logs文件夹\n", INFO);
-		return 114514;
-	}
-	
+	return LogFileHandle;
 }
 
+int stdfuncallconv MCDRCPPLog::CreateLogFile()
+{
+	return 0;
+}
 
+int stdfuncallconv OutputInterface::Output(const char* outstr, const char* msger, int msgtype, int stream)
+{
+	return 0;
+}
+
+int stdfuncallconv OutputInterface::msg(const char* outstr)
+{
+	return 0;
+}
+
+int stdfuncallconv OutputInterface::warning(const char* outstr)
+{
+	return 0;
+}
+
+int stdfuncallconv OutputInterface::error(const char* outstr)
+{
+	return 0;
+}
+
+int stdfuncallconv OutputInterface::fatal(const char* outstr)
+{
+	return 0;
+}
+
+int stdfuncallconv OutputInterface::undef(const char* outstr)
+{
+	return 0;
+}
+
+int stdfuncallconv OutputInterface::msg(string outstr)
+{
+	return 0;
+}
+
+int stdfuncallconv OutputInterface::warning(string outstr)
+{
+	return 0;
+}
+
+int stdfuncallconv OutputInterface::error(string outstr)
+{
+	return 0;
+}
+
+int stdfuncallconv OutputInterface::fatal(string outstr)
+{
+	return 0;
+}
+
+int stdfuncallconv OutputInterface::undef(string outstr)
+{
+	return 0;
+}

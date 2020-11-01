@@ -15,4 +15,5 @@
 	<EnableMinecraftCommandQueue>true</EnableMinecraftCommandQueue>
 	<ServerParser>VanillaParser</ServerParser>
 	<Instructionprefix>!!mcdr</Instructionprefix>
+	<LogFilePath>log</LogFilePath>
 </MCDReforgedByCppConfig>
