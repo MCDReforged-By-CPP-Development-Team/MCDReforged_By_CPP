@@ -18,7 +18,7 @@ volatile static bool bLoadPyPlugins;
 volatile static bool bExecInitScript;
 volatile static bool bExecTimerScript;
 volatile static bool bReadCppPluginsCfg;
-volatile static bool bReadPyPluginCfg;
+volatile static bool bReadPyPluginsCfg;
 volatile static bool bExecTimerScriptLoop;
 volatile static bool bEnableMinecraftCommandQueue;
 
@@ -36,14 +36,17 @@ using namespace std;
 
 class LoadConfig {
 private:
-	static int ReadCfgFile();
-	static int CreateCfgFile();
-	static bool ConfigFileExisting();
-	static bool StringToBool(string Temp);
-	static bool GetNodePointerByName(TiXmlElement* pRootEle, std::string& strNodeName, TiXmlElement*& Node);
-	static int StringToParserCode(string parserName);
+	static int stdfuncallconv ReadCfgFile();
+	static int stdfuncallconv CreateCfgFile();
+	static bool stdfuncallconv ConfigFileExisting();
+	static bool stdfuncallconv StringToBool(string Temp);
+	static bool stdfuncallconv GetNodePointerByName(TiXmlElement* pRootEle, std::string& strNodeName, TiXmlElement*& Node);
+	static int stdfuncallconv StringToParserCode(string parserName);
 public:
 	static int LoadConfigFile();
 	static int Default();
 };
 
+#ifdef DEBUG_FUNC_ENABLE
+int stdfuncallconv PrintAttr();
+#endif

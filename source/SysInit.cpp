@@ -36,7 +36,11 @@ int stdfuncallconv Initialize(){
     DebugPrint("Call LoadConfigFile Funtion");
     int loadcfgfileret = LoadConfig::LoadConfigFile();
     DebugPrint("LoadConfigFileReturns:" + loadcfgfileret);
-    LoadConfig::Default();
+    if (loadcfgfileret != 0)
+        LoadConfig::Default();
+#ifdef DEBUG_FUNC_ENABLE
+    PrintAttr();
+#endif
 
 	if (!CreatePipe(&hStdInRead, &hStdInWrite, &sa_attr_struct, 0))
 		return -1;

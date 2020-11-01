@@ -11,7 +11,7 @@
 	<ExecTimerScript>true</ExecTimerScript>
 	<ServerDir>server</ServerDir>
 	<ServerStartupCommand>server.jar</ServerStartupCommand>
-	<JavaPath></JavaPath>
+	<JavaPath>init</JavaPath>
 	<EnableMinecraftCommandQueue>true</EnableMinecraftCommandQueue>
 	<ServerParser>VanillaParser</ServerParser>
 	<Instructionprefix>!!mcdr</Instructionprefix>
