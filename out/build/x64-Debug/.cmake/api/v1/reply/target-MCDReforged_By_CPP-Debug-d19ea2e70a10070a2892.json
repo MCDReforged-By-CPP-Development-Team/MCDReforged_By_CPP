@@ -29,17 +29,11 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 25,
+				"line" : 28,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
-				"file" : 0,
-				"line" : 17,
-				"parent" : 0
-			},
-			{
-				"command" : 2,
 				"file" : 0,
 				"line" : 20,
 				"parent" : 0
@@ -47,19 +41,25 @@
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 21,
-				"parent" : 0
-			},
-			{
-				"command" : 2,
-				"file" : 0,
-				"line" : 22,
-				"parent" : 0
-			},
-			{
-				"command" : 2,
-				"file" : 0,
 				"line" : 23,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 24,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 25,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 26,
 				"parent" : 0
 			}
 		]
@@ -98,6 +98,13 @@
 			"language" : "CXX",
 			"sourceIndexes" : 
 			[
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7,
 				8,
 				9,
 				10,
@@ -105,14 +112,7 @@
 				12,
 				13,
 				14,
-				16,
-				18,
-				19,
-				21,
-				23,
-				25,
-				27,
-				29
+				15
 			]
 		}
 	],
@@ -154,7 +154,13 @@
 			"name" : "Header Files",
 			"sourceIndexes" : 
 			[
-				0,
+				0
+			]
+		},
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
 				1,
 				2,
 				3,
@@ -162,20 +168,6 @@
 				5,
 				6,
 				7,
-				15,
-				17,
-				20,
-				22,
-				24,
-				26,
-				28,
-				30
-			]
-		},
-		{
-			"name" : "Source Files",
-			"sourceIndexes" : 
-			[
 				8,
 				9,
 				10,
@@ -183,14 +175,7 @@
 				12,
 				13,
 				14,
-				16,
-				18,
-				19,
-				21,
-				23,
-				25,
-				27,
-				29
+				15
 			]
 		}
 	],
@@ -200,53 +185,6 @@
 			"backtrace" : 1,
 			"path" : "D:/Program Files (x86)/Microsoft Visual Studio/Shared/Python37_64/include/Python.h",
 			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"path" : "include/cfgfile.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"path" : "include/cmdsys.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"path" : "include/logsys.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"path" : "include/cppplugin.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"path" : "include/pyplugin.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"path" : "include/rewriteio.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"path" : "include/SysInit.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "source/cppplugin.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "source/pyplugin.cpp",
-			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 1,
@@ -269,7 +207,49 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
+			"path" : "source/cppplugin.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "source/debugprint.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "source/execscript.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
 			"path" : "source/logsys.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "source/mainprogram.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "source/messagesys.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "source/pyplugin.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "source/serverparser.cpp",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -280,19 +260,9 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "tinyxml2-8.0.0/tinystr.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "tinyxml2-8.0.0/tinyxml.cpp",
 			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "tinyxml2-8.0.0/tinyxml.h",
-			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
@@ -305,66 +275,6 @@
 			"compileGroupIndex" : 0,
 			"path" : "tinyxml2-8.0.0/tinyxmlparser.cpp",
 			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "include/serverparser.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "source/serverparser.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "include/messagesys.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "source/messagesys.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "include/common.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "source/mainprogram.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "include/ReadSpecExtendsFile.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "source/debugprint.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "include/debugprint.h",
-			"sourceGroupIndex" : 0
-		},
-		{
-			"backtrace" : 1,
-			"compileGroupIndex" : 0,
-			"path" : "source/execscript.cpp",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 1,
-			"path" : "include/execscript.h",
-			"sourceGroupIndex" : 0
 		}
 	],
 	"type" : "EXECUTABLE"
