@@ -1,7 +1,6 @@
 #include"SysInit.h"
-
-#include"common.h"
 #include"cfgfile.h"
+#include"common.h"
 
 #define IOBUFSIZE 4096
 
@@ -31,15 +30,21 @@ BOOL stdfuncallconv WriteToPipe(char* in_buffer, DWORD& dwSize);
 int stdfuncallconv AnalyzeServerOutput(char* output);
 
 int stdfuncallconv Initialize(){
-    DebugPrint("Enter Initialize Function,start init now.");
+    dp("Enter Initialize Function,start init now.");
 
-    DebugPrint("Call LoadConfigFile Funtion");
+    dp("Call LoadConfigFile Funtion");
     int loadcfgfileret = LoadConfig::LoadConfigFile();
-    DebugPrint("LoadConfigFileReturns:" + loadcfgfileret);
+    dp("LoadConfigFileReturns:" + loadcfgfileret);
     if (loadcfgfileret != 0)
-        LoadConfig::Default();
+        Cfg.Default();
+    Out.Init(GlobalSettings.GetString(logpath));
 #ifdef DEBUG_FUNC_ENABLE
-    PrintAttr();
+    dp("Test OutputInterface.");
+    Out.msg("Test");
+    Out.warning("Test");
+    Out.error("Test");
+    Out.fatal("Test");
+    Out.undef("Test");
 #endif
 
 	if (!CreatePipe(&hStdInRead, &hStdInWrite, &sa_attr_struct, 0))

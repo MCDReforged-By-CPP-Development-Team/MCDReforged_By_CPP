@@ -51,3 +51,7 @@
 1078	1441	626473541	MCDReforged_By_CPP.exe	fc5e9ae7f2b6f22e
 1	1214	626473765	CMakeFiles/MCDReforged_By_CPP.dir/source/logsys.cpp.obj	e5544c464dd8bb34
 1218	1623	626473765	MCDReforged_By_CPP.exe	fc5e9ae7f2b6f22e
+11	1467	626474288	CMakeFiles/MCDReforged_By_CPP.dir/source/SysInit.cpp.obj	f2a3bffed03707f3
+21	1471	626474288	CMakeFiles/MCDReforged_By_CPP.dir/source/logsys.cpp.obj	e5544c464dd8bb34
+1	1487	626474288	CMakeFiles/MCDReforged_By_CPP.dir/source/cfgfile.cpp.obj	1a07b4a20b106242
+0	933	626474551	CMakeFiles/MCDReforged_By_CPP.dir/source/SysInit.cpp.obj	f2a3bffed03707f3

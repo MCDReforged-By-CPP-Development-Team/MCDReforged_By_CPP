@@ -1,4 +1,7 @@
 #include"cfgfile.h"
+#include"common.h"
+#include"serverparser.h"
+#include"debugprint.h"
 
 using namespace std;
 
@@ -22,42 +25,40 @@ bool LoadConfig::ConfigFileExisting() {
 }
 
 int LoadConfig::LoadConfigFile() {
-    DebugPrint("Enter LoadConfigFile()!");
-    DebugPrint(ConfigFileExisting());
-    if (ConfigFileExisting()) {
-        return ReadCfgFile();
+    dp("Enter LoadConfigFile()!");
+    dp(Cfg.ConfigFileExisting());
+    if (Cfg.ConfigFileExisting()) {
+        return Cfg.ReadCfgFile();
         return 0;
     }
     else {
-        CreateCfgFile();
+        Cfg.CreateCfgFile();
         
-        return ReadCfgFile();
+        return Cfg.ReadCfgFile();
         return -1;
     }
 }
 
 int LoadConfig::Default()
 {
-    iParserType = VANILLA_PARSER_CODE;
+    GlobalSettings.SetInt(parsertype, VANILLA_PARSER_CODE);
 
-    bLoadCppPlugins = true;
-    bLoadPyPlugins = true;
-    bExecInitScript = true;
-    bExecTimerScript = true;
-    bReadCppPluginsCfg = true;
-    bReadPyPluginsCfg = true;
-    bExecTimerScriptLoop = true;
-    bEnableMinecraftCommandQueue = true;
+    GlobalSettings.SetBool(loadcppplugins, true);
+    GlobalSettings.SetBool(loadpyplugins, true);
+    GlobalSettings.SetBool(execinitscr, true);
+    GlobalSettings.SetBool(exectimerscr, true);
+    GlobalSettings.SetBool(readcpppluginscfg, true);
+    GlobalSettings.SetBool(readpypluginscfg, true);
+    GlobalSettings.SetBool(enablemccmdqueue, true);
 
-    strJavaPath = "";
-    strServerWorkingDir = "server";
-    strMinecraftServerStartupCommandLine = "-nogui";
-    strCppPluginPath = "plugins";
-    strPyPluginPath = "plugins";
-    strInitScriptPath = "script";
-    strTimerScriptPath = "script";
-    strInstructionPrefix = "!!mcdr";
-    strLogFilePath = "log";
+    GlobalSettings.SetString(javapath, "");
+    GlobalSettings.SetString(serverdir, "server");
+    GlobalSettings.SetString(mcserverstart, "server.jar");
+    GlobalSettings.SetString(cpppluginpath, "plugins");
+    GlobalSettings.SetString(pypluginpath, "plugins");
+    GlobalSettings.SetString(scrpath, "script");
+    GlobalSettings.SetString(insprefix, "!!mcdr");
+    GlobalSettings.SetString(logpath, "log");
     return 0;
 }
 
@@ -81,7 +82,7 @@ int LoadConfig::CreateCfgFile() {
 }
 
 int LoadConfig::ReadCfgFile() {
-    DebugPrint("Enter ReadCfgFile()!");
+    dp("Enter ReadCfgFile()!");
     TiXmlDocument Doc(CFGFILENAME);
 
     bool bret = Doc.LoadFile(TIXML_ENCODING_UTF8);
@@ -89,113 +90,108 @@ int LoadConfig::ReadCfgFile() {
     tinyxmlerror += "ErrorDesc:";
     tinyxmlerror += Doc.ErrorDesc();
     if (!bret) {
-        DebugPrint("Doc.LoadFile() failed.");
-        DebugPrint(tinyxmlerror);
+        dp("Doc.LoadFile() failed.");
+        dp(tinyxmlerror);
         return -1;
     }
-    DebugPrint("Load Config File Successful.");
+    dp("Load Config File Successful.");
     TiXmlElement* pRootEle = Doc.RootElement();
     if (pRootEle == NULL) {
-        DebugPrint("Doc.RootElement(); failed.");
+        dp("Doc.RootElement(); failed.");
         return -1;
     }
-    DebugPrint("Get XML Root Element Successful.");
+    dp("Get XML Root Element Successful.");
 
     TiXmlElement* pElem = NULL;
-
+#define stb StringToBool(pElem->GetText())
+#define gt pElem->GetText()
     GetNodePointerByName(pRootEle, (string)"LoadCppPlugins", pElem);
     if (pElem == NULL) return -1;
-    bLoadCppPlugins = StringToBool(pElem->GetText());
-    DebugPrint("Read Config Successful.");
+    GlobalSettings.SetBool(loadcppplugins, stb);
+    dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, (string)"LoadPythonPlugins", pElem);
     if (pElem == NULL) return -1;
-    bLoadPyPlugins = StringToBool(pElem->GetText());
-    DebugPrint("Read Config Successful.");
+    GlobalSettings.SetBool(loadpyplugins, stb);
+    dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, (string)"LoadCppPluginsConfig", pElem);
     if (pElem == NULL) return -1;
-    bReadCppPluginsCfg = StringToBool(pElem->GetText());
-    DebugPrint("Read Config Successful.");
+    GlobalSettings.SetBool(readcpppluginscfg, stb);
+    dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, (string)"LoadPythonPluginsConfig", pElem);
     if (pElem == NULL) return -1;
-    bReadPyPluginsCfg = StringToBool(pElem->GetText());
-    DebugPrint("Read Config Successful.");
+    GlobalSettings.SetBool(readpypluginscfg, stb);
+    dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, (string)"CppPluginsDir", pElem);
     if (pElem == NULL) return -1;
-    strCppPluginPath = pElem->GetText();
-    DebugPrint("Read Config Successful.");
+    GlobalSettings.SetBool(cpppluginpath, stb);
+    dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, (string)"PythonPluginsDir", pElem);
     if (pElem == NULL) return -1;
-    strPyPluginPath = pElem->GetText();
-    DebugPrint("Read Config Successful.");
+    GlobalSettings.SetBool(pypluginpath, stb);
+    dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, (string)"ExecInitScript", pElem);
     if (pElem == NULL) return -1;
-    bExecInitScript = StringToBool(pElem->GetText());
-    DebugPrint("Read Config Successful.");
+    GlobalSettings.SetBool(execinitscr, stb);
+    dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, (string)"LoadCppPlugins", pElem);
     if (pElem == NULL) return -1;
-    bExecTimerScript = StringToBool(pElem->GetText());
-    DebugPrint("Read Config Successful.");
+    GlobalSettings.SetBool(exectimerscr, stb);
+    dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, (string)"ServerDir", pElem);
     if (pElem == NULL) return -1;
-    strServerWorkingDir = pElem->GetText();
-    DebugPrint("Read Config Successful.");
+    GlobalSettings.SetString(serverdir, gt);
+    dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, (string)"ServerStartupCommand", pElem);
     if (pElem == NULL) return -1;
-    strMinecraftServerStartupCommandLine = pElem->GetText();
-    DebugPrint("Read Config Successful.");
+    GlobalSettings.SetString(mcserverstart, gt);
+    dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, (string)"JavaPath", pElem);
     if (pElem == NULL) return -1;
-    strJavaPath = pElem->GetText();
-    DebugPrint("Read Config Successful.");
+    GlobalSettings.SetString(javapath, gt);
+    dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, (string)"EnableMinecraftCommandQueue", pElem);
     if (pElem == NULL) return -1;
-    bEnableMinecraftCommandQueue = StringToBool(pElem->GetText());
-    DebugPrint("Read Config Successful.");
+    GlobalSettings.SetBool(enablemccmdqueue, stb);
+    dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, (string)"ServerParser", pElem);
     if (pElem == NULL) return -1;
-    iParserType = StringToParserCode(pElem->GetText());
-    DebugPrint("Read Config Successful.");
+    GlobalSettings.SetInt(parsertype, StringToParserCode(pElem->GetText()));
+    dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, (string)"Instructionprefix", pElem);
     if (pElem == NULL) return -1;
-    strInstructionPrefix = pElem->GetText();
-    DebugPrint("Read Config Successful.");
+    GlobalSettings.SetString(insprefix, gt);
+    dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, (string)"LogFilePath", pElem);
     if (pElem == NULL) return -1;
-    strLogFilePath = pElem->GetText();
-    DebugPrint("Read Config Successful.");
+    GlobalSettings.SetString(logpath, gt);
+    dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, (string)"InitScriptPath", pElem);
+    GetNodePointerByName(pRootEle, (string)"ScriptPath", pElem);
     if (pElem == NULL) return -1;
-    strInitScriptPath = pElem->GetText();
-    DebugPrint("Read Config Successful.");
+    GlobalSettings.SetString(scrpath, gt);
+    dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, (string)"TimerScriptPath", pElem);
-    if (pElem == NULL) return -1;
-    strTimerScriptPath = pElem->GetText();
-    DebugPrint("Read Config Successful.");
-
-
-    DebugPrint("Exiting ReadCfgFile()");
+    dp("Exiting ReadCfgFile()");
     return 0;
 }
 
 bool LoadConfig::GetNodePointerByName(TiXmlElement* pRootEle, std::string& strNodeName, TiXmlElement*& Node)    //此函数来自于CSDN 链接:https://blog.csdn.net/masikkk/article/details/14191933?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf
 {
-    DebugPrint("GetNodePointerByName()" + strNodeName);
+    dp("GetNodePointerByName()" + strNodeName);
     if (strNodeName == pRootEle->Value())
     {
         Node = pRootEle;
@@ -240,30 +236,184 @@ int LoadConfig::StringToParserCode(string parserName) {
     if (parserName == "WaterfallParser") {
         return WATERFALL_PARSER_CODE;
     }
+    return VANILLA_PARSER_CODE;
 }
-#ifdef DEBUG_FUNC_ENABLE
-int stdfuncallconv PrintAttr()
+
+int stdfuncallconv Settings::GetInt(int set)
 {
-    DebugPrint(iParserType);
-
-    DebugPrint(bLoadCppPlugins);
-    DebugPrint(bLoadPyPlugins);
-    DebugPrint(bExecInitScript);
-    DebugPrint(bExecTimerScript);
-    DebugPrint(bReadCppPluginsCfg);
-    DebugPrint(bReadPyPluginsCfg);
-    DebugPrint(bExecTimerScriptLoop);
-    DebugPrint(bEnableMinecraftCommandQueue);
-
-    DebugPrint(strJavaPath);
-    DebugPrint(strServerWorkingDir);
-    DebugPrint(strMinecraftServerStartupCommandLine);
-    DebugPrint(strCppPluginPath);
-    DebugPrint(strPyPluginPath);
-    DebugPrint(strInitScriptPath);
-    DebugPrint(strTimerScriptPath);
-    DebugPrint(strInstructionPrefix);
-    DebugPrint(strLogFilePath);
+    switch (set) 
+    {
+    case parsertype:
+        return iParserType;
+        break;
+    default:
+        return -1;
+        break;
+    }
     return 0;
 }
-#endif
+
+bool stdfuncallconv Settings::GetBool(int set)
+{
+    switch (set)
+    {
+    case loadcppplugins:
+        return bLoadCppPlugins;
+        break;
+    case loadpyplugins:
+        return bLoadPyPlugins;
+        break;
+    case execinitscr:
+        return bExecInitScript;
+        break;
+    case exectimerscr:
+        return bExecTimerScript;
+        break;
+    case readcpppluginscfg:
+        return bReadCppPluginsCfg;
+        break;
+    case readpypluginscfg:
+        return bReadPyPluginsCfg;
+        break;
+    case enablemccmdqueue:
+        return bEnableMinecraftCommandQueue;
+        break;
+    default:
+        break;
+    }
+    return false;
+}
+
+string stdfuncallconv Settings::GetString(int set)
+{
+    switch (set)
+    {
+    case javapath:
+        return strJavaPath;
+        break;
+    case serverdir:
+        return strServerWorkingDir;
+        break;
+    case mcserverstart:
+        return strMinecraftServerStartupCommandLine;
+        break;
+    case cpppluginpath:
+        return strCppPluginPath;
+        break;
+    case pypluginpath:
+        return strPyPluginPath;
+        break;
+    case scrpath:
+        return strScriptPath;
+        break;
+    case insprefix:
+        return strInstructionPrefix;
+        break;
+    case logpath:
+        return strLogFilePath;
+        break;
+    default:
+        break;
+    }
+    return "";
+}
+
+int stdfuncallconv Settings::SetInt(int set, int value)
+{
+    switch (set)
+    {
+    case parsertype:
+        iParserType = value;
+        break;
+    default:
+        return -1;
+        break;
+    }
+    return 0;
+}
+
+bool stdfuncallconv Settings::SetBool(int set, bool value)
+{
+    switch (set)
+    {
+    case loadcppplugins:
+        bLoadCppPlugins = value;
+        break;
+    case loadpyplugins:
+        bLoadPyPlugins = value;
+        break;
+    case execinitscr:
+        bExecInitScript = value;
+        break;
+    case exectimerscr:
+        bExecTimerScript = value;
+        break;
+    case readcpppluginscfg:
+        bReadCppPluginsCfg = value;
+        break;
+    case readpypluginscfg:
+        bReadPyPluginsCfg = value;
+        break;
+    case enablemccmdqueue:
+        bEnableMinecraftCommandQueue = value;
+        break;
+    default:
+        break;
+    }
+    return false;
+}
+
+string stdfuncallconv Settings::SetString(int set, string value)
+{
+    switch (set)
+    {
+    case javapath:
+        strJavaPath = value;
+        break;
+    case serverdir:
+        strServerWorkingDir = value;
+        break;
+    case mcserverstart:
+        strMinecraftServerStartupCommandLine = value;
+        break;
+    case cpppluginpath:
+        strCppPluginPath = value;
+        break;
+    case pypluginpath:
+        strPyPluginPath = value;
+        break;
+    case scrpath:
+        strScriptPath;
+        break;
+    case insprefix:
+        strInstructionPrefix = value;
+        break;
+    case logpath:
+        strLogFilePath = value;
+        break;
+    default:
+        break;
+    }
+    return "";
+}
+
+Settings::Settings()
+{
+    iParserType = VANILLA_PARSER_CODE;
+    bLoadCppPlugins = true;
+    bLoadPyPlugins = true;
+    bExecInitScript = true;
+    bExecTimerScript = true;
+    bReadCppPluginsCfg = true;
+    bReadPyPluginsCfg = true;
+    bEnableMinecraftCommandQueue = true;
+
+    strJavaPath = "";
+    strServerWorkingDir = "server";
+    strMinecraftServerStartupCommandLine = "server.jar";
+    strCppPluginPath = "plugins";
+    strPyPluginPath = "plugins";
+    strScriptPath = "script";
+    strInstructionPrefix = "!!mcdr";
+    strLogFilePath = "log";
+}

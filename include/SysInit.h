@@ -10,6 +10,7 @@ SysInit.h
 
 #include"common.h"
 #include"debugprint.h"
+#include"logsys.h"
 
 using namespace std;
 

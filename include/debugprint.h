@@ -7,6 +7,11 @@
 #include"common.h"
 
 #define DEBUGPRINTSTR "[DebugPrint]"
+#ifdef DEBUG_FUNC_ENABLE
+#define dp(out) DebugPrint(out)
+#else
+#define dp(out) ;
+#endif // DEBUG_FUNC_ENABLE
 
 using namespace std;
 
