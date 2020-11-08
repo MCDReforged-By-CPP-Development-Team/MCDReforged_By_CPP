@@ -29,3 +29,5 @@
 0	2742	626475102	CMakeFiles/MCDReforged_By_CPP.dir/source/cppplugin.cpp.obj	d4e7f6f396011648
 25	3074	626475103	CMakeFiles/MCDReforged_By_CPP.dir/source/cfgfile.cpp.obj	7e6c3090194190c2
 124	3121	626475103	CMakeFiles/MCDReforged_By_CPP.dir/source/serverparser.cpp.obj	a363a16aec0c9b94
+14	959	626518653	CMakeFiles/MCDReforged_By_CPP.dir/source/SysInit.cpp.obj	9ca8f473a9758bb
+1	1244	626518654	CMakeFiles/MCDReforged_By_CPP.dir/source/cfgfile.cpp.obj	7e6c3090194190c2
