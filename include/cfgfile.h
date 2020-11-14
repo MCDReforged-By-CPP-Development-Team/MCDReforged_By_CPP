@@ -7,11 +7,15 @@ cfgfile.h
 #include<string>
 #include<Windows.h>
 #include"common.h"
+#include"logsys.h"
+#include"serverparser.h"
+#include"debugprint.h"
 #include"tinyxml2-8.0.0/tinystr.h"  
 #include"tinyxml2-8.0.0/tinyxml.h"
 
 using namespace std;
 
+#pragma region Macros
 #define parsertype 0
 #define loadcppplugins 1
 #define loadpyplugins 2
@@ -28,10 +32,14 @@ using namespace std;
 #define scrpath 13
 #define insprefix 14
 #define logpath 15
+#define lang 16
+#pragma endregion
 
 class Settings {
 private:
     int iParserType;
+    int iLangType;
+    
     bool bLoadCppPlugins;
     bool bLoadPyPlugins;
     bool bExecInitScript;
@@ -67,9 +75,10 @@ private:
 	bool stdfuncallconv GetNodePointerByName(TiXmlElement* pRootEle, std::string& strNodeName, TiXmlElement*& Node);
 	int stdfuncallconv StringToParserCode(string parserName);
 public:
-	static int LoadConfigFile();
-	int Default();
+	static int stdfuncallconv LoadConfigFile();
+	int stdfuncallconv SettingHelper();
+    int stdfuncallconv SetToCfg();
 };
 
-extern LoadConfig Cfg;
-extern Settings GlobalSettings;
+class LoadConfig Cfg;
+class Settings GlobalSettings;

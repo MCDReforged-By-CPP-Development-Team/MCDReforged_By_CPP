@@ -5,7 +5,7 @@ common.h by noFe
 #pragma once
 
 #define stdfuncallconv _fastcall	//全部函数统一使用_fastcall调用约定吧 awa(踹开_stdcall和_cdecl
-#define MCDRCPP_VER "0.2.2"
+#define MCDRCPP_VER "0.2.5"
 #define MCDRCPP_DEV_STATUS "INDEV"
 #define MCDRCPP_RELEASES "https://github.com/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/releases"
 #define MCDRCPP_GITHUBPAGE "https://github.com/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/"
@@ -30,6 +30,10 @@ common.h by noFe
         "\t<Instructionprefix>!!mcdr </Instructionprefix>\r\n"\
         "\t<LogFilePath>log</LogFilePath>\r\n"\
         "\t<ScriptPath>script</ScriptPath>\r\n"\
+        "\t<Language>en_US</Language> <--en_US/zh_CN-->\r\n"\
         "</MCDReforgedByCppConfig>\r\n";
 
 #define CFGFILENAME "mcdrcppconfig.xml"
+
+#define LANG_EN_US 0
+#define LANG_ZH_CN 1

@@ -1,7 +1,7 @@
 #include"cfgfile.h"
-#include"common.h"
-#include"serverparser.h"
-#include"debugprint.h"
+
+extern class LoadConfig Cfg;
+extern class Settings GlobalSettings;
 
 using namespace std;
 
@@ -38,27 +38,40 @@ int LoadConfig::LoadConfigFile() {
         return -1;
     }
 }
-
-int LoadConfig::Default()
+/*
+int iParserType;
+int iLangType;
+bool bLoadCppPlugins;
+bool bLoadPyPlugins;
+bool bExecInitScript;
+bool bExecTimerScript;
+bool bReadCppPluginsCfg;
+bool bReadPyPluginsCfg;
+bool bEnableMinecraftCommandQueue;
+string strJavaPath;
+string strServerWorkingDir;
+string strMinecraftServerStartupCommandLine;
+string strCppPluginPath;
+string strPyPluginPath;
+string strScriptPath;
+string strInstructionPrefix;
+string strLogFilePath;
+*/
+int stdfuncallconv LoadConfig::SettingHelper()
 {
-    GlobalSettings.SetInt(parsertype, VANILLA_PARSER_CODE);
+    GlobalSettings.SetInt(lang, LANG_EN_US);
+    Out.mlout("Welcome to SettingHelper", "欢迎来到配置文件设置助手");
+    Out.mlout("Select Server Type[Vanilla-0][Bukkit(Version<1.14)-1][Bukkit(Version>=1.14)][BungeeCord-3][Cat-4][Waterfall-5]",
+              "请选择您的服务器端类型[Vanilla-0][Bukkit(Version<1.14)-1][Bukkit(Version>=1.14)][BungeeCord-3][Cat-4][Waterfall-5]");
+    int ivar;
+    parser:
+    cin >> ivar;
+    if (ivar > WATERFALL_PARSER_CODE || ivar < VANILLA_PARSER_CODE)goto parser;
+    return 0;
+}
 
-    GlobalSettings.SetBool(loadcppplugins, true);
-    GlobalSettings.SetBool(loadpyplugins, true);
-    GlobalSettings.SetBool(execinitscr, true);
-    GlobalSettings.SetBool(exectimerscr, true);
-    GlobalSettings.SetBool(readcpppluginscfg, true);
-    GlobalSettings.SetBool(readpypluginscfg, true);
-    GlobalSettings.SetBool(enablemccmdqueue, true);
-
-    GlobalSettings.SetString(javapath, "");
-    GlobalSettings.SetString(serverdir, "server");
-    GlobalSettings.SetString(mcserverstart, "server.jar");
-    GlobalSettings.SetString(cpppluginpath, "plugins");
-    GlobalSettings.SetString(pypluginpath, "plugins");
-    GlobalSettings.SetString(scrpath, "script");
-    GlobalSettings.SetString(insprefix, "!!mcdr");
-    GlobalSettings.SetString(logpath, "log");
+int stdfuncallconv LoadConfig::SetToCfg()
+{
     return 0;
 }
 
@@ -185,6 +198,17 @@ int LoadConfig::ReadCfgFile() {
     GlobalSettings.SetString(scrpath, gt);
     dp("Read Config Successful.");
 
+    GetNodePointerByName(pRootEle, (string)"Language", pElem);
+    if (pElem == NULL) return -1;
+    string str = gt;
+    if (str == "en_US") {
+        GlobalSettings.SetInt(lang, LANG_EN_US);
+    }
+    else if (str == "zh_CN") {
+        GlobalSettings.SetInt(lang, LANG_ZH_CN);
+    }
+    dp("Read Config Successful.");
+
     dp("Exiting ReadCfgFile()");
     return 0;
 }
@@ -245,6 +269,9 @@ int stdfuncallconv Settings::GetInt(int set)
     {
     case parsertype:
         return iParserType;
+        break;
+    case lang:
+        return iLangType;
         break;
     default:
         return -1;
@@ -324,6 +351,9 @@ int stdfuncallconv Settings::SetInt(int set, int value)
     {
     case parsertype:
         iParserType = value;
+        break;
+    case lang:
+        iLangType = value;
         break;
     default:
         return -1;

@@ -124,6 +124,28 @@ int stdfuncallconv OutputInterface::undef(string outstr, string msger)
 	return Output(outstr.c_str(), msger.c_str(), INFO_CATEGORYUNDEFINED, S_STDOUT);
 }
 
+int stdfuncallconv OutputInterface::mlout(const char* en_US, const char* zh_CN, int msgtype, const char* msger, int stream)
+{
+	if (GlobalSettings.GetInt(lang) == LANG_EN_US) {
+		return Output(en_US, msger, msgtype, stream);
+	}
+	else if (GlobalSettings.GetInt(lang) == LANG_ZH_CN) {
+		return Output(zh_CN, msger, msgtype, stream);
+	}
+	return 0;
+}
+
+int stdfuncallconv OutputInterface::mlout(string en_US, string zh_CN, int msgtype, string msger, int stream)
+{
+	if (GlobalSettings.GetInt(lang) == LANG_EN_US) {
+		return Output(en_US.c_str(), msger.c_str(), msgtype, stream);
+	}
+	else if (GlobalSettings.GetInt(lang) == LANG_ZH_CN) {
+		return Output(zh_CN.c_str(), msger.c_str(), msgtype, stream);
+	}
+	return 0;
+}
+
 string stdfuncallconv OutputInterface::makefinastr(const char* outstr, const char* msger, int msgtype)
 {
 	string finalstr;

@@ -47,9 +47,12 @@ public:
 	int stdfuncallconv error(string outstr, string msger = "MCDRCPP");
 	int stdfuncallconv fatal(string outstr, string msger = "MCDRCPP");
 	int stdfuncallconv undef(string outstr, string msger = "MCDRCPP");
+
+	int stdfuncallconv mlout(const char* en_US, const char* zh_CN, int msgtype = INFO_COMMONMSG, const char* msger = "MCDRCPP", int stream = S_STDOUT);
+	int stdfuncallconv mlout(string en_US, string zh_CN, int msgtype = INFO_COMMONMSG, string msger = "MCDRCPP", int stream = S_STDOUT);
 private:
 	string stdfuncallconv makefinastr(const char* outstr, const char* msger, int msgtype = INFO_COMMONMSG);
 	int stdfuncallconv _output(string finalstr, int stream);
 	MCDRCPPLog LogSys;
 };
-static OutputInterface Out;
+OutputInterface Out;
