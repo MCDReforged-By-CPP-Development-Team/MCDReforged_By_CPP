@@ -1,10 +1,13 @@
 #include"SysInit.h"
+#include"logsys.h"
 #include"cfgfile.h"
-#include"common.h"
 
 int stdfuncallconv AnalyzeServerOutput(char* output);
 
 int stdfuncallconv Initialize(){
+    OutputInterface sysinitOut;
+    LoadConfig Cfg;
+    Settings GlobalSettings;
     dp("Enter Initialize Function,start init now.");
 
     dp("Call LoadConfigFile Funtion");
@@ -12,14 +15,14 @@ int stdfuncallconv Initialize(){
     dp("LoadConfigFileReturns:" + loadcfgfileret);
     if (loadcfgfileret != 0)
         Cfg.SettingHelper();
-    Out.Init(GlobalSettings.GetString(logpath));
+    sysinitOut.Init(GlobalSettings.GetString(logpath));
 #ifdef DEBUG_FUNC_ENABLE
     dp("Test OutputInterface.");
-    Out.msg("Test");
-    Out.warning("Test");
-    Out.error("Test");
-    Out.fatal("Test");
-    Out.undef("Test");
+    sysinitOut.msg("Test");
+    sysinitOut.warning("Test");
+    sysinitOut.error("Test");
+    sysinitOut.fatal("Test");
+    sysinitOut.undef("Test");
 #endif
     return 0;
 }
@@ -53,5 +56,11 @@ int stdfuncallconv WelcomeMessage() {
 
 int stdfuncallconv OpenServer()
 {
+    Settings set;
+    char javahome[512];
+    strncpy(javahome, getenv("JAVA_HOME"), strlen(getenv("JAVA_HOME")));
+    strcat(javahome, "\\bin\\java.exe");
+    string startstr(javahome);
+    startstr.append(set.GetString(serverdir)).append(set.GetString(servername));
     return 0;
 }

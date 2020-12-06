@@ -26,7 +26,7 @@ using namespace std;
 #define enablemccmdqueue 7
 #define javapath 8
 #define serverdir 9
-#define mcserverstart 10
+#define servername 10
 #define cpppluginpath 11
 #define pypluginpath 12
 #define scrpath 13
@@ -37,25 +37,25 @@ using namespace std;
 
 class Settings {
 private:
-    int iParserType;
-    int iLangType;
+    static int iParserType;
+    static int iLangType;
     
-    bool bLoadCppPlugins;
-    bool bLoadPyPlugins;
-    bool bExecInitScript;
-    bool bExecTimerScript;
-    bool bReadCppPluginsCfg;
-    bool bReadPyPluginsCfg;
-    bool bEnableMinecraftCommandQueue;
+    static bool bLoadCppPlugins;
+    static bool bLoadPyPlugins;
+    static bool bExecInitScript;
+    static bool bExecTimerScript;
+    static bool bReadCppPluginsCfg;
+    static bool bReadPyPluginsCfg;
+    static bool bEnableMinecraftCommandQueue;
 
-    string strJavaPath;
-    string strServerWorkingDir;
-    string strMinecraftServerStartupCommandLine;
-    string strCppPluginPath;
-    string strPyPluginPath;
-    string strScriptPath;
-    string strInstructionPrefix;
-    string strLogFilePath;
+    static string strJavaPath;
+    static string strServerWorkingDir;
+    static string strMinecraftServerStartupCommandLine;
+    static string strCppPluginPath;
+    static string strPyPluginPath;
+    static string strScriptPath;
+    static string strInstructionPrefix;
+    static string strLogFilePath;
 public:
     int stdfuncallconv GetInt(int set);
     bool stdfuncallconv GetBool(int set);
@@ -63,7 +63,6 @@ public:
     int stdfuncallconv SetInt(int set, int value);
     bool stdfuncallconv SetBool(int set, bool value);
     string stdfuncallconv SetString(int set, string value);
-    Settings();
 };
 
 class LoadConfig {
@@ -72,13 +71,10 @@ private:
 	int stdfuncallconv CreateCfgFile();
 	bool stdfuncallconv ConfigFileExisting();
 	bool stdfuncallconv StringToBool(string Temp);
-	bool stdfuncallconv GetNodePointerByName(TiXmlElement* pRootEle, std::string& strNodeName, TiXmlElement*& Node);
+	bool stdfuncallconv GetNodePointerByName(TiXmlElement* pRootEle, const char* strNodeName, TiXmlElement*& Node);
 	int stdfuncallconv StringToParserCode(string parserName);
 public:
 	static int stdfuncallconv LoadConfigFile();
 	int stdfuncallconv SettingHelper();
     int stdfuncallconv SetToCfg();
 };
-
-class LoadConfig Cfg;
-class Settings GlobalSettings;

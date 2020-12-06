@@ -6,7 +6,6 @@
 #include<Windows.h>
 
 #include"common.h"
-#include"cfgfile.h"
 #include"debugprint.h"
 
 using namespace std;
@@ -27,6 +26,7 @@ public:
 	int stdfuncallconv InitLogSystem(string logfilefolder);
 	int stdfuncallconv WriteLog(const char* buf, int size);
 	HANDLE stdfuncallconv RawLogFileHandle();	//could be unsafe
+	void Final();
 private:
 	HANDLE LogFileHandle;
 };
@@ -50,9 +50,11 @@ public:
 
 	int stdfuncallconv mlout(const char* en_US, const char* zh_CN, int msgtype = INFO_COMMONMSG, const char* msger = "MCDRCPP", int stream = S_STDOUT);
 	int stdfuncallconv mlout(string en_US, string zh_CN, int msgtype = INFO_COMMONMSG, string msger = "MCDRCPP", int stream = S_STDOUT);
+
+	OutputInterface();
 private:
 	string stdfuncallconv makefinastr(const char* outstr, const char* msger, int msgtype = INFO_COMMONMSG);
 	int stdfuncallconv _output(string finalstr, int stream);
-	MCDRCPPLog LogSys;
+	static MCDRCPPLog LogSys;
 };
-OutputInterface Out;
+

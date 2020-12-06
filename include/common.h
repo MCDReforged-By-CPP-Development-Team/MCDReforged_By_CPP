@@ -5,7 +5,7 @@ common.h by noFe
 #pragma once
 
 #define stdfuncallconv _fastcall	//全部函数统一使用_fastcall调用约定吧 awa(踹开_stdcall和_cdecl
-#define MCDRCPP_VER "0.2.5"
+#define MCDRCPP_VER "0.2.6"
 #define MCDRCPP_DEV_STATUS "INDEV"
 #define MCDRCPP_RELEASES "https://github.com/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/releases"
 #define MCDRCPP_GITHUBPAGE "https://github.com/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/"
@@ -37,3 +37,22 @@ common.h by noFe
 
 #define LANG_EN_US 0
 #define LANG_ZH_CN 1
+
+#define SETTOCFG_B(name, objname, value) TiXmlElement* p##objname = new TiXmlElement(name);\
+if (NULL == p##objname)\
+{\
+    return false;\
+}\
+if (Set.GetBool(value) == true) { string strValue = "true"; }\
+else { string strValue = "false"; }\
+pRootEle->LinkEndChild(p##objname);\
+TiXmlText* p##objname##Value = new TiXmlText(strValue.c_str());\
+p##objname->LinkEndChild(p##objname)
+#define SETTOCFG_S(name, objname, value) TiXmlElement* p##objname = new TiXmlElement(name);\
+if (NULL == p##objname)\
+{\
+    return false;\
+}\
+pRootEle->LinkEndChild(p##objname);\
+TiXmlText* p##objname##Value = new TiXmlText(Set.GetString(value).c_str());\
+p##objname->LinkEndChild(p##objname)

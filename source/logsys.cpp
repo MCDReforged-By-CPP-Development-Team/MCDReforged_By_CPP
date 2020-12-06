@@ -1,6 +1,5 @@
 #include "logsys.h"
-
-extern std::string strLogFilePath;
+#include"cfgfile.h"
 
 using namespace std;
 
@@ -51,6 +50,11 @@ int stdfuncallconv MCDRCPPLog::WriteLog(const char* buf, int size)
 HANDLE stdfuncallconv MCDRCPPLog::RawLogFileHandle()
 {
 	return LogFileHandle;
+}
+
+void MCDRCPPLog::Final()
+{
+	CloseHandle(LogFileHandle);
 }
 
 int stdfuncallconv OutputInterface::Init(string logfilepath)
@@ -126,6 +130,7 @@ int stdfuncallconv OutputInterface::undef(string outstr, string msger)
 
 int stdfuncallconv OutputInterface::mlout(const char* en_US, const char* zh_CN, int msgtype, const char* msger, int stream)
 {
+	Settings GlobalSettings;
 	if (GlobalSettings.GetInt(lang) == LANG_EN_US) {
 		return Output(en_US, msger, msgtype, stream);
 	}
@@ -137,6 +142,7 @@ int stdfuncallconv OutputInterface::mlout(const char* en_US, const char* zh_CN, 
 
 int stdfuncallconv OutputInterface::mlout(string en_US, string zh_CN, int msgtype, string msger, int stream)
 {
+	Settings GlobalSettings;
 	if (GlobalSettings.GetInt(lang) == LANG_EN_US) {
 		return Output(en_US.c_str(), msger.c_str(), msgtype, stream);
 	}
@@ -144,6 +150,12 @@ int stdfuncallconv OutputInterface::mlout(string en_US, string zh_CN, int msgtyp
 		return Output(zh_CN.c_str(), msger.c_str(), msgtype, stream);
 	}
 	return 0;
+}
+
+OutputInterface::OutputInterface()
+{
+	Settings set;
+	if ( LogSys.RawLogFileHandle() == NULL ) LogSys.InitLogSystem(set.GetString(logpath));
 }
 
 string stdfuncallconv OutputInterface::makefinastr(const char* outstr, const char* msger, int msgtype)

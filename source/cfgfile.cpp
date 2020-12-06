@@ -1,7 +1,8 @@
 #include"cfgfile.h"
 
-extern class LoadConfig Cfg;
-extern class Settings GlobalSettings;
+LoadConfig Cfg;
+Settings GlobalSettings;
+OutputInterface Out;
 
 using namespace std;
 
@@ -72,11 +73,68 @@ int stdfuncallconv LoadConfig::SettingHelper()
 
 int stdfuncallconv LoadConfig::SetToCfg()
 {
-    return 0;
+    dp("Enter SetToCfg()!");
+    Settings Set;
+    TiXmlDocument* pDoc = new TiXmlDocument;
+    if (NULL == pDoc)
+    {
+        return false;
+    }
+    TiXmlDeclaration* pDeclaration = new TiXmlDeclaration("1.0", "UTF-8", " ");
+    if (NULL == pDeclaration)
+    {
+        return false;
+    }
+    pDoc->LinkEndChild(pDeclaration);
+    TiXmlElement* pRootEle = new TiXmlElement("MCDReforgedByCppConfig");
+    if (NULL == pRootEle)
+    {
+        return false;
+    }
+    pDoc->LinkEndChild(pRootEle);
+    string strValue;
+    /*
+    "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n"\
+        "<MCDReforgedByCppConfig>\r\n"\
+        "\t<LoadCppPlugins>true</LoadCppPlugins>\r\n"\
+        "\t<LoadPythonPlugins>true</LoadPythonPlugins>\r\n"\
+        "\t<LoadCppPluginsConfig>true</LoadCppPluginsConfig>\r\n"\
+        "\t<LoadPythonPluginsConfig>true</LoadPythonPluginsConfig>\r\n"\
+        "\t<CppPluginsDir>cppplugins</CppPluginsDir>\r\n"\
+        "\t<PythonPluginsDir>pyplugins</PythonPluginsDir>\r\n"\
+        "\t<ExecInitScript>true</ExecInitScript>\r\n"\
+        "\t<ExecTimerScript>true</ExecTimerScript>\r\n"\
+        "\t<ServerDir>server</ServerDir>\r\n"\
+        "\t<ServerStartupCommand>server.jar</ServerStartupCommand>\r\n"\
+        "\t<JavaPath>init</JavaPath>\r\n"\
+        "\t<EnableMinecraftCommandQueue>true</EnableMinecraftCommandQueue>\r\n"\
+        "\t<ServerParser>VanillaParser</ServerParser>\r\n"\
+        "\t<Instructionprefix>!!mcdr </Instructionprefix>\r\n"\
+        "\t<LogFilePath>log</LogFilePath>\r\n"\
+        "\t<ScriptPath>script</ScriptPath>\r\n"\
+        "\t<Language>en_US</Language> <--en_US/zh_CN-->\r\n"\
+        "</MCDReforgedByCppConfig>\r\n";
+    */
+    SETTOCFG_B("LoadCppPlugins", LoadCpp, loadcppplugins);
+    SETTOCFG_B("LoadPythonPlugins", LoadPy, loadpyplugins);
+    SETTOCFG_B("LoadCppPluginsConfig", LoadCppCfg, readcpppluginscfg);
+    SETTOCFG_B("LoadPythonPluginsConfig", LoadPyCfg, readpypluginscfg);
+    SETTOCFG_B("ExecInitScript", ExecInitScript, execinitscr);
+    SETTOCFG_B("ExecTimerScript", ExecTimerScript, exectimerscr);
+    SETTOCFG_B("EnableMinecraftCommandQueue", EnableMinecraftCommandQueue, enablemccmdqueue);
+
+    SETTOCFG_S("CppPluginsDir", CppPluginsDir, cpppluginpath);
+    SETTOCFG_S("PythonPluginsDir", PyPluginsDir, pypluginpath);
+    SETTOCFG_S("ServerDir", ServerDir, serverdir);
+    SETTOCFG_S("ServerStartupCommand", ServerStartupCommand, servername);
+    SETTOCFG_S("JavaPath", JavaPath, javapath);
+    SETTOCFG_S("InstructionPrefix", InstructionPrefix, insprefix);
+    SETTOCFG_S("LogFilePath", LogFilePath, logpath);
+    SETTOCFG_S("LogFileScriptPath", ScriptPath, scrpath);
 }
 
 int LoadConfig::CreateCfgFile() {
-    char strCfgPath[MAX_PATH];
+    char strCfgPath[MAX_PATH] = {};
     char strCfgFile[] = COMMOM_CFG;
     DWORD dwWriteBytes;
 
@@ -118,87 +176,87 @@ int LoadConfig::ReadCfgFile() {
     TiXmlElement* pElem = NULL;
 #define stb StringToBool(pElem->GetText())
 #define gt pElem->GetText()
-    GetNodePointerByName(pRootEle, (string)"LoadCppPlugins", pElem);
+    GetNodePointerByName(pRootEle, "LoadCppPlugins", pElem);
     if (pElem == NULL) return -1;
     GlobalSettings.SetBool(loadcppplugins, stb);
     dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, (string)"LoadPythonPlugins", pElem);
+    GetNodePointerByName(pRootEle, "LoadPythonPlugins", pElem);
     if (pElem == NULL) return -1;
     GlobalSettings.SetBool(loadpyplugins, stb);
-    dp("Read Config Successful.");
+    dp("Read Config Successful.");  
 
-    GetNodePointerByName(pRootEle, (string)"LoadCppPluginsConfig", pElem);
+    GetNodePointerByName(pRootEle, "LoadCppPluginsConfig", pElem);
     if (pElem == NULL) return -1;
     GlobalSettings.SetBool(readcpppluginscfg, stb);
     dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, (string)"LoadPythonPluginsConfig", pElem);
+    GetNodePointerByName(pRootEle, "LoadPythonPluginsConfig", pElem);
     if (pElem == NULL) return -1;
     GlobalSettings.SetBool(readpypluginscfg, stb);
     dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, (string)"CppPluginsDir", pElem);
+    GetNodePointerByName(pRootEle, "CppPluginsDir", pElem);
     if (pElem == NULL) return -1;
     GlobalSettings.SetBool(cpppluginpath, stb);
     dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, (string)"PythonPluginsDir", pElem);
+    GetNodePointerByName(pRootEle, "PythonPluginsDir", pElem);
     if (pElem == NULL) return -1;
     GlobalSettings.SetBool(pypluginpath, stb);
     dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, (string)"ExecInitScript", pElem);
+    GetNodePointerByName(pRootEle, "ExecInitScript", pElem);
     if (pElem == NULL) return -1;
     GlobalSettings.SetBool(execinitscr, stb);
     dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, (string)"LoadCppPlugins", pElem);
+    GetNodePointerByName(pRootEle, "LoadCppPlugins", pElem);
     if (pElem == NULL) return -1;
     GlobalSettings.SetBool(exectimerscr, stb);
     dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, (string)"ServerDir", pElem);
+    GetNodePointerByName(pRootEle, "ServerDir", pElem);
     if (pElem == NULL) return -1;
     GlobalSettings.SetString(serverdir, gt);
     dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, (string)"ServerStartupCommand", pElem);
+    GetNodePointerByName(pRootEle, "ServerStartupCommand", pElem);
     if (pElem == NULL) return -1;
-    GlobalSettings.SetString(mcserverstart, gt);
+    GlobalSettings.SetString(servername, gt);
     dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, (string)"JavaPath", pElem);
+    GetNodePointerByName(pRootEle, "JavaPath", pElem);
     if (pElem == NULL) return -1;
     GlobalSettings.SetString(javapath, gt);
     dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, (string)"EnableMinecraftCommandQueue", pElem);
+    GetNodePointerByName(pRootEle, "EnableMinecraftCommandQueue", pElem);
     if (pElem == NULL) return -1;
     GlobalSettings.SetBool(enablemccmdqueue, stb);
     dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, (string)"ServerParser", pElem);
+    GetNodePointerByName(pRootEle, "ServerParser", pElem);
     if (pElem == NULL) return -1;
     GlobalSettings.SetInt(parsertype, StringToParserCode(pElem->GetText()));
     dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, (string)"Instructionprefix", pElem);
+    GetNodePointerByName(pRootEle, "Instructionprefix", pElem);
     if (pElem == NULL) return -1;
     GlobalSettings.SetString(insprefix, gt);
     dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, (string)"LogFilePath", pElem);
+    GetNodePointerByName(pRootEle, "LogFilePath", pElem);
     if (pElem == NULL) return -1;
     GlobalSettings.SetString(logpath, gt);
     dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, (string)"ScriptPath", pElem);
+    GetNodePointerByName(pRootEle, "ScriptPath", pElem);
     if (pElem == NULL) return -1;
     GlobalSettings.SetString(scrpath, gt);
     dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, (string)"Language", pElem);
+    GetNodePointerByName(pRootEle, "Language", pElem);
     if (pElem == NULL) return -1;
     string str = gt;
     if (str == "en_US") {
@@ -213,9 +271,8 @@ int LoadConfig::ReadCfgFile() {
     return 0;
 }
 
-bool LoadConfig::GetNodePointerByName(TiXmlElement* pRootEle, std::string& strNodeName, TiXmlElement*& Node)    //此函数来自于CSDN 链接:https://blog.csdn.net/masikkk/article/details/14191933?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf
+bool LoadConfig::GetNodePointerByName(TiXmlElement* pRootEle, const char* strNodeName, TiXmlElement*& Node)    //此函数来自于CSDN 链接:https://blog.csdn.net/masikkk/article/details/14191933?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf
 {
-    dp("GetNodePointerByName()" + strNodeName);
     if (strNodeName == pRootEle->Value())
     {
         Node = pRootEle;
@@ -235,6 +292,7 @@ bool LoadConfig::StringToBool(string Temp) {
     else if (Temp == "false" || Temp == "FALSE" || Temp == "False") return false;
     return false;
 }
+
 
 int LoadConfig::StringToParserCode(string parserName) {
     if (parserName == "VanillaParser") {
@@ -265,7 +323,7 @@ int LoadConfig::StringToParserCode(string parserName) {
 
 int stdfuncallconv Settings::GetInt(int set)
 {
-    switch (set) 
+    switch (set)
     {
     case parsertype:
         return iParserType;
@@ -321,7 +379,7 @@ string stdfuncallconv Settings::GetString(int set)
     case serverdir:
         return strServerWorkingDir;
         break;
-    case mcserverstart:
+    case servername:
         return strMinecraftServerStartupCommandLine;
         break;
     case cpppluginpath:
@@ -403,7 +461,7 @@ string stdfuncallconv Settings::SetString(int set, string value)
     case serverdir:
         strServerWorkingDir = value;
         break;
-    case mcserverstart:
+    case servername:
         strMinecraftServerStartupCommandLine = value;
         break;
     case cpppluginpath:
@@ -425,25 +483,4 @@ string stdfuncallconv Settings::SetString(int set, string value)
         break;
     }
     return "";
-}
-
-Settings::Settings()
-{
-    iParserType = VANILLA_PARSER_CODE;
-    bLoadCppPlugins = true;
-    bLoadPyPlugins = true;
-    bExecInitScript = true;
-    bExecTimerScript = true;
-    bReadCppPluginsCfg = true;
-    bReadPyPluginsCfg = true;
-    bEnableMinecraftCommandQueue = true;
-
-    strJavaPath = "";
-    strServerWorkingDir = "server";
-    strMinecraftServerStartupCommandLine = "server.jar";
-    strCppPluginPath = "plugins";
-    strPyPluginPath = "plugins";
-    strScriptPath = "script";
-    strInstructionPrefix = "!!mcdr";
-    strLogFilePath = "log";
 }
