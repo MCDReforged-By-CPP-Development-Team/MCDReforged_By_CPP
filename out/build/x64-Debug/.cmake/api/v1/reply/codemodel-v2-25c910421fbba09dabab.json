@@ -38,7 +38,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "MCDReforged_By_CPP::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-MCDReforged_By_CPP-Debug-65583b200cd508024e41.json",
+					"jsonFile" : "target-MCDReforged_By_CPP-Debug-f0edab557524aec98714.json",
 					"name" : "MCDReforged_By_CPP",
 					"projectIndex" : 0
 				}
@@ -48,12 +48,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/Administrator/source/repos/MCDReforged_By_CPP/out/build/x64-Debug",
-		"source" : "C:/Users/Administrator/source/repos/MCDReforged_By_CPP"
+		"build" : "C:/Users/34376/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/MCDReforged_By_CPP/out/build/x64-Debug",
+		"source" : "C:/Users/34376/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/MCDReforged_By_CPP"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 0
+		"minor" : 1
 	}
 }
