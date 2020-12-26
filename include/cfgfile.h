@@ -37,6 +37,7 @@ using namespace std;
 
 class Settings {
 private:
+   /*
     static int iParserType;
     static int iLangType;
     
@@ -56,6 +57,7 @@ private:
     static string strScriptPath;
     static string strInstructionPrefix;
     static string strLogFilePath;
+    */
 public:
     int stdfuncallconv GetInt(int set);
     bool stdfuncallconv GetBool(int set);

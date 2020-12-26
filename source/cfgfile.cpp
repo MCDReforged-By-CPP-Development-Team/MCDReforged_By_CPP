@@ -39,7 +39,7 @@ int LoadConfig::LoadConfigFile() {
         return -1;
     }
 }
-/*
+
 int iParserType;
 int iLangType;
 bool bLoadCppPlugins;
@@ -57,7 +57,7 @@ string strPyPluginPath;
 string strScriptPath;
 string strInstructionPrefix;
 string strLogFilePath;
-*/
+
 int stdfuncallconv LoadConfig::SettingHelper()
 {
     GlobalSettings.SetInt(lang, LANG_EN_US);

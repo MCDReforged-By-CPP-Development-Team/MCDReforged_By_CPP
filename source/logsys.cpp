@@ -3,6 +3,8 @@
 
 using namespace std;
 
+MCDRCPPLog LogSys;
+
 int stdfuncallconv MCDRCPPLog::InitLogSystem(string logfilefolder)
 {
 	DebugPrint("Enter InitLogSystem.");
@@ -55,6 +57,10 @@ HANDLE stdfuncallconv MCDRCPPLog::RawLogFileHandle()
 void MCDRCPPLog::Final()
 {
 	CloseHandle(LogFileHandle);
+}
+
+MCDRCPPLog::MCDRCPPLog()
+{
 }
 
 int stdfuncallconv OutputInterface::Init(string logfilepath)

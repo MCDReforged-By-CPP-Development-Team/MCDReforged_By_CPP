@@ -27,6 +27,7 @@ public:
 	int stdfuncallconv WriteLog(const char* buf, int size);
 	HANDLE stdfuncallconv RawLogFileHandle();	//could be unsafe
 	void Final();
+	MCDRCPPLog();
 private:
 	HANDLE LogFileHandle;
 };
@@ -55,6 +56,6 @@ public:
 private:
 	string stdfuncallconv makefinastr(const char* outstr, const char* msger, int msgtype = INFO_COMMONMSG);
 	int stdfuncallconv _output(string finalstr, int stream);
-	static MCDRCPPLog LogSys;
+	//static MCDRCPPLog LogSys;
 };
 
