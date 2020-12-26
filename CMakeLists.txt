@@ -29,7 +29,7 @@ IF(WIN32)
             ${PYINCLUDE}/Python.h
             ${DIR_SRCS}
             ${DIR_INC}
-            ${DIR_TNY} "source/colorlog.cpp" "include/colorlog.h")
+            ${DIR_TNY})
 ELSEIF(APPLE)
     MESSAGE(STATUS Cmaking on APPLE MacOS)
     include_directories(.)
