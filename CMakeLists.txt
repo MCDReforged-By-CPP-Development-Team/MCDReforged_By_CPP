@@ -30,6 +30,7 @@ IF(WIN32)
             ${DIR_SRCS}
             ${DIR_INC}
             ${DIR_TNY})
+            #温馨提示:这里会自动搜寻source,include和tinyxml2-8.0.0,因此除非特殊情况,不要手动更改或使用vs的自动更改修改此处
 ELSEIF(APPLE)
     MESSAGE(STATUS Cmaking on APPLE MacOS)
     include_directories(.)
@@ -40,4 +41,5 @@ ELSEIF(APPLE)
             ${DIR_SRCS}
             ${DIR_INC}
             ${DIR_TNY})
+            #同上
 ENDIF()

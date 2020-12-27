@@ -58,18 +58,153 @@ string strScriptPath;
 string strInstructionPrefix;
 string strLogFilePath;
 
+int gsti() {
+    strstream str;
+    string str_pre;
+    cin >> str_pre;
+    str << str_pre;
+    int ret;
+    str >> ret;
+    return ret;
+}
+bool gstb() {
+    string str;
+    cin >> str;
+    if (str == "Y" || str == "y") {
+        return true;
+    }
+    else if (str == "N" || str == "n") {
+        return false;
+    }
+    return true;
+}
+#define iner Out.mlout("Please input a vaild value", "请输入一个有效值")
 int stdfuncallconv LoadConfig::SettingHelper()
 {
-    GlobalSettings.SetInt(lang, LANG_EN_US);
-    Out.mlout("Welcome to SettingHelper", "欢迎来到配置文件设置助手");
-    Out.mlout("Select Server Type[Vanilla-0][Bukkit(Version<1.14)-1][Bukkit(Version>=1.14)][BungeeCord-3][Cat-4][Waterfall-5]",
-              "请选择您的服务器端类型[Vanilla-0][Bukkit(Version<1.14)-1][Bukkit(Version>=1.14)][BungeeCord-3][Cat-4][Waterfall-5]");
     int ivar;
+    bool bvar;
+    string svar;
+
+    Out.mlout("Welcome to SettingHelper,type \"0\" to skip.", "欢迎来到配置文件设置助手,输入\"0\"以跳过");
+    ivar = gsti();
+#ifdef DEBUG_FUNC_ENABLE
+    if (ivar == 0) goto settocfg_;
+#endif
+    if (ivar == 0) return 0;
+    Out.mlout("Choose Your Language[English(US)-0][简体中文-1]",
+        "选择您的语言[English(US)-0][简体中文-1]");  //iLangType
+language:
+    ivar = gsti();
+    if (ivar != LANG_ZH_CN && ivar != LANG_EN_US) {
+        iner;
+        goto language;
+    }
+    GlobalSettings.SetInt(lang, ivar);
+
+    Out.mlout("Select Your Server Type[Vanilla-0][Bukkit(Version<1.14)-1][Bukkit(Version>=1.14)][BungeeCord-3][Cat-4][Waterfall-5]",
+              "请选择您的服务器端类型[Vanilla-0][Bukkit(Version<1.14)-1][Bukkit(Version>=1.14)][BungeeCord-3][Cat-4][Waterfall-5]");   //iParserType
     parser:
-    cin >> ivar;
-    if (ivar > WATERFALL_PARSER_CODE || ivar < VANILLA_PARSER_CODE)goto parser;
-    return 0;
+    ivar = gsti();
+    if (ivar > WATERFALL_PARSER_CODE || ivar < VANILLA_PARSER_CODE) { 
+        iner;
+        goto parser;
+    }
+    GlobalSettings.SetInt(parsertype, ivar);
+
+    Out.mlout("Load C++ Plugins?[Y/N]",
+        "装载C++插件?[Y/N]");   //bLoadCppPlugins
+    bvar = gstb();
+    GlobalSettings.SetBool(loadcppplugins, bvar);
+
+    Out.mlout("Load Python Plugins?[Y/N]",
+        "装载Python插件?[Y/N]");   //bLoadPyPlugins
+    bvar = gstb();
+    GlobalSettings.SetBool(loadpyplugins, bvar);
+
+    Out.mlout("Execute initialization script when the application start?[Y/N]",
+        "在启动时运行初始化脚本?[Y/N]");   //bExecInitScript
+    bvar = gstb();
+    GlobalSettings.SetBool(execinitscr, bvar);
+
+    Out.mlout("Execute timer script?[Y/N]",
+        "运行定时脚本?[Y/N]");   //bExecTimerScript
+    bvar = gstb();
+    GlobalSettings.SetBool(exectimerscr, bvar);
+
+    Out.mlout("Read C++ plugin configs?[Y/N]",
+        "读取C++插件配置文件?[Y/N]");   //bReadCppPluginsCfg
+    bvar = gstb();
+    GlobalSettings.SetBool(readcpppluginscfg, bvar);
+
+    Out.mlout("Read Python plugin configs?[Y/N]",
+        "读取Python插件配置文件?[Y/N]");   //bReadPyPluginsCfg
+    bvar = gstb();
+    GlobalSettings.SetBool(readpypluginscfg, bvar);
+
+    Out.mlout("Enable Minecraft command queue(Enable is recommended)?[Y/N]",
+        "开启Minecraft指令队列功能(建议开启)?[Y/N]");   //bEnableMinecraftCommandQueue
+    bvar = gstb();
+    GlobalSettings.SetBool(enablemccmdqueue, bvar);
+
+readjavapath:
+    Out.mlout("We need your Java path(Type \"autofind\" to find the Java automatically.When you type it, all lowercase characters are required)",
+        "我们需要您的Java路径(输入\"autofind\"以自动寻找Java,如输入则要求全小写)");   //strJavaPath
+    cin >> svar;
+    if (svar == "autofind") {
+        svar = getenv("JAVA_HOME");
+        svar.append("bin\\javaw.exe");
+        Out.msg("Java path : " + svar);
+        Out.mlout("If the Java path is right,type \"Y\" or \"y\" to confirm. If the Java path is wrong,type \"N\" or \"n\" to type the path manually."
+            , "如果Java路径正确,请键入\"Y\"或\"y\"进行确认.如果Java路径错误,请键入\"N\"或\"n\"手动键入路径.");
+        bvar = gstb();
+        if (!bvar)goto readjavapath;
+    }
+    GlobalSettings.SetString(javapath, svar);
+
+    Out.mlout("Your Minecraft server's folder name?",
+        "您Minecraft服务器的文件夹名?");   //strServerWorkingDir
+    cin >> svar;
+    GlobalSettings.SetString(serverdir, svar);
+
+    Out.mlout("Minecraft server startup parameters?(Enter parameters only, excluding java's name.For example:-Xms1G -Xmx2G -jar minecraft_server.jar nogui)",
+        "Minecraft服务器启动参数?(仅输入参数,不包括Java程序名.示例:-Xms1G -Xmx2G -jar minecraft_server.jar nogui)");   //strMinecraftServerStartupCommandLine
+    svar = cin.get();
+    GlobalSettings.SetString(servername, svar);
+
+    Out.mlout("C++ plugins' folder name?(\"plugins\" is recommended)",
+        "C++插件文件夹名(推荐使用\"plugins\")");   //strCppPluginPath
+    svar = cin.get();
+    GlobalSettings.SetString(cpppluginpath, svar);
+
+    Out.mlout("Python plugins' folder name?(\"plugins\" is recommended)",
+        "Python插件文件夹名(推荐使用\"plugins\")");   //strPyPluginPath
+    svar = cin.get();
+    GlobalSettings.SetString(pypluginpath, svar);
+
+    Out.mlout("Scripts' Path?(\"scripts\" is recommended)",
+        "脚本文件夹名?(推荐使用\"scripts\")");   //strScriptPath
+    svar = cin.get();
+    GlobalSettings.SetString(scrpath, svar);
+
+    Out.mlout("MCDReforged by C++ command prefix?(In order to keep compatible with MCDReforged,\"!!mcdr\" is strongly recommended)",
+        "MCDReforged by C++指令前缀(为了与MCDReforged保持高度兼容,强烈推荐使用\"!!mcdr\")");   //strInstructionPrefix
+    svar = cin.get();
+    GlobalSettings.SetString(insprefix, svar);
+
+    Out.mlout("Select a folder that the log files will be stored in,the folder will be created automatically.",
+        "选择要存储日志文件的文件夹,该文件夹将自动创建.");   //strLogFilePath
+    svar = cin.get();
+    GlobalSettings.SetString(logpath, svar);
+settocfg_:
+    return Cfg.SetToCfg();
 }
+/*
+iParserType[ok];iLangType[ok];bLoadCppPlugins[ok];bLoadPyPlugins[ok];bExecInitScript[ok];bExecTimerScript[ok];bReadCppPluginsCfg[ok];bReadPyPluginsCfg[ok];
+bEnableMinecraftCommandQueue[ok];
+strJavaPath[ok];strServerWorkingDir[ok];strMinecraftServerStartupCommandLine[ok];strCppPluginPath[ok];strPyPluginPath[ok];strScriptPath[ok];
+strInstructionPrefix[ok];
+strLogFilePath[ok];
+*/
 
 int stdfuncallconv LoadConfig::SetToCfg()
 {
@@ -85,6 +220,7 @@ int stdfuncallconv LoadConfig::SetToCfg()
     {
         return false;
     }
+    dp("create doc and decl successfully.");
     pDoc->LinkEndChild(pDeclaration);
     TiXmlElement* pRootEle = new TiXmlElement("MCDReforgedByCppConfig");
     if (NULL == pRootEle)
