@@ -1,13 +1,14 @@
 #include"SysInit.h"
 #include"logsys.h"
 #include"cfgfile.h"
-
+#include"colorlog.h"
 int stdfuncallconv AnalyzeServerOutput(char* output);
 
 int stdfuncallconv Initialize(){
     OutputInterface sysinitOut;
     LoadConfig Cfg;
     Settings GlobalSettings;
+    ColorLog log;
     dp("Enter Initialize Function,start init now.");
 
     dp("Call LoadConfigFile Funtion");
@@ -23,6 +24,16 @@ int stdfuncallconv Initialize(){
     sysinitOut.error("Test");
     sysinitOut.fatal("Test");
     sysinitOut.undef("Test");
+    dp("Test Colorlog");
+    log.out("C", RED_FOREGROUND);
+    log.out("o", GREEN_FOREGROUND);
+    log.out("l", BLUE_FOREGROUND);
+    log.out("o", LIME_FOREGROUND);
+    log.out("r", PURPLE_FOREGROUND);
+    log.out("L", YELLOW_FOREGEOUND);
+    log.out("o", RED_FOREGROUND);
+    log.out("g", GREEN_FOREGROUND);
+    cout << endl;
 #endif
     return 0;
 }
@@ -32,6 +43,8 @@ int stdfuncallconv AnalyzeServerOutput(char* output) {
 }
 
 int stdfuncallconv Finalize() {
+    cout << endl;
+    system("pause");
     return 0;
 }
 
