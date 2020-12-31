@@ -203,16 +203,44 @@ string stdfuncallconv OutputInterface::makefinastr(const char* outstr, const cha
 	return finalstr;
 }
 
-int stdfuncallconv OutputInterface::_output(string finalstr, int stream)
+int stdfuncallconv OutputInterface::_output(string finalstr, int stream, LPDWORD bytewrittentostdout, int* writefileret)
 {
+	HANDLE stdouthan, stderrhan;
+	stdouthan = GetStdHandle(STD_OUTPUT_HANDLE);
+	stderrhan = GetStdHandle(STD_ERROR_HANDLE);
 	int iret;
-	if (stream == S_STDOUT) {
-		iret = LogSys.WriteLog(finalstr.c_str(), finalstr.size());
-		cout << finalstr;
+	DWORD bytewritten;
+	if (bytewrittentostdout == NULL || writefileret == NULL) {
+		if (stream == S_STDOUT) {
+			iret = LogSys.WriteLog(finalstr.c_str(), finalstr.size());
+			WriteFile(stdouthan, finalstr.c_str(), finalstr.length(), &bytewritten, NULL);
+		}
+		else {
+			iret = LogSys.WriteLog(finalstr.c_str(), finalstr.size());
+			WriteFile(stderrhan, finalstr.c_str(), finalstr.length(), &bytewritten, NULL);
+		}
+	}
+	else if (bytewrittentostdout != NULL && writefileret != NULL) {
+		if (stream == S_STDOUT) {
+			iret = LogSys.WriteLog(finalstr.c_str(), finalstr.size());
+			*writefileret = WriteFile(stdouthan, finalstr.c_str(), finalstr.length(), &bytewritten, NULL);
+			*bytewrittentostdout = bytewritten;
+		}
+		else {
+			iret = LogSys.WriteLog(finalstr.c_str(), finalstr.size());
+			*writefileret = WriteFile(stderrhan, finalstr.c_str(), finalstr.length(), &bytewritten, NULL);
+			*bytewrittentostdout = bytewritten;
+		}
 	}
 	else {
-		iret = LogSys.WriteLog(finalstr.c_str(), finalstr.size());
-		cerr << finalstr;
+		if (stream == S_STDOUT) {
+			iret = LogSys.WriteLog(finalstr.c_str(), finalstr.size());
+			WriteFile(stdouthan, finalstr.c_str(), finalstr.length(), &bytewritten, NULL);
+		}
+		else {
+			iret = LogSys.WriteLog(finalstr.c_str(), finalstr.size());
+			WriteFile(stderrhan, finalstr.c_str(), finalstr.length(), &bytewritten, NULL);
+		}
 	}
 	return iret;
 }

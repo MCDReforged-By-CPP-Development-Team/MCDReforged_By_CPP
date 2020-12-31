@@ -55,7 +55,7 @@ public:
 	OutputInterface();
 private:
 	string stdfuncallconv makefinastr(const char* outstr, const char* msger, int msgtype = INFO_COMMONMSG);
-	int stdfuncallconv _output(string finalstr, int stream);
+	int stdfuncallconv _output(string finalstr, int stream, LPDWORD bytewrittentostdout = NULL, int* writefileret = NULL);
 	//static MCDRCPPLog LogSys;
 };
 
