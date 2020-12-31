@@ -1,4 +1,4 @@
-#include "logsys.h"
+ï»¿#include "logsys.h"
 #include"cfgfile.h"
 #include "colorlog.h"
 using namespace std;
@@ -10,7 +10,7 @@ int stdfuncallconv MCDRCPPLog::InitLogSystem(string logfilefolder)
 	DebugPrint("Enter InitLogSystem.");
 	time_t t = time(0);
 	char logfilename[64];
-	strftime(logfilename, sizeof(logfilename), "%Y-%m-%d-%H-%M-%S", localtime(&t)); //Äê-ÔÂ-ÈÕ-Ê±-·Ö-Ãë
+	strftime(logfilename, sizeof(logfilename), "%Y-%m-%d-%H-%M-%S", localtime(&t)); //ï¿½ï¿½-ï¿½ï¿½-ï¿½ï¿½-Ê±-ï¿½ï¿½-ï¿½ï¿½
 	string logfolder;
 	logfolder.append(".\\").append(logfilefolder);
 	dp(logfolder);
@@ -91,6 +91,7 @@ int stdfuncallconv OutputInterface::Output(const char* outstr, const char* msger
 		hCon = GetStdHandle(STD_ERROR_HANDLE);
 		break;
 	default:
+		hCon = GetStdHandle(STD_OUTPUT_HANDLE);
 		break;
 	}
 	GetConsoleScreenBufferInfo(hCon, &csbiOldInfo);

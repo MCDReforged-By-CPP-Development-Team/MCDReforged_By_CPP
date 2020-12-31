@@ -19,5 +19,6 @@ int stdfuncallconv ColorLog::out(LPSTR sOut, WCHAR wTextAttribute)
 	SetConsoleTextAttribute(hOutput, wTextAttribute);
 	WriteFile(hOutput, sOut, lstrlen(sOut), &dbWritten, NULL);
 	SetConsoleTextAttribute(hOutput, wOldAttribute);
+
 	return dbWritten;
 }
