@@ -1,4 +1,4 @@
-ï»¿#include "logsys.h"
+#include "logsys.h"
 #include"cfgfile.h"
 #include "colorlog.h"
 using namespace std;
@@ -10,7 +10,7 @@ int stdfuncallconv MCDRCPPLog::InitLogSystem(string logfilefolder)
 	DebugPrint("Enter InitLogSystem.");
 	time_t t = time(0);
 	char logfilename[64];
-	strftime(logfilename, sizeof(logfilename), "%Y-%m-%d-%H-%M-%S", localtime(&t)); //ï¿½ï¿½-ï¿½ï¿½-ï¿½ï¿½-Ê±-ï¿½ï¿½-ï¿½ï¿½
+	strftime(logfilename, sizeof(logfilename), "%Y-%m-%d-%H-%M-%S", localtime(&t)); //Äê-ÔÂ-ÈÕ-Ê±-·Ö-Ãë
 	string logfolder;
 	logfolder.append(".\\").append(logfilefolder);
 	dp(logfolder);
@@ -130,3 +130,183 @@ int stdfuncallconv OutputInterface::Output(const char* outstr, const char* msger
 	iret += dwWritten;
 	/*
 
+	if (stream == S_STDOUT) {
+		iret = _output(finastr, S_STDOUT);
+
+	}
+	else if (stream == S_STDERR) {
+		iret = _output(finastr, S_STDERR);
+	}
+	else {
+		iret = _output(finastr, S_STDOUT);
+	}
+	*/
+	string finalstr = makefinastr(outstr, msger, msgtype);
+	LogSys.WriteLog(finalstr.c_str(), finalstr.size());
+	return iret;
+}
+
+int stdfuncallconv OutputInterface::msg(const char* outstr, const char* msger)
+{
+	return Output(outstr, msger, INFO_COMMONMSG, S_STDOUT);
+}
+
+int stdfuncallconv OutputInterface::warning(const char* outstr, const char* msger)
+{
+	return Output(outstr, msger, INFO_WARNING, S_STDERR);
+}
+
+int stdfuncallconv OutputInterface::error(const char* outstr, const char* msger)
+{
+	return Output(outstr, msger, INFO_ERROR, S_STDERR);
+}
+
+int stdfuncallconv OutputInterface::fatal(const char* outstr, const char* msger)
+{
+	return Output(outstr, msger, INFO_FATAL, S_STDERR);
+}
+
+int stdfuncallconv OutputInterface::undef(const char* outstr, const char* msger)
+{
+	return Output(outstr, msger, INFO_CATEGORYUNDEFINED, S_STDOUT);
+}
+
+int stdfuncallconv OutputInterface::msg(string outstr, string msger)
+{
+	return Output(outstr.c_str(), msger.c_str(), INFO_COMMONMSG, S_STDOUT);
+}
+
+int stdfuncallconv OutputInterface::warning(string outstr, string msger)
+{
+	return Output(outstr.c_str(), msger.c_str(), INFO_WARNING, S_STDERR);
+}
+
+int stdfuncallconv OutputInterface::error(string outstr, string msger)
+{
+	return Output(outstr.c_str(), msger.c_str(), INFO_ERROR, S_STDERR);
+}
+
+int stdfuncallconv OutputInterface::fatal(string outstr, string msger)
+{
+	return Output(outstr.c_str(), msger.c_str(), INFO_FATAL, S_STDERR);
+}
+
+int stdfuncallconv OutputInterface::undef(string outstr, string msger)
+{
+	return Output(outstr.c_str(), msger.c_str(), INFO_CATEGORYUNDEFINED, S_STDOUT);
+}
+
+int stdfuncallconv OutputInterface::mlout(const char* en_US, const char* zh_CN, int msgtype, const char* msger, int stream)
+{
+	Settings GlobalSettings;
+	if (GlobalSettings.GetInt(lang) == LANG_EN_US) {
+		return Output(en_US, msger, msgtype, stream);
+	}
+	else if (GlobalSettings.GetInt(lang) == LANG_ZH_CN) {
+		return Output(zh_CN, msger, msgtype, stream);
+	}
+	return 0;
+}
+
+int stdfuncallconv OutputInterface::mlout(string en_US, string zh_CN, int msgtype, string msger, int stream)
+{
+	Settings GlobalSettings;
+	if (GlobalSettings.GetInt(lang) == LANG_EN_US) {
+		return Output(en_US.c_str(), msger.c_str(), msgtype, stream);
+	}
+	else if (GlobalSettings.GetInt(lang) == LANG_ZH_CN) {
+		return Output(zh_CN.c_str(), msger.c_str(), msgtype, stream);
+	}
+	return 0;
+}
+
+OutputInterface::OutputInterface()
+{
+	Settings set;
+	if ( LogSys.RawLogFileHandle() == NULL ) LogSys.InitLogSystem(set.GetString(logpath));
+}
+
+string stdfuncallconv OutputInterface::makefinastr(const char* outstr, const char* msger, int msgtype)
+{
+	string finalstr;
+	time_t t = time(0);
+	char time[64];
+	strftime(time, sizeof(time), "%Y-%m-%d/%H:%M:%S", localtime(&t));
+
+	finalstr.append("[");
+	finalstr.append(msger);
+	switch (msgtype)
+	{
+	case INFO_COMMONMSG:
+		finalstr.append("/COMMON");
+		break;
+	case INFO_WARNING:
+		finalstr.append("/WARN");
+		break;
+	case INFO_ERROR:
+		finalstr.append("/ERROR");
+		break;
+	case INFO_FATAL:
+		finalstr.append("/FATAL");
+		break;
+	case INFO_CATEGORYUNDEFINED:
+		finalstr.append("/UNCATE");
+		break;
+	default:
+		finalstr.append("/UNCATE");
+		break;
+	}
+	finalstr.append("]");
+	finalstr.append("[");
+	finalstr.append(time);
+	finalstr.append("]");
+
+	finalstr.append(outstr);
+	finalstr.append("\r\n");
+	return finalstr;
+}
+//<<<<<<< HEAD
+
+int stdfuncallconv OutputInterface::_output(string finalstr, int stream, LPDWORD bytewrittentostdout, int* writefileret)
+{
+	HANDLE stdouthan, stderrhan;
+	stdouthan = GetStdHandle(STD_OUTPUT_HANDLE);
+	stderrhan = GetStdHandle(STD_ERROR_HANDLE);
+	int iret;
+	DWORD bytewritten;
+	if (bytewrittentostdout == NULL || writefileret == NULL) {
+		if (stream == S_STDOUT) {
+			iret = LogSys.WriteLog(finalstr.c_str(), finalstr.size());
+			WriteFile(stdouthan, finalstr.c_str(), finalstr.length(), &bytewritten, NULL);
+		}
+		else {
+			iret = LogSys.WriteLog(finalstr.c_str(), finalstr.size());
+			WriteFile(stderrhan, finalstr.c_str(), finalstr.length(), &bytewritten, NULL);
+		}
+	}
+	else if (bytewrittentostdout != NULL && writefileret != NULL) {
+		if (stream == S_STDOUT) {
+			iret = LogSys.WriteLog(finalstr.c_str(), finalstr.size());
+			*writefileret = WriteFile(stdouthan, finalstr.c_str(), finalstr.length(), &bytewritten, NULL);
+			*bytewrittentostdout = bytewritten;
+		}
+		else {
+			iret = LogSys.WriteLog(finalstr.c_str(), finalstr.size());
+			*writefileret = WriteFile(stderrhan, finalstr.c_str(), finalstr.length(), &bytewritten, NULL);
+			*bytewrittentostdout = bytewritten;
+		}
+	}
+	else {
+		if (stream == S_STDOUT) {
+			iret = LogSys.WriteLog(finalstr.c_str(), finalstr.size());
+			WriteFile(stdouthan, finalstr.c_str(), finalstr.length(), &bytewritten, NULL);
+		}
+		else {
+			iret = LogSys.WriteLog(finalstr.c_str(), finalstr.size());
+			WriteFile(stderrhan, finalstr.c_str(), finalstr.length(), &bytewritten, NULL);
+		}
+	}
+	return iret;
+}
+//=======
+//>>>>>>> be791b1a4e8227563b51fc27e15dff5ea423a208
