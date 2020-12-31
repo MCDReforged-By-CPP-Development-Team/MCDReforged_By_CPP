@@ -6,6 +6,7 @@ cfgfile.h
 
 #include<string>
 #include<Windows.h>
+#include<strstream>
 #include"common.h"
 #include"logsys.h"
 #include"serverparser.h"
@@ -36,28 +37,6 @@ using namespace std;
 #pragma endregion
 
 class Settings {
-private:
-   /*
-    static int iParserType;
-    static int iLangType;
-    
-    static bool bLoadCppPlugins;
-    static bool bLoadPyPlugins;
-    static bool bExecInitScript;
-    static bool bExecTimerScript;
-    static bool bReadCppPluginsCfg;
-    static bool bReadPyPluginsCfg;
-    static bool bEnableMinecraftCommandQueue;
-
-    static string strJavaPath;
-    static string strServerWorkingDir;
-    static string strMinecraftServerStartupCommandLine;
-    static string strCppPluginPath;
-    static string strPyPluginPath;
-    static string strScriptPath;
-    static string strInstructionPrefix;
-    static string strLogFilePath;
-    */
 public:
     int stdfuncallconv GetInt(int set);
     bool stdfuncallconv GetBool(int set);
