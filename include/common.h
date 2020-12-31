@@ -5,12 +5,13 @@ common.h by noFe
 #pragma once
 
 #define stdfuncallconv _fastcall	//全部函数统一使用_fastcall调用约定吧 awa(踹开_stdcall和_cdecl
-#define MCDRCPP_VER "0.3.0"
+#define MCDRCPP_VER "0.3.4"
 #define MCDRCPP_DEV_STATUS "INDEV"
 #define MCDRCPP_RELEASES "https://github.com/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/releases"
 #define MCDRCPP_GITHUBPAGE "https://github.com/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/"
 #define MCDRCPP_ISSTABLE false
 #define DEBUG_FUNC_ENABLE   //正式版的时候把这个宏删掉 awa
+#define HINTMSG "Some English setences in this program might follow Chinese grammar rules \n which will make it is hard to understand."
 
 #define COMMOM_CFG "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n"\
         "<MCDReforgedByCppConfig>\r\n"\

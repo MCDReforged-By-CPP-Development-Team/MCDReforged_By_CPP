@@ -1,6 +1,6 @@
 #include "logsys.h"
 #include"cfgfile.h"
-
+#include "colorlog.h"
 using namespace std;
 
 MCDRCPPLog LogSys;
@@ -70,10 +70,69 @@ int stdfuncallconv OutputInterface::Init(string logfilepath)
 
 int stdfuncallconv OutputInterface::Output(const char* outstr, const char* msger, int msgtype, int stream)
 {
-	string finastr = makefinastr(outstr, msger, msgtype);
-	int iret;
+	
+	int iret=0;
+
+	HANDLE hCon;
+	//hCon=GetStdHandle(STD_INPUT_HANDLE)
+	LPSTR lpOut;
+	DWORD dwWritten;
+	CONSOLE_SCREEN_BUFFER_INFO csbiOldInfo;
+	ColorLog log;
+	time_t t = time(0);
+	char time[64];
+	strftime(time, sizeof(time), "%Y-%m-%d/%H:%M:%S", localtime(&t));
+	switch (stream)
+	{
+	case S_STDOUT:
+		hCon = GetStdHandle(STD_OUTPUT_HANDLE);
+		break;
+	case S_STDERR:
+		hCon = GetStdHandle(STD_ERROR_HANDLE);
+		break;
+	default:
+		break;
+	}
+	GetConsoleScreenBufferInfo(hCon, &csbiOldInfo);
+	lpOut = "[";
+	WriteFile(hCon, lpOut, strlen(lpOut), &dwWritten, NULL);
+	iret += dwWritten;
+	//strcpy(lpOut, msger);
+	WriteFile(hCon, msger, strlen(msger), &dwWritten, NULL);
+	iret += dwWritten;
+	WriteFile(hCon, "/",1, &dwWritten, NULL);
+	iret += dwWritten;
+	switch (msgtype)
+	{
+	case INFO_COMMONMSG:
+		iret+= log.out("COMMON", GREEN_FOREGROUND);
+		break;
+	case INFO_WARNING:
+		iret+= log.out("WARN", YELLOW_FOREGEOUND);
+		break;
+	case INFO_ERROR:
+		iret+=log.out("ERROR", RED_FOREGROUND);
+		break;
+	case INFO_FATAL:
+		iret+=log.out("FATAL", BACKGROUND_INTENSITY | BACKGROUND_RED | WHITE);
+		break;
+	case INFO_CATEGORYUNDEFINED:
+		iret+=log.out("UNDEF", WHITE);
+		break;
+	default:
+		break;
+	}
+	WriteFile(hCon, "]",1, &dwWritten, NULL);
+	iret += dwWritten;
+	WriteFile(hCon, outstr, strlen(outstr), &dwWritten, NULL);
+	iret += dwWritten;
+	WriteFile(hCon, "\n", 1, &dwWritten, NULL);
+	iret += dwWritten;
+	/*
+
 	if (stream == S_STDOUT) {
 		iret = _output(finastr, S_STDOUT);
+
 	}
 	else if (stream == S_STDERR) {
 		iret = _output(finastr, S_STDERR);
@@ -81,6 +140,9 @@ int stdfuncallconv OutputInterface::Output(const char* outstr, const char* msger
 	else {
 		iret = _output(finastr, S_STDOUT);
 	}
+	*/
+	string finalstr = makefinastr(outstr, msger, msgtype);
+	LogSys.WriteLog(finalstr.c_str(), finalstr.size());
 	return iret;
 }
 
@@ -198,21 +260,8 @@ string stdfuncallconv OutputInterface::makefinastr(const char* outstr, const cha
 	finalstr.append("[");
 	finalstr.append(time);
 	finalstr.append("]");
+
 	finalstr.append(outstr);
 	finalstr.append("\r\n");
 	return finalstr;
-}
-
-int stdfuncallconv OutputInterface::_output(string finalstr, int stream)
-{
-	int iret;
-	if (stream == S_STDOUT) {
-		iret = LogSys.WriteLog(finalstr.c_str(), finalstr.size());
-		cout << finalstr;
-	}
-	else {
-		iret = LogSys.WriteLog(finalstr.c_str(), finalstr.size());
-		cerr << finalstr;
-	}
-	return iret;
 }
