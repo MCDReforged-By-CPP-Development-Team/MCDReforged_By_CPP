@@ -91,6 +91,7 @@ int stdfuncallconv OutputInterface::Output(const char* outstr, const char* msger
 		hCon = GetStdHandle(STD_ERROR_HANDLE);
 		break;
 	default:
+		hCon = GetStdHandle(STD_OUTPUT_HANDLE);
 		break;
 	}
 	GetConsoleScreenBufferInfo(hCon, &csbiOldInfo);
