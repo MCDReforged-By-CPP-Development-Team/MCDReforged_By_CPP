@@ -7,4 +7,8 @@
 
 using namespace std;
 
+#define NEWBUFFERSIZE 0x100
+
+
+
 int stdfuncallconv OpenServerAndRedirectIO();
