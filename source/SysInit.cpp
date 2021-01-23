@@ -14,8 +14,6 @@ int stdfuncallconv Initialize(){
     dp("Call LoadConfigFile Funtion");
     int loadcfgfileret = LoadConfig::LoadConfigFile();
     dp("LoadConfigFileReturns:" + loadcfgfileret);
-    if (loadcfgfileret != 0)
-        Cfg.SettingHelper();
     sysinitOut.Init(GlobalSettings.GetString(logpath));
 #ifdef DEBUG_FUNC_ENABLE
     dp("Test OutputInterface.");

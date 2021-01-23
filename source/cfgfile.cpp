@@ -34,10 +34,11 @@ int LoadConfig::LoadConfigFile() {
     }
     else {
         Cfg.CreateCfgFile();
-        
+        Cfg.SettingHelper();
         return Cfg.ReadCfgFile();
-        return -1;
+        return 0;
     }
+    return -1;
 }
 
 int iParserType;
