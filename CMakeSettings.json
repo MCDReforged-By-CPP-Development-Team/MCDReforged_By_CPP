@@ -12,7 +12,7 @@
       "variables": [
         {
           "name": "CMAKE_MAKE_PROGRAM",
-          "value": "D:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe",
+          "value": "c:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe",
           "type": "FILEPATH"
         }
       ]

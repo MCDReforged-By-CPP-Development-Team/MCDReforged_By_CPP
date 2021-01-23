@@ -267,47 +267,5 @@ string stdfuncallconv OutputInterface::makefinastr(const char* outstr, const cha
 	return finalstr;
 }
 //<<<<<<< HEAD
-
-int stdfuncallconv OutputInterface::_output(string finalstr, int stream, LPDWORD bytewrittentostdout, int* writefileret)
-{
-	HANDLE stdouthan, stderrhan;
-	stdouthan = GetStdHandle(STD_OUTPUT_HANDLE);
-	stderrhan = GetStdHandle(STD_ERROR_HANDLE);
-	int iret;
-	DWORD bytewritten;
-	if (bytewrittentostdout == NULL || writefileret == NULL) {
-		if (stream == S_STDOUT) {
-			iret = LogSys.WriteLog(finalstr.c_str(), finalstr.size());
-			WriteFile(stdouthan, finalstr.c_str(), finalstr.length(), &bytewritten, NULL);
-		}
-		else {
-			iret = LogSys.WriteLog(finalstr.c_str(), finalstr.size());
-			WriteFile(stderrhan, finalstr.c_str(), finalstr.length(), &bytewritten, NULL);
-		}
-	}
-	else if (bytewrittentostdout != NULL && writefileret != NULL) {
-		if (stream == S_STDOUT) {
-			iret = LogSys.WriteLog(finalstr.c_str(), finalstr.size());
-			*writefileret = WriteFile(stdouthan, finalstr.c_str(), finalstr.length(), &bytewritten, NULL);
-			*bytewrittentostdout = bytewritten;
-		}
-		else {
-			iret = LogSys.WriteLog(finalstr.c_str(), finalstr.size());
-			*writefileret = WriteFile(stderrhan, finalstr.c_str(), finalstr.length(), &bytewritten, NULL);
-			*bytewrittentostdout = bytewritten;
-		}
-	}
-	else {
-		if (stream == S_STDOUT) {
-			iret = LogSys.WriteLog(finalstr.c_str(), finalstr.size());
-			WriteFile(stdouthan, finalstr.c_str(), finalstr.length(), &bytewritten, NULL);
-		}
-		else {
-			iret = LogSys.WriteLog(finalstr.c_str(), finalstr.size());
-			WriteFile(stderrhan, finalstr.c_str(), finalstr.length(), &bytewritten, NULL);
-		}
-	}
-	return iret;
-}
 //=======
 //>>>>>>> be791b1a4e8227563b51fc27e15dff5ea423a208

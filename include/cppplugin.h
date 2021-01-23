@@ -1,10 +1,10 @@
 #pragma once
 
+#include<iostream>
 #include<string>
 #include<vector>
 #include<Windows.h>
 #include"common.h"
-#include"ReadSpecExtendsFile.h"
 
 using namespace std;
 
@@ -38,6 +38,7 @@ struct CppPluginCore {	//采用结构体封装函数避免用户误用,函数实现放在cppplugin.cp
 	    int stdfuncallconv RegPlugin(_CppPluginRegInfo info);
 	    vector<_CppPluginRegInfo> CppPluginRegInfo;	//保存C/C++插件描述结构体的vector
     public:
-	    int stdfuncallconv LoadPlugin();
+		int stdfuncallconv FilesRead(string root, vector<string>& fileVec);
+		int stdfuncallconv LoadPlugin();
 	    int stdfuncallconv OnCmd();
 };
