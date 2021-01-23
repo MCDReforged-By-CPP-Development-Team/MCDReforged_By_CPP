@@ -43,8 +43,12 @@ int stdfuncallconv AnalyzeServerOutput(char* output) {
 }
 
 int stdfuncallconv Finalize() {
+    cout << "Give me 3 second to prepare for exiting...";
     cout << endl;
-    system("pause");
+    for (size_t i = 0; i >= 3; i++)
+    {
+        Sleep(1000);
+    }
     return 0;
 }
 
