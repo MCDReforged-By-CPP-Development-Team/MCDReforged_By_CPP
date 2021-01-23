@@ -27,7 +27,7 @@ class ColorLog
 {
 public:
 	ColorLog();	
-	int stdfuncallconv out(LPCSTR sOut, WCHAR wTextAttribute);
+	int stdfuncallconv out(LPSTR sOut, WCHAR wTextAttribute);
 
 private:
 

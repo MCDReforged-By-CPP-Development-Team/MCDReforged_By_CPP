@@ -7,7 +7,7 @@ ColorLog::ColorLog()
 }
 
 
-int stdfuncallconv ColorLog::out(LPCSTR sOut, WCHAR wTextAttribute)
+int stdfuncallconv ColorLog::out(LPSTR sOut, WCHAR wTextAttribute)
 {
 	HANDLE hOutput;
 	CONSOLE_SCREEN_BUFFER_INFO csbiInfo;

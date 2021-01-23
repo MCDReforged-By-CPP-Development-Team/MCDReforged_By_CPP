@@ -70,7 +70,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "/DWIN32 /D_WINDOWS /GR /EHsc /O2 /Ob2 /DNDEBUG -MD"
+					"fragment" : "/DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd  "
 				},
 				{
 					"fragment" : "-std:c++latest"
@@ -84,15 +84,15 @@
 				},
 				{
 					"backtrace" : 4,
-					"path" : "C:/Users/竹子/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/."
+					"path" : "C:/Users/Administrator/source/repos/MCDReforged_By_CPP/."
 				},
 				{
 					"backtrace" : 5,
-					"path" : "C:/Users/竹子/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/include"
+					"path" : "C:/Users/Administrator/source/repos/MCDReforged_By_CPP/include"
 				},
 				{
 					"backtrace" : 6,
-					"path" : "C:/Users/竹子/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/tinyxml2-8.0.0"
+					"path" : "C:/Users/Administrator/source/repos/MCDReforged_By_CPP/tinyxml2-8.0.0"
 				}
 			],
 			"language" : "CXX",
@@ -123,11 +123,11 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "/DWIN32 /D_WINDOWS /GR /EHsc /O2 /Ob2 /DNDEBUG -MD",
+				"fragment" : "/DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd",
 				"role" : "flags"
 			},
 			{
-				"fragment" : "/machine:x64 /INCREMENTAL:NO /subsystem:console",
+				"fragment" : "/machine:x64 /debug /INCREMENTAL /subsystem:console",
 				"role" : "flags"
 			},
 			{
