@@ -70,7 +70,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "/DWIN32 /D_WINDOWS /GR /EHsc /O2 /Ob2 /DNDEBUG -MD"
+					"fragment" : "/DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd"
 				},
 				{
 					"fragment" : "-std:c++latest"
@@ -80,19 +80,19 @@
 			[
 				{
 					"backtrace" : 3,
-					"path" : "D:/Program Files/Python38/include"
+					"path" : "c:/Program Files/Python38/include"
 				},
 				{
 					"backtrace" : 4,
-					"path" : "C:/Users/34376/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/MCDReforged_By_CPP/."
+					"path" : "C:/Users/竹子/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/."
 				},
 				{
 					"backtrace" : 5,
-					"path" : "C:/Users/34376/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/MCDReforged_By_CPP/include"
+					"path" : "C:/Users/竹子/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/include"
 				},
 				{
 					"backtrace" : 6,
-					"path" : "C:/Users/34376/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/MCDReforged_By_CPP/tinyxml2-8.0.0"
+					"path" : "C:/Users/竹子/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/tinyxml2-8.0.0"
 				}
 			],
 			"language" : "CXX",
@@ -112,7 +112,8 @@
 				12,
 				13,
 				14,
-				15
+				15,
+				16
 			]
 		}
 	],
@@ -122,16 +123,16 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "/DWIN32 /D_WINDOWS /GR /EHsc /O2 /Ob2 /DNDEBUG -MD",
+				"fragment" : "/DWIN32 /D_WINDOWS /GR /EHsc /Zi /Ob0 /Od /RTC1 -MDd",
 				"role" : "flags"
 			},
 			{
-				"fragment" : "/machine:x64 /INCREMENTAL:NO /subsystem:console",
+				"fragment" : "/machine:x64 /debug /INCREMENTAL /subsystem:console",
 				"role" : "flags"
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "-LIBPATH:D:\\PROGRA~3\\Python38\\libs",
+				"fragment" : "-LIBPATH:c:\\PROGRA~1\\Python38\\libs",
 				"role" : "libraryPath"
 			},
 			{
@@ -175,7 +176,8 @@
 				12,
 				13,
 				14,
-				15
+				15,
+				16
 			]
 		}
 	],
@@ -183,7 +185,7 @@
 	[
 		{
 			"backtrace" : 1,
-			"path" : "D:/Program Files/Python38/include/Python.h",
+			"path" : "C:/Program Files/Python38/include/Python.h",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -202,6 +204,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "source/cmdsys.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "source/colorlog.cpp",
 			"sourceGroupIndex" : 1
 		},
 		{
