@@ -41,21 +41,25 @@ int stdfuncallconv AnalyzeServerOutput(char* output) {
 }
 
 int stdfuncallconv Finalize() {
-    cout << "Give me 3 second to prepare for exiting...";
-    cout << endl;
-    for (size_t i = 0; i >= 3; i++)
-    {
-        Sleep(1000);
-    }
+    cout << "Give me 3 second to prepare exiting...";
+    cout << endl; 
+    Sleep(3000);
     return 0;
 }
-
-bool CheckFolderExist(const string& strPath)
-{
-    HANDLE hanTest;
+//寻找文件夹是否存在 strpath:目录
+//返回true即为文件夹存在 返回false为文件夹不存在或者为文件
+bool CheckFolderExist(const string& strPath){
+    HANDLE hTest;
     string folder;
     folder.append(".\\").append(strPath);
-    return 0;
+    WIN32_FIND_DATA wfdFind;
+    hTest = FindFirstFile(folder.c_str(), &wfdFind);
+    if ((hTest == INVALID_HANDLE_VALUE ) && wfdFind.dwFileAttributes == FILE_ATTRIBUTE_DIRECTORY)
+    {
+        FindClose(hTest);
+        return true;
+    }
+    return false;
 }
 
 int stdfuncallconv DetectDir() {

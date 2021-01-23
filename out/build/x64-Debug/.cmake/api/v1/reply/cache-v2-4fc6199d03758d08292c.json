@@ -2,24 +2,12 @@
 	"entries" : 
 	[
 		{
-			"name" : "CMAKE_AR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "Path to a program."
-				}
-			],
-			"type" : "FILEPATH",
-			"value" : "D:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Tools/MSVC/14.28.29333/bin/Hostx64/x64/lib.exe"
-		},
-		{
 			"name" : "CMAKE_BUILD_TYPE",
 			"properties" : 
 			[
 				{
 					"name" : "HELPSTRING",
-					"value" : "No help, variable specified on the command line."
+					"value" : "Choose the type of build, options are: None Debug Release RelWithDebInfo MinSizeRel ..."
 				}
 			],
 			"type" : "STRING",
@@ -35,7 +23,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/Users/34376/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/MCDReforged_By_CPP/out/build/x64-Debug"
+			"value" : "c:/Users/Administrator/source/repos/MCDReforged_By_CPP/out/build/x64-Debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -59,7 +47,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "18"
+			"value" : "17"
 		},
 		{
 			"name" : "CMAKE_CACHE_PATCH_VERSION",
@@ -71,7 +59,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "20081302"
+			"value" : "20032601"
 		},
 		{
 			"name" : "CMAKE_COMMAND",
@@ -83,7 +71,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "D:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/cmake.exe"
+			"value" : "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/cmake.exe"
 		},
 		{
 			"name" : "CMAKE_CPACK_COMMAND",
@@ -95,7 +83,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "D:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/cpack.exe"
+			"value" : "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/cpack.exe"
 		},
 		{
 			"name" : "CMAKE_CTEST_COMMAND",
@@ -107,7 +95,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "D:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/ctest.exe"
+			"value" : "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/ctest.exe"
 		},
 		{
 			"name" : "CMAKE_CXX_COMPILER",
@@ -123,7 +111,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "D:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Tools/MSVC/14.28.29333/bin/Hostx64/x64/cl.exe"
+			"value" : "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Tools/MSVC/14.26.28801/bin/HostX64/x64/cl.exe"
 		},
 		{
 			"name" : "CMAKE_CXX_FLAGS",
@@ -235,7 +223,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "D:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Tools/MSVC/14.28.29333/bin/Hostx64/x64/cl.exe"
+			"value" : "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Tools/MSVC/14.26.28801/bin/HostX64/x64/cl.exe"
 		},
 		{
 			"name" : "CMAKE_C_FLAGS",
@@ -511,7 +499,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Users/34376/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/MCDReforged_By_CPP"
+			"value" : "C:/Users/Administrator/source/repos/MCDReforged_By_CPP"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -523,7 +511,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "C:/Users/34376/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/MCDReforged_By_CPP/out/install/x64-Debug"
+			"value" : "C:/Users/Administrator/Source/Repos/MCDReforged_By_CPP/out/install/x64-Debug"
 		},
 		{
 			"name" : "CMAKE_LINKER",
@@ -539,7 +527,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "D:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Tools/MSVC/14.28.29333/bin/Hostx64/x64/link.exe"
+			"value" : "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Tools/MSVC/14.26.28801/bin/Hostx64/x64/link.exe"
 		},
 		{
 			"name" : "CMAKE_MAKE_PROGRAM",
@@ -551,7 +539,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "D:/PROGRA~1/MICROS~1/2019/ENTERP~1/Common7/IDE/COMMON~1/MICROS~1/CMake/Ninja/ninja.exe"
+			"value" : "c:/PROGRA~2/MICROS~1/2019/ENTERP~1/Common7/IDE/COMMON~1/MICROS~1/CMake/Ninja/ninja.exe"
 		},
 		{
 			"name" : "CMAKE_MODULE_LINKER_FLAGS",
@@ -647,7 +635,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/Program Files (x86)/Windows Kits/10/bin/10.0.19041.0/x64/mt.exe"
+			"value" : "C:/Program Files (x86)/Windows Kits/10/bin/10.0.18362.0/x64/mt.exe"
 		},
 		{
 			"name" : "CMAKE_NUMBER_OF_MAKEFILES",
@@ -723,7 +711,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/Program Files (x86)/Windows Kits/10/bin/10.0.19041.0/x64/rc.exe"
+			"value" : "C:/Program Files (x86)/Windows Kits/10/bin/10.0.18362.0/x64/rc.exe"
 		},
 		{
 			"name" : "CMAKE_RC_COMPILER_WORKS",
@@ -827,7 +815,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "D:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.18"
+			"value" : "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/share/cmake-3.17"
 		},
 		{
 			"name" : "CMAKE_SHARED_LINKER_FLAGS",
@@ -1047,7 +1035,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/34376/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/MCDReforged_By_CPP/out/build/x64-Debug"
+			"value" : "C:/Users/Administrator/source/repos/MCDReforged_By_CPP/out/build/x64-Debug"
 		},
 		{
 			"name" : "MCDReforged_By_CPP_SOURCE_DIR",
@@ -1059,7 +1047,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/34376/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/MCDReforged_By_CPP"
+			"value" : "C:/Users/Administrator/source/repos/MCDReforged_By_CPP"
 		}
 	],
 	"kind" : "cache",
