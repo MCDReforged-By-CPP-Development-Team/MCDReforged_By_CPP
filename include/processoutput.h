@@ -1,5 +1,6 @@
 #pragma once
 #include"cppplugin.h"
+#include<Windows.h>
 #include"pyplugin.h"
 #include"common.h"
 #include"debugprint.h"

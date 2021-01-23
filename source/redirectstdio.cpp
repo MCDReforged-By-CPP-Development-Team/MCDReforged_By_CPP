@@ -1,6 +1,8 @@
 #include"redirectstdio.h"
 
-HANDLE hStdIn = NULL, hStdOut = NULL, hStdErr = NULL;
+HANDLE hStdIn = NULL;
+HANDLE hStdOut = NULL;
+HANDLE hStdErr = NULL;
 
 int stdfuncallconv OpenServerAndRedirectIO()
 {
@@ -10,18 +12,22 @@ int stdfuncallconv OpenServerAndRedirectIO()
     dp(serverscmdline);
     dp(jvmpath);
 	STARTUPINFO stinfo;
-	memset(stinfo, sizeof(STARTUPINFO), 0);
+	memset(&stinfo, sizeof(STARTUPINFO), 0);
 	SECURITY_ATTRIBUTES sa;
 	sa.nLength = sizeof(SECURITY_ATTRIBUTES);
 	sa.bInheritHandle = true;
 	sa.lpSecurityDescriptor = NULL;
 	return 0;
 
-	if (CreatePipe(hStdIn, hStdOut, sa, 0) == FALSE) return -1;
+	if (CreatePipe(&hStdIn, &hStdOut, &sa, 0) == FALSE) return -1;
     if (hStdIn == NULL || hStdOut == NULL) return -1;
 
-    string startupcmd = L"Cmd.exe /C ";
-    startupcmd.append(jvmpath).append(serverscmdline);
+    LPSTR startupcmd = "Cmd.exe /C ";
+    //startupcmd.append(jvmpath).append(serverscmdline);
+    dp(startupcmd);
+
+    strcat_s(startupcmd,jvmpath.length(), jvmpath.c_str());
+    strcat_s(startupcmd, serverscmdline.length(), serverscmdline.c_str());
     dp(startupcmd);
 
     STARTUPINFO si;
@@ -37,7 +43,7 @@ int stdfuncallconv OpenServerAndRedirectIO()
 
     PROCESS_INFORMATION pi;
 
-    BOOL bSuc = CreateProcess(NULL, startupcmd.c_str(), NULL, NULL, TRUE, NULL, NULL, NULL, &si, &pi);
+    BOOL bSuc = CreateProcess(NULL, startupcmd, NULL, NULL, TRUE, NULL, NULL, NULL, &si, &pi);
     
     if (bSuc == FALSE)return -1;
 
@@ -69,7 +75,7 @@ int stdfuncallconv OpenServerAndRedirectIO()
             memset(chTmpReadBuffer, 0, NEWBUFFERSIZE);
 
             // ∂¡»°π‹µ¿
-            BOOL bRead = ReadFile(hRead, chTmpReadBuffer, NEWBUFFERSIZE, &dwbytesRead, &Overlapped);
+            BOOL bRead = ReadFile(hStdIn, chTmpReadBuffer, NEWBUFFERSIZE, &dwbytesRead, &Overlapped);
             DWORD dwLastError = GetLastError();
 
             if (bRead) {
@@ -117,9 +123,9 @@ int stdfuncallconv OpenServerAndRedirectIO()
         }
     } while (0);
 
-    if (NULL != hRead) {
-        CloseHandle(hRead);
-        hRead = NULL;
+    if (NULL != hStdIn) {
+        CloseHandle(hStdIn);
+        hStdIn = NULL;
     }
 
     delete[] pchReadBuffer;
