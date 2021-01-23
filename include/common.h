@@ -19,8 +19,8 @@ common.h by noFe
         "\t<LoadPythonPlugins>true</LoadPythonPlugins>\r\n"\
         "\t<LoadCppPluginsConfig>true</LoadCppPluginsConfig>\r\n"\
         "\t<LoadPythonPluginsConfig>true</LoadPythonPluginsConfig>\r\n"\
-        "\t<CppPluginsDir>cppplugins</CppPluginsDir>\r\n"\
-        "\t<PythonPluginsDir>pyplugins</PythonPluginsDir>\r\n"\
+        "\t<CppPluginsDir>plugins</CppPluginsDir>\r\n"\
+        "\t<PythonPluginsDir>plugins</PythonPluginsDir>\r\n"\
         "\t<ExecInitScript>true</ExecInitScript>\r\n"\
         "\t<ExecTimerScript>true</ExecTimerScript>\r\n"\
         "\t<ServerDir>server</ServerDir>\r\n"\

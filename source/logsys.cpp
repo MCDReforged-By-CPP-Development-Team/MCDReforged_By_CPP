@@ -239,7 +239,7 @@ string stdfuncallconv OutputInterface::makefinastr(const char* outstr, const cha
 	switch (msgtype)
 	{
 	case INFO_COMMONMSG:
-		finalstr.append("/COMMON");
+		finalstr.append("/INFO");
 		break;
 	case INFO_WARNING:
 		finalstr.append("/WARN");
