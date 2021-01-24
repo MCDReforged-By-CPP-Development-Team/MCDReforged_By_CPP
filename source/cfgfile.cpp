@@ -268,6 +268,7 @@ int stdfuncallconv LoadConfig::SetToCfg()
     SETTOCFG_S("InstructionPrefix", InstructionPrefix, insprefix);
     SETTOCFG_S("LogFilePath", LogFilePath, logpath);
     SETTOCFG_S("LogFileScriptPath", ScriptPath, scrpath);
+    return true;
 }
 
 int LoadConfig::CreateCfgFile() {
