@@ -14,3 +14,11 @@
 106	2793	633117183	CMakeFiles/MCDReforged_By_CPP.dir/source/processoutput.cpp.obj	910ab676d1d4a308
 93	3118	633117183	CMakeFiles/MCDReforged_By_CPP.dir/source/mainprogram.cpp.obj	52ad6d604ccb2398
 0	3161	633117183	CMakeFiles/MCDReforged_By_CPP.dir/source/cfgfile.cpp.obj	f5beb6246ddd0057
+50	2093	633118913	CMakeFiles/MCDReforged_By_CPP.dir/source/redirectstdio.cpp.obj	c1b6a572a17fddc9
+18	2096	633118913	CMakeFiles/MCDReforged_By_CPP.dir/source/cfgfile.cpp.obj	f5beb6246ddd0057
+16	1172	633118987	CMakeFiles/MCDReforged_By_CPP.dir/source/colorlog.cpp.obj	a19030a71629f202
+0	1441	633118987	CMakeFiles/MCDReforged_By_CPP.dir/source/SysInit.cpp.obj	7df1713926bae4cf
+0	1504	633119313	CMakeFiles/MCDReforged_By_CPP.dir/source/logsys.cpp.obj	6dd3f4340544bcba
+1527	2810	633119314	MCDReforged_By_CPP.exe	50b363810cb02d20
+0	1361	633119348	CMakeFiles/MCDReforged_By_CPP.dir/source/logsys.cpp.obj	6dd3f4340544bcba
+1364	1750	633119348	MCDReforged_By_CPP.exe	50b363810cb02d20
