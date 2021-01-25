@@ -17,16 +17,15 @@ int stdfuncallconv OpenServerAndRedirectIO()
 	sa.nLength = sizeof(SECURITY_ATTRIBUTES);
 	sa.bInheritHandle = true;
 	sa.lpSecurityDescriptor = NULL;
-	return 0;
 
 	if (CreatePipe(&hStdIn, &hStdOut, &sa, 0) == FALSE) return -1;
     if (hStdIn == NULL || hStdOut == NULL) return -1;
 
-    LPSTR startupcmd = "Cmd.exe /C ";
+    char startupcmd[MAX_PATH+200] = "cmd.exe /C ";
     //startupcmd.append(jvmpath).append(serverscmdline);
     dp(startupcmd);
 
-    strcat_s(startupcmd,jvmpath.length(), jvmpath.c_str());
+    strcat_s(startupcmd, jvmpath.length(), jvmpath.c_str());
     strcat_s(startupcmd, serverscmdline.length(), serverscmdline.c_str());
     dp(startupcmd);
 
@@ -119,7 +118,7 @@ int stdfuncallconv OpenServerAndRedirectIO()
                 }
                 break;
             }
-            if (ProcessOutput(pchReadBuffer) == -1) break;
+            if (ProcessOutput(pchReadBuffer) == -1) CannotProcessOutput();
         }
     } while (0);
 

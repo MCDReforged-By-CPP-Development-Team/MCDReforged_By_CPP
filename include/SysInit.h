@@ -10,6 +10,7 @@ SysInit.h
 
 #include"common.h"
 #include"debugprint.h"
+#include"redirectstdio.h"
 
 using namespace std;
 

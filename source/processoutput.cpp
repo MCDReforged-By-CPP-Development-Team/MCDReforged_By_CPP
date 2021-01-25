@@ -2,15 +2,11 @@
 
 int stdfuncallconv ProcessOutput(LPSTR output)
 {
+	dp(output);
 	return 0;
 }
 
-int stdfuncallconv _ProcessOutput(LPSTR output)
-{
-	return 0;
-}
-
-int stdfuncallconv DispatchPluginMsg(int* processresult)
+int stdfuncallconv CannotProcessOutput()
 {
 	return 0;
 }

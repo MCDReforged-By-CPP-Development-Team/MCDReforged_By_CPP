@@ -6,6 +6,26 @@ OutputInterface Out;
 
 using namespace std;
 
+#pragma region Definitions
+int iParserType;
+int iLangType;
+bool bLoadCppPlugins;
+bool bLoadPyPlugins;
+bool bExecInitScript;
+bool bExecTimerScript;
+bool bReadCppPluginsCfg;
+bool bReadPyPluginsCfg;
+bool bEnableMinecraftCommandQueue;
+string strJavaPath;
+string strServerWorkingDir;
+string strMinecraftServerStartupCommandLine;
+string strCppPluginPath;
+string strPyPluginPath;
+string strScriptPath;
+string strInstructionPrefix;
+string strLogFilePath;
+#pragma endregion
+
 bool LoadConfig::ConfigFileExisting() {
     char strCfgPath[MAX_PATH];
     GetModuleFileName(NULL, strCfgPath, MAX_PATH);
@@ -29,35 +49,53 @@ int LoadConfig::LoadConfigFile() {
     dp("Enter LoadConfigFile()!");
     dp(Cfg.ConfigFileExisting());
     if (Cfg.ConfigFileExisting()) {
+#ifdef DEBUG_FUNC_ENABLE
+        dp(GlobalSettings.GetInt(parsertype));
+        dp(GlobalSettings.GetBool(loadcppplugins));
+        dp(GlobalSettings.GetBool(loadpyplugins));
+        dp(GlobalSettings.GetBool(execinitscr));
+        dp(GlobalSettings.GetBool(exectimerscr));
+        dp(GlobalSettings.GetBool(readcpppluginscfg));
+        dp(GlobalSettings.GetBool(readpypluginscfg));
+        dp(GlobalSettings.GetBool(enablemccmdqueue));
+        dp(GlobalSettings.GetString(javapath));
+        dp(GlobalSettings.GetString(serverdir));
+        dp(GlobalSettings.GetString(servername));
+        dp(GlobalSettings.GetString(cpppluginpath));
+        dp(GlobalSettings.GetString(pypluginpath));
+        dp(GlobalSettings.GetString(scrpath));
+        dp(GlobalSettings.GetString(insprefix));
+        dp(GlobalSettings.GetString(logpath));
+        dp(GlobalSettings.GetInt(lang));
+#endif // DEBUG_FUNC_ENABLE
         return Cfg.ReadCfgFile();
-        return 0;
     }
     else {
         Cfg.CreateCfgFile();
         Cfg.SettingHelper();
+#ifdef DEBUG_FUNC_ENABLE
+        dp(GlobalSettings.GetInt(parsertype));
+        dp(GlobalSettings.GetBool(loadcppplugins));
+        dp(GlobalSettings.GetBool(loadpyplugins));
+        dp(GlobalSettings.GetBool(execinitscr));
+        dp(GlobalSettings.GetBool(exectimerscr));
+        dp(GlobalSettings.GetBool(readcpppluginscfg));
+        dp(GlobalSettings.GetBool(readpypluginscfg));
+        dp(GlobalSettings.GetBool(enablemccmdqueue));
+        dp(GlobalSettings.GetString(javapath));
+        dp(GlobalSettings.GetString(serverdir));
+        dp(GlobalSettings.GetString(servername));
+        dp(GlobalSettings.GetString(cpppluginpath));
+        dp(GlobalSettings.GetString(pypluginpath));
+        dp(GlobalSettings.GetString(scrpath));
+        dp(GlobalSettings.GetString(insprefix));
+        dp(GlobalSettings.GetString(logpath));
+        dp(GlobalSettings.GetInt(lang));
+#endif // DEBUG_FUNC_ENABLE
         return Cfg.ReadCfgFile();
-        return 0;
     }
     return -1;
 }
-
-int iParserType;
-int iLangType;
-bool bLoadCppPlugins;
-bool bLoadPyPlugins;
-bool bExecInitScript;
-bool bExecTimerScript;
-bool bReadCppPluginsCfg;
-bool bReadPyPluginsCfg;
-bool bEnableMinecraftCommandQueue;
-string strJavaPath;
-string strServerWorkingDir;
-string strMinecraftServerStartupCommandLine;
-string strCppPluginPath;
-string strPyPluginPath;
-string strScriptPath;
-string strInstructionPrefix;
-string strLogFilePath;
 
 int gsti() {
     strstream str;
@@ -291,6 +329,7 @@ int LoadConfig::CreateCfgFile() {
 }
 
 int LoadConfig::ReadCfgFile() {
+    int iret = 0;
     dp("Enter ReadCfgFile()!");
     TiXmlDocument Doc(CFGFILENAME);
 
@@ -312,90 +351,89 @@ int LoadConfig::ReadCfgFile() {
     dp("Get XML Root Element Successful.");
 
     TiXmlElement* pElem = NULL;
-#define stb StringToBool(pElem->GetText())
-#define gt pElem->GetText()
+
     GetNodePointerByName(pRootEle, "LoadCppPlugins", pElem);
-    if (pElem == NULL) return -1;
+    rettest
     GlobalSettings.SetBool(loadcppplugins, stb);
     dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, "LoadPythonPlugins", pElem);
-    if (pElem == NULL) return -1;
+    rettest
     GlobalSettings.SetBool(loadpyplugins, stb);
     dp("Read Config Successful.");  
 
     GetNodePointerByName(pRootEle, "LoadCppPluginsConfig", pElem);
-    if (pElem == NULL) return -1;
+    rettest
     GlobalSettings.SetBool(readcpppluginscfg, stb);
     dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, "LoadPythonPluginsConfig", pElem);
-    if (pElem == NULL) return -1;
+    rettest
     GlobalSettings.SetBool(readpypluginscfg, stb);
     dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, "CppPluginsDir", pElem);
-    if (pElem == NULL) return -1;
+    rettest
     GlobalSettings.SetBool(cpppluginpath, stb);
     dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, "PythonPluginsDir", pElem);
-    if (pElem == NULL) return -1;
+    rettest
     GlobalSettings.SetBool(pypluginpath, stb);
     dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, "ExecInitScript", pElem);
-    if (pElem == NULL) return -1;
+    rettest
     GlobalSettings.SetBool(execinitscr, stb);
     dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, "LoadCppPlugins", pElem);
-    if (pElem == NULL) return -1;
+    rettest
     GlobalSettings.SetBool(exectimerscr, stb);
     dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, "ServerDir", pElem);
-    if (pElem == NULL) return -1;
+    rettest
     GlobalSettings.SetString(serverdir, gt);
     dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, "ServerStartupCommand", pElem);
-    if (pElem == NULL) return -1;
+    rettest
     GlobalSettings.SetString(servername, gt);
     dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, "JavaPath", pElem);
-    if (pElem == NULL) return -1;
+    rettest
     GlobalSettings.SetString(javapath, gt);
     dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, "EnableMinecraftCommandQueue", pElem);
-    if (pElem == NULL) return -1;
+    rettest
     GlobalSettings.SetBool(enablemccmdqueue, stb);
     dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, "ServerParser", pElem);
-    if (pElem == NULL) return -1;
+    rettest
     GlobalSettings.SetInt(parsertype, StringToParserCode(pElem->GetText()));
     dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, "Instructionprefix", pElem);
-    if (pElem == NULL) return -1;
+    rettest
     GlobalSettings.SetString(insprefix, gt);
     dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, "LogFilePath", pElem);
-    if (pElem == NULL) return -1;
+    rettest
     GlobalSettings.SetString(logpath, gt);
     dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, "ScriptPath", pElem);
-    if (pElem == NULL) return -1;
+    rettest
     GlobalSettings.SetString(scrpath, gt);
     dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, "Language", pElem);
-    if (pElem == NULL) return -1;
+    rettest
     string str = gt;
     if (str == "en_US") {
         GlobalSettings.SetInt(lang, LANG_EN_US);
@@ -406,7 +444,7 @@ int LoadConfig::ReadCfgFile() {
     dp("Read Config Successful.");
 
     dp("Exiting ReadCfgFile()");
-    return 0;
+    return iret;
 }
 
 bool LoadConfig::GetNodePointerByName(TiXmlElement* pRootEle, const char* strNodeName, TiXmlElement*& Node)    //此函数来自于CSDN 链接:https://blog.csdn.net/masikkk/article/details/14191933?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf
@@ -423,6 +461,7 @@ bool LoadConfig::GetNodePointerByName(TiXmlElement* pRootEle, const char* strNod
             return true;
     }
     return false;
+
 }
 
 bool LoadConfig::StringToBool(string Temp) {
@@ -541,7 +580,7 @@ string stdfuncallconv Settings::GetString(int set)
     return "";
 }
 
-int stdfuncallconv Settings::SetInt(int set, int value)
+void stdfuncallconv Settings::SetInt(int set, int value)
 {
     switch (set)
     {
@@ -552,13 +591,13 @@ int stdfuncallconv Settings::SetInt(int set, int value)
         iLangType = value;
         break;
     default:
-        return -1;
+        return ;
         break;
     }
-    return 0;
+    return ;
 }
 
-bool stdfuncallconv Settings::SetBool(int set, bool value)
+void stdfuncallconv Settings::SetBool(int set, bool value)
 {
     switch (set)
     {
@@ -586,10 +625,10 @@ bool stdfuncallconv Settings::SetBool(int set, bool value)
     default:
         break;
     }
-    return false;
+    return ;
 }
 
-string stdfuncallconv Settings::SetString(int set, string value)
+void stdfuncallconv Settings::SetString(int set, string value)
 {
     switch (set)
     {
@@ -620,5 +659,73 @@ string stdfuncallconv Settings::SetString(int set, string value)
     default:
         break;
     }
-    return "";
+    return ;
+}
+
+void stdfuncallconv Settings::SetString(int set, LPSTR value)
+{
+    switch (set)
+    {
+    case javapath:
+        strJavaPath = value;
+        break;
+    case serverdir:
+        strServerWorkingDir = value;
+        break;
+    case servername:
+        strMinecraftServerStartupCommandLine = value;
+        break;
+    case cpppluginpath:
+        strCppPluginPath = value;
+        break;
+    case pypluginpath:
+        strPyPluginPath = value;
+        break;
+    case scrpath:
+        strScriptPath;
+        break;
+    case insprefix:
+        strInstructionPrefix = value;
+        break;
+    case logpath:
+        strLogFilePath = value;
+        break;
+    default:
+        break;
+    }
+    return ;
+}
+
+void stdfuncallconv Settings::SetString(int set, LPCSTR value)
+{
+    switch (set)
+    {
+    case javapath:
+        strJavaPath = value;
+        break;
+    case serverdir:
+        strServerWorkingDir = value;
+        break;
+    case servername:
+        strMinecraftServerStartupCommandLine = value;
+        break;
+    case cpppluginpath:
+        strCppPluginPath = value;
+        break;
+    case pypluginpath:
+        strPyPluginPath = value;
+        break;
+    case scrpath:
+        strScriptPath;
+        break;
+    case insprefix:
+        strInstructionPrefix = value;
+        break;
+    case logpath:
+        strLogFilePath = value;
+        break;
+    default:
+        break;
+    }
+    return ;
 }

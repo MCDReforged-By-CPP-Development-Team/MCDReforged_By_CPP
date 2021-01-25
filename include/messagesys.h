@@ -9,3 +9,5 @@
 #define MSGCATE_RCON_RUNNING 6
 #define MSGCATE_LISTENING 7
 #define MSGCATE_CANTKEEPUP 8
+
+int stdfuncallconv DispatchPluginMsg(int* processresult);

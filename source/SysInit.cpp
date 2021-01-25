@@ -15,6 +15,7 @@ int stdfuncallconv Initialize(){
     int loadcfgfileret = LoadConfig::LoadConfigFile();
     dp("LoadConfigFileReturns:" + loadcfgfileret);
     sysinitOut.Init(GlobalSettings.GetString(logpath));
+
 #ifdef DEBUG_FUNC_ENABLE
     dp("Test OutputInterface.");
     sysinitOut.msg("Test");
@@ -32,7 +33,12 @@ int stdfuncallconv Initialize(){
     log.out("o", RED_FOREGROUND);
     log.out("g", GREEN_FOREGROUND);
     cout << endl;
+
+    dp(GlobalSettings.GetString(servername));
+    dp(GlobalSettings.GetString(javapath));
 #endif
+
+    auto openserverret = OpenServerAndRedirectIO();
     return 0;
 }
 

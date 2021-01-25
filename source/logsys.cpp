@@ -75,7 +75,7 @@ int stdfuncallconv OutputInterface::Output(const char* outstr, const char* msger
 
 	HANDLE hCon;
 	//hCon=GetStdHandle(STD_INPUT_HANDLE)
-	LPSTR lpOut;
+	LPCSTR lpOut;
 	DWORD dwWritten;
 	CONSOLE_SCREEN_BUFFER_INFO csbiOldInfo;
 	ColorLog log;
@@ -106,7 +106,7 @@ int stdfuncallconv OutputInterface::Output(const char* outstr, const char* msger
 	switch (msgtype)
 	{
 	case INFO_COMMONMSG:
-		iret+= log.out("COMMON", GREEN_FOREGROUND);
+		iret+= log.out("INFO", GREEN_FOREGROUND);
 		break;
 	case INFO_WARNING:
 		iret+= log.out("WARN", YELLOW_FOREGEOUND);
