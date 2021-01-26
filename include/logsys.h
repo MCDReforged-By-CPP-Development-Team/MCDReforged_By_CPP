@@ -28,6 +28,7 @@ public:
 	HANDLE stdfuncallconv RawLogFileHandle();	//could be unsafe
 	void Final();
 	MCDRCPPLog();
+	~MCDRCPPLog();
 private:
 	HANDLE LogFileHandle;
 };

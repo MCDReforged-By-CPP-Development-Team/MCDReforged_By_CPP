@@ -63,6 +63,11 @@ MCDRCPPLog::MCDRCPPLog()
 {
 }
 
+MCDRCPPLog::~MCDRCPPLog()
+{
+	CloseHandle(LogFileHandle);
+}
+
 int stdfuncallconv OutputInterface::Init(string logfilepath)
 {
 	return LogSys.InitLogSystem(logfilepath);

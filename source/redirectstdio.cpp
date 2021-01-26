@@ -9,8 +9,6 @@ int stdfuncallconv OpenServerAndRedirectIO()
 	Settings sets;
 	string serverscmdline = sets.GetString(servername);
 	string jvmpath = sets.GetString(javapath);
-    dp(serverscmdline);
-    dp(jvmpath);
 	STARTUPINFO stinfo;
 	memset(&stinfo, sizeof(STARTUPINFO), 0);
 	SECURITY_ATTRIBUTES sa;
@@ -24,6 +22,8 @@ int stdfuncallconv OpenServerAndRedirectIO()
     char startupcmd[MAX_PATH+200] = "cmd.exe /C ";
     //startupcmd.append(jvmpath).append(serverscmdline);
     dp(startupcmd);
+    dp(serverscmdline);
+    dp(jvmpath);
 
     strcat_s(startupcmd, jvmpath.length(), jvmpath.c_str());
     strcat_s(startupcmd, serverscmdline.length(), serverscmdline.c_str());

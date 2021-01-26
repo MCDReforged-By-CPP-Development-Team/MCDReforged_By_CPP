@@ -7,6 +7,8 @@ cfgfile.h
 #include<string>
 #include<Windows.h>
 #include<strstream>
+#include<string>
+
 #include"common.h"
 #include"logsys.h"
 #include"serverparser.h"
@@ -84,21 +86,15 @@ extern string strLogFilePath;
 #define LANG_ZH_CN 1
 
 #define SETTOCFG_B(name, objname, value) TiXmlElement* p##objname = new TiXmlElement(name);\
-if (NULL == p##objname)\
-{\
-    return false;\
-}\
-if (Set.GetBool(value) == true) { string strValue = "true"; }\
-else { string strValue = "false"; }\
+if (NULL == p##objname) return false;\
+if (Set.GetBool(value) == true) { strValue = "true"; }\
+else { strValue = "false"; }\
 pRootEle->LinkEndChild(p##objname);\
 TiXmlText* p##objname##Value = new TiXmlText(strValue.c_str());\
 p##objname->LinkEndChild(p##objname)
 
 #define SETTOCFG_S(name, objname, value) TiXmlElement* p##objname = new TiXmlElement(name);\
-if (NULL == p##objname)\
-{\
-    return false;\
-}\
+if (NULL == p##objname) return false;\
 pRootEle->LinkEndChild(p##objname);\
 TiXmlText* p##objname##Value = new TiXmlText(Set.GetString(value).c_str());\
 p##objname->LinkEndChild(p##objname)

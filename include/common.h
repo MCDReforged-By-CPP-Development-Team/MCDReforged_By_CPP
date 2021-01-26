@@ -5,7 +5,7 @@ common.h by noFe
 #pragma once
 
 #define stdfuncallconv _fastcall	//全部函数统一使用_fastcall调用约定吧 awa(踹开_stdcall和_cdecl
-#define MCDRCPP_VER "0.3.7"
+#define MCDRCPP_VER "0.3.8"
 #define MCDRCPP_DEV_STATUS "INDEV"  //INDEV/PREVIEW/RELEASE
 #define MCDRCPP_RELEASES "https://github.com/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/releases"   //版本发布页
 #define MCDRCPP_GITHUBPAGE "https://github.com/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/" //项目主页(GitHub)

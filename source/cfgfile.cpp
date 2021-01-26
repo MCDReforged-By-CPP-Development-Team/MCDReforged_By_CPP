@@ -46,52 +46,12 @@ bool LoadConfig::ConfigFileExisting() {
 }
 
 int LoadConfig::LoadConfigFile() {
-    dp("Enter LoadConfigFile()!");
-    dp(Cfg.ConfigFileExisting());
     if (Cfg.ConfigFileExisting()) {
-#ifdef DEBUG_FUNC_ENABLE
-        dp(GlobalSettings.GetInt(parsertype));
-        dp(GlobalSettings.GetBool(loadcppplugins));
-        dp(GlobalSettings.GetBool(loadpyplugins));
-        dp(GlobalSettings.GetBool(execinitscr));
-        dp(GlobalSettings.GetBool(exectimerscr));
-        dp(GlobalSettings.GetBool(readcpppluginscfg));
-        dp(GlobalSettings.GetBool(readpypluginscfg));
-        dp(GlobalSettings.GetBool(enablemccmdqueue));
-        dp(GlobalSettings.GetString(javapath));
-        dp(GlobalSettings.GetString(serverdir));
-        dp(GlobalSettings.GetString(servername));
-        dp(GlobalSettings.GetString(cpppluginpath));
-        dp(GlobalSettings.GetString(pypluginpath));
-        dp(GlobalSettings.GetString(scrpath));
-        dp(GlobalSettings.GetString(insprefix));
-        dp(GlobalSettings.GetString(logpath));
-        dp(GlobalSettings.GetInt(lang));
-#endif // DEBUG_FUNC_ENABLE
         return Cfg.ReadCfgFile();
     }
     else {
         Cfg.CreateCfgFile();
         Cfg.SettingHelper();
-#ifdef DEBUG_FUNC_ENABLE
-        dp(GlobalSettings.GetInt(parsertype));
-        dp(GlobalSettings.GetBool(loadcppplugins));
-        dp(GlobalSettings.GetBool(loadpyplugins));
-        dp(GlobalSettings.GetBool(execinitscr));
-        dp(GlobalSettings.GetBool(exectimerscr));
-        dp(GlobalSettings.GetBool(readcpppluginscfg));
-        dp(GlobalSettings.GetBool(readpypluginscfg));
-        dp(GlobalSettings.GetBool(enablemccmdqueue));
-        dp(GlobalSettings.GetString(javapath));
-        dp(GlobalSettings.GetString(serverdir));
-        dp(GlobalSettings.GetString(servername));
-        dp(GlobalSettings.GetString(cpppluginpath));
-        dp(GlobalSettings.GetString(pypluginpath));
-        dp(GlobalSettings.GetString(scrpath));
-        dp(GlobalSettings.GetString(insprefix));
-        dp(GlobalSettings.GetString(logpath));
-        dp(GlobalSettings.GetInt(lang));
-#endif // DEBUG_FUNC_ENABLE
         return Cfg.ReadCfgFile();
     }
     return -1;
@@ -124,12 +84,7 @@ int stdfuncallconv LoadConfig::SettingHelper()
     bool bvar;
     string svar;
 
-    Out.mlout("Welcome to SettingHelper,type \"0\" to skip.", "欢迎来到配置文件设置助手,输入\"0\"以跳过");
-    ivar = gsti();
-#ifdef DEBUG_FUNC_ENABLE
-    if (ivar == 0) goto settocfg_;
-#endif
-    if (ivar == 0) return 0;
+    Out.mlout("Welcome to SettingHelper.", "欢迎来到配置文件设置助手");
     Out.mlout("Choose Your Language[English(US)-0][简体中文-1]",
         "选择您的语言[English(US)-0][简体中文-1]");  //iLangType
 language:
@@ -245,7 +200,7 @@ strInstructionPrefix[ok];
 strLogFilePath[ok];
 */
 
-int stdfuncallconv LoadConfig::SetToCfg()
+int stdfuncallconv LoadConfig::SetToCfg()   //有bug 会死循环
 {
     dp("Enter SetToCfg()!");
     Settings Set;
@@ -268,28 +223,6 @@ int stdfuncallconv LoadConfig::SetToCfg()
     }
     pDoc->LinkEndChild(pRootEle);
     string strValue;
-    /*
-    "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n"\
-        "<MCDReforgedByCppConfig>\r\n"\
-        "\t<LoadCppPlugins>true</LoadCppPlugins>\r\n"\
-        "\t<LoadPythonPlugins>true</LoadPythonPlugins>\r\n"\
-        "\t<LoadCppPluginsConfig>true</LoadCppPluginsConfig>\r\n"\
-        "\t<LoadPythonPluginsConfig>true</LoadPythonPluginsConfig>\r\n"\
-        "\t<CppPluginsDir>cppplugins</CppPluginsDir>\r\n"\
-        "\t<PythonPluginsDir>pyplugins</PythonPluginsDir>\r\n"\
-        "\t<ExecInitScript>true</ExecInitScript>\r\n"\
-        "\t<ExecTimerScript>true</ExecTimerScript>\r\n"\
-        "\t<ServerDir>server</ServerDir>\r\n"\
-        "\t<ServerStartupCommand>server.jar</ServerStartupCommand>\r\n"\
-        "\t<JavaPath>init</JavaPath>\r\n"\
-        "\t<EnableMinecraftCommandQueue>true</EnableMinecraftCommandQueue>\r\n"\
-        "\t<ServerParser>VanillaParser</ServerParser>\r\n"\
-        "\t<Instructionprefix>!!mcdr </Instructionprefix>\r\n"\
-        "\t<LogFilePath>log</LogFilePath>\r\n"\
-        "\t<ScriptPath>script</ScriptPath>\r\n"\
-        "\t<Language>en_US</Language> <--en_US/zh_CN-->\r\n"\
-        "</MCDReforgedByCppConfig>\r\n";
-    */
     SETTOCFG_B("LoadCppPlugins", LoadCpp, loadcppplugins);
     SETTOCFG_B("LoadPythonPlugins", LoadPy, loadpyplugins);
     SETTOCFG_B("LoadCppPluginsConfig", LoadCppCfg, readcpppluginscfg);
@@ -306,6 +239,7 @@ int stdfuncallconv LoadConfig::SetToCfg()
     SETTOCFG_S("InstructionPrefix", InstructionPrefix, insprefix);
     SETTOCFG_S("LogFilePath", LogFilePath, logpath);
     SETTOCFG_S("LogFileScriptPath", ScriptPath, scrpath);
+    pDoc->SaveFile(CFGFILENAME);
     return true;
 }
 
@@ -443,25 +377,32 @@ int LoadConfig::ReadCfgFile() {
     }
     dp("Read Config Successful.");
 
-    dp("Exiting ReadCfgFile()");
     return iret;
 }
 
-bool LoadConfig::GetNodePointerByName(TiXmlElement* pRootEle, const char* strNodeName, TiXmlElement*& Node)    //此函数来自于CSDN 链接:https://blog.csdn.net/masikkk/article/details/14191933?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf
+bool LoadConfig::GetNodePointerByName(TiXmlElement* pRootEle, const char* strNodeName, TiXmlElement*& Node)    //此函数来自于CSDN 略有改动 链接:https://blog.csdn.net/masikkk/article/details/14191933?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf
 {
-    if (strNodeName == pRootEle->Value())
+    if (0 == strcmp(strNodeName, pRootEle->Value()))
     {
         Node = pRootEle;
         return true;
     }
+
     TiXmlElement* pEle = pRootEle;
     for (pEle = pRootEle->FirstChildElement(); pEle; pEle = pEle->NextSiblingElement())
     {
-        if (GetNodePointerByName(pEle, strNodeName, Node))
+        if (0 != strcmp(pEle->Value(), strNodeName))
+        {
+            GetNodePointerByName(pEle, strNodeName, Node);
+        }
+        else
+        {
+            Node = pEle;
             return true;
+        }
     }
-    return false;
 
+    return false;
 }
 
 bool LoadConfig::StringToBool(string Temp) {
