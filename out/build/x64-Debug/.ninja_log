@@ -42,6 +42,7 @@
 1579	1969	633294407	MCDReforged_By_CPP.exe	5878a0aad8573133
 1	2049	633294681	CMakeFiles/MCDReforged_By_CPP.dir/source/cfgfile.cpp.obj	f388199dd6544f31
 2052	2479	633294682	MCDReforged_By_CPP.exe	5878a0aad8573133
+<<<<<<< HEAD
 93	718	633379767	CMakeFiles/MCDReforged_By_CPP.dir/source/messagesys.cpp.obj	893924f496af20b3
 38	978	633379768	CMakeFiles/MCDReforged_By_CPP.dir/source/cmdsys.cpp.obj	483dde904fc97d22
 721	1118	633379768	CMakeFiles/MCDReforged_By_CPP.dir/tinyxml2-8.0.0/tinystr.cpp.obj	a6a9d795498b71aa
@@ -61,3 +62,5 @@
 160	3208	633379770	CMakeFiles/MCDReforged_By_CPP.dir/source/redirectstdio.cpp.obj	8bddd78d03ffe852
 13	3338	633379770	CMakeFiles/MCDReforged_By_CPP.dir/source/cfgfile.cpp.obj	f388199dd6544f31
 3341	3786	633379771	MCDReforged_By_CPP.exe	5878a0aad8573133
+=======
+>>>>>>> 2e6a312 (Revert "0.3.8-INDEV bugs found in SetToCfg() and OpenServerAndRedirectIO() fix cannot read config file bug")
