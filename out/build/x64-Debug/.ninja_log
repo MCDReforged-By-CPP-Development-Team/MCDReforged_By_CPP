@@ -64,3 +64,21 @@
 3341	3786	633379771	MCDReforged_By_CPP.exe	5878a0aad8573133
 =======
 >>>>>>> 2e6a312 (Revert "0.3.8-INDEV bugs found in SetToCfg() and OpenServerAndRedirectIO() fix cannot read config file bug")
+14	2002	633465881	CMakeFiles/MCDReforged_By_CPP.dir/source/redirectstdio.cpp.obj	8bddd78d03ffe852
+0	2431	633465882	CMakeFiles/MCDReforged_By_CPP.dir/source/cfgfile.cpp.obj	f388199dd6544f31
+2433	3403	633465882	MCDReforged_By_CPP.exe	5878a0aad8573133
+25	2291	633637893	CMakeFiles/MCDReforged_By_CPP.dir/source/redirectstdio.cpp.obj	8bddd78d03ffe852
+0	2714	633637894	CMakeFiles/MCDReforged_By_CPP.dir/source/cfgfile.cpp.obj	f388199dd6544f31
+2717	3813	633637895	MCDReforged_By_CPP.exe	5878a0aad8573133
+1	2173	633638244	CMakeFiles/MCDReforged_By_CPP.dir/source/redirectstdio.cpp.obj	8bddd78d03ffe852
+2177	2504	633638244	MCDReforged_By_CPP.exe	5878a0aad8573133
+1	1761	633638406	CMakeFiles/MCDReforged_By_CPP.dir/source/redirectstdio.cpp.obj	8bddd78d03ffe852
+1765	2213	633638406	MCDReforged_By_CPP.exe	5878a0aad8573133
+1	1638	633638754	CMakeFiles/MCDReforged_By_CPP.dir/source/redirectstdio.cpp.obj	8bddd78d03ffe852
+1642	2048	633638754	MCDReforged_By_CPP.exe	5878a0aad8573133
+0	1567	633638831	CMakeFiles/MCDReforged_By_CPP.dir/source/redirectstdio.cpp.obj	8bddd78d03ffe852
+1569	1956	633638831	MCDReforged_By_CPP.exe	5878a0aad8573133
+1	1419	633639099	CMakeFiles/MCDReforged_By_CPP.dir/source/redirectstdio.cpp.obj	8bddd78d03ffe852
+1422	1809	633639100	MCDReforged_By_CPP.exe	5878a0aad8573133
+1	1497	633639248	CMakeFiles/MCDReforged_By_CPP.dir/source/redirectstdio.cpp.obj	8bddd78d03ffe852
+1501	1887	633639248	MCDReforged_By_CPP.exe	5878a0aad8573133

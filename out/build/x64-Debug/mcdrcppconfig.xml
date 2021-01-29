@@ -1,20 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone=" " ?>
 <MCDReforgedByCppConfig>
-	<LoadCppPlugins>true</LoadCppPlugins>
-	<LoadPythonPlugins>true</LoadPythonPlugins>
-	<LoadCppPluginsConfig>true</LoadCppPluginsConfig>
-	<LoadPythonPluginsConfig>true</LoadPythonPluginsConfig>
-	<CppPluginsDir>plugins</CppPluginsDir>
-	<PythonPluginsDir>plugins</PythonPluginsDir>
-	<ExecInitScript>true</ExecInitScript>
-	<ExecTimerScript>true</ExecTimerScript>
-	<ServerDir>server</ServerDir>
-	<ServerStartupCommand>server.jar</ServerStartupCommand>
-	<JavaPath>init</JavaPath>
-	<EnableMinecraftCommandQueue>true</EnableMinecraftCommandQueue>
-	<ServerParser>VanillaParser</ServerParser>
-	<Instructionprefix>!!mcdr </Instructionprefix>
-	<LogFilePath>log</LogFilePath>
-	<ScriptPath>script</ScriptPath>
-	<Language>en_US</Language> <--en_US/zh_CN-->
+    <LoadCppPlugins>true</LoadCppPlugins>
+    <LoadPythonPlugins>true</LoadPythonPlugins>
+    <LoadCppPluginsConfig>true</LoadCppPluginsConfig>
+    <LoadPythonPluginsConfig>true</LoadPythonPluginsConfig>
+    <ExecInitScript>true</ExecInitScript>
+    <ExecTimerScript>true</ExecTimerScript>
+    <EnableMinecraftCommandQueue>true</EnableMinecraftCommandQueue>
+    <CppPluginsDir>plugins</CppPluginsDir>
+    <PythonPluginsDir>plugins</PythonPluginsDir>
+    <ServerDir>server</ServerDir>
+    <ServerStartupCommand>-Xmx4G -Xms4G -jar server.jar nogui</ServerStartupCommand>
+    <JavaPath>C:\Program Files\AdoptOpenJDK\jdk-14.0.2.12-openj9\bin\javaw.exe</JavaPath>
+    <InstructionPrefix>!!mcdr</InstructionPrefix>
+    <LogFilePath>log</LogFilePath>
+    <LogFileScriptPath></LogFileScriptPath>
 </MCDReforgedByCppConfig>
