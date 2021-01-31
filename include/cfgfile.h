@@ -91,13 +91,13 @@ if (Set.GetBool(value) == true) { strValue = "true"; }\
 else { strValue = "false"; }\
 pRootEle->LinkEndChild(p##objname);\
 TiXmlText* p##objname##Value = new TiXmlText(strValue.c_str());\
-p##objname->LinkEndChild(p##objname)
+p##objname->LinkEndChild(p##objname##Value)
 
 #define SETTOCFG_S(name, objname, value) TiXmlElement* p##objname = new TiXmlElement(name);\
 if (NULL == p##objname) return false;\
 pRootEle->LinkEndChild(p##objname);\
 TiXmlText* p##objname##Value = new TiXmlText(Set.GetString(value).c_str());\
-p##objname->LinkEndChild(p##objname)
+p##objname->LinkEndChild(p##objname##Value)
 
 #define stb StringToBool(pElem->GetText())
 #define gt pElem->GetText()

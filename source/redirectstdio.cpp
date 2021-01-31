@@ -7,7 +7,7 @@ HANDLE hStdErr = NULL;
 int stdfuncallconv OpenServerAndRedirectIO()
 {
 	Settings sets;
-	string serverscmdline = sets.GetString(servername);
+	string servercmdline = sets.GetString(servername);
 	string jvmpath = sets.GetString(javapath);
 	STARTUPINFO stinfo;
 	memset(&stinfo, sizeof(STARTUPINFO), 0);
@@ -19,32 +19,37 @@ int stdfuncallconv OpenServerAndRedirectIO()
 	if (CreatePipe(&hStdIn, &hStdOut, &sa, 0) == FALSE) return -1;
     if (hStdIn == NULL || hStdOut == NULL) return -1;
 
-    char startupcmd[MAX_PATH+200] = "cmd.exe /C ";
-    //startupcmd.append(jvmpath).append(serverscmdline);
-    dp(startupcmd);
-    dp(serverscmdline);
-    dp(jvmpath);
+    string startupcmd = "cmd.exe /C ";
+    startupcmd.append(jvmpath).append(" ").append(servercmdline);
 
-    strcat_s(startupcmd, jvmpath.length(), jvmpath.c_str());
-    strcat_s(startupcmd, serverscmdline.length(), serverscmdline.c_str());
-    dp(startupcmd);
+    LPSTR startcmd = new char[startupcmd.length() + 1];
+    memset(startcmd, '\0', startupcmd.length() + 1);
+    strcat_s(startcmd, startupcmd.length() + 1, startupcmd.c_str());
+    dp(startcmd);
 
     STARTUPINFO si;
     si.cb = sizeof(STARTUPINFO);
     GetStartupInfo(&si);
     si.hStdError = hStdIn;            // 把创建进程的标准错误输出重定向到管道输入
     si.hStdOutput = hStdIn;           // 把创建进程的标准输出重定向到管道输入
+#ifdef DEBUG_FUNC_ENABLE
+    si.wShowWindow = SW_SHOW;
+    #else
     si.wShowWindow = SW_HIDE;
+#endif
     // STARTF_USESHOWWINDOW:The wShowWindow member contains additional information.
     // STARTF_USESTDHANDLES:The hStdInput, hStdOutput, and hStdError members contain additional information.
-    //自MSDN
+    // 自MSDN
     si.dwFlags = STARTF_USESHOWWINDOW | STARTF_USESTDHANDLES;
 
     PROCESS_INFORMATION pi;
 
-    BOOL bSuc = CreateProcess(NULL, startupcmd, NULL, NULL, TRUE, NULL, NULL, NULL, &si, &pi);
+    BOOL bSuc = CreateProcess(NULL, startcmd, NULL, NULL, TRUE, NULL, NULL, NULL, &si, &pi);
     
-    if (bSuc == FALSE)return -1;
+    if (bSuc == FALSE) { 
+        dp("CreateProcess() Failed!");
+        return -1;
+    }
 
     // 先分配读取的数据空间
     DWORD dwTotalSize = NEWBUFFERSIZE;                     // 总空间
@@ -128,6 +133,8 @@ int stdfuncallconv OpenServerAndRedirectIO()
     }
 
     delete[] pchReadBuffer;
+    delete[] startcmd;
+    startcmd = NULL;
     pchReadBuffer = NULL;
 
     return bSuc;

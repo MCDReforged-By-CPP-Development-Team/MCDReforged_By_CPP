@@ -143,7 +143,7 @@ language:
 readjavapath:
     Out.mlout("We need your Java path(Type \"autofind\" to find the Java automatically.When you type it, all lowercase characters are required)",
         "我们需要您的Java路径(输入\"autofind\"以自动寻找Java,如输入则要求全小写)");   //strJavaPath
-    cin >> svar;
+    getline(cin, svar);
     if (svar == "autofind") {
         svar = getenv("JAVA_HOME");
         svar.append("bin\\javaw.exe");
@@ -157,37 +157,37 @@ readjavapath:
 
     Out.mlout("Your Minecraft server's folder name?",
         "您Minecraft服务器的文件夹名?");   //strServerWorkingDir
-    cin >> svar;
+    getline(cin, svar);
     GlobalSettings.SetString(serverdir, svar);
 
     Out.mlout("Minecraft server startup parameters?(Enter parameters only, excluding java's name.For example:-Xms1G -Xmx2G -jar minecraft_server.jar nogui)",
         "Minecraft服务器启动参数?(仅输入参数,不包括Java程序名.示例:-Xms1G -Xmx2G -jar minecraft_server.jar nogui)");   //strMinecraftServerStartupCommandLine
-    svar = cin.get();
+    getline(cin, svar);
     GlobalSettings.SetString(servername, svar);
 
     Out.mlout("C++ plugins' folder name?(\"plugins\" is recommended)",
         "C++插件文件夹名(推荐使用\"plugins\")");   //strCppPluginPath
-    svar = cin.get();
+    getline(cin, svar);
     GlobalSettings.SetString(cpppluginpath, svar);
 
     Out.mlout("Python plugins' folder name?(\"plugins\" is recommended)",
         "Python插件文件夹名(推荐使用\"plugins\")");   //strPyPluginPath
-    svar = cin.get();
+    getline(cin, svar);
     GlobalSettings.SetString(pypluginpath, svar);
 
     Out.mlout("Scripts' Path?(\"scripts\" is recommended)",
         "脚本文件夹名?(推荐使用\"scripts\")");   //strScriptPath
-    svar = cin.get();
+    getline(cin, svar);
     GlobalSettings.SetString(scrpath, svar);
 
     Out.mlout("MCDReforged by C++ command prefix?(In order to keep compatible with MCDReforged,\"!!mcdr\" is strongly recommended)",
         "MCDReforged by C++指令前缀(为了与MCDReforged保持高度兼容,强烈推荐使用\"!!mcdr\")");   //strInstructionPrefix
-    svar = cin.get();
+    getline(cin, svar);
     GlobalSettings.SetString(insprefix, svar);
 
     Out.mlout("Select a folder that the log files will be stored in,the folder will be created automatically.",
         "选择要存储日志文件的文件夹,该文件夹将自动创建.");   //strLogFilePath
-    svar = cin.get();
+    getline(cin, svar);
     GlobalSettings.SetString(logpath, svar);
 settocfg_:
     return Cfg.SetToCfg();
@@ -223,6 +223,7 @@ int stdfuncallconv LoadConfig::SetToCfg()   //有bug 会死循环
     }
     pDoc->LinkEndChild(pRootEle);
     string strValue;
+    
     SETTOCFG_B("LoadCppPlugins", LoadCpp, loadcppplugins);
     SETTOCFG_B("LoadPythonPlugins", LoadPy, loadpyplugins);
     SETTOCFG_B("LoadCppPluginsConfig", LoadCppCfg, readcpppluginscfg);
