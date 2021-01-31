@@ -6,6 +6,7 @@ HANDLE hStdErr = NULL;
 
 int stdfuncallconv OpenServerAndRedirectIO()
 {
+    DWORD process_exit_code;
 	Settings sets;
 	string servercmdline = sets.GetString(servername);
 	string jvmpath = sets.GetString(javapath);
@@ -73,7 +74,7 @@ int stdfuncallconv OpenServerAndRedirectIO()
         OVERLAPPED Overlapped;
         memset(&Overlapped, 0, sizeof(OVERLAPPED));
 
-        while (true) {
+        while (GetExitCodeProcess(pi.hProcess, &process_exit_code)) {
 
             // Çå¿Õ»º´æ
             memset(chTmpReadBuffer, 0, NEWBUFFERSIZE);
@@ -123,7 +124,16 @@ int stdfuncallconv OpenServerAndRedirectIO()
                 }
                 break;
             }
-            if (ProcessOutput(pchReadBuffer) == -1) CannotProcessOutput();
+
+            if (ProcessOutput(pchReadBuffer) == -1) { 
+                dp("Cannot Process Server's Output.");
+                CannotProcessOutput(); 
+            }
+
+            if (process_exit_code != STILL_ACTIVE) { 
+                dp("Server exited with exit code : " + process_exit_code);
+                break; 
+            }
         }
     } while (0);
 
@@ -132,10 +142,17 @@ int stdfuncallconv OpenServerAndRedirectIO()
         hStdIn = NULL;
     }
 
+    WaitForSingleObject(pi.hProcess, INFINITE); //wait for server exit
+
     delete[] pchReadBuffer;
     delete[] startcmd;
     startcmd = NULL;
     pchReadBuffer = NULL;
+    CloseHandle(hStdErr);
+    CloseHandle(hStdIn);
+    CloseHandle(hStdOut);
+    CloseHandle(pi.hProcess);
+    CloseHandle(pi.hThread);
 
     return bSuc;
 }

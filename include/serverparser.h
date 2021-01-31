@@ -6,6 +6,9 @@
 #include<iostream>
 
 #include"common.h"
+#include"debugprint.h"
+
+#pragma region Marcos
 
 #define VANILLA_PARSER_CODE 0
 #define BUKKIT_PARSER_CODE 1
@@ -14,28 +17,45 @@
 #define CAT_SERVER_PARSER_CODE 4
 #define WATERFALL_PARSER_CODE 5
 
-using namespace std;
+#pragma endregion
 
-// [09:00:00] [Server thread/INFO]: <Steve> Hello
-// [09:00:01] [Server thread/WARN]: Can't keep up!
-// [Server thread/INFO]: <Steve> Hello
-// [Server thread/WARN]: Can't keep up!
-// <Steve> Hello
-// Can't keep up!
-// Steve has made the advancement [Stone Age]
-// 1.13 + Done(3.500s)!For help, type "help"
-// 1.13 - Done(3.500s)!For help, type "help" or "?"
-// RCON running on 0.0.0.0:25575
+using namespace std;
 
 struct Advancement;
 struct PlayerMsg;
 struct ServerParser;
 
-int stdfuncallconv Parser(ServerParser* pResult, int parserCode, string rawText);
-int stdfuncallconv VanillaParser(ServerParser* pResult, string rawText);
-int stdfuncallconv BukkitParser(ServerParser* pResult, string rawText);
-int stdfuncallconv Bukkit14Parser(ServerParser* pResult, string rawText);
-int stdfuncallconv BungeeCordParser(ServerParser* pResult, string rawText);
-int stdfuncallconv CatParser(ServerParser* pResult, string rawText);
-int stdfuncallconv WaterfallParser(ServerParser* pResult, string rawText);
-int stdfuncallconv ParserDebugPrint(string str);
+class BaseParser {
+	virtual int stdfuncallconv Parser(ServerParser* pResult, int parserCode, string rawText) = 0;
+	virtual int stdfuncallconv Parse(string rawText) = 0;
+};
+
+class VanillaParser :BaseParser {
+	int stdfuncallconv Parser(ServerParser* pResult, int parserCode, string rawText);
+	int stdfuncallconv Parse(string rawText);
+};
+
+class BukkitParser :BaseParser {
+	int stdfuncallconv Parser(ServerParser* pResult, int parserCode, string rawText);
+	int stdfuncallconv Parse(string rawText);
+};
+
+class Bukkit14Parser :VanillaParser {
+	int stdfuncallconv Parser(ServerParser* pResult, int parserCode, string rawText);
+	int stdfuncallconv Parse(string rawText);
+};
+
+class BungeeCordParser :BaseParser {
+	int stdfuncallconv Parser(ServerParser* pResult, int parserCode, string rawText);
+	int stdfuncallconv Parse(string rawText);
+};
+
+class CatParser :BaseParser {
+	int stdfuncallconv Parser(ServerParser* pResult, int parserCode, string rawText);
+	int stdfuncallconv Parse(string rawText);
+};
+
+class WaterfallParser :BaseParser {
+	int stdfuncallconv Parser(ServerParser* pResult, int parserCode, string rawText);
+	int stdfuncallconv Parse(string rawText);
+};

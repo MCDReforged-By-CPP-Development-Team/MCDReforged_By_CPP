@@ -1,12 +1,12 @@
 #include "processoutput.h"
 
-int stdfuncallconv ProcessOutput(LPSTR output)
+int stdfuncallconv ProcessServerOutput::ProcessOutput(LPSTR output, int reserved)
 {
 	dp(output);
 	return 0;
 }
 
-int stdfuncallconv CannotProcessOutput()
+int stdfuncallconv ProcessServerOutput::CannotProcessOutput()
 {
 	return 0;
 }
