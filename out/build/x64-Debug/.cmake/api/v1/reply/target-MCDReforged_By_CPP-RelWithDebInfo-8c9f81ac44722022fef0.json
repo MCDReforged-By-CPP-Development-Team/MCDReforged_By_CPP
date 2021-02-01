@@ -80,19 +80,19 @@
 			[
 				{
 					"backtrace" : 3,
-					"path" : "c:/Program Files/Python38/include"
+					"path" : "d:/Program Files/Python38/include"
 				},
 				{
 					"backtrace" : 4,
-					"path" : "C:/Users/竹子/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/."
+					"path" : "C:/Users/34376/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/MCDReforged_By_CPP/."
 				},
 				{
 					"backtrace" : 5,
-					"path" : "C:/Users/竹子/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/include"
+					"path" : "C:/Users/34376/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/MCDReforged_By_CPP/include"
 				},
 				{
 					"backtrace" : 6,
-					"path" : "C:/Users/竹子/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/tinyxml2-8.0.0"
+					"path" : "C:/Users/34376/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/MCDReforged_By_CPP/tinyxml2-8.0.0"
 				}
 			],
 			"language" : "CXX",
@@ -135,7 +135,7 @@
 			},
 			{
 				"backtrace" : 2,
-				"fragment" : "-LIBPATH:c:\\PROGRA~1\\Python38\\libs",
+				"fragment" : "-LIBPATH:d:\\PROGRA~3\\Python38\\libs",
 				"role" : "libraryPath"
 			},
 			{
@@ -191,7 +191,7 @@
 	[
 		{
 			"backtrace" : 1,
-			"path" : "C:/Program Files/Python38/include/Python.h",
+			"path" : "D:/Program Files/Python38/include/Python.h",
 			"sourceGroupIndex" : 0
 		},
 		{
