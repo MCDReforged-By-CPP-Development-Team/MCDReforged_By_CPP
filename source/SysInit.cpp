@@ -36,9 +36,9 @@ int stdfuncallconv Initialize(){
     log.out("o", RED_FOREGROUND);
     log.out("g", GREEN_FOREGROUND);
     cout << endl;
-    dp("Test Pytools");
+    dp("Test Pytools & MultiThread");
     Pytools pytTools(sysinitOut);
-    pytTools.InstallPyLibAsync("N  O  P  E");
+    pytTools.InstallPyLibAsync("cyka_blyat");
 
     dp("pip0");
     Sleep(1000);
@@ -84,7 +84,7 @@ bool CheckFolderExist(const string& strPath){
 }
 
 int stdfuncallconv DetectDir() {
-    return 0;
+    return 0;                                                                           
 }
 
 int stdfuncallconv WelcomeMessage() {

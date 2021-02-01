@@ -1,5 +1,6 @@
 #include"serverparser.h"
 
+
 struct PlayerMsg {
 	string playerName;
 	string playerMsg;
@@ -22,5 +23,16 @@ int stdfuncallconv VanillaParser::Parser(ServerParser* pResult, int parserCode, 
 
 int stdfuncallconv VanillaParser::Parse(string rawText)
 {
+	
+	dp(rawText);
+	try
+	{
+		
+	}
+	catch (const std::exception&)
+	{
+		cout << "Failed while Parsing text:";
+		cout << rawText.c_str() << endl;
+	}
 	return 0;
 }
