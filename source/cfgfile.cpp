@@ -95,11 +95,11 @@ language:
     }
     GlobalSettings.SetInt(lang, ivar);
 
-    Out.mlout("Select Your Server Type[Vanilla-0][Bukkit(Version<1.14)-1][Bukkit(Version>=1.14)][BungeeCord-3][Cat-4][Waterfall-5]",
-              "请选择您的服务器端类型[Vanilla-0][Bukkit(Version<1.14)-1][Bukkit(Version>=1.14)][BungeeCord-3][Cat-4][Waterfall-5]");   //iParserType
+    Out.mlout("Select Your Server Type[Vanilla-0][Bukkit(Version<1.14)-1][Bukkit(Version>=1.14)][BungeeCord-3][Cat-4][Waterfall-5][Beta1.8-6][Forge-7]",
+              "请选择您的服务器端类型[Vanilla-0][Bukkit(Version<1.14)-1][Bukkit(Version>=1.14)][BungeeCord-3][Cat-4][Waterfall-5][Beta1.8-6][Forge-7]");   //iParserType
     parser:
     ivar = gsti();
-    if (ivar > WATERFALL_PARSER_CODE || ivar < VANILLA_PARSER_CODE) { 
+    if (ivar > FORGE_PARSER_CODE || ivar < VANILLA_PARSER_CODE) { 
         iner;
         goto parser;
     }
@@ -239,7 +239,7 @@ int stdfuncallconv LoadConfig::SetToCfg()   //有bug 会死循环
     SETTOCFG_S("JavaPath", JavaPath, javapath);
     SETTOCFG_S("InstructionPrefix", InstructionPrefix, insprefix);
     SETTOCFG_S("LogFilePath", LogFilePath, logpath);
-    SETTOCFG_S("LogFileScriptPath", ScriptPath, scrpath);
+    SETTOCFG_S("ScriptPath", ScriptPath, scrpath);
     pDoc->SaveFile(CFGFILENAME);
     return true;
 }
@@ -378,6 +378,7 @@ int LoadConfig::ReadCfgFile() {
     }
     dp("Read Config Successful.");
 
+    dp("exiting readcfg");
     return iret;
 }
 

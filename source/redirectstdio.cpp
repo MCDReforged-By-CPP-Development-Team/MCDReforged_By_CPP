@@ -35,9 +35,9 @@ int stdfuncallconv OpenServerAndRedirectIO()
         return -1;
 
     if (hStdInRead == NULL || hStdInWrite == NULL) return -1;
-    if (hStdOutRead == NULL || hStdOutWrite = NULL) return -1;
+    if (hStdOutRead == NULL || hStdOutWrite == NULL) return -1;
 
-    string startupcmd = "cmd.exe /C ";
+    string startupcmd;// = "cmd.exe /C ";
     startupcmd.append(jvmpath).append(" ").append(servercmdline);
 
     LPSTR startcmd = new char[startupcmd.length() + 1];
@@ -80,6 +80,7 @@ int stdfuncallconv OpenServerAndRedirectIO()
 
     DWORD dwFreeSize = dwTotalSize;                 // 闲置空间
 
+    dp("entering dowhile");
     do {
         if (FALSE == bSuc) {
             break;
@@ -101,8 +102,9 @@ int stdfuncallconv OpenServerAndRedirectIO()
             memset(chTmpReadBuffer, 0, NEWBUFFERSIZE);
 
             // 读取管道
-            BOOL bRead = ReadFile(hStdIn, chTmpReadBuffer, NEWBUFFERSIZE, &dwbytesRead, &Overlapped);
+            BOOL bRead = ReadFile(hStdInRead, chTmpReadBuffer, NEWBUFFERSIZE, &dwbytesRead, &Overlapped);
             DWORD dwLastError = GetLastError();
+            dp("dwLastError : " + dwLastError);
 
             if (bRead) {
                 if (dwFreeSize >= dwbytesRead) {
@@ -158,13 +160,6 @@ int stdfuncallconv OpenServerAndRedirectIO()
         }
     } while (0);
 
-    if (NULL != hStdIn) {
-        CloseHandle(hStdIn);
-        hStdIn = NULL;
-    }
-
-    WaitForSingleObject(pi.hProcess, INFINITE); //wait for server exit
-
     delete[] pchReadBuffer;
     delete[] startcmd;
     startcmd = NULL;
@@ -179,4 +174,14 @@ int stdfuncallconv OpenServerAndRedirectIO()
 
     return bSuc;
 }
+
+int WriteToPipe(char *in_buffer, DWORD dwSize) {
+    DWORD dwWritten;
+    int iRet = FALSE;
+
+    //用WriteFile，从hStdInWrite写入数据，数据在in_buffer中，长度为dwSize  
+    iRet = WriteFile(hStdInWrite, in_buffer, dwSize, &dwWritten, NULL);
+    return iRet;
+}
+
 //此函数部分代码源于 https://blog.csdn.net/breaksoftware/article/details/8595734 , https://blog.csdn.net/dicuzhaoqin8950/article/details/102229723 同时感谢作者
