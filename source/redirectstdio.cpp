@@ -1,27 +1,41 @@
 #include"redirectstdio.h"
 
-
-
-HANDLE hStdIn = NULL;
-HANDLE hStdOut = NULL;
-HANDLE hStdErr = NULL;
+HANDLE hStdInRead = NULL;   //子进程用的stdin的读入端  
+HANDLE hStdInWrite = NULL;  //主程序用的stdin的读入端  
+HANDLE hStdOutRead = NULL;  //主程序用的stdout的读入端  
+HANDLE hStdOutWrite = NULL; //子进程用的stdout的写入端  
+HANDLE hStdErrWrite = NULL; //子进程用的stderr的写入端  
 
 int stdfuncallconv OpenServerAndRedirectIO()
 {
     ProcessServerOutput output;
     DWORD process_exit_code;
 	Settings sets;
+    PROCESS_INFORMATION pi;
+    STARTUPINFO si;
+    SECURITY_ATTRIBUTES sa;
+
 	string servercmdline = sets.GetString(servername);
 	string jvmpath = sets.GetString(javapath);
-	STARTUPINFO stinfo;
-	memset(&stinfo, sizeof(STARTUPINFO), 0);
-	SECURITY_ATTRIBUTES sa;
+
 	sa.nLength = sizeof(SECURITY_ATTRIBUTES);
 	sa.bInheritHandle = true;
 	sa.lpSecurityDescriptor = NULL;
 
-	if (CreatePipe(&hStdIn, &hStdOut, &sa, 0) == FALSE) return -1;
-    if (hStdIn == NULL || hStdOut == NULL) return -1;
+    //产生一个用于stdin的管道，得到两个HANDLE:  hStdInRead用于子进程读出数据，hStdInWrite用于主程序写入数据  
+    //其中sa是一个STARTUPINFO结构体，定义见CreatePipe函数说明  
+    if (!CreatePipe(&hStdInRead, &hStdInWrite, &sa, 0))
+        return -1;
+    //产生一个用于stdout的管道，得到两个HANDLE:  hStdInRead用于主程序读出数据，hStdInWrite用于子程序写入数据  
+    if (!CreatePipe(&hStdOutRead, &hStdOutWrite, &sa, 0))
+        return -1;
+
+    //产生一个用于stdout的管道，得到两个HANDLE:  hStdInRead用于主程序读出数据，hStdInWrite用于子程序写入数据  
+    if (!CreatePipe(&hStdOutRead, &hStdOutWrite, &sa, 0))
+        return -1;
+
+    if (hStdInRead == NULL || hStdInWrite == NULL) return -1;
+    if (hStdOutRead == NULL || hStdOutWrite = NULL) return -1;
 
     string startupcmd = "cmd.exe /C ";
     startupcmd.append(jvmpath).append(" ").append(servercmdline);
@@ -31,24 +45,28 @@ int stdfuncallconv OpenServerAndRedirectIO()
     strcat_s(startcmd, startupcmd.length() + 1, startupcmd.c_str());
     dp(startcmd);
 
-    STARTUPINFO si;
+    ZeroMemory(&si, sizeof(STARTUPINFO));
     si.cb = sizeof(STARTUPINFO);
-    GetStartupInfo(&si);
-    si.hStdError = hStdIn;            // 把创建进程的标准错误输出重定向到管道输入
-    si.hStdOutput = hStdIn;           // 把创建进程的标准输出重定向到管道输入
-#ifdef DEBUG_FUNC_ENABLE
-    si.wShowWindow = SW_SHOW;
-    #else
-    si.wShowWindow = SW_HIDE;
-#endif
+    si.dwFlags |= STARTF_USESHOWWINDOW;
+    si.dwFlags |= STARTF_USESTDHANDLES;
+    si.hStdOutput = hStdOutWrite;     //意思是：子进程的stdout输出到hStdOutWrite  
+    si.hStdError = hStdErrWrite;        //意思是：子进程的stderr输出到hStdErrWrite  
+    si.hStdInput = hStdInRead;
+
     // STARTF_USESHOWWINDOW:The wShowWindow member contains additional information.
     // STARTF_USESTDHANDLES:The hStdInput, hStdOutput, and hStdError members contain additional information.
     // 自MSDN
-    si.dwFlags = STARTF_USESHOWWINDOW | STARTF_USESTDHANDLES;
 
-    PROCESS_INFORMATION pi;
-
-    BOOL bSuc = CreateProcess(NULL, startcmd, NULL, NULL, TRUE, NULL, NULL, NULL, &si, &pi);
+    BOOL bSuc = CreateProcess(NULL
+        , startcmd
+        , NULL
+        , NULL
+        , TRUE
+        , NULL
+        , NULL
+        , NULL
+        , &si
+        , &pi);
     
     if (bSuc == FALSE) { 
         dp("CreateProcess() Failed!");
@@ -151,12 +169,14 @@ int stdfuncallconv OpenServerAndRedirectIO()
     delete[] startcmd;
     startcmd = NULL;
     pchReadBuffer = NULL;
-    CloseHandle(hStdErr);
-    CloseHandle(hStdIn);
-    CloseHandle(hStdOut);
+    CloseHandle(hStdErrWrite);
+    CloseHandle(hStdInRead);
+    CloseHandle(hStdInWrite);
+    CloseHandle(hStdOutRead);
+    CloseHandle(hStdOutWrite);
     CloseHandle(pi.hProcess);
     CloseHandle(pi.hThread);
 
     return bSuc;
 }
-//此函数部分代码源于 https://blog.csdn.net/breaksoftware/article/details/8595734 同时感谢作者
+//此函数部分代码源于 https://blog.csdn.net/breaksoftware/article/details/8595734 , https://blog.csdn.net/dicuzhaoqin8950/article/details/102229723 同时感谢作者
