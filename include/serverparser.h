@@ -16,6 +16,8 @@
 #define BUNGEECORD_PARSER_CODE 3
 #define CAT_SERVER_PARSER_CODE 4
 #define WATERFALL_PARSER_CODE 5
+#define BETA18_PARSER_CODE 6
+#define FORGE_PARSER_CODE 7
 
 #pragma endregion
 
@@ -56,6 +58,16 @@ class CatParser :BaseParser {
 };
 
 class WaterfallParser :BaseParser {
+	int stdfuncallconv Parser(ServerParser* pResult, int parserCode, string rawText);
+	int stdfuncallconv Parse(string rawText);
+};
+
+class Beta18Parser :BaseParser {
+	int stdfuncallconv Parser(ServerParser* pResult, int parserCode, string rawText);
+	int stdfuncallconv Parse(string rawText);
+};
+
+class ForgeParser :BaseParser {
 	int stdfuncallconv Parser(ServerParser* pResult, int parserCode, string rawText);
 	int stdfuncallconv Parse(string rawText);
 };
