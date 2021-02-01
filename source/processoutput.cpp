@@ -10,3 +10,5 @@ int stdfuncallconv ProcessServerOutput::CannotProcessOutput()
 {
 	return 0;
 }
+
+

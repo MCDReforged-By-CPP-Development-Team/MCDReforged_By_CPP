@@ -14,6 +14,7 @@ ProcessOutput首先逐句分解服务器输出内容再逐句调用相应的parser解析 获得消息类型和
 */
 
 class ProcessServerOutput {
+public:
 	int stdfuncallconv ProcessOutput(LPSTR output, int reserved);
 	int stdfuncallconv CannotProcessOutput();
 };

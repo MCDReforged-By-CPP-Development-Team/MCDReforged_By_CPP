@@ -1,11 +1,14 @@
 #include"redirectstdio.h"
 
+
+
 HANDLE hStdIn = NULL;
 HANDLE hStdOut = NULL;
 HANDLE hStdErr = NULL;
 
 int stdfuncallconv OpenServerAndRedirectIO()
 {
+    ProcessServerOutput output;
     DWORD process_exit_code;
 	Settings sets;
 	string servercmdline = sets.GetString(servername);
@@ -125,9 +128,9 @@ int stdfuncallconv OpenServerAndRedirectIO()
                 break;
             }
 
-            if (ProcessOutput(pchReadBuffer) == -1) { 
+            if (output.ProcessOutput(pchReadBuffer,0) == -1) { 
                 dp("Cannot Process Server's Output.");
-                CannotProcessOutput(); 
+                output.CannotProcessOutput(); 
             }
 
             if (process_exit_code != STILL_ACTIVE) { 

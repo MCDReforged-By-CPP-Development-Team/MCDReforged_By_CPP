@@ -2,9 +2,12 @@
 #include"logsys.h"
 #include"cfgfile.h"
 #include"colorlog.h"
+#include "pytools.h"
+
 int stdfuncallconv AnalyzeServerOutput(char* output);
 
 int stdfuncallconv Initialize(){
+    Sleep(1000);
     OutputInterface sysinitOut;
     LoadConfig Cfg;
     Settings GlobalSettings;
@@ -33,7 +36,19 @@ int stdfuncallconv Initialize(){
     log.out("o", RED_FOREGROUND);
     log.out("g", GREEN_FOREGROUND);
     cout << endl;
+    dp("Test Pytools");
+    Pytools pytTools(sysinitOut);
+    pytTools.InstallPyLibAsync("N  O  P  E");
 
+    dp("pip0");
+    Sleep(1000);
+    dp("pip0");
+    Sleep(1000);
+    dp("pip0");
+    Sleep(1000);
+    dp("pip0");
+    Sleep(1000);
+    dp("pip0");
     dp(GlobalSettings.GetString(servername));
     dp(GlobalSettings.GetString(javapath));
 #endif

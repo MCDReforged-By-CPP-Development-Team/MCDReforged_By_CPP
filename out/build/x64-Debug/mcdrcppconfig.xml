@@ -9,10 +9,10 @@
     <EnableMinecraftCommandQueue>true</EnableMinecraftCommandQueue>
     <CppPluginsDir>plugins</CppPluginsDir>
     <PythonPluginsDir>plugins</PythonPluginsDir>
-    <ServerDir>server</ServerDir>
-    <ServerStartupCommand>-Xmx4G -Xms4G -jar server.jar nogui</ServerStartupCommand>
-    <JavaPath>C:\Program Files\AdoptOpenJDK\jdk-14.0.2.12-openj9\bin\javaw.exe</JavaPath>
+    <ServerDir>autofind</ServerDir>
+    <ServerStartupCommand>-Xms1G -Xmx2G server.jar nogui</ServerStartupCommand>
+    <JavaPath>jp</JavaPath>
     <InstructionPrefix>!!mcdr</InstructionPrefix>
-    <LogFilePath>log</LogFilePath>
-    <LogFileScriptPath></LogFileScriptPath>
+    <LogFilePath>lp</LogFilePath>
+    <LogFileScriptPath>lfsp</LogFileScriptPath>
 </MCDReforgedByCppConfig>

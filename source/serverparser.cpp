@@ -15,3 +15,12 @@ struct Advancement {
 	}
 };
 
+int stdfuncallconv VanillaParser::Parser(ServerParser* pResult, int parserCode, string rawText)
+{
+	return 0;
+}
+
+int stdfuncallconv VanillaParser::Parse(string rawText)
+{
+	return 0;
+}
