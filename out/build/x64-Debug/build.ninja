@@ -45,7 +45,7 @@ build cmake_object_order_depends_target_MCDReforged_By_CPP: phony || CMakeFiles\
 
 build CMakeFiles\MCDReforged_By_CPP.dir\source\SysInit.cpp.obj: CXX_COMPILER__MCDReforged_By_CPP_RelWithDebInfo ..\..\..\source\SysInit.cpp || cmake_object_order_depends_target_MCDReforged_By_CPP
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -MD -std:c++latest
-  INCLUDES = -I"c:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
+  INCLUDES = -I"d:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
   OBJECT_DIR = CMakeFiles\MCDReforged_By_CPP.dir
   OBJECT_FILE_DIR = CMakeFiles\MCDReforged_By_CPP.dir\source
   TARGET_COMPILE_PDB = CMakeFiles\MCDReforged_By_CPP.dir\
@@ -53,7 +53,7 @@ build CMakeFiles\MCDReforged_By_CPP.dir\source\SysInit.cpp.obj: CXX_COMPILER__MC
 
 build CMakeFiles\MCDReforged_By_CPP.dir\source\cfgfile.cpp.obj: CXX_COMPILER__MCDReforged_By_CPP_RelWithDebInfo ..\..\..\source\cfgfile.cpp || cmake_object_order_depends_target_MCDReforged_By_CPP
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -MD -std:c++latest
-  INCLUDES = -I"c:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
+  INCLUDES = -I"d:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
   OBJECT_DIR = CMakeFiles\MCDReforged_By_CPP.dir
   OBJECT_FILE_DIR = CMakeFiles\MCDReforged_By_CPP.dir\source
   TARGET_COMPILE_PDB = CMakeFiles\MCDReforged_By_CPP.dir\
@@ -61,7 +61,7 @@ build CMakeFiles\MCDReforged_By_CPP.dir\source\cfgfile.cpp.obj: CXX_COMPILER__MC
 
 build CMakeFiles\MCDReforged_By_CPP.dir\source\cmdsys.cpp.obj: CXX_COMPILER__MCDReforged_By_CPP_RelWithDebInfo ..\..\..\source\cmdsys.cpp || cmake_object_order_depends_target_MCDReforged_By_CPP
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -MD -std:c++latest
-  INCLUDES = -I"c:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
+  INCLUDES = -I"d:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
   OBJECT_DIR = CMakeFiles\MCDReforged_By_CPP.dir
   OBJECT_FILE_DIR = CMakeFiles\MCDReforged_By_CPP.dir\source
   TARGET_COMPILE_PDB = CMakeFiles\MCDReforged_By_CPP.dir\
@@ -69,7 +69,7 @@ build CMakeFiles\MCDReforged_By_CPP.dir\source\cmdsys.cpp.obj: CXX_COMPILER__MCD
 
 build CMakeFiles\MCDReforged_By_CPP.dir\source\colorlog.cpp.obj: CXX_COMPILER__MCDReforged_By_CPP_RelWithDebInfo ..\..\..\source\colorlog.cpp || cmake_object_order_depends_target_MCDReforged_By_CPP
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -MD -std:c++latest
-  INCLUDES = -I"c:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
+  INCLUDES = -I"d:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
   OBJECT_DIR = CMakeFiles\MCDReforged_By_CPP.dir
   OBJECT_FILE_DIR = CMakeFiles\MCDReforged_By_CPP.dir\source
   TARGET_COMPILE_PDB = CMakeFiles\MCDReforged_By_CPP.dir\
@@ -77,7 +77,7 @@ build CMakeFiles\MCDReforged_By_CPP.dir\source\colorlog.cpp.obj: CXX_COMPILER__M
 
 build CMakeFiles\MCDReforged_By_CPP.dir\source\cppplugin.cpp.obj: CXX_COMPILER__MCDReforged_By_CPP_RelWithDebInfo ..\..\..\source\cppplugin.cpp || cmake_object_order_depends_target_MCDReforged_By_CPP
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -MD -std:c++latest
-  INCLUDES = -I"c:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
+  INCLUDES = -I"d:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
   OBJECT_DIR = CMakeFiles\MCDReforged_By_CPP.dir
   OBJECT_FILE_DIR = CMakeFiles\MCDReforged_By_CPP.dir\source
   TARGET_COMPILE_PDB = CMakeFiles\MCDReforged_By_CPP.dir\
@@ -85,7 +85,7 @@ build CMakeFiles\MCDReforged_By_CPP.dir\source\cppplugin.cpp.obj: CXX_COMPILER__
 
 build CMakeFiles\MCDReforged_By_CPP.dir\source\debugprint.cpp.obj: CXX_COMPILER__MCDReforged_By_CPP_RelWithDebInfo ..\..\..\source\debugprint.cpp || cmake_object_order_depends_target_MCDReforged_By_CPP
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -MD -std:c++latest
-  INCLUDES = -I"c:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
+  INCLUDES = -I"d:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
   OBJECT_DIR = CMakeFiles\MCDReforged_By_CPP.dir
   OBJECT_FILE_DIR = CMakeFiles\MCDReforged_By_CPP.dir\source
   TARGET_COMPILE_PDB = CMakeFiles\MCDReforged_By_CPP.dir\
@@ -93,7 +93,7 @@ build CMakeFiles\MCDReforged_By_CPP.dir\source\debugprint.cpp.obj: CXX_COMPILER_
 
 build CMakeFiles\MCDReforged_By_CPP.dir\source\execscript.cpp.obj: CXX_COMPILER__MCDReforged_By_CPP_RelWithDebInfo ..\..\..\source\execscript.cpp || cmake_object_order_depends_target_MCDReforged_By_CPP
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -MD -std:c++latest
-  INCLUDES = -I"c:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
+  INCLUDES = -I"d:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
   OBJECT_DIR = CMakeFiles\MCDReforged_By_CPP.dir
   OBJECT_FILE_DIR = CMakeFiles\MCDReforged_By_CPP.dir\source
   TARGET_COMPILE_PDB = CMakeFiles\MCDReforged_By_CPP.dir\
@@ -101,7 +101,7 @@ build CMakeFiles\MCDReforged_By_CPP.dir\source\execscript.cpp.obj: CXX_COMPILER_
 
 build CMakeFiles\MCDReforged_By_CPP.dir\source\logsys.cpp.obj: CXX_COMPILER__MCDReforged_By_CPP_RelWithDebInfo ..\..\..\source\logsys.cpp || cmake_object_order_depends_target_MCDReforged_By_CPP
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -MD -std:c++latest
-  INCLUDES = -I"c:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
+  INCLUDES = -I"d:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
   OBJECT_DIR = CMakeFiles\MCDReforged_By_CPP.dir
   OBJECT_FILE_DIR = CMakeFiles\MCDReforged_By_CPP.dir\source
   TARGET_COMPILE_PDB = CMakeFiles\MCDReforged_By_CPP.dir\
@@ -109,7 +109,7 @@ build CMakeFiles\MCDReforged_By_CPP.dir\source\logsys.cpp.obj: CXX_COMPILER__MCD
 
 build CMakeFiles\MCDReforged_By_CPP.dir\source\mainprogram.cpp.obj: CXX_COMPILER__MCDReforged_By_CPP_RelWithDebInfo ..\..\..\source\mainprogram.cpp || cmake_object_order_depends_target_MCDReforged_By_CPP
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -MD -std:c++latest
-  INCLUDES = -I"c:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
+  INCLUDES = -I"d:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
   OBJECT_DIR = CMakeFiles\MCDReforged_By_CPP.dir
   OBJECT_FILE_DIR = CMakeFiles\MCDReforged_By_CPP.dir\source
   TARGET_COMPILE_PDB = CMakeFiles\MCDReforged_By_CPP.dir\
@@ -117,7 +117,7 @@ build CMakeFiles\MCDReforged_By_CPP.dir\source\mainprogram.cpp.obj: CXX_COMPILER
 
 build CMakeFiles\MCDReforged_By_CPP.dir\source\messagesys.cpp.obj: CXX_COMPILER__MCDReforged_By_CPP_RelWithDebInfo ..\..\..\source\messagesys.cpp || cmake_object_order_depends_target_MCDReforged_By_CPP
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -MD -std:c++latest
-  INCLUDES = -I"c:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
+  INCLUDES = -I"d:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
   OBJECT_DIR = CMakeFiles\MCDReforged_By_CPP.dir
   OBJECT_FILE_DIR = CMakeFiles\MCDReforged_By_CPP.dir\source
   TARGET_COMPILE_PDB = CMakeFiles\MCDReforged_By_CPP.dir\
@@ -125,7 +125,7 @@ build CMakeFiles\MCDReforged_By_CPP.dir\source\messagesys.cpp.obj: CXX_COMPILER_
 
 build CMakeFiles\MCDReforged_By_CPP.dir\source\processoutput.cpp.obj: CXX_COMPILER__MCDReforged_By_CPP_RelWithDebInfo ..\..\..\source\processoutput.cpp || cmake_object_order_depends_target_MCDReforged_By_CPP
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -MD -std:c++latest
-  INCLUDES = -I"c:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
+  INCLUDES = -I"d:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
   OBJECT_DIR = CMakeFiles\MCDReforged_By_CPP.dir
   OBJECT_FILE_DIR = CMakeFiles\MCDReforged_By_CPP.dir\source
   TARGET_COMPILE_PDB = CMakeFiles\MCDReforged_By_CPP.dir\
@@ -133,7 +133,7 @@ build CMakeFiles\MCDReforged_By_CPP.dir\source\processoutput.cpp.obj: CXX_COMPIL
 
 build CMakeFiles\MCDReforged_By_CPP.dir\source\pyplugin.cpp.obj: CXX_COMPILER__MCDReforged_By_CPP_RelWithDebInfo ..\..\..\source\pyplugin.cpp || cmake_object_order_depends_target_MCDReforged_By_CPP
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -MD -std:c++latest
-  INCLUDES = -I"c:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
+  INCLUDES = -I"d:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
   OBJECT_DIR = CMakeFiles\MCDReforged_By_CPP.dir
   OBJECT_FILE_DIR = CMakeFiles\MCDReforged_By_CPP.dir\source
   TARGET_COMPILE_PDB = CMakeFiles\MCDReforged_By_CPP.dir\
@@ -141,7 +141,7 @@ build CMakeFiles\MCDReforged_By_CPP.dir\source\pyplugin.cpp.obj: CXX_COMPILER__M
 
 build CMakeFiles\MCDReforged_By_CPP.dir\source\pytools.cpp.obj: CXX_COMPILER__MCDReforged_By_CPP_RelWithDebInfo ..\..\..\source\pytools.cpp || cmake_object_order_depends_target_MCDReforged_By_CPP
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -MD -std:c++latest
-  INCLUDES = -I"c:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
+  INCLUDES = -I"d:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
   OBJECT_DIR = CMakeFiles\MCDReforged_By_CPP.dir
   OBJECT_FILE_DIR = CMakeFiles\MCDReforged_By_CPP.dir\source
   TARGET_COMPILE_PDB = CMakeFiles\MCDReforged_By_CPP.dir\
@@ -149,7 +149,7 @@ build CMakeFiles\MCDReforged_By_CPP.dir\source\pytools.cpp.obj: CXX_COMPILER__MC
 
 build CMakeFiles\MCDReforged_By_CPP.dir\source\redirectstdio.cpp.obj: CXX_COMPILER__MCDReforged_By_CPP_RelWithDebInfo ..\..\..\source\redirectstdio.cpp || cmake_object_order_depends_target_MCDReforged_By_CPP
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -MD -std:c++latest
-  INCLUDES = -I"c:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
+  INCLUDES = -I"d:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
   OBJECT_DIR = CMakeFiles\MCDReforged_By_CPP.dir
   OBJECT_FILE_DIR = CMakeFiles\MCDReforged_By_CPP.dir\source
   TARGET_COMPILE_PDB = CMakeFiles\MCDReforged_By_CPP.dir\
@@ -157,7 +157,7 @@ build CMakeFiles\MCDReforged_By_CPP.dir\source\redirectstdio.cpp.obj: CXX_COMPIL
 
 build CMakeFiles\MCDReforged_By_CPP.dir\source\serverparser.cpp.obj: CXX_COMPILER__MCDReforged_By_CPP_RelWithDebInfo ..\..\..\source\serverparser.cpp || cmake_object_order_depends_target_MCDReforged_By_CPP
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -MD -std:c++latest
-  INCLUDES = -I"c:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
+  INCLUDES = -I"d:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
   OBJECT_DIR = CMakeFiles\MCDReforged_By_CPP.dir
   OBJECT_FILE_DIR = CMakeFiles\MCDReforged_By_CPP.dir\source
   TARGET_COMPILE_PDB = CMakeFiles\MCDReforged_By_CPP.dir\
@@ -165,7 +165,7 @@ build CMakeFiles\MCDReforged_By_CPP.dir\source\serverparser.cpp.obj: CXX_COMPILE
 
 build CMakeFiles\MCDReforged_By_CPP.dir\tinyxml2-8.0.0\tinystr.cpp.obj: CXX_COMPILER__MCDReforged_By_CPP_RelWithDebInfo ..\..\..\tinyxml2-8.0.0\tinystr.cpp || cmake_object_order_depends_target_MCDReforged_By_CPP
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -MD -std:c++latest
-  INCLUDES = -I"c:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
+  INCLUDES = -I"d:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
   OBJECT_DIR = CMakeFiles\MCDReforged_By_CPP.dir
   OBJECT_FILE_DIR = CMakeFiles\MCDReforged_By_CPP.dir\tinyxml2-8.0.0
   TARGET_COMPILE_PDB = CMakeFiles\MCDReforged_By_CPP.dir\
@@ -173,7 +173,7 @@ build CMakeFiles\MCDReforged_By_CPP.dir\tinyxml2-8.0.0\tinystr.cpp.obj: CXX_COMP
 
 build CMakeFiles\MCDReforged_By_CPP.dir\tinyxml2-8.0.0\tinyxml.cpp.obj: CXX_COMPILER__MCDReforged_By_CPP_RelWithDebInfo ..\..\..\tinyxml2-8.0.0\tinyxml.cpp || cmake_object_order_depends_target_MCDReforged_By_CPP
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -MD -std:c++latest
-  INCLUDES = -I"c:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
+  INCLUDES = -I"d:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
   OBJECT_DIR = CMakeFiles\MCDReforged_By_CPP.dir
   OBJECT_FILE_DIR = CMakeFiles\MCDReforged_By_CPP.dir\tinyxml2-8.0.0
   TARGET_COMPILE_PDB = CMakeFiles\MCDReforged_By_CPP.dir\
@@ -181,7 +181,7 @@ build CMakeFiles\MCDReforged_By_CPP.dir\tinyxml2-8.0.0\tinyxml.cpp.obj: CXX_COMP
 
 build CMakeFiles\MCDReforged_By_CPP.dir\tinyxml2-8.0.0\tinyxmlerror.cpp.obj: CXX_COMPILER__MCDReforged_By_CPP_RelWithDebInfo ..\..\..\tinyxml2-8.0.0\tinyxmlerror.cpp || cmake_object_order_depends_target_MCDReforged_By_CPP
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -MD -std:c++latest
-  INCLUDES = -I"c:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
+  INCLUDES = -I"d:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
   OBJECT_DIR = CMakeFiles\MCDReforged_By_CPP.dir
   OBJECT_FILE_DIR = CMakeFiles\MCDReforged_By_CPP.dir\tinyxml2-8.0.0
   TARGET_COMPILE_PDB = CMakeFiles\MCDReforged_By_CPP.dir\
@@ -189,7 +189,7 @@ build CMakeFiles\MCDReforged_By_CPP.dir\tinyxml2-8.0.0\tinyxmlerror.cpp.obj: CXX
 
 build CMakeFiles\MCDReforged_By_CPP.dir\tinyxml2-8.0.0\tinyxmlparser.cpp.obj: CXX_COMPILER__MCDReforged_By_CPP_RelWithDebInfo ..\..\..\tinyxml2-8.0.0\tinyxmlparser.cpp || cmake_object_order_depends_target_MCDReforged_By_CPP
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -MD -std:c++latest
-  INCLUDES = -I"c:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
+  INCLUDES = -I"d:\Program Files\Python38\include" -I..\..\..\. -I..\..\..\include -I..\..\..\tinyxml2-8.0.0
   OBJECT_DIR = CMakeFiles\MCDReforged_By_CPP.dir
   OBJECT_FILE_DIR = CMakeFiles\MCDReforged_By_CPP.dir\tinyxml2-8.0.0
   TARGET_COMPILE_PDB = CMakeFiles\MCDReforged_By_CPP.dir\
@@ -207,7 +207,7 @@ build MCDReforged_By_CPP.exe: CXX_EXECUTABLE_LINKER__MCDReforged_By_CPP_RelWithD
   FLAGS = /DWIN32 /D_WINDOWS /GR /EHsc /Zi /O2 /Ob1 /DNDEBUG -MD
   LINK_FLAGS = /machine:X86 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
-  LINK_PATH = -LIBPATH:c:\PROGRA~1\Python38\libs
+  LINK_PATH = -LIBPATH:d:\PROGRA~3\Python38\libs
   OBJECT_DIR = CMakeFiles\MCDReforged_By_CPP.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -221,7 +221,7 @@ build MCDReforged_By_CPP.exe: CXX_EXECUTABLE_LINKER__MCDReforged_By_CPP_RelWithD
 # Utility command for edit_cache
 
 build CMakeFiles\edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\竹子\source\repos\MCDReforged-By-CPP-Development-Team\MCDReforged_By_CPP\out\build\x64-Debug && "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  COMMAND = cmd.exe /C "cd /D C:\Users\34376\source\repos\MCDReforged-By-CPP-Development-Team\MCDReforged_By_CPP\MCDReforged_By_CPP\out\build\x64-Debug && "D:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -232,7 +232,7 @@ build edit_cache: phony CMakeFiles\edit_cache.util
 # Utility command for rebuild_cache
 
 build CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cmd.exe /C "cd /D C:\Users\竹子\source\repos\MCDReforged-By-CPP-Development-Team\MCDReforged_By_CPP\out\build\x64-Debug && "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SC:\Users\竹子\source\repos\MCDReforged-By-CPP-Development-Team\MCDReforged_By_CPP -BC:\Users\竹子\source\repos\MCDReforged-By-CPP-Development-Team\MCDReforged_By_CPP\out\build\x64-Debug"
+  COMMAND = cmd.exe /C "cd /D C:\Users\34376\source\repos\MCDReforged-By-CPP-Development-Team\MCDReforged_By_CPP\MCDReforged_By_CPP\out\build\x64-Debug && "D:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SC:\Users\34376\source\repos\MCDReforged-By-CPP-Development-Team\MCDReforged_By_CPP\MCDReforged_By_CPP -BC:\Users\34376\source\repos\MCDReforged-By-CPP-Development-Team\MCDReforged_By_CPP\MCDReforged_By_CPP\out\build\x64-Debug"
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -250,7 +250,7 @@ build MCDReforged_By_CPP: phony MCDReforged_By_CPP.exe
 # =============================================================================
 
 #############################################
-# Folder: C:/Users/竹子/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/out/build/x64-Debug
+# Folder: C:/Users/34376/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/MCDReforged_By_CPP/out/build/x64-Debug
 
 build all: phony MCDReforged_By_CPP.exe
 
@@ -261,14 +261,14 @@ build all: phony MCDReforged_By_CPP.exe
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | ..\..\..\CMakeLists.txt C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeCInformation.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeCXXInformation.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeGenericSystem.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeRCInformation.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\Platform\Windows.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\Platform\WindowsPaths.cmake CMakeCache.txt CMakeFiles\3.18.20081302-MSVC_2\CMakeCCompiler.cmake CMakeFiles\3.18.20081302-MSVC_2\CMakeCXXCompiler.cmake CMakeFiles\3.18.20081302-MSVC_2\CMakeRCCompiler.cmake CMakeFiles\3.18.20081302-MSVC_2\CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | ..\..\..\CMakeLists.txt CMakeCache.txt CMakeFiles\3.18.20081302-MSVC_2\CMakeCCompiler.cmake CMakeFiles\3.18.20081302-MSVC_2\CMakeCXXCompiler.cmake CMakeFiles\3.18.20081302-MSVC_2\CMakeRCCompiler.cmake CMakeFiles\3.18.20081302-MSVC_2\CMakeSystem.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeCInformation.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeCXXInformation.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeCommonLanguageInclude.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeGenericSystem.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeInitializeConfigs.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeLanguageInformation.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeRCInformation.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeSystemSpecificInformation.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeSystemSpecificInitialize.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\Compiler\CMakeCommonCompilerMacros.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\Compiler\MSVC-C.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\Compiler\MSVC-CXX.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\Platform\Windows-MSVC-C.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\Platform\Windows-MSVC-CXX.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\Platform\Windows-MSVC.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\Platform\Windows.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\Platform\WindowsPaths.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build ..\..\..\CMakeLists.txt C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeCInformation.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeCXXInformation.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeGenericSystem.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeRCInformation.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\Platform\Windows.cmake C$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\Platform\WindowsPaths.cmake CMakeCache.txt CMakeFiles\3.18.20081302-MSVC_2\CMakeCCompiler.cmake CMakeFiles\3.18.20081302-MSVC_2\CMakeCXXCompiler.cmake CMakeFiles\3.18.20081302-MSVC_2\CMakeRCCompiler.cmake CMakeFiles\3.18.20081302-MSVC_2\CMakeSystem.cmake: phony
+build ..\..\..\CMakeLists.txt CMakeCache.txt CMakeFiles\3.18.20081302-MSVC_2\CMakeCCompiler.cmake CMakeFiles\3.18.20081302-MSVC_2\CMakeCXXCompiler.cmake CMakeFiles\3.18.20081302-MSVC_2\CMakeRCCompiler.cmake CMakeFiles\3.18.20081302-MSVC_2\CMakeSystem.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeCInformation.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeCXXInformation.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeCommonLanguageInclude.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeGenericSystem.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeInitializeConfigs.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeLanguageInformation.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeRCInformation.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeSystemSpecificInformation.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\CMakeSystemSpecificInitialize.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\Compiler\CMakeCommonCompilerMacros.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\Compiler\MSVC-C.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\Compiler\MSVC-CXX.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\Platform\Windows-MSVC-C.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\Platform\Windows-MSVC-CXX.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\Platform\Windows-MSVC.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\Platform\Windows.cmake D$:\Program$ Files$ (x86)\Microsoft$ Visual$ Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.18\Modules\Platform\WindowsPaths.cmake: phony
 
 
 #############################################
