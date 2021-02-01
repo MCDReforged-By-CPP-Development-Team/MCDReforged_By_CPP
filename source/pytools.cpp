@@ -37,17 +37,11 @@ int Pytools::InstallPyLib(std::string Pylib)
 
 	dp(Pylib);
 	out.msg("准备安装Python库：" + Pylib, "MCDRCPP");
-	Sleep(1000);
-	dp("pip");
-	Sleep(1000);
-	dp("pip");
-	Sleep(1000);
-	dp("pip");
-	Sleep(1000);
-	dp("pip");
-	Sleep(1000);
-	dp("pip");
-	out.msg("Python库：" + Pylib + "安装完毕");
+	string cmd;
+	cmd = "cmd.exe /C pip install " + Pylib;
+	LPCSTR lpCmd = cmd.c_str();
+	WinExec(lpCmd, SW_NORMAL);
+
 	return 0;
 }
 
