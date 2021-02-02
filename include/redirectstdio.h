@@ -8,19 +8,20 @@
 using namespace std;
 
 #define NEWBUFFERSIZE 0x100
-
+#define BUFSIZE 4096
 
 #pragma region StructRedirectInformation
 
 struct RedirectInformation
 {
 
-	HANDLE hStdInRead = NULL;   //�ӽ����õ�stdin�Ķ����  
-	HANDLE hStdOutWrite = NULL; //�ӽ����õ�stdout��д���  
-	HANDLE hStdErrWrite = NULL; //�ӽ����õ�stderr��д���  
+	HANDLE hStdInRead = NULL;   //子进程用的stdin的读入端  
+	HANDLE hStdInWrite = NULL;  //主程序用的stdin的读入端 
 
-	HANDLE hStdInWrite = NULL;  //�������õ�stdin��д���  
-	HANDLE hStdOutRead = NULL;  //�������õ�stdout�Ķ����  
+	HANDLE hStdOutRead = NULL;  //主程序用的stdout的读入端  
+	HANDLE hStdOutWrite = NULL; //子进程用的stdout的写入端  
+
+	HANDLE hStdErrWrite = NULL; //子进程用的stderr的写入端  
 
 	RedirectInformation& operator=(RedirectInformation &a) {
 		if (this != &a)

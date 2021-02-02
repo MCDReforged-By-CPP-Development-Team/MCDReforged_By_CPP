@@ -3,11 +3,11 @@
 int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
 {
 
-    HANDLE hStdInRead = NULL;   //�ӽ����õ�stdin�Ķ����  
-    HANDLE hStdInWrite = NULL;  //�������õ�stdin�Ķ����  
-    HANDLE hStdOutRead = NULL;  //�������õ�stdout�Ķ����  
-    HANDLE hStdOutWrite = NULL; //�ӽ����õ�stdout��д���  
-    HANDLE hStdErrWrite = NULL; //�ӽ����õ�stderr��д���  
+    HANDLE hStdInRead = NULL;   //子进程用的stdin的读入端  
+    HANDLE hStdInWrite = NULL;  //主程序用的stdin的读入端 
+    HANDLE hStdOutRead = NULL;  //主程序用的stdout的读入端  
+    HANDLE hStdOutWrite = NULL; //子进程用的stdout的写入端  
+    HANDLE hStdErrWrite = NULL; //子进程用的stderr的写入端  
 
     ProcessServerOutput output;
     DWORD process_exit_code;
@@ -19,26 +19,26 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
 	string servercmdline = sets.GetString(servername);
 	string jvmpath = sets.GetString(javapath);
 
+    char out_buffer[4096];
+    DWORD dwRead;
+    int iRet = FALSE;
+
 	sa.nLength = sizeof(SECURITY_ATTRIBUTES);
-	sa.bInheritHandle = true;
+	sa.bInheritHandle = TRUE;
 	sa.lpSecurityDescriptor = NULL;
 
-    //����һ������stdin�Ĺܵ����õ�����HANDLE:  hStdInRead�����ӽ��̶������ݣ�hStdInWrite����������д������  
-    //����sa��һ��STARTUPINFO�ṹ�壬�����CreatePipe����˵��  
+    //产生一个用于stdin的管道，得到两个HANDLE:  hStdInRead用于子进程读出数据，hStdInWrite用于主程序写入数据  
+    //其中saAttr是一个STARTUPINFO结构体，定义见CreatePipe函数说明  
     if (!CreatePipe(&hStdInRead, &hStdInWrite, &sa, 0))
         return -1;
-    //����һ������stdout�Ĺܵ����õ�����HANDLE:  hStdInRead����������������ݣ�hStdInWrite�����ӳ���д������  
-    if (!CreatePipe(&hStdOutRead, &hStdOutWrite, &sa, 0))
-        return -1;
-
-    //����һ������stdout�Ĺܵ����õ�����HANDLE:  hStdInRead����������������ݣ�hStdInWrite�����ӳ���д������  
+    //产生一个用于stdout的管道，得到两个HANDLE:  hStdInRead用于主程序读出数据，hStdInWrite用于子程序写入数据  
     if (!CreatePipe(&hStdOutRead, &hStdOutWrite, &sa, 0))
         return -1;
 
     if (hStdInRead == NULL || hStdInWrite == NULL) return -1;
     if (hStdOutRead == NULL || hStdOutWrite == NULL) return -1;
 
-    string startupcmd;// = "cmd.exe /C ";
+    string startupcmd;
     startupcmd.append(jvmpath).append(" ").append(servercmdline);
 
     LPSTR startcmd = new char[startupcmd.length() + 1];
@@ -48,10 +48,9 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
 
     ZeroMemory(&si, sizeof(STARTUPINFO));
     si.cb = sizeof(STARTUPINFO);
-    si.dwFlags |= STARTF_USESHOWWINDOW;
-    si.dwFlags |= STARTF_USESTDHANDLES;
-    si.hStdOutput = hStdOutWrite;     //��˼�ǣ��ӽ��̵�stdout�����hStdOutWrite  
-    si.hStdError = hStdErrWrite;        //��˼�ǣ��ӽ��̵�stderr�����hStdErrWrite  
+    si.dwFlags = STARTF_USESHOWWINDOW | STARTF_USESTDHANDLES;
+    si.hStdOutput = hStdOutWrite;   //意思是：子进程的stdout输出到hStdOutWrite  
+    si.hStdError = hStdErrWrite;    //意思是：子进程的stderr输出到hStdErrWrite  
     si.hStdInput = hStdInRead;
 #ifdef DEBUG_FUNC_ENABLE
     si.wShowWindow = SW_SHOW;
@@ -61,7 +60,7 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
 
     // STARTF_USESHOWWINDOW:The wShowWindow member contains additional information.
     // STARTF_USESTDHANDLES:The hStdInput, hStdOutput, and hStdError members contain additional information.
-    // ��MSDN
+    // from MSDN
 
     BOOL bSuc = CreateProcess(NULL
         , startcmd
@@ -79,72 +78,72 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
         return -1;
     }
 
-    // �ȷ����ȡ�����ݿռ�
-    DWORD dwTotalSize = NEWBUFFERSIZE;                     // �ܿռ�
+    // 先分配读取的数据空间
+    DWORD dwTotalSize = NEWBUFFERSIZE;                     // 总空间
     char* pchReadBuffer = new char[dwTotalSize];
     memset(pchReadBuffer, 0, NEWBUFFERSIZE);
 
-    DWORD dwFreeSize = dwTotalSize;                 // ���ÿռ�
-
+    DWORD dwFreeSize = dwTotalSize;                 // 闲置空间
+    /*
     dp("entering dowhile");
     do {
         if (FALSE == bSuc) {
             break;
         }
 
-        // ���óɹ���־��֮��Ҫ�Ӷ�ȡ�Ƿ�ɹ�������
+        // 重置成功标志，之后要视读取是否成功来决定
         bSuc = FALSE;
 
         char chTmpReadBuffer[NEWBUFFERSIZE] = { 0 };
         DWORD dwbytesRead = 0;
 
-        // ���ڿ��ƶ�ȡƫ��
+        // 用于控制读取偏移
         OVERLAPPED Overlapped;
         memset(&Overlapped, 0, sizeof(OVERLAPPED));
 
         while (GetExitCodeProcess(pi.hProcess, &process_exit_code)) {
             
-            // ��ջ���
+            // 清空缓存
             memset(chTmpReadBuffer, 0, NEWBUFFERSIZE);
 
-            // ��ȡ�ܵ�
+            // 读取管道
             BOOL bRead = ReadFile(hStdInRead, chTmpReadBuffer, NEWBUFFERSIZE, &dwbytesRead, &Overlapped);
             DWORD dwLastError = GetLastError();
             dp("dwLastError : " + dwLastError);
 
             if (bRead) {
                 if (dwFreeSize >= dwbytesRead) {
-                    // ���пռ��㹻������£�����ȡ����Ϣ������ʣ�µĿռ���
+                    // 空闲空间足够的情况下，将读取的信息拷贝到剩下的空间中
                     memcpy_s(pchReadBuffer + Overlapped.Offset, dwFreeSize, chTmpReadBuffer, dwbytesRead);
-                    // ���¼����¿ռ�Ŀ��пռ�
+                    // 重新计算新空间的空闲空间
                     dwFreeSize -= dwbytesRead;
                 }
                 else {
-                    // ����Ҫ����Ŀռ��С
+                    // 计算要申请的空间大小
                     DWORD dwAddSize = (1 + dwbytesRead / NEWBUFFERSIZE) * NEWBUFFERSIZE;
-                    // �����¿ռ��С
+                    // 计算新空间大小
                     DWORD dwNewTotalSize = dwTotalSize + dwAddSize;
-                    // �����¿ռ�Ŀ��д�С
+                    // 计算新空间的空闲大小
                     dwFreeSize += dwAddSize;
-                    // �·�����ʴ�С�Ŀռ�
+                    // 新分配合适大小的空间
                     char* pTempBuffer = new char[dwNewTotalSize];
-                    // ����·���Ŀռ�
+                    // 清空新分配的空间
                     memset(pTempBuffer, 0, dwNewTotalSize);
-                    // ��ԭ�ռ����ݿ�������
+                    // 将原空间数据拷贝过来
                     memcpy_s(pTempBuffer, dwNewTotalSize, pchReadBuffer, dwTotalSize);
-                    // �����µĿռ��С
+                    // 保存新的空间大小
                     dwTotalSize = dwNewTotalSize;
-                    // ����ȡ����Ϣ���浽�µĿռ���
+                    // 将读取的信息保存到新的空间中
                     memcpy_s(pTempBuffer + Overlapped.Offset, dwFreeSize, chTmpReadBuffer, dwbytesRead);
-                    // ���¼����¿ռ�Ŀ��пռ�
+                    // 重新计算新空间的空闲空间
                     dwFreeSize -= dwbytesRead;
-                    // ��ԭ�ռ��ͷŵ�
+                    // 将原空间释放掉
                     delete[] pchReadBuffer;
-                    // ��ԭ�ռ�ָ��ָ���¿ռ��ַ
+                    // 将原空间指针指向新空间地址
                     pchReadBuffer = pTempBuffer;
                 }
 
-                // ��ȡ�ɹ����������ȡ������ƫ��
+                // 读取成功，则继续读取，设置偏移
                 Overlapped.Offset += dwbytesRead;
             }
             else {
@@ -165,6 +164,21 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
             }
         }
     } while (0);
+    */
+    GetExitCodeProcess(pi.hProcess, &process_exit_code);
+    dp((int)process_exit_code);
+    while (GetExitCodeProcess(pi.hProcess, &process_exit_code))
+    {
+        //用WriteFile，从hStdOutRead读出子进程stdout输出的数据，数据结果在out_buffer中，长度为dwRead  
+        iRet = ReadFile(hStdOutRead, out_buffer, BUFSIZE, &dwRead, NULL);
+        if ((iRet) && (dwRead != 0))  //如果成功了，且长度>0  
+        {
+            dp("now we can process output");
+            output.ProcessOutput(out_buffer);
+        }
+        //如果子进程结束，退出循环  
+        if (process_exit_code != STILL_ACTIVE) break;
+    }
 
     delete[] pchReadBuffer;
     delete[] startcmd;
@@ -178,22 +192,18 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
     inf.hStdInWrite = hStdInWrite;
     inf.hStdOutRead = hStdOutRead;
     inf.hStdOutWrite = hStdOutWrite;
-    inf.pi = pi;
 
     return bSuc;
-}
-//�˺������������ִ���Դ�� https://blog.csdn.net/breaksoftware/article/details/8595734 , https://blog.csdn.net/dicuzhaoqin8950/article/details/102229723 ͬʱ��л����
+}   //此函数部分代码来自 https://blog.csdn.net/breaksoftware/article/details/8595734 , https://blog.csdn.net/dicuzhaoqin8950/article/details/102229723 同时感谢作者
 
 int WriteToPipe(HANDLE hWrite, char *in_buffer, DWORD dwSize) {
     DWORD dwWritten;
     int iRet = FALSE;
 
-    //��WriteFile����hStdInWriteд�����ݣ�������in_buffer�У�����ΪdwSize  
+    //用WriteFile，从hStdInWrite写入数据，数据在in_buffer中，长度为dwSize  
     iRet = WriteFile(hWrite, in_buffer, dwSize, &dwWritten, NULL);
     return iRet;
 }
-
-
 
 int stdfuncallconv CloseRedirect(PREDIRECT_INFORMATION priInformation, PINT TerminateProcessReturn)
 {
