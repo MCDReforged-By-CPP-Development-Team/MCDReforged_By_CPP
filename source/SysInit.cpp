@@ -52,8 +52,10 @@ int stdfuncallconv Initialize(){
     dp(GlobalSettings.GetString(servername));
     dp(GlobalSettings.GetString(javapath));
 #endif
+    RedirectInformation inf;
 
-    auto openserverret = OpenServerAndRedirectIO();
+    auto openserverret = OpenServerAndRedirectIO(&inf);
+    CloseRedirect(&inf);
     return 0;
 }
 

@@ -6,7 +6,7 @@ HANDLE hStdOutRead = NULL;  //主程序用的stdout的读入端
 HANDLE hStdOutWrite = NULL; //子进程用的stdout的写入端  
 HANDLE hStdErrWrite = NULL; //子进程用的stderr的写入端  
 
-int stdfuncallconv OpenServerAndRedirectIO()
+int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
 {
     ProcessServerOutput output;
     DWORD process_exit_code;
@@ -97,7 +97,7 @@ int stdfuncallconv OpenServerAndRedirectIO()
         memset(&Overlapped, 0, sizeof(OVERLAPPED));
 
         while (GetExitCodeProcess(pi.hProcess, &process_exit_code)) {
-
+            
             // 清空缓存
             memset(chTmpReadBuffer, 0, NEWBUFFERSIZE);
 
@@ -164,24 +164,46 @@ int stdfuncallconv OpenServerAndRedirectIO()
     delete[] startcmd;
     startcmd = NULL;
     pchReadBuffer = NULL;
+    RedirectInformation inf;
+    inf = *priInformation;
+
+    inf.hStdErrWrite = hStdErrWrite;
+    inf.hStdInRead = hStdInRead;
+    inf.hStdInWrite = hStdInWrite;
+    inf.hStdOutRead = hStdOutRead;
+    inf.hStdOutWrite = hStdOutWrite;
+    /*
     CloseHandle(hStdErrWrite);
     CloseHandle(hStdInRead);
     CloseHandle(hStdInWrite);
     CloseHandle(hStdOutRead);
     CloseHandle(hStdOutWrite);
+    */
     CloseHandle(pi.hProcess);
     CloseHandle(pi.hThread);
 
     return bSuc;
 }
+//此函数（↑）部分代码源于 https://blog.csdn.net/breaksoftware/article/details/8595734 , https://blog.csdn.net/dicuzhaoqin8950/article/details/102229723 同时感谢作者
 
-int WriteToPipe(char *in_buffer, DWORD dwSize) {
+int WriteToPipe(HANDLE hWrite, char *in_buffer, DWORD dwSize) {
     DWORD dwWritten;
     int iRet = FALSE;
 
     //用WriteFile，从hStdInWrite写入数据，数据在in_buffer中，长度为dwSize  
-    iRet = WriteFile(hStdInWrite, in_buffer, dwSize, &dwWritten, NULL);
+    iRet = WriteFile(hWrite, in_buffer, dwSize, &dwWritten, NULL);
     return iRet;
 }
 
-//此函数部分代码源于 https://blog.csdn.net/breaksoftware/article/details/8595734 , https://blog.csdn.net/dicuzhaoqin8950/article/details/102229723 同时感谢作者
+
+
+int stdfuncallconv CloseRedirect(PREDIRECT_INFORMATION priInformation)
+{
+    RedirectInformation inf = *priInformation;
+    CloseHandle(inf.hStdErrWrite);
+    CloseHandle(inf.hStdInRead);
+    CloseHandle(inf.hStdInWrite);
+    CloseHandle(inf.hStdOutRead);
+    CloseHandle(inf.hStdOutWrite);
+
+}
