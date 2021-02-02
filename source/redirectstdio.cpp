@@ -1,13 +1,15 @@
 #include"redirectstdio.h"
 
-HANDLE hStdInRead = NULL;   //子进程用的stdin的读入端  
-HANDLE hStdInWrite = NULL;  //主程序用的stdin的读入端  
-HANDLE hStdOutRead = NULL;  //主程序用的stdout的读入端  
-HANDLE hStdOutWrite = NULL; //子进程用的stdout的写入端  
-HANDLE hStdErrWrite = NULL; //子进程用的stderr的写入端  
 
 int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
 {
+
+    HANDLE hStdInRead = NULL;   //子进程用的stdin的读入端  
+    HANDLE hStdInWrite = NULL;  //主程序用的stdin的读入端  
+    HANDLE hStdOutRead = NULL;  //主程序用的stdout的读入端  
+    HANDLE hStdOutWrite = NULL; //子进程用的stdout的写入端  
+    HANDLE hStdErrWrite = NULL; //子进程用的stderr的写入端  
+
     ProcessServerOutput output;
     DWORD process_exit_code;
 	Settings sets;
