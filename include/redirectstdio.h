@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include<Windows.h>
 #include"common.h"
 #include"cfgfile.h"
@@ -9,29 +9,46 @@ using namespace std;
 
 #define NEWBUFFERSIZE 0x100
 
-struct RedirectInformation;
-
-typedef RedirectInformation REDIRECT_INFORMATION;
-typedef RedirectInformation* PREDIRECT_INFORMATION;
-
-int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation);
-int stdfuncallconv CloseRedirect(PREDIRECT_INFORMATION priInformation, PINT TerminateProcessReturn);
 
 #pragma region StructRedirectInformation
 
 struct RedirectInformation
 {
 
-	HANDLE hStdInRead = NULL;   //×Ó½ø³ÌÓÃµÄstdinµÄ¶ÁÈë¶Ë  
-	HANDLE hStdOutWrite = NULL; //×Ó½ø³ÌÓÃµÄstdoutµÄÐ´Èë¶Ë  
-	HANDLE hStdErrWrite = NULL; //×Ó½ø³ÌÓÃµÄstderrµÄÐ´Èë¶Ë  
+	HANDLE hStdInRead = NULL;   //ï¿½Ó½ï¿½ï¿½ï¿½ï¿½Ãµï¿½stdinï¿½Ä¶ï¿½ï¿½ï¿½ï¿½  
+	HANDLE hStdOutWrite = NULL; //ï¿½Ó½ï¿½ï¿½ï¿½ï¿½Ãµï¿½stdoutï¿½ï¿½Ð´ï¿½ï¿½ï¿½  
+	HANDLE hStdErrWrite = NULL; //ï¿½Ó½ï¿½ï¿½ï¿½ï¿½Ãµï¿½stderrï¿½ï¿½Ð´ï¿½ï¿½ï¿½  
 
-	HANDLE hStdInWrite = NULL;  //Ö÷³ÌÐòÓÃµÄstdinµÄÐ´Èë¶Ë  
-	HANDLE hStdOutRead = NULL;  //Ö÷³ÌÐòÓÃµÄstdoutµÄ¶ÁÈë¶Ë  
+	HANDLE hStdInWrite = NULL;  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½stdinï¿½ï¿½Ð´ï¿½ï¿½ï¿½  
+	HANDLE hStdOutRead = NULL;  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½stdoutï¿½Ä¶ï¿½ï¿½ï¿½ï¿½  
 
-	PROCESS_INFORMATION pi;
+	RedirectInformation& operator=(RedirectInformation &a) {
+		if (this != &a)
+		{
+			this->hStdErrWrite = a.hStdErrWrite;
+			this->hStdInRead = a.hStdInRead;
+			this->hStdInWrite = a.hStdInWrite;
+			this->hStdOutRead = a.hStdOutRead;
+			this->hStdOutWrite = a.hStdOutWrite;
+			return *this;
+		}
+		else
+		{
+			exception e;
+			throw e;
+		}
+	}
 };
 
 #pragma endregion
 
+
+typedef RedirectInformation REDIRECT_INFORMATION;
+
+
+
+typedef REDIRECT_INFORMATION *PREDIRECT_INFORMATION;
+
+int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation);
+int stdfuncallconv CloseRedirect(PREDIRECT_INFORMATION priInformation);
 

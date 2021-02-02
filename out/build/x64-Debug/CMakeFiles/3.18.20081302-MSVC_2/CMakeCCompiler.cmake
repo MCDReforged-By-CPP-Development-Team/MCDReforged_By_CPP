@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 set(CMAKE_C_COMPILER "D:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Tools/MSVC/14.28.29333/bin/Hostx64/x86/cl.exe")
 set(CMAKE_C_COMPILER_ARG1 "")
 set(CMAKE_C_COMPILER_ID "MSVC")
 set(CMAKE_C_COMPILER_VERSION "19.28.29335.0")
+=======
+set(CMAKE_C_COMPILER "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Tools/MSVC/14.28.29333/bin/Hostx64/x86/cl.exe")
+set(CMAKE_C_COMPILER_ARG1 "")
+set(CMAKE_C_COMPILER_ID "MSVC")
+set(CMAKE_C_COMPILER_VERSION "19.28.29336.0")
+>>>>>>> 9c5929d87ea17f813566f9c8e33136095e27afa0
 set(CMAKE_C_COMPILER_VERSION_INTERNAL "")
 set(CMAKE_C_COMPILER_WRAPPER "")
 set(CMAKE_C_STANDARD_COMPUTED_DEFAULT "90")
@@ -18,12 +25,21 @@ set(CMAKE_C_COMPILER_ARCHITECTURE_ID X86)
 
 set(MSVC_C_ARCHITECTURE_ID X86)
 
+<<<<<<< HEAD
 set(CMAKE_AR "D:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Tools/MSVC/14.28.29333/bin/Hostx64/x86/lib.exe")
 set(CMAKE_C_COMPILER_AR "")
 set(CMAKE_RANLIB "")
 set(CMAKE_C_COMPILER_RANLIB "")
 set(CMAKE_LINKER "D:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Tools/MSVC/14.28.29333/bin/Hostx64/x86/link.exe")
 set(CMAKE_MT "C:/Program Files (x86)/Windows Kits/10/bin/10.0.19041.0/x64/mt.exe")
+=======
+set(CMAKE_AR "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Tools/MSVC/14.28.29333/bin/Hostx64/x86/lib.exe")
+set(CMAKE_C_COMPILER_AR "")
+set(CMAKE_RANLIB "")
+set(CMAKE_C_COMPILER_RANLIB "")
+set(CMAKE_LINKER "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Tools/MSVC/14.28.29333/bin/Hostx64/x86/link.exe")
+set(CMAKE_MT "C:/Program Files (x86)/Windows Kits/10/bin/10.0.18362.0/x64/mt.exe")
+>>>>>>> 9c5929d87ea17f813566f9c8e33136095e27afa0
 set(CMAKE_COMPILER_IS_GNUCC )
 set(CMAKE_C_COMPILER_LOADED 1)
 set(CMAKE_C_COMPILER_WORKS TRUE)

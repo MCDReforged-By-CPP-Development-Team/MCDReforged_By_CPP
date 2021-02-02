@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 # Install script for directory: C:/Users/34376/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/MCDReforged_By_CPP
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
   set(CMAKE_INSTALL_PREFIX "C:/Users/34376/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/MCDReforged_By_CPP/out/install/x64-Debug")
+=======
+# Install script for directory: C:/Users/竹子/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP
+
+# Set the install prefix
+if(NOT DEFINED CMAKE_INSTALL_PREFIX)
+  set(CMAKE_INSTALL_PREFIX "C:/Users/竹子/Source/Repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/out/install/x64-Debug")
+>>>>>>> 9c5929d87ea17f813566f9c8e33136095e27afa0
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -40,5 +48,9 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
+<<<<<<< HEAD
 file(WRITE "C:/Users/34376/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/MCDReforged_By_CPP/out/build/x64-Debug/${CMAKE_INSTALL_MANIFEST}"
+=======
+file(WRITE "C:/Users/竹子/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/out/build/x64-Debug/${CMAKE_INSTALL_MANIFEST}"
+>>>>>>> 9c5929d87ea17f813566f9c8e33136095e27afa0
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

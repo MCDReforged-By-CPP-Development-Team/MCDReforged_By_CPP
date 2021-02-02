@@ -1,2 +1,6 @@
 #pragma code_page(65001)
+<<<<<<< HEAD
 1 /* CREATEPROCESS_MANIFEST_RESOURCE_ID */ 24 /* RT_MANIFEST */ "C:/Users/34376/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/MCDReforged_By_CPP/out/build/x64-Debug/CMakeFiles/MCDReforged_By_CPP.dir/embed.manifest"
+=======
+1 /* CREATEPROCESS_MANIFEST_RESOURCE_ID */ 24 /* RT_MANIFEST */ "C:/Users/竹子/source/repos/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/out/build/x64-Debug/CMakeFiles/MCDReforged_By_CPP.dir/embed.manifest"
+>>>>>>> 9c5929d87ea17f813566f9c8e33136095e27afa0

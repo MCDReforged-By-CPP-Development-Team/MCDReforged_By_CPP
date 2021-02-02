@@ -1,13 +1,13 @@
-#include"redirectstdio.h"
+ï»¿#include"redirectstdio.h"
 
 int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
 {
 
-    HANDLE hStdInRead = NULL;   //×Ó½ø³ÌÓÃµÄstdinµÄ¶ÁÈë¶Ë  
-    HANDLE hStdInWrite = NULL;  //Ö÷³ÌÐòÓÃµÄstdinµÄ¶ÁÈë¶Ë  
-    HANDLE hStdOutRead = NULL;  //Ö÷³ÌÐòÓÃµÄstdoutµÄ¶ÁÈë¶Ë  
-    HANDLE hStdOutWrite = NULL; //×Ó½ø³ÌÓÃµÄstdoutµÄÐ´Èë¶Ë  
-    HANDLE hStdErrWrite = NULL; //×Ó½ø³ÌÓÃµÄstderrµÄÐ´Èë¶Ë  
+    HANDLE hStdInRead = NULL;   //ï¿½Ó½ï¿½ï¿½ï¿½ï¿½Ãµï¿½stdinï¿½Ä¶ï¿½ï¿½ï¿½ï¿½  
+    HANDLE hStdInWrite = NULL;  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½stdinï¿½Ä¶ï¿½ï¿½ï¿½ï¿½  
+    HANDLE hStdOutRead = NULL;  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½stdoutï¿½Ä¶ï¿½ï¿½ï¿½ï¿½  
+    HANDLE hStdOutWrite = NULL; //ï¿½Ó½ï¿½ï¿½ï¿½ï¿½Ãµï¿½stdoutï¿½ï¿½Ð´ï¿½ï¿½ï¿½  
+    HANDLE hStdErrWrite = NULL; //ï¿½Ó½ï¿½ï¿½ï¿½ï¿½Ãµï¿½stderrï¿½ï¿½Ð´ï¿½ï¿½ï¿½  
 
     ProcessServerOutput output;
     DWORD process_exit_code;
@@ -23,15 +23,15 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
 	sa.bInheritHandle = true;
 	sa.lpSecurityDescriptor = NULL;
 
-    //²úÉúÒ»¸öÓÃÓÚstdinµÄ¹ÜµÀ£¬µÃµ½Á½¸öHANDLE:  hStdInReadÓÃÓÚ×Ó½ø³Ì¶Á³öÊý¾Ý£¬hStdInWriteÓÃÓÚÖ÷³ÌÐòÐ´ÈëÊý¾Ý  
-    //ÆäÖÐsaÊÇÒ»¸öSTARTUPINFO½á¹¹Ìå£¬¶¨Òå¼ûCreatePipeº¯ÊýËµÃ÷  
+    //ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½stdinï¿½Ä¹Üµï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½HANDLE:  hStdInReadï¿½ï¿½ï¿½ï¿½ï¿½Ó½ï¿½ï¿½Ì¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½hStdInWriteï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  
+    //ï¿½ï¿½ï¿½ï¿½saï¿½ï¿½Ò»ï¿½ï¿½STARTUPINFOï¿½á¹¹ï¿½å£¬ï¿½ï¿½ï¿½ï¿½ï¿½CreatePipeï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½  
     if (!CreatePipe(&hStdInRead, &hStdInWrite, &sa, 0))
         return -1;
-    //²úÉúÒ»¸öÓÃÓÚstdoutµÄ¹ÜµÀ£¬µÃµ½Á½¸öHANDLE:  hStdInReadÓÃÓÚÖ÷³ÌÐò¶Á³öÊý¾Ý£¬hStdInWriteÓÃÓÚ×Ó³ÌÐòÐ´ÈëÊý¾Ý  
+    //ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½stdoutï¿½Ä¹Üµï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½HANDLE:  hStdInReadï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½hStdInWriteï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  
     if (!CreatePipe(&hStdOutRead, &hStdOutWrite, &sa, 0))
         return -1;
 
-    //²úÉúÒ»¸öÓÃÓÚstdoutµÄ¹ÜµÀ£¬µÃµ½Á½¸öHANDLE:  hStdInReadÓÃÓÚÖ÷³ÌÐò¶Á³öÊý¾Ý£¬hStdInWriteÓÃÓÚ×Ó³ÌÐòÐ´ÈëÊý¾Ý  
+    //ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½stdoutï¿½Ä¹Üµï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½HANDLE:  hStdInReadï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½hStdInWriteï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  
     if (!CreatePipe(&hStdOutRead, &hStdOutWrite, &sa, 0))
         return -1;
 
@@ -50,8 +50,8 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
     si.cb = sizeof(STARTUPINFO);
     si.dwFlags |= STARTF_USESHOWWINDOW;
     si.dwFlags |= STARTF_USESTDHANDLES;
-    si.hStdOutput = hStdOutWrite;     //ÒâË¼ÊÇ£º×Ó½ø³ÌµÄstdoutÊä³öµ½hStdOutWrite  
-    si.hStdError = hStdErrWrite;        //ÒâË¼ÊÇ£º×Ó½ø³ÌµÄstderrÊä³öµ½hStdErrWrite  
+    si.hStdOutput = hStdOutWrite;     //ï¿½ï¿½Ë¼ï¿½Ç£ï¿½ï¿½Ó½ï¿½ï¿½Ìµï¿½stdoutï¿½ï¿½ï¿½ï¿½ï¿½hStdOutWrite  
+    si.hStdError = hStdErrWrite;        //ï¿½ï¿½Ë¼ï¿½Ç£ï¿½ï¿½Ó½ï¿½ï¿½Ìµï¿½stderrï¿½ï¿½ï¿½ï¿½ï¿½hStdErrWrite  
     si.hStdInput = hStdInRead;
 #ifdef DEBUG_FUNC_ENABLE
     si.wShowWindow = SW_SHOW;
@@ -61,7 +61,7 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
 
     // STARTF_USESHOWWINDOW:The wShowWindow member contains additional information.
     // STARTF_USESTDHANDLES:The hStdInput, hStdOutput, and hStdError members contain additional information.
-    // ×ÔMSDN
+    // ï¿½ï¿½MSDN
 
     BOOL bSuc = CreateProcess(NULL
         , startcmd
@@ -79,12 +79,12 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
         return -1;
     }
 
-    // ÏÈ·ÖÅä¶ÁÈ¡µÄÊý¾Ý¿Õ¼ä
-    DWORD dwTotalSize = NEWBUFFERSIZE;                     // ×Ü¿Õ¼ä
+    // ï¿½È·ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿Õ¼ï¿½
+    DWORD dwTotalSize = NEWBUFFERSIZE;                     // ï¿½Ü¿Õ¼ï¿½
     char* pchReadBuffer = new char[dwTotalSize];
     memset(pchReadBuffer, 0, NEWBUFFERSIZE);
 
-    DWORD dwFreeSize = dwTotalSize;                 // ÏÐÖÃ¿Õ¼ä
+    DWORD dwFreeSize = dwTotalSize;                 // ï¿½ï¿½ï¿½Ã¿Õ¼ï¿½
 
     dp("entering dowhile");
     do {
@@ -92,59 +92,59 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
             break;
         }
 
-        // ÖØÖÃ³É¹¦±êÖ¾£¬Ö®ºóÒªÊÓ¶ÁÈ¡ÊÇ·ñ³É¹¦À´¾ö¶¨
+        // ï¿½ï¿½ï¿½Ã³É¹ï¿½ï¿½ï¿½Ö¾ï¿½ï¿½Ö®ï¿½ï¿½Òªï¿½Ó¶ï¿½È¡ï¿½Ç·ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         bSuc = FALSE;
 
         char chTmpReadBuffer[NEWBUFFERSIZE] = { 0 };
         DWORD dwbytesRead = 0;
 
-        // ÓÃÓÚ¿ØÖÆ¶ÁÈ¡Æ«ÒÆ
+        // ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½Æ¶ï¿½È¡Æ«ï¿½ï¿½
         OVERLAPPED Overlapped;
         memset(&Overlapped, 0, sizeof(OVERLAPPED));
 
         while (GetExitCodeProcess(pi.hProcess, &process_exit_code)) {
             
-            // Çå¿Õ»º´æ
+            // ï¿½ï¿½Õ»ï¿½ï¿½ï¿½
             memset(chTmpReadBuffer, 0, NEWBUFFERSIZE);
 
-            // ¶ÁÈ¡¹ÜµÀ
+            // ï¿½ï¿½È¡ï¿½Üµï¿½
             BOOL bRead = ReadFile(hStdInRead, chTmpReadBuffer, NEWBUFFERSIZE, &dwbytesRead, &Overlapped);
             DWORD dwLastError = GetLastError();
             dp("dwLastError : " + dwLastError);
 
             if (bRead) {
                 if (dwFreeSize >= dwbytesRead) {
-                    // ¿ÕÏÐ¿Õ¼ä×ã¹»µÄÇé¿öÏÂ£¬½«¶ÁÈ¡µÄÐÅÏ¢¿½±´µ½Ê£ÏÂµÄ¿Õ¼äÖÐ
+                    // ï¿½ï¿½ï¿½Ð¿Õ¼ï¿½ï¿½ã¹»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â£ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê£ï¿½ÂµÄ¿Õ¼ï¿½ï¿½ï¿½
                     memcpy_s(pchReadBuffer + Overlapped.Offset, dwFreeSize, chTmpReadBuffer, dwbytesRead);
-                    // ÖØÐÂ¼ÆËãÐÂ¿Õ¼äµÄ¿ÕÏÐ¿Õ¼ä
+                    // ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½Â¿Õ¼ï¿½Ä¿ï¿½ï¿½Ð¿Õ¼ï¿½
                     dwFreeSize -= dwbytesRead;
                 }
                 else {
-                    // ¼ÆËãÒªÉêÇëµÄ¿Õ¼ä´óÐ¡
+                    // ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½Ä¿Õ¼ï¿½ï¿½Ð¡
                     DWORD dwAddSize = (1 + dwbytesRead / NEWBUFFERSIZE) * NEWBUFFERSIZE;
-                    // ¼ÆËãÐÂ¿Õ¼ä´óÐ¡
+                    // ï¿½ï¿½ï¿½ï¿½ï¿½Â¿Õ¼ï¿½ï¿½Ð¡
                     DWORD dwNewTotalSize = dwTotalSize + dwAddSize;
-                    // ¼ÆËãÐÂ¿Õ¼äµÄ¿ÕÏÐ´óÐ¡
+                    // ï¿½ï¿½ï¿½ï¿½ï¿½Â¿Õ¼ï¿½Ä¿ï¿½ï¿½Ð´ï¿½Ð¡
                     dwFreeSize += dwAddSize;
-                    // ÐÂ·ÖÅäºÏÊÊ´óÐ¡µÄ¿Õ¼ä
+                    // ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½Ê´ï¿½Ð¡ï¿½Ä¿Õ¼ï¿½
                     char* pTempBuffer = new char[dwNewTotalSize];
-                    // Çå¿ÕÐÂ·ÖÅäµÄ¿Õ¼ä
+                    // ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½Ä¿Õ¼ï¿½
                     memset(pTempBuffer, 0, dwNewTotalSize);
-                    // ½«Ô­¿Õ¼äÊý¾Ý¿½±´¹ýÀ´
+                    // ï¿½ï¿½Ô­ï¿½Õ¼ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                     memcpy_s(pTempBuffer, dwNewTotalSize, pchReadBuffer, dwTotalSize);
-                    // ±£´æÐÂµÄ¿Õ¼ä´óÐ¡
+                    // ï¿½ï¿½ï¿½ï¿½ï¿½ÂµÄ¿Õ¼ï¿½ï¿½Ð¡
                     dwTotalSize = dwNewTotalSize;
-                    // ½«¶ÁÈ¡µÄÐÅÏ¢±£´æµ½ÐÂµÄ¿Õ¼äÖÐ
+                    // ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½æµ½ï¿½ÂµÄ¿Õ¼ï¿½ï¿½ï¿½
                     memcpy_s(pTempBuffer + Overlapped.Offset, dwFreeSize, chTmpReadBuffer, dwbytesRead);
-                    // ÖØÐÂ¼ÆËãÐÂ¿Õ¼äµÄ¿ÕÏÐ¿Õ¼ä
+                    // ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½Â¿Õ¼ï¿½Ä¿ï¿½ï¿½Ð¿Õ¼ï¿½
                     dwFreeSize -= dwbytesRead;
-                    // ½«Ô­¿Õ¼äÊÍ·Åµô
+                    // ï¿½ï¿½Ô­ï¿½Õ¼ï¿½ï¿½Í·Åµï¿½
                     delete[] pchReadBuffer;
-                    // ½«Ô­¿Õ¼äÖ¸ÕëÖ¸ÏòÐÂ¿Õ¼äµØÖ·
+                    // ï¿½ï¿½Ô­ï¿½Õ¼ï¿½Ö¸ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½Â¿Õ¼ï¿½ï¿½Ö·
                     pchReadBuffer = pTempBuffer;
                 }
 
-                // ¶ÁÈ¡³É¹¦£¬Ôò¼ÌÐø¶ÁÈ¡£¬ÉèÖÃÆ«ÒÆ
+                // ï¿½ï¿½È¡ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ«ï¿½ï¿½
                 Overlapped.Offset += dwbytesRead;
             }
             else {
@@ -182,13 +182,13 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
 
     return bSuc;
 }
-//´Ëº¯Êý£¨¡ü£©²¿·Ö´úÂëÔ´ÓÚ https://blog.csdn.net/breaksoftware/article/details/8595734 , https://blog.csdn.net/dicuzhaoqin8950/article/details/102229723 Í¬Ê±¸ÐÐ»×÷Õß
+//ï¿½Ëºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ https://blog.csdn.net/breaksoftware/article/details/8595734 , https://blog.csdn.net/dicuzhaoqin8950/article/details/102229723 Í¬Ê±ï¿½ï¿½Ð»ï¿½ï¿½ï¿½ï¿½
 
 int WriteToPipe(HANDLE hWrite, char *in_buffer, DWORD dwSize) {
     DWORD dwWritten;
     int iRet = FALSE;
 
-    //ÓÃWriteFile£¬´ÓhStdInWriteÐ´ÈëÊý¾Ý£¬Êý¾ÝÔÚin_bufferÖÐ£¬³¤¶ÈÎªdwSize  
+    //ï¿½ï¿½WriteFileï¿½ï¿½ï¿½ï¿½hStdInWriteÐ´ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½in_bufferï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½ÎªdwSize  
     iRet = WriteFile(hWrite, in_buffer, dwSize, &dwWritten, NULL);
     return iRet;
 }
@@ -201,13 +201,10 @@ int stdfuncallconv CloseRedirect(PREDIRECT_INFORMATION priInformation, PINT Term
     UINT exitcode;
 
     RedirectInformation inf = *priInformation;
-
-    iRet = CloseHandle(inf.hStdErrWrite);
-    iRet = CloseHandle(inf.hStdInRead);
-    iRet = CloseHandle(inf.hStdInWrite);
-    iRet = CloseHandle(inf.hStdOutRead);
-    iRet = CloseHandle(inf.hStdOutWrite);
-    *TerminateProcessReturn = (int)TerminateProcess(inf.pi.hProcess, exitcode);
-
-    return iRet;
+    CloseHandle(inf.hStdErrWrite);
+    CloseHandle(inf.hStdInRead);
+    CloseHandle(inf.hStdInWrite);
+    CloseHandle(inf.hStdOutRead);
+    CloseHandle(inf.hStdOutWrite);
+    return 1;
 }

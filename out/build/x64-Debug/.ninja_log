@@ -1,4 +1,5 @@
 # ninja log v5
+<<<<<<< HEAD
 161	734	633934209	CMakeFiles/MCDReforged_By_CPP.dir/source/messagesys.cpp.obj	82f6749c80197b7e
 149	1312	633934209	CMakeFiles/MCDReforged_By_CPP.dir/source/pyplugin.cpp.obj	9e475726cad5d8e3
 60	1332	633934209	CMakeFiles/MCDReforged_By_CPP.dir/source/cmdsys.cpp.obj	a7eea2692c12c8dc
@@ -28,3 +29,25 @@
 16	2322	633961592	CMakeFiles/MCDReforged_By_CPP.dir/source/redirectstdio.cpp.obj	697c23350ed41510
 1	2327	633961592	CMakeFiles/MCDReforged_By_CPP.dir/source/SysInit.cpp.obj	420fbd73f4f2bbb4
 2330	2828	633961592	MCDReforged_By_CPP.exe	1ece7b64442c5d13
+=======
+97	4040	633947831	CMakeFiles/MCDReforged_By_CPP.dir/source/cmdsys.cpp.obj	cf0c7a98fbd956d0
+80	5046	633947832	CMakeFiles/MCDReforged_By_CPP.dir/source/debugprint.cpp.obj	155d9313dabce4e
+69	9208	633947836	CMakeFiles/MCDReforged_By_CPP.dir/source/colorlog.cpp.obj	c9b1f49ecb1d8311
+54	10080	633947837	CMakeFiles/MCDReforged_By_CPP.dir/source/cppplugin.cpp.obj	7176470691117804
+2	12090	633947839	CMakeFiles/MCDReforged_By_CPP.dir/source/cfgfile.cpp.obj	e40e8d243de59f28
+34	13857	633947841	CMakeFiles/MCDReforged_By_CPP.dir/source/SysInit.cpp.obj	562bc2633614cbbd
+4041	14955	633947842	CMakeFiles/MCDReforged_By_CPP.dir/source/logsys.cpp.obj	15a726b9e74ed152
+14957	15398	633947842	CMakeFiles/MCDReforged_By_CPP.dir/source/messagesys.cpp.obj	514b1b8874b7e80b
+10082	15850	633947843	CMakeFiles/MCDReforged_By_CPP.dir/source/pyplugin.cpp.obj	e27e99bed31f5735
+15398	16136	633947843	CMakeFiles/MCDReforged_By_CPP.dir/tinyxml2-8.0.0/tinystr.cpp.obj	ec9d55ab5ac92522
+5047	17230	633947844	CMakeFiles/MCDReforged_By_CPP.dir/source/mainprogram.cpp.obj	a801ae1cacf650f1
+16136	17795	633947845	CMakeFiles/MCDReforged_By_CPP.dir/tinyxml2-8.0.0/tinyxml.cpp.obj	cd6089d1e61b3099
+9218	18222	633947845	CMakeFiles/MCDReforged_By_CPP.dir/source/execscript.cpp.obj	f2816f653462ec44
+17795	18865	633947846	CMakeFiles/MCDReforged_By_CPP.dir/tinyxml2-8.0.0/tinyxmlerror.cpp.obj	c14a9875f2f18b80
+18224	19586	633947846	CMakeFiles/MCDReforged_By_CPP.dir/tinyxml2-8.0.0/tinyxmlparser.cpp.obj	afabe51e17c2012
+15852	21036	633947848	CMakeFiles/MCDReforged_By_CPP.dir/source/serverparser.cpp.obj	d6ec1cccb919b6cf
+13861	21737	633947849	CMakeFiles/MCDReforged_By_CPP.dir/source/pytools.cpp.obj	e1b2b647eea4b552
+12093	22393	633947850	CMakeFiles/MCDReforged_By_CPP.dir/source/processoutput.cpp.obj	7eb0d405e12534be
+17354	24471	633947852	CMakeFiles/MCDReforged_By_CPP.dir/source/redirectstdio.cpp.obj	253e71dcd3316dcf
+24475	27591	633947854	MCDReforged_By_CPP.exe	e88a8f048a584968
+>>>>>>> 9c5929d87ea17f813566f9c8e33136095e27afa0

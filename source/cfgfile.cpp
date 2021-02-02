@@ -161,7 +161,7 @@ readjavapath:
     getline(cin, svar);
     GlobalSettings.SetString(serverdir, svar);
 
-    Out.mlout("Now you need to type in your Minecraft server startup parameters(Enter parameters only. No \" java\" are in the string you typed in For example:-Xms1G -Xmx2G -jar minecraft_server.jar nogui)",
+    Out.mlout("Now you need to type in your Minecraft server startup parameters(Enter parameters only. No \" java\" are in the string you typed in. For example:-Xms1G -Xmx2G -jar minecraft_server.jar nogui)",
         "Minecraft服务器启动参数?(仅输入参数,不包括Java程序名.示例:-Xms1G -Xmx2G -jar minecraft_server.jar nogui)");   //strMinecraftServerStartupCommandLine
     getline(cin, svar); 
     GlobalSettings.SetString(servername, svar);

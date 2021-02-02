@@ -10,9 +10,17 @@
     <CppPluginsDir>plugins</CppPluginsDir>
     <PythonPluginsDir>plugins</PythonPluginsDir>
     <ServerDir>server</ServerDir>
+<<<<<<< HEAD
     <ServerStartupCommand>-jar server.jar nogui</ServerStartupCommand>
     <JavaPath>C:\Program Files\AdoptOpenJDK\jdk-14.0.2.12-openj9\bin\javaw.exe</JavaPath>
     <InstructionPrefix>!!MCDR</InstructionPrefix>
     <LogFilePath>log</LogFilePath>
     <ScriptPath>scripts</ScriptPath>
+=======
+    <ServerStartupCommand>-Xms1G -Xmx2G -jar minecraft_server.jar nogui</ServerStartupCommand>
+    <JavaPath></JavaPath>
+    <InstructionPrefix>!!MCDR</InstructionPrefix>
+    <LogFilePath>logs</LogFilePath>
+    <ScriptPath></ScriptPath>
+>>>>>>> 9c5929d87ea17f813566f9c8e33136095e27afa0
 </MCDReforgedByCppConfig>
