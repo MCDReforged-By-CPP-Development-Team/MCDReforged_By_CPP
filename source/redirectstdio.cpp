@@ -171,9 +171,10 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
     {
         //用WriteFile，从hStdOutRead读出子进程stdout输出的数据，数据结果在out_buffer中，长度为dwRead  
         iRet = ReadFile(hStdOutRead, out_buffer, BUFSIZE, &dwRead, NULL);
+        dp((int)dwRead);
         if ((iRet) && (dwRead != 0))  //如果成功了，且长度>0  
         {
-            dp("now we can process output");
+            dp("process output");
             output.ProcessOutput(out_buffer);
         }
         //如果子进程结束，退出循环  

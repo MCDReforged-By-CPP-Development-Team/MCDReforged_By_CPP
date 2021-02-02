@@ -6,6 +6,7 @@
 #include"debugprint.h"
 #include"messagesys.h"
 #include"serverparser.h"
+#include"logsys.h"
 
 using namespace std;
 

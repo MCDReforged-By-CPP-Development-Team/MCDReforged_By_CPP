@@ -2,7 +2,8 @@
 
 int stdfuncallconv ProcessServerOutput::ProcessOutput(LPSTR output, int reserved)
 {
-	dp(output);
+	OutputInterface serveroutput;
+	serveroutput.Output(output, "Server", INFO_COMMONMSG);
 	return 0;
 }
 
