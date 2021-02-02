@@ -84,7 +84,7 @@ int stdfuncallconv LoadConfig::SettingHelper()
     bool bvar;
     string svar;
 
-    Out.mlout("Welcome to SettingHelper.", "欢迎来到配置文件设置助手");
+    Out.mlout("Welcome to SettingHelper.", "欢迎来到配置文件助手");
     Out.mlout("Choose Your Language[English(US)-0][简体中文-1]",
         "选择您的语言[English(US)-0][简体中文-1]");  //iLangType
 language:
@@ -95,7 +95,7 @@ language:
     }
     GlobalSettings.SetInt(lang, ivar);
 
-    Out.mlout("Select Your Server Type[Vanilla-0][Bukkit(Version<1.14)-1][Bukkit(Version>=1.14)][BungeeCord-3][Cat-4][Waterfall-5][Beta1.8-6][Forge-7]",
+    Out.mlout("Select Your Server Type [Vanilla-0] [Bukkit(Version<1.14)-1]\n\t [Bukkit(Version>=1.14)] [BungeeCord-3]\n\t [Cat-4] [Waterfall-5] \n\t[Beta1.8-6] [Forge-7]",
               "请选择您的服务器端类型[Vanilla-0][Bukkit(Version<1.14)-1][Bukkit(Version>=1.14)][BungeeCord-3][Cat-4][Waterfall-5][Beta1.8-6][Forge-7]");   //iParserType
     parser:
     ivar = gsti();
@@ -115,7 +115,7 @@ language:
     bvar = gstb();
     GlobalSettings.SetBool(loadpyplugins, bvar);
 
-    Out.mlout("Execute initialization script when the application start?[Y/N]",
+    Out.mlout("Execute initialization script when MCDReforged By C++ is launched?[Y/N]",
         "在启动时运行初始化脚本?[Y/N]");   //bExecInitScript
     bvar = gstb();
     GlobalSettings.SetBool(execinitscr, bvar);
@@ -141,14 +141,14 @@ language:
     GlobalSettings.SetBool(enablemccmdqueue, bvar);
 
 readjavapath:
-    Out.mlout("We need your Java path(Type \"autofind\" to find the Java automatically.When you type it, all lowercase characters are required)",
+    Out.mlout("We need your Java path(Type \"autofind\" to find the Java automatically.And you are required to type it in lowercase)",
         "我们需要您的Java路径(输入\"autofind\"以自动寻找Java,如输入则要求全小写)");   //strJavaPath
     getline(cin, svar);
     if (svar == "autofind") {
         svar = getenv("JAVA_HOME");
         svar.append("bin\\javaw.exe");
         Out.msg("Java path : " + svar);
-        Out.mlout("If the Java path is right,type \"Y\" or \"y\" to confirm. If the Java path is wrong,type \"N\" or \"n\" to type the path manually."
+        Out.mlout("If the Java path is correct,type \"Y\" or \"y\" to confirm. If the Java path is wrong,type \"N\" or \"n\" to type the path manually."
             , "如果Java路径正确,请键入\"Y\"或\"y\"进行确认.如果Java路径错误,请键入\"N\"或\"n\"手动键入路径.");
         bvar = gstb();
         if (!bvar)goto readjavapath;
@@ -160,7 +160,7 @@ readjavapath:
     getline(cin, svar);
     GlobalSettings.SetString(serverdir, svar);
 
-    Out.mlout("Minecraft server startup parameters?(Enter parameters only, excluding java's name.For example:-Xms1G -Xmx2G -jar minecraft_server.jar nogui)",
+    Out.mlout("Now you need to type in your Minecraft server startup parameters(Enter parameters only. No \" java\" are in the string you typed in For example:-Xms1G -Xmx2G -jar minecraft_server.jar nogui)",
         "Minecraft服务器启动参数?(仅输入参数,不包括Java程序名.示例:-Xms1G -Xmx2G -jar minecraft_server.jar nogui)");   //strMinecraftServerStartupCommandLine
     getline(cin, svar);
     GlobalSettings.SetString(servername, svar);
@@ -175,7 +175,7 @@ readjavapath:
     getline(cin, svar);
     GlobalSettings.SetString(pypluginpath, svar);
 
-    Out.mlout("Scripts' Path?(\"scripts\" is recommended)",
+    Out.mlout("The name of your scripts folder?(\"scripts\" is recommended)",
         "脚本文件夹名?(推荐使用\"scripts\")");   //strScriptPath
     getline(cin, svar);
     GlobalSettings.SetString(scrpath, svar);
