@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone=" " ?>
+<MCDReforgedByCppConfig>
+    <LoadCppPlugins>true</LoadCppPlugins>
+    <LoadPythonPlugins>true</LoadPythonPlugins>
+    <LoadCppPluginsConfig>true</LoadCppPluginsConfig>
+    <LoadPythonPluginsConfig>true</LoadPythonPluginsConfig>
+    <ExecInitScript>true</ExecInitScript>
+    <ExecTimerScript>true</ExecTimerScript>
+    <EnableMinecraftCommandQueue>true</EnableMinecraftCommandQueue>
+    <CppPluginsDir>plugins</CppPluginsDir>
+    <PythonPluginsDir>plugins</PythonPluginsDir>
+    <ServerDir>server</ServerDir>
+    <ServerStartupCommand>-jar server.jar nogui</ServerStartupCommand>
+    <JavaPath>C:\Program Files\AdoptOpenJDK\jdk-14.0.2.12-openj9\bin\javaw.exe</JavaPath>
+    <InstructionPrefix>!!MCDR</InstructionPrefix>
+    <LogFilePath>log</LogFilePath>
+    <ScriptPath>scripts</ScriptPath>
+</MCDReforgedByCppConfig>
