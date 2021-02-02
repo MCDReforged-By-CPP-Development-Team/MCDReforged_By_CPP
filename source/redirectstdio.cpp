@@ -1,6 +1,5 @@
 #include"redirectstdio.h"
 
-
 int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
 {
 
@@ -54,6 +53,11 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
     si.hStdOutput = hStdOutWrite;     //意思是：子进程的stdout输出到hStdOutWrite  
     si.hStdError = hStdErrWrite;        //意思是：子进程的stderr输出到hStdErrWrite  
     si.hStdInput = hStdInRead;
+#ifdef DEBUG_FUNC_ENABLE
+    si.wShowWindow = SW_SHOW;
+#else
+    si.wShowWindow = SW_HIDE;
+#endif
 
     // STARTF_USESHOWWINDOW:The wShowWindow member contains additional information.
     // STARTF_USESTDHANDLES:The hStdInput, hStdOutput, and hStdError members contain additional information.
@@ -174,15 +178,7 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
     inf.hStdInWrite = hStdInWrite;
     inf.hStdOutRead = hStdOutRead;
     inf.hStdOutWrite = hStdOutWrite;
-    /*
-    CloseHandle(hStdErrWrite);
-    CloseHandle(hStdInRead);
-    CloseHandle(hStdInWrite);
-    CloseHandle(hStdOutRead);
-    CloseHandle(hStdOutWrite);
-    */
-    CloseHandle(pi.hProcess);
-    CloseHandle(pi.hThread);
+    inf.pi = pi;
 
     return bSuc;
 }
@@ -199,13 +195,19 @@ int WriteToPipe(HANDLE hWrite, char *in_buffer, DWORD dwSize) {
 
 
 
-int stdfuncallconv CloseRedirect(PREDIRECT_INFORMATION priInformation)
+int stdfuncallconv CloseRedirect(PREDIRECT_INFORMATION priInformation, PINT TerminateProcessReturn)
 {
-    RedirectInformation inf = *priInformation;
-    CloseHandle(inf.hStdErrWrite);
-    CloseHandle(inf.hStdInRead);
-    CloseHandle(inf.hStdInWrite);
-    CloseHandle(inf.hStdOutRead);
-    CloseHandle(inf.hStdOutWrite);
+    int iRet = TRUE;
+    UINT exitcode;
 
+    RedirectInformation inf = *priInformation;
+
+    iRet = CloseHandle(inf.hStdErrWrite);
+    iRet = CloseHandle(inf.hStdInRead);
+    iRet = CloseHandle(inf.hStdInWrite);
+    iRet = CloseHandle(inf.hStdOutRead);
+    iRet = CloseHandle(inf.hStdOutWrite);
+    *TerminateProcessReturn = (int)TerminateProcess(inf.pi.hProcess, exitcode);
+
+    return iRet;
 }

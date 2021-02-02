@@ -50,7 +50,6 @@ int LoadConfig::LoadConfigFile() {
         return Cfg.ReadCfgFile();
     }
     else {
-        Cfg.CreateCfgFile();
         Cfg.SettingHelper();
         return Cfg.ReadCfgFile();
     }
@@ -144,6 +143,7 @@ readjavapath:
     Out.mlout("We need your Java path(Type \"autofind\" to find the Java automatically.And you are required to type it in lowercase)",
         "我们需要您的Java路径(输入\"autofind\"以自动寻找Java,如输入则要求全小写)");   //strJavaPath
     getline(cin, svar);
+    getline(cin, svar);
     if (svar == "autofind") {
         svar = getenv("JAVA_HOME");
         svar.append("bin\\javaw.exe");
@@ -158,11 +158,12 @@ readjavapath:
     Out.mlout("Your Minecraft server's folder name?",
         "您Minecraft服务器的文件夹名?");   //strServerWorkingDir
     getline(cin, svar);
+    getline(cin, svar);
     GlobalSettings.SetString(serverdir, svar);
 
     Out.mlout("Now you need to type in your Minecraft server startup parameters(Enter parameters only. No \" java\" are in the string you typed in For example:-Xms1G -Xmx2G -jar minecraft_server.jar nogui)",
         "Minecraft服务器启动参数?(仅输入参数,不包括Java程序名.示例:-Xms1G -Xmx2G -jar minecraft_server.jar nogui)");   //strMinecraftServerStartupCommandLine
-    getline(cin, svar);
+    getline(cin, svar); 
     GlobalSettings.SetString(servername, svar);
 
     Out.mlout("C++ plugins' folder name?(\"plugins\" is recommended)",
@@ -182,7 +183,7 @@ readjavapath:
 
     Out.mlout("MCDReforged by C++ command prefix?(In order to keep compatible with MCDReforged,\"!!MCDR\" is strongly recommended)",
         "MCDReforged by C++指令前缀(为了与MCDReforged保持高度兼容,强烈推荐使用\"!!MCDR\")");   //strInstructionPrefix
-    getline(cin, svar);
+    getline(cin, svar); 
     GlobalSettings.SetString(insprefix, svar);
 
     Out.mlout("Select a folder that the log files will be stored in,the folder will be created automatically.",
@@ -202,6 +203,7 @@ strLogFilePath[ok];
 
 int stdfuncallconv LoadConfig::SetToCfg()   //有bug 会死循环
 {
+    Cfg.CreateCfgFile();
     dp("Enter SetToCfg()!");
     Settings Set;
     TiXmlDocument* pDoc = new TiXmlDocument;
@@ -239,6 +241,7 @@ int stdfuncallconv LoadConfig::SetToCfg()   //有bug 会死循环
     SETTOCFG_S("JavaPath", JavaPath, javapath);
     SETTOCFG_S("InstructionPrefix", InstructionPrefix, insprefix);
     SETTOCFG_S("LogFilePath", LogFilePath, logpath);
+    dp(GlobalSettings.GetString(scrpath));
     SETTOCFG_S("ScriptPath", ScriptPath, scrpath);
     pDoc->SaveFile(CFGFILENAME);
     return true;

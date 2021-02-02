@@ -1,0 +1,6 @@
+TODO:
+1.修复SetToCfg()无法写入ScriptPath的xml节点bug	unsolved
+2.修复无法关闭服务器进程的bug	unsolved
+3.搞定读取服务器输出	unsolved
+4.整个parser	unsolved
+(记得肝完删掉unsolved在后面整个finished)
