@@ -207,5 +207,5 @@ int stdfuncallconv CloseRedirect(PREDIRECT_INFORMATION priInformation)
     CloseHandle(inf.hStdInWrite);
     CloseHandle(inf.hStdOutRead);
     CloseHandle(inf.hStdOutWrite);
-
+    return 1;
 }
