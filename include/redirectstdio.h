@@ -27,6 +27,13 @@ struct RedirectInformation
 	HANDLE hStdInWrite = NULL;  //主程序用的stdin的写入端  
 	HANDLE hStdOutRead = NULL;  //主程序用的stdout的读入端  
 
+	RedirectInformation& operator=(RedirectInformation a) {
+		this->hStdErrWrite = a.hStdErrWrite;
+		this->hStdInRead = a.hStdInRead;
+		this->hStdInWrite = a.hStdInWrite;
+		this->hStdOutRead = a.hStdOutRead;
+		this->hStdOutWrite = a.hStdOutWrite;
+	}
 };
 
 #pragma endregion
