@@ -3,6 +3,7 @@
 #include"cfgfile.h"
 #include"colorlog.h"
 #include"pytools.h"
+#include"redirectstdio.h"
 
 int stdfuncallconv AnalyzeServerOutput(char* output);
 
@@ -53,10 +54,9 @@ int stdfuncallconv Initialize(){
     dp(GlobalSettings.GetString(javapath));
 #endif
     RedirectInformation inf;
-    int tpret;
 
     auto openserverret = OpenServerAndRedirectIO(&inf);
-    CloseRedirect(&inf, &tpret);
+    CloseRedirect(&inf);
     return 0;
 }
 

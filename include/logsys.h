@@ -36,7 +36,7 @@ private:
 class OutputInterface {
 public:
 	int stdfuncallconv Init(string logfilepath);
-	int stdfuncallconv Output(const char* outstr, const char* msger, int msgtype = INFO_COMMONMSG, int stream = S_STDOUT);
+	int stdfuncallconv Output(const char* outstr, const char* msger, int msgtype = INFO_COMMONMSG, int stream = S_STDOUT, bool nextline = true);
 
 	int stdfuncallconv msg(const char* outstr, const char* msger = "MCDRCPP");
 	int stdfuncallconv warning(const char* outstr, const char* msger = "MCDRCPP");

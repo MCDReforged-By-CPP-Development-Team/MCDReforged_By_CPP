@@ -1,9 +1,10 @@
 #include "processoutput.h"
 
+OutputInterface serveroutput;
+
 int stdfuncallconv ProcessServerOutput::ProcessOutput(LPSTR output, int reserved)
 {
-	OutputInterface serveroutput;
-	serveroutput.Output(output, "Server", INFO_COMMONMSG);
+	serveroutput.Output(output, "Server", INFO_COMMONMSG, S_STDOUT, false);
 	return 0;
 }
 

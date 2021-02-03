@@ -1,5 +1,41 @@
 ﻿#include"redirectstdio.h"
 
+void stdfuncallconv ServerSTDOUT(REDIRECT_INFORMATION priInfo, HANDLE hProc)
+{
+    dp("enter serverstdout");
+    char out_buffer[4096];
+    DWORD dwRead;
+    int iRet = FALSE;
+    ProcessServerOutput output;
+    DWORD process_exit_code;
+
+    while (GetExitCodeProcess(hProc, &process_exit_code))
+    {
+        ZeroMemory(out_buffer, BUFSIZE);
+        //用WriteFile，从hStdOutRead读出子进程stdout输出的数据，数据结果在out_buffer中，长度为dwRead  
+        iRet = ReadFile(priInfo.hStdOutRead, out_buffer, BUFSIZE, &dwRead, NULL);
+        if ((iRet) && (dwRead != 0))  //如果成功了，且长度>0  
+        {
+            output.ProcessOutput(out_buffer);
+        }
+        //如果子进程结束，退出循环  
+        if (process_exit_code != STILL_ACTIVE) break;
+    }
+    return ;
+}
+
+int stdfuncallconv CloseRedirect(PREDIRECT_INFORMATION priInformation)
+{
+    RedirectInformation inf = *priInformation;
+    CloseHandle(inf.hStdErrWrite);
+    CloseHandle(inf.hStdInRead);
+    CloseHandle(inf.hStdInWrite);
+    CloseHandle(inf.hStdOutRead);
+    CloseHandle(inf.hStdOutWrite);
+    return 1;
+}
+
+
 int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
 {
 
@@ -9,19 +45,14 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
     HANDLE hStdOutWrite = NULL; //子进程用的stdout的写入端  
     HANDLE hStdErrWrite = NULL; //子进程用的stderr的写入端  
 
-    ProcessServerOutput output;
-    DWORD process_exit_code;
-	Settings sets;
+    Settings sets;
     PROCESS_INFORMATION pi;
     STARTUPINFO si;
     SECURITY_ATTRIBUTES sa;
+    RedirectInformation inf;
 
 	string servercmdline = sets.GetString(servername);
 	string jvmpath = sets.GetString(javapath);
-
-    char out_buffer[4096];
-    DWORD dwRead;
-    int iRet = FALSE;
 
 	sa.nLength = sizeof(SECURITY_ATTRIBUTES);
 	sa.bInheritHandle = TRUE;
@@ -67,7 +98,7 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
         , NULL
         , NULL
         , TRUE
-        , NULL
+        , CREATE_NEW_CONSOLE
         , NULL
         , NULL
         , &si
@@ -78,114 +109,6 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
         return -1;
     }
 
-    // 先分配读取的数据空间
-    DWORD dwTotalSize = NEWBUFFERSIZE;                     // 总空间
-    char* pchReadBuffer = new char[dwTotalSize];
-    memset(pchReadBuffer, 0, NEWBUFFERSIZE);
-
-    DWORD dwFreeSize = dwTotalSize;                 // 闲置空间
-    /*
-    dp("entering dowhile");
-    do {
-        if (FALSE == bSuc) {
-            break;
-        }
-
-        // 重置成功标志，之后要视读取是否成功来决定
-        bSuc = FALSE;
-
-        char chTmpReadBuffer[NEWBUFFERSIZE] = { 0 };
-        DWORD dwbytesRead = 0;
-
-        // 用于控制读取偏移
-        OVERLAPPED Overlapped;
-        memset(&Overlapped, 0, sizeof(OVERLAPPED));
-
-        while (GetExitCodeProcess(pi.hProcess, &process_exit_code)) {
-            
-            // 清空缓存
-            memset(chTmpReadBuffer, 0, NEWBUFFERSIZE);
-
-            // 读取管道
-            BOOL bRead = ReadFile(hStdInRead, chTmpReadBuffer, NEWBUFFERSIZE, &dwbytesRead, &Overlapped);
-            DWORD dwLastError = GetLastError();
-            dp("dwLastError : " + dwLastError);
-
-            if (bRead) {
-                if (dwFreeSize >= dwbytesRead) {
-                    // 空闲空间足够的情况下，将读取的信息拷贝到剩下的空间中
-                    memcpy_s(pchReadBuffer + Overlapped.Offset, dwFreeSize, chTmpReadBuffer, dwbytesRead);
-                    // 重新计算新空间的空闲空间
-                    dwFreeSize -= dwbytesRead;
-                }
-                else {
-                    // 计算要申请的空间大小
-                    DWORD dwAddSize = (1 + dwbytesRead / NEWBUFFERSIZE) * NEWBUFFERSIZE;
-                    // 计算新空间大小
-                    DWORD dwNewTotalSize = dwTotalSize + dwAddSize;
-                    // 计算新空间的空闲大小
-                    dwFreeSize += dwAddSize;
-                    // 新分配合适大小的空间
-                    char* pTempBuffer = new char[dwNewTotalSize];
-                    // 清空新分配的空间
-                    memset(pTempBuffer, 0, dwNewTotalSize);
-                    // 将原空间数据拷贝过来
-                    memcpy_s(pTempBuffer, dwNewTotalSize, pchReadBuffer, dwTotalSize);
-                    // 保存新的空间大小
-                    dwTotalSize = dwNewTotalSize;
-                    // 将读取的信息保存到新的空间中
-                    memcpy_s(pTempBuffer + Overlapped.Offset, dwFreeSize, chTmpReadBuffer, dwbytesRead);
-                    // 重新计算新空间的空闲空间
-                    dwFreeSize -= dwbytesRead;
-                    // 将原空间释放掉
-                    delete[] pchReadBuffer;
-                    // 将原空间指针指向新空间地址
-                    pchReadBuffer = pTempBuffer;
-                }
-
-                // 读取成功，则继续读取，设置偏移
-                Overlapped.Offset += dwbytesRead;
-            }
-            else {
-                if (ERROR_BROKEN_PIPE == dwLastError) {
-                    bSuc = TRUE;
-                }
-                break;
-            }
-
-            if (output.ProcessOutput(pchReadBuffer,0) == -1) { 
-                dp("Cannot Process Server's Output.");
-                output.CannotProcessOutput(); 
-            }
-
-            if (process_exit_code != STILL_ACTIVE) { 
-                dp("Server exited with exit code : " + process_exit_code);
-                break; 
-            }
-        }
-    } while (0);
-    */
-    GetExitCodeProcess(pi.hProcess, &process_exit_code);
-    dp((int)process_exit_code);
-    while (GetExitCodeProcess(pi.hProcess, &process_exit_code))
-    {
-        //用WriteFile，从hStdOutRead读出子进程stdout输出的数据，数据结果在out_buffer中，长度为dwRead  
-        iRet = ReadFile(hStdOutRead, out_buffer, BUFSIZE, &dwRead, NULL);
-        dp((int)dwRead);
-        if ((iRet) && (dwRead != 0))  //如果成功了，且长度>0  
-        {
-            dp("process output");
-            output.ProcessOutput(out_buffer);
-        }
-        //如果子进程结束，退出循环  
-        if (process_exit_code != STILL_ACTIVE) break;
-    }
-
-    delete[] pchReadBuffer;
-    delete[] startcmd;
-    startcmd = NULL;
-    pchReadBuffer = NULL;
-    RedirectInformation inf;
     inf = *priInformation;
 
     inf.hStdErrWrite = hStdErrWrite;
@@ -193,6 +116,12 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
     inf.hStdInWrite = hStdInWrite;
     inf.hStdOutRead = hStdOutRead;
     inf.hStdOutWrite = hStdOutWrite;
+
+    thread ServerOut(ServerSTDOUT, inf, pi.hProcess);
+    ServerOut.join();
+
+    delete[] startcmd;
+    startcmd = NULL;
 
     return bSuc;
 }   //此函数部分代码来自 https://blog.csdn.net/breaksoftware/article/details/8595734 , https://blog.csdn.net/dicuzhaoqin8950/article/details/102229723 同时感谢作者
@@ -206,16 +135,3 @@ int WriteToPipe(HANDLE hWrite, char *in_buffer, DWORD dwSize) {
     return iRet;
 }
 
-int stdfuncallconv CloseRedirect(PREDIRECT_INFORMATION priInformation, PINT TerminateProcessReturn)
-{
-    int iRet = TRUE;
-    UINT exitcode;
-
-    RedirectInformation inf = *priInformation;
-    CloseHandle(inf.hStdErrWrite);
-    CloseHandle(inf.hStdInRead);
-    CloseHandle(inf.hStdInWrite);
-    CloseHandle(inf.hStdOutRead);
-    CloseHandle(inf.hStdOutWrite);
-    return 1;
-}

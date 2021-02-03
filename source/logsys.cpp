@@ -73,7 +73,7 @@ int stdfuncallconv OutputInterface::Init(string logfilepath)
 	return LogSys.InitLogSystem(logfilepath);
 }
 
-int stdfuncallconv OutputInterface::Output(const char* outstr, const char* msger, int msgtype, int stream)
+int stdfuncallconv OutputInterface::Output(const char* outstr, const char* msger, int msgtype, int stream, bool nextline)
 {
 	
 	int iret=0;
@@ -132,7 +132,7 @@ int stdfuncallconv OutputInterface::Output(const char* outstr, const char* msger
 	iret += dwWritten;
 	WriteFile(hCon, outstr, strlen(outstr), &dwWritten, NULL);
 	iret += dwWritten;
-	WriteFile(hCon, "\n", 1, &dwWritten, NULL);
+	if(nextline) WriteFile(hCon, "\n", 1, &dwWritten, NULL);
 	iret += dwWritten;
 	/*
 
