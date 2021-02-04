@@ -1,4 +1,4 @@
-#include"debugprint.h"
+﻿#include"debugprint.h"
 
 int stdfuncallconv DebugPrint(const char* outstr) {
 #ifdef DEBUG_FUNC_ENABLE

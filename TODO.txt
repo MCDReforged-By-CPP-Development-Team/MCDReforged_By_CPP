@@ -1,6 +1,6 @@
-TODO:
-1.ĞŞ¸´SetToCfg()ÎŞ·¨Ğ´ÈëScriptPathµÄxml½Úµãbug	unsolved
-2.ĞŞ¸´ÎŞ·¨¹Ø±Õ·şÎñÆ÷½ø³ÌµÄbug	unsolved
-3.¸ã¶¨¶ÁÈ¡·şÎñÆ÷Êä³ö	unsolved
-4.Õû¸öparser	unsolved
-(¼ÇµÃ¸ÎÍêÉ¾µôunsolvedÔÚºóÃæÕû¸öfinished)
+ï»¿TODO:
+1.ä¿®å¤SetToCfg()æ— æ³•å†™å…¥ScriptPathçš„xmlèŠ‚ç‚¹bug	unsolved
+2.ä¿®å¤æ— æ³•å…³é—­æœåŠ¡å™¨è¿›ç¨‹çš„bug	unsolved
+3.æå®šè¯»å–æœåŠ¡å™¨è¾“å‡º	unsolved
+4.æ•´ä¸ªparser	unsolved
+(è®°å¾—è‚å®Œåˆ æ‰unsolvedåœ¨åé¢æ•´ä¸ªfinished)

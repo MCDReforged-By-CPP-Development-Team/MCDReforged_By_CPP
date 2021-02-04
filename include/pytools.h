@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #ifndef __PYTOOLS__
 
@@ -18,9 +18,9 @@ class Pytools :public CThread
 public:
 	Pytools(OutputInterface outt);
 	
-	int stdfuncallconv InstallPyLibAsync(string Pylib);//°²×°Python¿â£¨¶àÏß³Ì£©
+	int stdfuncallconv InstallPyLibAsync(string Pylib);//å®‰è£…Pythonåº“ï¼ˆå¤šçº¿ç¨‹ï¼‰
 
-	virtual void Run();//(¶àÏß³ÌÓÃ)²»Òªµ÷ÓÃÕâ¸öº¯Êı£¡£¡£¡£¡£¡£¡£¡ DO NOT USE THIS FUNCTION!!!!!!!!!!!
+	virtual void Run();//(å¤šçº¿ç¨‹ç”¨)ä¸è¦è°ƒç”¨è¿™ä¸ªå‡½æ•°ï¼ï¼ï¼ï¼ï¼ï¼ï¼ DO NOT USE THIS FUNCTION!!!!!!!!!!!
 	
 private:               
 	int stdfuncallconv InstallPyLib(string Pylib);

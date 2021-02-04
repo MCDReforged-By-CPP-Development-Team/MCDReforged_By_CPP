@@ -1,6 +1,6 @@
-/*
+ï»¿/*
 SysInit.h
-´ËÍ·ÎÄ¼þÓ¦µ±°üº¬Initialize()ºÍFinalize()º¯ÊýµÄÉùÃ÷¼°SysInit.cppËùÐèÒªµÄincludeÔ¤±àÒëÓï¾ä
+æ­¤å¤´æ–‡ä»¶åº”å½“åŒ…å«Initialize()å’ŒFinalize()å‡½æ•°çš„å£°æ˜ŽåŠSysInit.cppæ‰€éœ€è¦çš„includeé¢„ç¼–è¯‘è¯­å¥
 */
 #pragma once
 

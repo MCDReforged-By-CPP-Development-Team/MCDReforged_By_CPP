@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <string>
 #include <vector>
@@ -15,7 +15,7 @@
 
 using namespace std;
 
-#define PyPluginExtension ".py" //python²å¼şÀ©Õ¹Ãû
+#define PyPluginExtension ".py" //pythonæ’ä»¶æ‰©å±•å
 #define PyPluginDir "pyplugins"
 
 struct PyPlugin {

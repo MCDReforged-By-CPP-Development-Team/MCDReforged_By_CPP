@@ -1,15 +1,15 @@
-/*
+ï»¿/*
 common.h by noFe
-ËùÓĞ³ÌĞòµÄÈ«¾Ö¶¨Òå·Å½øÀ´ awa
+æ‰€æœ‰ç¨‹åºçš„å…¨å±€å®šä¹‰æ”¾è¿›æ¥ awa
 */
 #pragma once
 
-#define stdfuncallconv _fastcall	//È«²¿º¯ÊıÍ³Ò»Ê¹ÓÃ_fastcallµ÷ÓÃÔ¼¶¨°É awa(õß¿ª_stdcallºÍ_cdecl
+#define stdfuncallconv _fastcall	//å…¨éƒ¨å‡½æ•°ç»Ÿä¸€ä½¿ç”¨_fastcallè°ƒç”¨çº¦å®šå§ awa(è¸¹å¼€_stdcallå’Œ_cdecl
 #define MCDRCPP_VER "0.3.11"
 #define MCDRCPP_DEV_STATUS "INDEV"  //INDEV/PREVIEW/RELEASE
-#define MCDRCPP_RELEASES "https://github.com/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/releases"   //°æ±¾·¢²¼Ò³
-#define MCDRCPP_GITHUBPAGE "https://github.com/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/" //ÏîÄ¿Ö÷Ò³(GitHub)
-#define MCDRCPP_ISSTABLE false //ÊÇ·ñÎªÎÈ¶¨°æ
-#define DEBUG_FUNC_ENABLE   //ÕıÊ½°æµÄÊ±ºò°ÑÕâ¸öºêÉ¾µô awa
+#define MCDRCPP_RELEASES "https://github.com/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/releases"   //ç‰ˆæœ¬å‘å¸ƒé¡µ
+#define MCDRCPP_GITHUBPAGE "https://github.com/MCDReforged-By-CPP-Development-Team/MCDReforged_By_CPP/" //é¡¹ç›®ä¸»é¡µ(GitHub)
+#define MCDRCPP_ISSTABLE false //æ˜¯å¦ä¸ºç¨³å®šç‰ˆ
+#define DEBUG_FUNC_ENABLE   //æ­£å¼ç‰ˆçš„æ—¶å€™æŠŠè¿™ä¸ªå®åˆ æ‰ awa
 #define HINTMSG "Some English setences in this program might follow Chinese grammar rules \n which will make it is hard to understand.(Chinglish lol)"
 

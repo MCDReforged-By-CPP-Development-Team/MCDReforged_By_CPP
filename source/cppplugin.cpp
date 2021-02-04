@@ -1,4 +1,4 @@
-#include "cppplugin.h"
+ï»¿#include "cppplugin.h"
 #include <corecrt_io.h>
 
 
@@ -44,42 +44,42 @@ int stdfuncallconv CppPluginCore::FilesRead(string root, vector<string>& fileVec
 }
 
 
-int stdfuncallconv CppPluginCore::LoadPlugin() {	//ÓÃÓÚ¼ÓÔØËùÓĞC/C++²å¼şµÄº¯Êı
+int stdfuncallconv CppPluginCore::LoadPlugin() {	//ç”¨äºåŠ è½½æ‰€æœ‰C/C++æ’ä»¶çš„å‡½æ•°
 	vector<string> PluginFileNames;
 	char pathBuf[MAX_PATH];
 	GetCurrentDirectoryA(sizeof(pathBuf), pathBuf);
 	string tempStr = pathBuf;
-	string pluginFolderPath = tempStr + "\\plugins";	//´æ·Å²å¼şÎÄ¼ş¼ĞÂ·¾¶
-	FilesRead(pluginFolderPath, PluginFileNames);	//±éÀú²å¼şÎÄ¼ş¼ĞÏÂËùÓĞ.dllµÄ²å¼şÎÄ¼ş
+	string pluginFolderPath = tempStr + "\\plugins";	//å­˜æ”¾æ’ä»¶æ–‡ä»¶å¤¹è·¯å¾„
+	FilesRead(pluginFolderPath, PluginFileNames);	//éå†æ’ä»¶æ–‡ä»¶å¤¹ä¸‹æ‰€æœ‰.dllçš„æ’ä»¶æ–‡ä»¶
 	if (PluginFileNames.size() <= 0) {
-		return 0;	//ºóÃæÔÙÀ´×ö´íÎóÂß¼­°É=-=
+		return 0;	//åé¢å†æ¥åšé”™è¯¯é€»è¾‘å§=-=
 	}
 	for (int i = 0; i < PluginFileNames.size(); i ++) {
-		HMODULE HPlugin = LoadLibrary(PluginFileNames[i].c_str());	//¼ÓÔØ²å¼ş
+		HMODULE HPlugin = LoadLibrary(PluginFileNames[i].c_str());	//åŠ è½½æ’ä»¶
 		if (HPlugin == NULL) {
-			continue;	//ºóÃæÔÙÀ´×ö´íÎóÂß¼­°É=-=
+			continue;	//åé¢å†æ¥åšé”™è¯¯é€»è¾‘å§=-=
 		}
-		pFuncOnCheck FuncCheck = (pFuncOnCheck)GetProcAddress(HPlugin, "OnCheck");	//¼Ù¶¨²å¼şÊµÏÖÁËOnCheckº¯Êı
+		pFuncOnCheck FuncCheck = (pFuncOnCheck)GetProcAddress(HPlugin, "OnCheck");	//å‡å®šæ’ä»¶å®ç°äº†OnCheckå‡½æ•°
 		if (FuncCheck == NULL) {
-			continue;	//ºóÃæÔÙÀ´×ö´íÎóÂß¼­°É=-=
+			continue;	//åé¢å†æ¥åšé”™è¯¯é€»è¾‘å§=-=
 		}
 		int iRet = FuncCheck(i);
-		if (iRet != i++) {	//Èç¹ûOnCheckµÄ·µ»ØÖµ²»µÈÓÚ´«Èë²ÎÊı+1,²å¼şĞ£ÑéÊ§°Ü
-			continue;	//ºóÃæÔÙÀ´×ö´íÎóÂß¼­°É=-=
+		if (iRet != i++) {	//å¦‚æœOnCheckçš„è¿”å›å€¼ä¸ç­‰äºä¼ å…¥å‚æ•°+1,æ’ä»¶æ ¡éªŒå¤±è´¥
+			continue;	//åé¢å†æ¥åšé”™è¯¯é€»è¾‘å§=-=
 		}
-		pFuncRegInfo FuncReg = (pFuncRegInfo)GetProcAddress(HPlugin, "RegInfo");	//¼Ù¶¨²å¼şÊµÏÖÁËRegInfoº¯Êı
+		pFuncRegInfo FuncReg = (pFuncRegInfo)GetProcAddress(HPlugin, "RegInfo");	//å‡å®šæ’ä»¶å®ç°äº†RegInfoå‡½æ•°
 		if (FuncReg == NULL) {
-			continue;	//ºóÃæÔÙÀ´×ö´íÎóÂß¼­°É=-=
+			continue;	//åé¢å†æ¥åšé”™è¯¯é€»è¾‘å§=-=
 		}
 		_CppPluginRegInfo RegInfo = FuncReg();
 		RegPlugin(RegInfo);
-		pFuncOnLoad FuncLoad = (pFuncOnLoad)GetProcAddress(HPlugin, "OnLoad");	//¼Ù¶¨²å¼şÊµÏÖÁËOnLoadº¯Êı
+		pFuncOnLoad FuncLoad = (pFuncOnLoad)GetProcAddress(HPlugin, "OnLoad");	//å‡å®šæ’ä»¶å®ç°äº†OnLoadå‡½æ•°
 		if (FuncLoad == NULL) {
-			continue;	//ºóÃæÔÙÀ´×ö´íÎóÂß¼­°É=-=
+			continue;	//åé¢å†æ¥åšé”™è¯¯é€»è¾‘å§=-=
 		}
 	    iRet = FuncLoad();
 		if (iRet == -1) {
-			continue;	//ºóÃæÔÙÀ´×ö´íÎóÂß¼­°É=-=
+			continue;	//åé¢å†æ¥åšé”™è¯¯é€»è¾‘å§=-=
 		}
 	}
 	return 0;

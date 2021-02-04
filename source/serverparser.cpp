@@ -1,4 +1,4 @@
-#include"serverparser.h"
+﻿#include"serverparser.h"
 
 
 struct PlayerMsg {

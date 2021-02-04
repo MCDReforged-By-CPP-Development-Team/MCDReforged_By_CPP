@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include<Windows.h>
 #include"cppplugin.h"
 #include"pyplugin.h"
@@ -11,7 +11,7 @@
 using namespace std;
 
 /*
-ProcessOutputÊ×ÏÈÖğ¾ä·Ö½â·şÎñÆ÷Êä³öÄÚÈİÔÙÖğ¾äµ÷ÓÃÏàÓ¦µÄparser½âÎö »ñµÃÏûÏ¢ÀàĞÍºÍÄÚÈİ ÔÙµ÷ÓÃDispatchPluginMsg()½«ÏûÏ¢·Ö·¢¸ø¸÷²å¼ş
+ProcessOutputé¦–å…ˆé€å¥åˆ†è§£æœåŠ¡å™¨è¾“å‡ºå†…å®¹å†é€å¥è°ƒç”¨ç›¸åº”çš„parserè§£æ è·å¾—æ¶ˆæ¯ç±»å‹å’Œå†…å®¹ å†è°ƒç”¨DispatchPluginMsg()å°†æ¶ˆæ¯åˆ†å‘ç»™å„æ’ä»¶
 */
 
 class ProcessServerOutput {

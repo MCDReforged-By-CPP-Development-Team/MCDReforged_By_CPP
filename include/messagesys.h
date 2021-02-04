@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #define MSGCATE_PLAYER_LOGIN 0
 #define MSGCATE_PLAYER_LOGOUT 1

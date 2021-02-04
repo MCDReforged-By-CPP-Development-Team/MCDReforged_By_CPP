@@ -1,4 +1,4 @@
-#include"SysInit.h"
+ï»¿#include"SysInit.h"
 #include"logsys.h"
 #include"cfgfile.h"
 #include"colorlog.h"
@@ -72,8 +72,8 @@ int stdfuncallconv Finalize() {
     Sleep(3000);
     return 0;
 }
-//Ñ°ÕÒÎÄ¼ş¼ĞÊÇ·ñ´æÔÚ strpath:Ä¿Â¼
-//·µ»Øtrue¼´ÎªÎÄ¼ş¼Ğ´æÔÚ ·µ»ØfalseÎªÎÄ¼ş¼Ğ²»´æÔÚ»òÕßÎªÎÄ¼ş
+//å¯»æ‰¾æ–‡ä»¶å¤¹æ˜¯å¦å­˜åœ¨ strpath:ç›®å½•
+//è¿”å›trueå³ä¸ºæ–‡ä»¶å¤¹å­˜åœ¨ è¿”å›falseä¸ºæ–‡ä»¶å¤¹ä¸å­˜åœ¨æˆ–è€…ä¸ºæ–‡ä»¶
 bool CheckFolderExist(const string& strPath){
     HANDLE hTest;
     string folder;

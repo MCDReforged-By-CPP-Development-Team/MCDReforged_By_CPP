@@ -1,4 +1,4 @@
-#include "colorlog.h"
+﻿#include "colorlog.h"
 
 
 
