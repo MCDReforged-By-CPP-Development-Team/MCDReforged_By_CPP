@@ -104,6 +104,7 @@ p##objname->LinkEndChild(p##objname##Value)
 #define rettest if (pElem == NULL) {\
     dp("Read Config Failed.");\
     iret = -1;\
+    return iret;\
 }
 #pragma endregion
 
