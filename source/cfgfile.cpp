@@ -372,14 +372,15 @@ int LoadConfig::ReadCfgFile() {
 
     GetNodePointerByName(pRootEle, "Language", pElem);
     rettest
-    string str = gt;
+    string str = pElem->GetText();
     if (str == "en_US") {
         GlobalSettings.SetInt(lang, LANG_EN_US);
     }
     else if (str == "zh_CN") {
         GlobalSettings.SetInt(lang, LANG_ZH_CN);
     }
-    dp("Read Config Successful.");
+        dp("Read Config Successful.");
+
 
     dp("exiting readcfg");
     return iret;
