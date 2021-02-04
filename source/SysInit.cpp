@@ -6,7 +6,7 @@
 #include"redirectstdio.h"
 
 int stdfuncallconv AnalyzeServerOutput(char* output);
-
+RedirectInformation inf;
 int stdfuncallconv Initialize(){
     Sleep(1000);
     OutputInterface sysinitOut;
@@ -42,23 +42,13 @@ int stdfuncallconv Initialize(){
     dp("Test Pytools & MultiThread");
     Pytools pytTools(sysinitOut);
     pytTools.InstallPyLibAsync("cyka_blyat");
-
-    dp("pip0");
     Sleep(1000);
-    dp("pip0");
-    Sleep(1000);
-    dp("pip0");
-    Sleep(1000);
-    dp("pip0");
-    Sleep(1000);
-    dp("pip0");
     dp(GlobalSettings.GetString(servername));
     dp(GlobalSettings.GetString(javapath));
 #endif
-    RedirectInformation inf;
+    
 
     auto openserverret = OpenServerAndRedirectIO(&inf);
-    CloseRedirect(&inf);
     return 0;
 }
 
@@ -67,6 +57,7 @@ int stdfuncallconv AnalyzeServerOutput(char* output) {
 }
 
 int stdfuncallconv Finalize() {
+    CloseRedirect(&inf);
     cout << "Give me 3 second to prepare exiting...";
     cout << endl; 
     Sleep(3000);
@@ -97,16 +88,5 @@ int stdfuncallconv WelcomeMessage() {
     cout << "You can check the new version at : " << MCDRCPP_RELEASES << endl;
     if (!MCDRCPP_ISSTABLE) cout << "This is not a stable version, If you find a bug, please send the program output, screenshot and the plugins you installed at the time of the error to the mailbox mcdrcpp_devteam@outlook.com" << endl;
     cout << HINTMSG << endl;
-    return 0;
-}
-
-int stdfuncallconv OpenServer()
-{
-    Settings set;
-    char javahome[512];
-    strncpy(javahome, getenv("JAVA_HOME"), strlen(getenv("JAVA_HOME")));
-    strcat(javahome, "\\bin\\java.exe");
-    string startstr(javahome);
-    startstr.append(set.GetString(serverdir)).append(set.GetString(servername));
     return 0;
 }

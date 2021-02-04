@@ -68,6 +68,9 @@ vector<string> split(const string& str, const string& pattern)
     return resultVec;
 }
 
+
+
+
 int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
 {
 
@@ -179,13 +182,13 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
     dp("tid:" + pi.dwThreadId);
     thread ServerOut(ServerSTDOUT, inf, pi.hProcess);
     //thread ServerIn(ServerSTDIN, inf, pi.hProcess);
-    ServerOut.join();
+    ServerOut.detach();
+    //ServerOut.join();
     //ServerIn.detach();
-
+    dp("##############################################");
     delete[] startcmd;
     startcmd = NULL;
-
-    return bSuc;
+    dp("###############################################");
 }   //此函数部分代码来自 https://blog.csdn.net/breaksoftware/article/details/8595734 , https://blog.csdn.net/dicuzhaoqin8950/article/details/102229723 同时感谢作者
 
 int WriteToPipe(HANDLE hWrite, char *in_buffer, DWORD dwSize) {
