@@ -1,4 +1,5 @@
 #include "pytools.h"
+#pragma warning(disable: 28159 )
 
 OutputInterface out;
 string _Pylib_;//用于给线程传递参数
@@ -33,13 +34,14 @@ void Pytools::Run()
 
 int Pytools::InstallPyLib(std::string Pylib)
 {
-	//CLock lock(g_metux);
+
 
 	dp(Pylib);
 	out.msg("准备安装Python库：" + Pylib, "MCDRCPP");
 	string cmd;
 	cmd = "cmd.exe /C pip install " + Pylib;
 	LPCSTR lpCmd = cmd.c_str();
+	//CreateProcess("")
 	WinExec(lpCmd, SW_NORMAL);
 
 	return 0;

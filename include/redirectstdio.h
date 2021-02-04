@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include<Windows.h>
 #include<thread>
-
+#include<vector>
 #include"common.h"
 #include"cfgfile.h"
 #include"debugprint.h"
@@ -50,5 +50,5 @@ typedef RedirectInformation REDIRECT_INFORMATION;
 typedef REDIRECT_INFORMATION *PREDIRECT_INFORMATION;
 
 int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation);
-void stdfuncallconv ServerSTDOUT(REDIRECT_INFORMATION priInfo, HANDLE hProc);
+DWORD stdfuncallconv ServerSTDOUT(REDIRECT_INFORMATION priInfo, HANDLE hProc);
 int stdfuncallconv CloseRedirect(PREDIRECT_INFORMATION priInformation);

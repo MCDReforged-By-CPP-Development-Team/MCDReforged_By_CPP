@@ -1,6 +1,6 @@
 ﻿#include"redirectstdio.h"
 
-void stdfuncallconv ServerSTDOUT(REDIRECT_INFORMATION priInfo, HANDLE hProc)
+DWORD stdfuncallconv ServerSTDOUT(REDIRECT_INFORMATION priInfo, HANDLE hProc)
 {
     dp("enter serverstdout");
     char out_buffer[4096];
@@ -21,7 +21,7 @@ void stdfuncallconv ServerSTDOUT(REDIRECT_INFORMATION priInfo, HANDLE hProc)
         //如果子进程结束，退出循环  
         if (process_exit_code != STILL_ACTIVE) break;
     }
-    return ;
+    return process_exit_code;
 }
 
 int stdfuncallconv CloseRedirect(PREDIRECT_INFORMATION priInformation)
@@ -35,6 +35,23 @@ int stdfuncallconv CloseRedirect(PREDIRECT_INFORMATION priInformation)
     return 1;
 }
 
+vector<string> split(const string& str, const string& pattern)
+{
+    //const char* convert to char*
+    char* strc = new char[strlen(str.c_str()) + 1];
+    strcpy(strc, str.c_str());
+    vector<string> resultVec;
+    char* tmpStr = strtok(strc, pattern.c_str());
+    while (tmpStr != NULL)
+    {
+        resultVec.push_back(string(tmpStr));
+        tmpStr = strtok(NULL, pattern.c_str());
+    }
+
+    delete[] strc;
+
+    return resultVec;
+}
 
 int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
 {
@@ -51,12 +68,12 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
     SECURITY_ATTRIBUTES sa;
     RedirectInformation inf;
 
-	string servercmdline = sets.GetString(servername);
-	string jvmpath = sets.GetString(javapath);
-
-	sa.nLength = sizeof(SECURITY_ATTRIBUTES);
-	sa.bInheritHandle = TRUE;
-	sa.lpSecurityDescriptor = NULL;
+    string servercmdline = sets.GetString(servername);
+    string jvmpath = sets.GetString(javapath);
+    string serverdir_ = sets.GetString(serverdir);
+    sa.nLength = sizeof(SECURITY_ATTRIBUTES);
+    sa.bInheritHandle = TRUE;
+    sa.lpSecurityDescriptor = NULL;
 
     //产生一个用于stdin的管道，得到两个HANDLE:  hStdInRead用于子进程读出数据，hStdInWrite用于主程序写入数据  
     //其中saAttr是一个STARTUPINFO结构体，定义见CreatePipe函数说明  
@@ -69,12 +86,36 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
     if (hStdInRead == NULL || hStdInWrite == NULL) return -1;
     if (hStdOutRead == NULL || hStdOutWrite == NULL) return -1;
 
-    string startupcmd;
-    startupcmd.append(jvmpath).append(" ").append(servercmdline);
+    string startupcmd; 
+    if (servercmdline.find(".bat") != string::npos || servercmdline.find(".cmd") != string::npos)//判断启动命令是否为bat或cmd文件
+    {
+        startupcmd = servercmdline;
+        dp(startupcmd);
+    }
+    else//不是bat或cmd文件
+    { 
+      vector < string > vecstr = split(servercmdline, " ");//切丝
+      startupcmd.append(jvmpath).append(" ");
+      string servcmd;
+      for (auto i : vecstr)//循环
+      {
+          if (i.find(".jar") != string::npos)
+          {
+               servcmd.append(serverdir_ + "\\" + i + " ");//加上服务器jar文件所在目录然后append
+          }
+          else
+          {
+               servcmd.append(i + " ");//不含有 .jar 的直接append
+          }
+      }
+      startupcmd.append(servcmd);
+      dp(startupcmd);
+    }   
 
     LPSTR startcmd = new char[startupcmd.length() + 1];
     memset(startcmd, '\0', startupcmd.length() + 1);
     strcat_s(startcmd, startupcmd.length() + 1, startupcmd.c_str());
+    dp("#");
     dp(startcmd);
 
     ZeroMemory(&si, sizeof(STARTUPINFO));
@@ -104,6 +145,8 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
         , &si
         , &pi);
     
+    //CloseHandle(pi.hThread);
+
     if (bSuc == FALSE) { 
         dp("CreateProcess() Failed!");
         return -1;
@@ -117,6 +160,8 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
     inf.hStdOutRead = hStdOutRead;
     inf.hStdOutWrite = hStdOutWrite;
 
+    dp("pid:" + pi.dwProcessId);
+    dp("tid:" + pi.dwThreadId);
     thread ServerOut(ServerSTDOUT, inf, pi.hProcess);
     ServerOut.join();
 

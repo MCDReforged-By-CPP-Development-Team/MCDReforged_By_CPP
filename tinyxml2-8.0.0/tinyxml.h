@@ -30,6 +30,7 @@ distribution.
 #pragma warning( push )
 #pragma warning( disable : 4530 )
 #pragma warning( disable : 4786 )
+#pragma warning( disable : 26812 )
 #endif
 
 #include <ctype.h>
