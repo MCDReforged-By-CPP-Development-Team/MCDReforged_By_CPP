@@ -243,6 +243,15 @@ int stdfuncallconv LoadConfig::SetToCfg()   //ÓÐbug »áËÀÑ­»·
     SETTOCFG_S("LogFilePath", LogFilePath, logpath);
     dp(GlobalSettings.GetString(scrpath));
     SETTOCFG_S("ScriptPath", ScriptPath, scrpath);
+
+    TiXmlElement* pLanguage = new TiXmlElement("Language"); 
+    if (NULL == pLanguage) return false; 
+    if (Set.GetInt(lang) == LANG_ZH_CN) { strValue = "zh_CN"; }
+    else { strValue = "en_US"; }
+    pRootEle->LinkEndChild(pLanguage); 
+    TiXmlText* pLanguageValue = new TiXmlText(strValue.c_str()); 
+    pLanguage->LinkEndChild(pLanguageValue);
+
     pDoc->SaveFile(CFGFILENAME);
     return true;
 }
@@ -372,11 +381,10 @@ int LoadConfig::ReadCfgFile() {
 
     GetNodePointerByName(pRootEle, "Language", pElem);
     rettest
-    string str = gt;
-    if (str == "en_US") {
+    if (gt == "en_US") {
         GlobalSettings.SetInt(lang, LANG_EN_US);
     }
-    else if (str == "zh_CN") {
+    else if (gt == "zh_CN") {
         GlobalSettings.SetInt(lang, LANG_ZH_CN);
     }
     dp("Read Config Successful.");

@@ -15,6 +15,8 @@ int stdfuncallconv Initialize(){
     ColorLog log;
     dp("Enter Initialize Function,start init now.");
 
+    SetConsoleTitle("MCDReforged by C++");
+
     dp("Call LoadConfigFile Funtion");
     int loadcfgfileret = LoadConfig::LoadConfigFile();
     dp("LoadConfigFileReturns:" + loadcfgfileret);

@@ -3,7 +3,7 @@
 DWORD stdfuncallconv ServerSTDOUT(REDIRECT_INFORMATION priInfo, HANDLE hProc)
 {
     dp("enter serverstdout");
-    char out_buffer[4096];
+    char out_buffer[BUFSIZE];
     DWORD dwRead;
     int iRet = FALSE;
     ProcessServerOutput output;
@@ -22,6 +22,21 @@ DWORD stdfuncallconv ServerSTDOUT(REDIRECT_INFORMATION priInfo, HANDLE hProc)
         if (process_exit_code != STILL_ACTIVE) break;
     }
     return process_exit_code;
+}
+
+DWORD stdfuncallconv ServerSTDIN(REDIRECT_INFORMATION priInfo, HANDLE hProc)
+{
+    dp("enter serverstdin");
+    HANDLE mcdrstdin = GetStdHandle(STD_INPUT_HANDLE);
+    char* in_buffer = new char[BUFSIZE];
+    DWORD byteread;
+    BOOL readfileret;
+
+    while (0) {
+        ZeroMemory(in_buffer, BUFSIZE);
+        readfileret = ReadFile(mcdrstdin, in_buffer, BUFSIZE, &byteread, NULL);
+    }
+    return 0;
 }
 
 int stdfuncallconv CloseRedirect(PREDIRECT_INFORMATION priInformation)
@@ -163,7 +178,9 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
     dp("pid:" + pi.dwProcessId);
     dp("tid:" + pi.dwThreadId);
     thread ServerOut(ServerSTDOUT, inf, pi.hProcess);
+    //thread ServerIn(ServerSTDIN, inf, pi.hProcess);
     ServerOut.join();
+    //ServerIn.detach();
 
     delete[] startcmd;
     startcmd = NULL;
