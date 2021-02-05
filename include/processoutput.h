@@ -6,9 +6,9 @@
 #include"pyplugin.h"
 #include"common.h"
 #include"debugprint.h"
-#include"messagesys.h"
 #include"serverparser.h"
 #include"logsys.h"
+#include"utils.h"
 
 using namespace std;
 
@@ -21,5 +21,3 @@ public:
 	int stdfuncallconv ProcessOutput(LPSTR output, int reserved = 0);
 	int stdfuncallconv CannotProcessOutput();
 };
-
-vector<string> stdfuncallconv split(const string& str, const string& pattern)

@@ -15,8 +15,8 @@ aux_source_directory(./tinyxml2-8.0.0 DIR_TNY)
 
 IF(WIN32)
     MESSAGE(STATUS Cmaking on windowsx86_64)
-    set(PYINCLUDE "c:/Program Files/Python38/include")
-    set(PYLIB "c:/Program Files/Python38/libs")
+    set(PYINCLUDE "d:/Program Files/Python38/include")
+    set(PYLIB "d:/Program Files/Python38/libs")
 
     link_directories(${PYLIB})
     #link_libraries(此编译选项为玄学选项，请填写自己计算机的python lib 路径. ps: 系统环境变量不能用，我试过了 请不要把这个选项改动后推到github)

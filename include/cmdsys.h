@@ -4,14 +4,15 @@
 #include<vector>
 
 #include"common.h"
+#include"cfgfile.h"
+#include"debugprint.h"
 
 using namespace std;
 
 class MCDRCommand {
 public:
 	string rawText;
-	int stdfuncallconv AnalyzeCommand(string command);
-	int stdfuncallconv ExecCommand(MCDRCommand* command);
+	int stdfuncallconv ExecCommand();
 	MCDRCommand(string command);
 private:
 	bool isexecuted;
@@ -20,3 +21,4 @@ private:
 typedef MCDRCommand* PMCDRCommand;
 
 int stdfuncallconv NewMCDRCommand(string command);
+int stdfuncallconv ExecCmdQueue();

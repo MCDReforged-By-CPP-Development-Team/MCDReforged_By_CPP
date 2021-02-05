@@ -123,7 +123,7 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
         , NULL
         , NULL
         , TRUE
-        , CREATE_NEW_CONSOLE
+        , CREATE_SUSPENDED
         , NULL
         , NULL
         , &si
@@ -147,10 +147,10 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
     dp("pid:" + pi.dwProcessId);
     dp("tid:" + pi.dwThreadId);
     thread ServerOut(ServerSTDOUT, inf, pi.hProcess);
-    //thread ServerIn(ServerSTDIN, inf, pi.hProcess);
     ServerOut.detach();
-    //ServerOut.join();
-    //ServerIn.detach();
+    Sleep(1);
+    ResumeThread(pi.hThread);
+    
     dp("##############################################");
     delete[] startcmd;
     startcmd = NULL;
