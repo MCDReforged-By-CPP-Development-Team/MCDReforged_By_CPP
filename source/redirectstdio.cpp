@@ -188,6 +188,7 @@ int stdfuncallconv WriteToPipe(const char *in_buffer, DWORD dwSize) {
 
     //用WriteFile，从hStdInWrite写入数据，数据在in_buffer中，长度为dwSize  
     iRet = WriteFile(writeinf.hStdInWrite, in_buffer, dwSize, &dwWritten, NULL);
+    iRet = WriteFile(writeinf.hStdInWrite, "\r\n", 2, &dwWritten, NULL);
     return iRet;
 }
 

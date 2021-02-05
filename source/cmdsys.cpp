@@ -1,5 +1,7 @@
 ﻿#include"cmdsys.h"
 
+extern vector<MCDRCommand> MCDRCommandQueue;
+
 int stdfuncallconv MCDRCommand::AnalyzeCommand(string command) {
 	return 0;
 }
