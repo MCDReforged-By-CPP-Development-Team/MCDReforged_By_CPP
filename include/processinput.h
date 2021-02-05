@@ -7,6 +7,7 @@
 #include"redirectstdio.h"
 #include"common.h"
 #include"debugprint.h"
+#include"cmdsys.h"
 
 using namespace std;
 

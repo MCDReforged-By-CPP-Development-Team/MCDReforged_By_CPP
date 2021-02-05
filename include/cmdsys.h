@@ -14,7 +14,7 @@ class MCDRCommand {
 public:
 	string rawText;
 	int stdfuncallconv AnalyzeCommand(string command);
-	int stdfuncallconv ExecCommand(PMCDRCommand command);
+	int stdfuncallconv ExecCommand(MCDRCommand* command);
 	MCDRCommand(string command);
 private:
 	bool isexecuted;
