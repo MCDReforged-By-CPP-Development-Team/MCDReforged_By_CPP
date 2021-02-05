@@ -4,7 +4,7 @@ int stdfuncallconv MCDRCommand::AnalyzeCommand(string command) {
 	return 0;
 }
 
-int stdfuncallconv MCDRCommand::ExecCommand(pMCDRCommand command)
+int stdfuncallconv MCDRCommand::ExecCommand(PMCDRCommand command)
 {
 	return 0;
 }

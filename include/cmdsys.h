@@ -7,18 +7,18 @@
 
 using namespace std;
 
-class MCDRCommand;
-typedef MCDRCommand* pMCDRCommand;
-vector<MCDRCommand> MCDRCommandQueue;
-
 class MCDRCommand {
 public:
 	string rawText;
 	int stdfuncallconv AnalyzeCommand(string command);
-	int stdfuncallconv ExecCommand(pMCDRCommand command);
+	int stdfuncallconv ExecCommand(PMCDRCommand command);
 	MCDRCommand(string command);
 private:
 	bool isexecuted;
 };
+
+typedef MCDRCommand* PMCDRCommand;
+
+vector<MCDRCommand> MCDRCommandQueue;
 
 int stdfuncallconv NewMCDRCommand(string command);
