@@ -12,7 +12,7 @@ int main(int argc, char* argv) {
 		cin >> strUserInput;
 		if (strUserInput == set.GetString(insprefix) + " stop")
 		{
-			exit
+			//exit
 		}
 		
 		//cout << strUserInput << endl;

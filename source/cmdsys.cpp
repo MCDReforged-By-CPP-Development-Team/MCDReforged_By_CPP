@@ -1,10 +1,12 @@
 ﻿#include"cmdsys.h"
 
+vector<MCDRCommand> MCDRCommandQueue;
+
 int stdfuncallconv MCDRCommand::AnalyzeCommand(string command) {
 	return 0;
 }
 
-int stdfuncallconv MCDRCommand::ExecCommand(PMCDRCommand command)
+int stdfuncallconv MCDRCommand::ExecCommand(MCDRCommand* command)
 {
 	return 0;
 }
