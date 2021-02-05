@@ -74,7 +74,7 @@ extern string strLogFilePath;
         "\t<JavaPath>init</JavaPath>\r\n"\
         "\t<EnableMinecraftCommandQueue>true</EnableMinecraftCommandQueue>\r\n"\
         "\t<ServerParser>VanillaParser</ServerParser>\r\n"\
-        "\t<Instructionprefix>!!MCDR</Instructionprefix>\r\n"\
+        "\t<InstructionPrefix>!!MCDR</InstructionPrefix>\r\n"\
         "\t<LogFilePath>log</LogFilePath>\r\n"\
         "\t<ScriptPath>script</ScriptPath>\r\n"\
         "\t<Language>en_US</Language> <--en_US/zh_CN-->\r\n"\

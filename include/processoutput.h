@@ -1,5 +1,7 @@
 ﻿#pragma once
 #include<Windows.h>
+#include<vector>
+
 #include"cppplugin.h"
 #include"pyplugin.h"
 #include"common.h"
@@ -19,3 +21,5 @@ public:
 	int stdfuncallconv ProcessOutput(LPSTR output, int reserved = 0);
 	int stdfuncallconv CannotProcessOutput();
 };
+
+vector<string> stdfuncallconv split(const string& str, const string& pattern)
