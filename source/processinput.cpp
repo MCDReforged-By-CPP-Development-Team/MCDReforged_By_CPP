@@ -13,7 +13,7 @@ int stdfuncallconv ProcessInput(LPCSTR rawText)
 	string input = rawText;
 
 	if (input.find_first_of(prefix) == 0) {	//区分MCDRCPP指令和发送给服务器的指令
-		dp("mcdr command");
+		dp("mcdrcpp command");
 		NewMCDRCommand(input);
 	}
 	else if(input.find_first_of("/") == 0){

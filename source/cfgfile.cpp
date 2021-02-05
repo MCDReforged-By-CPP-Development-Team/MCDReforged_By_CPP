@@ -95,7 +95,7 @@ language:
     GlobalSettings.SetInt(lang, ivar);
 
     Out.mlout("Select Your Server Type [Vanilla-0] [Bukkit(Version<1.14)-1]\n\t [Bukkit(Version>=1.14)] [BungeeCord-3]\n\t [Cat-4] [Waterfall-5] \n\t[Beta1.8-6] [Forge-7]",
-              "选择您的服务端类型[Vanilla-0][Bukkit(Version<1.14)-1][Bukkit(Version>=1.14)][BungeeCord-3][Cat-4][Waterfall-5][Beta1.8-6][Forge-7]");   //iParserType
+              "选择您的服务端类型[Vanilla-0][Bukkit(1.14以下)-1][Bukkit(1.14以上)][BungeeCord-3][Cat-4][Waterfall-5][Beta1.8-6][Forge-7]");   //iParserType
     parser:
     ivar = gsti();
     if (ivar > FORGE_PARSER_CODE || ivar < VANILLA_PARSER_CODE) { 
