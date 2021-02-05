@@ -4,6 +4,7 @@
 #include"colorlog.h"
 #include"pytools.h"
 #include"redirectstdio.h"
+#include"processinput.h"
 
 int stdfuncallconv AnalyzeServerOutput(char* output);
 RedirectInformation inf;
@@ -46,9 +47,17 @@ int stdfuncallconv Initialize(){
     dp(GlobalSettings.GetString(servername));
     dp(GlobalSettings.GetString(javapath));
 #endif
-    
 
     auto openserverret = OpenServerAndRedirectIO(&inf);
+
+    string strUserInput;
+    for (;;)
+    {
+        cin >> strUserInput;
+        ProcessInput(strUserInput.c_str());
+    }
+    cout << endl;
+
     return 0;
 }
 
