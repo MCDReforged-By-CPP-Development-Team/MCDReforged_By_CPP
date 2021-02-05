@@ -7,9 +7,6 @@
 
 using namespace std;
 
-class MCDRCommand;
-typedef MCDRCommand* PMCDRCommand;
-
 class MCDRCommand {
 public:
 	string rawText;
@@ -20,6 +17,6 @@ private:
 	bool isexecuted;
 };
 
-extern vector<MCDRCommand> MCDRCommandQueue;
+typedef MCDRCommand* PMCDRCommand;
 
 int stdfuncallconv NewMCDRCommand(string command);
