@@ -1,5 +1,7 @@
 ﻿#include"redirectstdio.h"
 
+RedirectInformation writeinf;
+
 DWORD stdfuncallconv ServerSTDOUT(REDIRECT_INFORMATION priInfo, HANDLE hProc)
 {
     dp("enter serverstdout");
@@ -22,21 +24,6 @@ DWORD stdfuncallconv ServerSTDOUT(REDIRECT_INFORMATION priInfo, HANDLE hProc)
         if (process_exit_code != STILL_ACTIVE) break;
     }
     return process_exit_code;
-}
-
-DWORD stdfuncallconv ServerSTDIN(REDIRECT_INFORMATION priInfo, HANDLE hProc)
-{
-    dp("enter serverstdin");
-    HANDLE mcdrstdin = GetStdHandle(STD_INPUT_HANDLE);
-    char* in_buffer = new char[BUFSIZE];
-    DWORD byteread;
-    BOOL readfileret;
-
-    while (0) {
-        ZeroMemory(in_buffer, BUFSIZE);
-        readfileret = ReadFile(mcdrstdin, in_buffer, BUFSIZE, &byteread, NULL);
-    }
-    return 0;
 }
 
 int stdfuncallconv CloseRedirect(PREDIRECT_INFORMATION priInformation)
@@ -97,7 +84,7 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
     //其中saAttr是一个STARTUPINFO结构体，定义见CreatePipe函数说明  
     if (!CreatePipe(&hStdInRead, &hStdInWrite, &sa, 0))
         return -1;
-    //产生一个用于stdout的管道，得到两个HANDLE:  hStdInRead用于主程序读出数据，hStdInWrite用于子程序写入数据  
+    //产生一个用于stdout的管道，得到两个HANDLE:  hStdOutRead用于主程序读出数据，hStdOutWrite用于子程序写入数据  
     if (!CreatePipe(&hStdOutRead, &hStdOutWrite, &sa, 0))
         return -1;
 
@@ -127,7 +114,6 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
           }
       }
       startupcmd.append(servcmd);
-      startupcmd.append("--universe " + serverdir_);
       dp(startupcmd);
     }   
 
@@ -190,14 +176,18 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
     delete[] startcmd;
     startcmd = NULL;
     dp("###############################################");
+
+    writeinf = inf;
+
+    return 0;
 }   //此函数部分代码来自 https://blog.csdn.net/breaksoftware/article/details/8595734 , https://blog.csdn.net/dicuzhaoqin8950/article/details/102229723 同时感谢作者
 
-int stdfuncallconv WriteToPipe(HANDLE hWrite, char *in_buffer, DWORD dwSize) {
+int stdfuncallconv WriteToPipe(const char *in_buffer, DWORD dwSize) {
     DWORD dwWritten;
     int iRet = FALSE;
 
     //用WriteFile，从hStdInWrite写入数据，数据在in_buffer中，长度为dwSize  
-    iRet = WriteFile(hWrite, in_buffer, dwSize, &dwWritten, NULL);
+    iRet = WriteFile(writeinf.hStdInWrite, in_buffer, dwSize, &dwWritten, NULL);
     return iRet;
 }
 

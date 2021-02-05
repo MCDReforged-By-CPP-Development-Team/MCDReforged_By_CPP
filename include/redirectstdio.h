@@ -51,7 +51,6 @@ typedef REDIRECT_INFORMATION *PREDIRECT_INFORMATION;
 
 int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation);
 DWORD stdfuncallconv ServerSTDOUT(REDIRECT_INFORMATION priInfo, HANDLE hProc);
-DWORD stdfuncallconv ServerSTDIN(REDIRECT_INFORMATION priInfo, HANDLE hProc);
 int stdfuncallconv CloseRedirect(PREDIRECT_INFORMATION priInformation);
-
+int stdfuncallconv WriteToPipe(const char* in_buffer, DWORD dwSize);
 

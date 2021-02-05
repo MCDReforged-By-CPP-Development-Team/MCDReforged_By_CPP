@@ -17,4 +17,3 @@ int stdfuncallconv Initialize();
 int stdfuncallconv Finalize();
 int stdfuncallconv DetectDir();
 int stdfuncallconv WelcomeMessage();
-int stdfuncallconv OpenServer();
