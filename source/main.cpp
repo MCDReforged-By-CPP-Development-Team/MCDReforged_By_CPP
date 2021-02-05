@@ -1,4 +1,4 @@
-﻿#include"SysInit.h"
+﻿#include"systemfun.h"
 #include"logsys.h"
 #include"cfgfile.h"
 #include"processinput.h"
