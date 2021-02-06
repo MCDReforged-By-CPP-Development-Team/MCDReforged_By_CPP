@@ -182,7 +182,7 @@ readjavapath:
     GlobalSettings.SetString(scrpath, svar);
 
     Out.mlout("MCDReforged by C++ command prefix?(In order to keep compatible with MCDReforged,\"!!MCDR\" is strongly recommended)",
-        "MCDReforged by C++ָ指令前缀(为了与MCDReforged保持高度兼容,强烈建议使用\"!!MCDR\")");   //strInstructionPrefix
+        "MCDReforged by C++指令前缀(为了与MCDReforged保持高度兼容,强烈建议使用\"!!MCDR\")");   //strInstructionPrefix
     getline(cin, svar); 
     GlobalSettings.SetString(insprefix, svar);
 
