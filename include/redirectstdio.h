@@ -6,7 +6,7 @@
 #include"cfgfile.h"
 #include"debugprint.h"
 #include"processoutput.h"
-
+#pragma warning(ignore :26432)
 using namespace std;
 
 #define NEWBUFFERSIZE 0x100

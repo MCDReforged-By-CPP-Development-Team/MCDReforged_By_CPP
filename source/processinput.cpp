@@ -1,5 +1,9 @@
-﻿#include"processinput.h"
+﻿#pragma warning(disable :26496)
+
+#include"processinput.h"
 #include"cmdsys.h"
+
+
 
 int stdfuncallconv ProcessInput(LPCSTR rawText)
 {

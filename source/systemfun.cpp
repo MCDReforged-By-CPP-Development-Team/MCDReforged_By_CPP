@@ -42,7 +42,7 @@ int stdfuncallconv Initialize(){
     cout << endl;
     dp("Test Pytools & MultiThread");
     Pytools pytTools(sysinitOut);
-    pytTools.InstallPyLibAsync("cyka_blyat");
+    pytTools.InstallPyLibAsync("colorama");
     Sleep(1000);
     dp(GlobalSettings.GetString(servername));
     dp(GlobalSettings.GetString(javapath));

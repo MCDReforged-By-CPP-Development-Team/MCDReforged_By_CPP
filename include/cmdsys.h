@@ -2,10 +2,11 @@
 
 #include<string>
 #include<vector>
-
+#include<Windows.h>
 #include"common.h"
 #include"cfgfile.h"
 #include"debugprint.h"
+#include"utils.h"
 
 using namespace std;
 

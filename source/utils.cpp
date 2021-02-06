@@ -35,5 +35,14 @@ bool CheckFolderExist(const string& strPath) {
     return false;
 }
 
-
+template<class T1, class T2> vector<T1> del(vector<T1> a, T2 to_be_removed_obj)
+{
+    for (vector<int>::iterator iter = a.begin(); iter != a.end(); iter++) {
+        if (*iter == to_be_removed_obj) {
+            a.erase(iter);
+            break;
+        }
+    }
+    return a;
+}
 
