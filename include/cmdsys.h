@@ -17,6 +17,14 @@ public:
 	MCDRCommand(string command);
 private:
 	bool isexecuted;
+	int stdfuncallconv status();
+	int stdfuncallconv reloads();
+	int stdfuncallconv permission();
+	int stdfuncallconv plugins();
+	
+	int stdfuncallconv mccmdqueue();
+
+	int stdfuncallconv help();
 };
 
 typedef MCDRCommand* PMCDRCommand;

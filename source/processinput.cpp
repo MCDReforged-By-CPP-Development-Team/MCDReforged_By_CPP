@@ -14,6 +14,7 @@ int stdfuncallconv ProcessInput(LPCSTR rawText)
 
 	if (input.find_first_of(prefix) == 0) {	//区分MCDRCPP指令和发送给服务器的指令
 		NewMCDRCommand(input);
+		ExecCmdQueue();
 	}
 	else {
 		int writeret = WriteToPipe(input.c_str(), input.length());
