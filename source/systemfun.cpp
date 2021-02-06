@@ -53,7 +53,7 @@ int stdfuncallconv Initialize(){
     string strUserInput;
     for (;;)
     {
-        cin >> strUserInput;
+        getline(cin, strUserInput);
         ProcessInput(strUserInput.c_str());
     }
     cout << endl;

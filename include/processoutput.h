@@ -1,12 +1,14 @@
 ﻿#pragma once
 #include<Windows.h>
+#include<vector>
+
 #include"cppplugin.h"
 #include"pyplugin.h"
 #include"common.h"
 #include"debugprint.h"
-#include"messagesys.h"
 #include"serverparser.h"
 #include"logsys.h"
+#include"utils.h"
 
 using namespace std;
 

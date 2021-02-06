@@ -241,7 +241,6 @@ int stdfuncallconv LoadConfig::SetToCfg()
     SETTOCFG_S("JavaPath", JavaPath, javapath);
     SETTOCFG_S("InstructionPrefix", InstructionPrefix, insprefix);
     SETTOCFG_S("LogFilePath", LogFilePath, logpath);
-    dp(GlobalSettings.GetString(scrpath));
     SETTOCFG_S("ScriptPath", ScriptPath, scrpath);
 
     TiXmlElement* pLanguage = new TiXmlElement("Language"); 
@@ -302,81 +301,97 @@ int LoadConfig::ReadCfgFile() {
     GetNodePointerByName(pRootEle, "LoadCppPlugins", pElem);
     rettest
     GlobalSettings.SetBool(loadcppplugins, stb);
+    dp(gt);
     dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, "LoadPythonPlugins", pElem);
     rettest
     GlobalSettings.SetBool(loadpyplugins, stb);
+    dp(gt);
     dp("Read Config Successful.");  
 
     GetNodePointerByName(pRootEle, "LoadCppPluginsConfig", pElem);
     rettest
     GlobalSettings.SetBool(readcpppluginscfg, stb);
+    dp(gt);
     dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, "LoadPythonPluginsConfig", pElem);
     rettest
     GlobalSettings.SetBool(readpypluginscfg, stb);
+    dp(gt);
     dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, "CppPluginsDir", pElem);
     rettest
     GlobalSettings.SetBool(cpppluginpath, stb);
+    dp(gt);
     dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, "PythonPluginsDir", pElem);
     rettest
     GlobalSettings.SetBool(pypluginpath, stb);
+    dp(gt);
     dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, "ExecInitScript", pElem);
     rettest
     GlobalSettings.SetBool(execinitscr, stb);
+    dp(gt);
     dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, "LoadCppPlugins", pElem);
     rettest
     GlobalSettings.SetBool(exectimerscr, stb);
+    dp(gt);
     dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, "ServerDir", pElem);
     rettest
     GlobalSettings.SetString(serverdir, gt);
+    dp(gt);
     dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, "ServerStartupCommand", pElem);
     rettest
     GlobalSettings.SetString(servername, gt);
+    dp(gt);
     dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, "JavaPath", pElem);
     rettest
     GlobalSettings.SetString(javapath, gt);
+    dp(gt);
     dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, "EnableMinecraftCommandQueue", pElem);
     rettest
     GlobalSettings.SetBool(enablemccmdqueue, stb);
+    dp(gt);
     dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, "ServerParser", pElem);
     rettest
     GlobalSettings.SetInt(parsertype, StringToParserCode(pElem->GetText()));
+    dp(gt);
     dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, "Instructionprefix", pElem);
+    GetNodePointerByName(pRootEle, "InstructionPrefix", pElem);
     rettest
     GlobalSettings.SetString(insprefix, gt);
+    dp(gt);
     dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, "LogFilePath", pElem);
     rettest
     GlobalSettings.SetString(logpath, gt);
+    dp(gt);
     dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, "ScriptPath", pElem);
     rettest
     GlobalSettings.SetString(scrpath, gt);
+    dp(gt);
     dp("Read Config Successful.");
 
     GetNodePointerByName(pRootEle, "Language", pElem);
