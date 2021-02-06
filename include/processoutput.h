@@ -9,6 +9,7 @@
 #include"serverparser.h"
 #include"logsys.h"
 #include"utils.h"
+#include"cfgfile.h"
 
 using namespace std;
 

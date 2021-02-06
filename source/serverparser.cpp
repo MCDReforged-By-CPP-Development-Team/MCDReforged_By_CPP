@@ -16,18 +16,21 @@ struct Advancement {
 	}
 };
 
-int stdfuncallconv VanillaParser::Parser(ServerParser* pResult, int parserCode, string rawText)
+int stdfuncallconv VanillaParser::Parse(string rawText, ServerParser* pResult)
 {
-	return 0;
-}
+	//[hh:mm:ss] [thread/cate]: [sender]content
+	regex time("\[\d{2,}:\d{2,}:\d{2,}\]");	//[hh:mm:ss]
+	regex info("\[[(0-9)(a-z)(A-Z)(_)\s]+/\w+\]");	//[thread/cate]
+	regex sender("\[\w+\]");	//[sender]
+	regex content(".*");	//content
+	smatch m;
+	bool found;
 
-int stdfuncallconv VanillaParser::Parse(string rawText)
-{
-	
 	dp(rawText);
 	try
 	{
-		
+		found = regex_search(rawText, m, time);
+		dp(m.str(0));
 	}
 	catch (const std::exception&)
 	{
@@ -35,4 +38,8 @@ int stdfuncallconv VanillaParser::Parse(string rawText)
 		cout << rawText.c_str() << endl;
 	}
 	return 0;
+}
+
+BaseParser::~BaseParser()
+{
 }

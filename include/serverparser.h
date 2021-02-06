@@ -28,46 +28,47 @@ struct PlayerMsg;
 struct ServerParser;
 
 class BaseParser {
-	virtual int stdfuncallconv Parser(ServerParser* pResult, int parserCode, string rawText) = 0;
-	virtual int stdfuncallconv Parse(string rawText) = 0;
+public:
+	virtual int stdfuncallconv Parse(string rawText, ServerParser* pResult) = 0;
+	virtual ~BaseParser();
 };
 
-class VanillaParser :BaseParser {
-	int stdfuncallconv Parser(ServerParser* pResult, int parserCode, string rawText);
-	int stdfuncallconv Parse(string rawText);
+class VanillaParser :public BaseParser {
+public:
+	int stdfuncallconv Parse(string rawText, ServerParser* pResult);
 };
 
-class BukkitParser :BaseParser {
-	int stdfuncallconv Parser(ServerParser* pResult, int parserCode, string rawText);
-	int stdfuncallconv Parse(string rawText);
+class BukkitParser :public BaseParser {
+public:
+	int stdfuncallconv Parse(string rawText, ServerParser* pResult);
 };
 
-class Bukkit14Parser :VanillaParser {
-	int stdfuncallconv Parser(ServerParser* pResult, int parserCode, string rawText);
-	int stdfuncallconv Parse(string rawText);
+class Bukkit14Parser :public VanillaParser {
+public:
+	int stdfuncallconv Parse(string rawText, ServerParser* pResult);
 };
 
-class BungeeCordParser :BaseParser {
-	int stdfuncallconv Parser(ServerParser* pResult, int parserCode, string rawText);
-	int stdfuncallconv Parse(string rawText);
+class BungeeCordParser :public BaseParser {
+public:
+	int stdfuncallconv Parse(string rawText, ServerParser* pResult);
 };
 
-class CatParser :BaseParser {
-	int stdfuncallconv Parser(ServerParser* pResult, int parserCode, string rawText);
-	int stdfuncallconv Parse(string rawText);
+class CatParser :public BaseParser {
+public:
+	int stdfuncallconv Parse(string rawText, ServerParser* pResult);
 };
 
-class WaterfallParser :BaseParser {
-	int stdfuncallconv Parser(ServerParser* pResult, int parserCode, string rawText);
-	int stdfuncallconv Parse(string rawText);
+class WaterfallParser :public BaseParser {
+public:
+	int stdfuncallconv Parse(string rawText, ServerParser* pResult);
 };
 
-class Beta18Parser :BaseParser {
-	int stdfuncallconv Parser(ServerParser* pResult, int parserCode, string rawText);
-	int stdfuncallconv Parse(string rawText);
+class Beta18Parser :public BaseParser {
+public:
+	int stdfuncallconv Parse(string rawText, ServerParser* pResult);
 };
 
-class ForgeParser :BaseParser {
-	int stdfuncallconv Parser(ServerParser* pResult, int parserCode, string rawText);
-	int stdfuncallconv Parse(string rawText);
+class ForgeParser :public BaseParser {
+public:
+	int stdfuncallconv Parse(string rawText, ServerParser* pResult);
 };
