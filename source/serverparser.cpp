@@ -4,6 +4,10 @@
 struct PlayerMsg {
 	string playerName;
 	string playerMsg;
+	void operator=(PlayerMsg* in) {
+		this->playerMsg = in->playerMsg;
+		this->playerName = in->playerName;
+	}
 };
 
 struct Advancement {
