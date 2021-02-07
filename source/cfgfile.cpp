@@ -241,7 +241,16 @@ int stdfuncallconv LoadConfig::SetToCfg()
     SETTOCFG_S("JavaPath", JavaPath, javapath);
     SETTOCFG_S("InstructionPrefix", InstructionPrefix, insprefix);
     SETTOCFG_S("LogFilePath", LogFilePath, logpath);
-    SETTOCFG_S("ScriptPath", ScriptPath, scrpath);
+    //SETTOCFG_S("ScriptPath", ScriptPath, scrpath);
+
+    TiXmlElement* pScriptpath = new TiXmlElement("ScriptPath");
+    if (pScriptpath ==  NULL)
+    {
+        return false;
+    }
+    pRootEle->LinkEndChild(pScriptpath);
+    TiXmlText* pScrippath = new TiXmlText(Set.GetString(scrpath).c_str());
+    pScriptpath->LinkEndChild(pScrippath);
 
     TiXmlElement* pLanguage = new TiXmlElement("Language"); 
     if (NULL == pLanguage) return false; 

@@ -1,13 +1,13 @@
 ﻿#include "processoutput.h"
 
 OutputInterface serveroutput;
-Settings set;
+Settings sett;
 BaseParser* serverparser = NULL;
 
 int stdfuncallconv ProcessServerOutput::ProcessOutput(LPSTR output, int reserved)
 {
     vector<string> splitedoutput = split(output, "\r\n");
-    auto parser = set.GetInt(parsertype);
+    int parser = sett.GetInt(parsertype);
 
     for (auto iter = splitedoutput.cbegin(); iter != splitedoutput.cend(); iter++) 
         serveroutput.Output((*iter).c_str(), "Server", INFO_COMMONMSG, S_STDOUT, true);

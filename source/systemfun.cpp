@@ -15,13 +15,18 @@ int stdfuncallconv Initialize(){
     Settings GlobalSettings;
     ColorLog log;
     dp("Enter Initialize Function,start init now.");
-
     SetConsoleTitle("MCDReforged by C++");
-
     dp("Call LoadConfigFile Funtion");
     int loadcfgfileret = LoadConfig::LoadConfigFile();
     dp("LoadConfigFileReturns:" + loadcfgfileret);
     sysinitOut.Init(GlobalSettings.GetString(logpath));
+    dp("CreatingDirs");
+    
+    dp(CreateDirectory(GlobalSettings.GetString(logpath).c_str(),NULL));
+    //CreateDirectory(GlobalSettings.GetString(serverd).c_str(), NULL);
+    dp(CreateDirectory(GlobalSettings.GetString(scrpath).c_str(), NULL));
+    dp(CreateDirectory(GlobalSettings.GetString(cpppluginpath).c_str(), NULL));
+    dp(CreateDirectory(GlobalSettings.GetString(pypluginpath).c_str(), NULL));
 
 #ifdef DEBUG_FUNC_ENABLE
     dp("Test OutputInterface.");
@@ -47,7 +52,7 @@ int stdfuncallconv Initialize(){
     dp(GlobalSettings.GetString(servername));
     dp(GlobalSettings.GetString(javapath));
 #endif
-
+    system("pause");
     auto openserverret = OpenServerAndRedirectIO(&inf);
 
     string strUserInput;
