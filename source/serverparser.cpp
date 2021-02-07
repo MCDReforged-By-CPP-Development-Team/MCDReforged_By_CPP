@@ -43,3 +43,38 @@ int stdfuncallconv VanillaParser::Parse(string rawText, ServerParser* pResult)
 BaseParser::~BaseParser()
 {
 }
+
+int stdfuncallconv BukkitParser::Parse(string rawText, ServerParser* pResult)
+{
+	return 0;
+}
+
+int stdfuncallconv Bukkit14Parser::Parse(string rawText, ServerParser* pResult)
+{
+	return 0;
+}
+
+int stdfuncallconv BungeeCordParser::Parse(string rawText, ServerParser* pResult)
+{
+	return 0;
+}
+
+int stdfuncallconv CatParser::Parse(string rawText, ServerParser* pResult)
+{
+	return 0;
+}
+
+int stdfuncallconv WaterfallParser::Parse(string rawText, ServerParser* pResult)
+{
+	return 0;
+}
+
+int stdfuncallconv Beta18Parser::Parse(string rawText, ServerParser* pResult)
+{
+	return 0;
+}
+
+int stdfuncallconv ForgeParser::Parse(string rawText, ServerParser* pResult)
+{
+	return 0;
+}

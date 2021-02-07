@@ -51,5 +51,5 @@ int stdfuncallconv ProcessServerOutput::ProcessOutput(LPSTR output, int reserved
 
 int stdfuncallconv ProcessServerOutput::CannotProcessOutput()
 {
-	return 0;
+	return -1;
 }
