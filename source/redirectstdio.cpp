@@ -83,7 +83,7 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
       string servcmd;
       for (auto i : vecstr)//循环
       {
-          if (i.find(".jar") != string::npos)
+          if (have(i,"jar"))
           {
                servcmd.append(serverdir_ + "\\" + i + " ");//加上服务器jar文件所在目录然后append
           }

@@ -1,5 +1,16 @@
 #include "utils.h"
 
+bool have(string a, string b)
+{
+    if (a.find(b) != string::npos)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
 
 vector<string> split(const string& str, const string& pattern)
 {
@@ -34,6 +45,85 @@ bool CheckFolderExist(const string& strPath) {
     }
     return false;
 }
+
+vector<string> stdfuncallconv ListFiles(string path)
+{
+    CheckFolderExist(path);
+    HANDLE hFind;
+    vector<string> result;
+    string path_ = path + "\\*";
+    WIN32_FIND_DATA wfdFind;
+    hFind = FindFirstFile(path_.c_str(), &wfdFind);
+    DWORD dwError = 0;
+    if (hFind == INVALID_HANDLE_VALUE){}
+    else
+    {
+        string tmp;
+        do
+        {
+            if (wfdFind.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+            {
+
+            }
+            else
+            {
+                tmp = wfdFind.cFileName;
+                result.push_back(tmp);
+            }
+        } while (FindNextFile(hFind, &wfdFind) != 0);
+        dwError = GetLastError();
+        if (dwError != ERROR_NO_MORE_FILES)
+        {
+            return result;
+        }
+        
+    }
+    FindClose(hFind);
+    return result;
+}
+
+vector<string>stdfuncallconv ListFiles(string path, string ext)
+{
+    CheckFolderExist(path);
+    HANDLE hFind;
+    vector<string> result;
+    string path_ = path + "\\*";
+    WIN32_FIND_DATA wfdFind;
+    hFind = FindFirstFile(path_.c_str(), &wfdFind);
+    DWORD dwError = 0;
+    if (hFind == INVALID_HANDLE_VALUE) {}
+    else
+    {
+        string tmp;
+        do
+        {
+            if (wfdFind.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+            {
+
+            }
+            else
+            {
+                tmp = wfdFind.cFileName;
+                vector<string> filenames = split(tmp, ".");
+                if (filenames[filenames.size()+1] == ext)
+                {
+                    result.push_back(tmp);
+                }
+
+            }
+        } while (FindNextFile(hFind, &wfdFind) != 0);
+        dwError = GetLastError();
+        if (dwError != ERROR_NO_MORE_FILES)
+        {
+            return result;
+        }
+
+    }
+    FindClose(hFind);
+    return result;
+}
+
+
 
 template<class T1, class T2> vector<T1> del(vector<T1> a, T2 to_be_removed_obj)
 {
