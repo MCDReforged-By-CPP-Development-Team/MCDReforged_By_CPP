@@ -5,6 +5,7 @@
 #include"pytools.h"
 #include"redirectstdio.h"
 #include"processinput.h"
+#include"minecraftcmdqueue.h"
 
 int stdfuncallconv AnalyzeServerOutput(char* output);
 RedirectInformation inf;
