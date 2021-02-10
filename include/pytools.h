@@ -3,7 +3,7 @@
 #ifndef __PYTOOLS__
 
 #include "common.h"
-#include "logsys.h"
+#include "output.h"
 #include "cthread.h"
 #include <string>
 #include <Windows.h>

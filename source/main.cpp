@@ -1,5 +1,5 @@
 ﻿#include"systemfun.h"
-#include"logsys.h"
+#include"output.h"
 #include"cfgfile.h"
 #include"processinput.h"
 

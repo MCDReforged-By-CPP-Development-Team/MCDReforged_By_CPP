@@ -3,6 +3,8 @@
 #include<string>
 #include<vector>
 #include<Windows.h>
+
+#include"output.h"
 #include"common.h"
 #include"cfgfile.h"
 #include"debugprint.h"

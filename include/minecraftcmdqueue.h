@@ -8,7 +8,7 @@
 #include"common.h"
 #include"debugprint.h"
 #include"redirectstdio.h"
-#include"logsys.h"
+#include"output.h"
 
 OutputInterface cmdout;
 

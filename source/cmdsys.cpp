@@ -7,6 +7,7 @@ int stdfuncallconv MCDRCommand::ExecCommand()
 	Settings set;
 	string cmd = this->rawText;
 	string prefix = set.GetString(insprefix);
+	vector<string> cmds;
 	
 	/*
 	if (cmd.find_first_of("!!help") == 0) {
@@ -27,59 +28,45 @@ int stdfuncallconv MCDRCommand::ExecCommand()
 	*/
 
 	if (cmd.length() != 0) {
-		vector<string> cmds = split(cmd, " ");	//处理完成 下一步就是继续分析指令
-		if (cmds.at(0) == prefix)
-		{
-			if (cmds.at(1) == "plugins")//为啥不让用switch
-			{
-				plugins();
-				return 0;
-			}
-			else
-			{
-				if (cmds.at(1) == "echo")
-				{
-					echo(cmds);
-				}
-				else
-				{
-					if (cmds.at(1) == "permissions")
-					{
+		cmds = split(cmd, " ");	//处理完成 下一步就是继续分析指令
+	}
+	else {
+		return -1;
+	}
+	if (cmds.at(0) == prefix)
+	{
 
-					}
-					else
-					{
-						if (cmds.at(1) == "status")
-						{
+	}
+	else
+	{
+		//在cpp插件注册的命令中查找
+		//否则作为消息送入py插件
+	}
 
-						}
-						else
-						{
-							if (cmds.at(1) == "help")
-							{
+	if (cmds.at(1) == "plugins")//为啥不让用switch
+	{
+		plugins();
+		return 0;
+	}
+	if (cmds.at(1) == "echo")
+	{
+		echo(cmds);
+	}
+	if (cmds.at(1) == "permissions")
+	{
 
-							}
-							else
-							{
-								if (cmds.at(1) == "mccmdqueue")
-								{
+	}
+	if (cmds.at(1) == "status")
+	{
 
-								}
-								else
-								{
+	}
+	if (cmds.at(1) == "help")
+	{
 
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		else
-		{
-			//在cpp插件注册的命令中查找
-			//否则作为消息送入py插件
-		}
+	}
+	if (cmds.at(1) == "mccmdqueue")
+	{
+
 	}
 	return 0;
 }
