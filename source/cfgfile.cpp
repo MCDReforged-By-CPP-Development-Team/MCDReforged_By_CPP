@@ -277,6 +277,7 @@ int LoadConfig::CreateCfgFile() {
         OPEN_ALWAYS,
         FILE_ATTRIBUTE_NORMAL,
         0);
+
     if (hFile == INVALID_HANDLE_VALUE) return false;
     WriteFile(hFile, strCfgFile, sizeof(strCfgFile), &dwWriteBytes, NULL);
     CloseHandle(hFile);
