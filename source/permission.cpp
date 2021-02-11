@@ -29,8 +29,69 @@ bool GetNodePointerByName(TiXmlElement* pRootEle, const char* strNodeName, TiXml
 
 int ReadPermissionFile()
 {
-    TiXmlDocument doc(PERMISSION_FILE_NAME);
+    int iret = false;
+    TiXmlDocument Doc(PERMISSION_FILE_NAME);
+    iret = Doc.LoadFile(TIXML_ENCODING_UTF8);
+    string tinyxmlerror = ("ErrorID:" + Doc.ErrorId());
+    tinyxmlerror += "ErrorDesc:";
+    tinyxmlerror += Doc.ErrorDesc();
+    if (!bret) {
+        dp("Doc.LoadFile() failed.");
+        dp(tinyxmlerror);
+        return -1;
+    }
+    dp("Load Config File Successful.");
+    TiXmlElement* pRootEle = Doc.RootElement();
+    if (pRootEle == NULL) {
+        dp("Doc.RootElement(); failed.");
+        return -1;
+    }
+    dp("Get XML Root Element Successful.");
 
+    TiXmlElement* pElem = NULL;
+    string gttemp;
+
+    GetNodePointerByName(pRootEle, "Owner", pElem);
+    permissions.clear();
+    rettest
+    gttemp = gt;
+    auto list_ = splittolist(gt, ";");
+    permissions[PERMISSION_OWNER] = list_;
+    dp(gt);
+    dp("Read Permission Successful.#PERMISSION_OWNER");
+
+    GetNodePointerByName(pRootEle, "Admin", pElem);
+    rettest
+    gttemp = gt;
+    auto list_ = splittolist(gt, ";");
+    permissions[PERMISSION_ADMIN] = list_;
+    dp(gt);
+    dp("Read Permission Successful.##PERMISSION_ADMIN");
+
+    GetNodePointerByName(pRootEle, "Helper", pElem);
+    rettest
+    gttemp = gt;
+    auto list_ = splittolist(gt, ";");
+    permissions[PERMISSION_HELPER] = list_;
+    dp(gt);
+    dp("Read Permission Successful.###PERMISSION_HELPER");
+
+    GetNodePointerByName(pRootEle, "User", pElem);
+    rettest
+    gttemp = gt;
+    auto list_ = splittolist(gt, ";");
+    permissions[PERMISSION_USER] = list_;
+    dp(gt);
+    dp("Read Permission Successful.####PERMISSION_USER");
+
+    GetNodePointerByName(pRootEle, "Guest", pElem);
+    rettest
+    gttemp = gt;
+    auto list_ = splittolist(gt, ";");
+    permissions[PERMISSION_GUEST] = list_;
+    dp(gt);
+    dp("Read Permission Successful.#####PERMISSION_GUEST");
+    return 114514;
 }
 
 
@@ -87,6 +148,7 @@ bool PermissionFileExisting() {
 
 Permission::~Permission()
 {
+    SavePermission();
     //permissions.clear();
 }
 
@@ -104,11 +166,50 @@ DWORD stdfuncallconv Permission::GetUserPermission(LPCSTR lpUser)
         {
             if (itt->c_str() == lpUser)
             {
+                SavePermission();
                 return group;
             }
         }
     }
 	return false;
+}
+
+int Permission::SetUserPermission(LPCSTR lpUser, DWORD dwPermission)
+{
+    int iret = NULL;
+    if (lpUser == NULL)
+    {
+        return iret;
+    }
+    if (dwPermission == NULL)
+    {
+        //从该用户所在权限组中删除该用户
+        DWORD dwUserPermission = GetUserPermission(lpUser);
+        auto UserList = permissions.at(dwUserPermission);
+        string usertmp = lpUser;
+        iret = UserList.remove(usertmp);
+        permissions[dwPermission] = UserList;
+        SavePermission();
+        return iret;
+    }
+    else
+    {
+        //先从该用户所在权限组中删除该用户
+        DWORD dwUserPermission = GetUserPermission(lpUser);
+        auto UserList = permissions.at(dwUserPermission);
+        string UserName = lpUser;
+        iret += UserList.remove(UserName);
+        permissions[dwUserPermission] = UserList;
+        //然后再在给定组内添加该用户
+        auto tmpList = permissions.at(dwPermission);
+        iret += tmpList.push_back(UserName);
+        permissions[dwPermission] = tmplist;
+        SavePermission();
+        return iret;
+    }
+    
+    
+    return 0;
 }
 
 int stdfuncallconv Permission::GetPermissionGroup(DWORD dwGroup, list<string>* Result)
@@ -139,6 +240,7 @@ int stdfuncallconv Permission::GetPermissionGroup(DWORD dwGroup, list<string>* R
         break;
     }
     _result = *Result;
+    SavePermission();
     return 0;
 }
 

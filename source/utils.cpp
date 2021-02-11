@@ -30,6 +30,61 @@ vector<string> split(const string& str, const string& pattern)
     return resultVec;
 }
 
+list<string> splittolist(const string& str, const string& pattern)
+{
+    //const char* convert to char*
+    char* strc = new char[strlen(str.c_str()) + 1];
+    strcpy(strc, str.c_str());
+    list<string> resultList;
+    char* tmpStr = strtok(strc, pattern.c_str());
+    while (tmpStr != NULL)
+    {
+        resultList.push_back(string(tmpStr));
+        tmpStr = strtok(NULL, pattern.c_str());
+    }
+
+    delete[] strc;
+
+    return resultList;
+}
+
+string makestring(list<string> list_ , string spiliter)
+{
+    string result;
+    for (auto iter = list_.begin();iter != list_.end() ;iter++)
+    {
+        result.append(iter->c_str());
+        if (iter == list_.end())
+        {
+            //在结尾不加分隔符
+        }
+        else
+        {
+            result.append(spiliter);
+        }
+    }
+    return string();
+}
+
+string makestring(vector<string> list_, string spiliter)
+{
+    string result;
+    for (auto iter = list_.begin(); iter != list_.end(); iter++)
+    {
+        result.append(iter->c_str());
+        if (iter == list_.end())
+        {
+            //在结尾不加分隔符
+        }
+        else
+        {
+            result.append(spiliter);
+        }
+    }
+    return string();
+}
+
+
 //寻找文件夹是否存在 strpath:目录
 //返回true即为文件夹存在 返回false为文件夹不存在或者为文件
 bool CheckFolderExist(const string& strPath) {
