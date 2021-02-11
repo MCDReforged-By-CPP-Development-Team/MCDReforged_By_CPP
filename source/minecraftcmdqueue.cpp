@@ -19,7 +19,7 @@ Minecraft指令队列集合(list)
 int stdfuncallconv NewCmdQueue(pMinecraftCommandQueueInfo info) {
 	MinecraftCommandQueueInfo queue = *info;
 	queue.index = MinecraftCommandQueue.size() + 1;
-	MinecraftCommandQueue.push_back(info);
+	MinecraftCommandQueue.push_back(queue);
 	queue.ExecThread = new thread(ExecCmds, queue.index);
 	queue.ExecThread->detach();
 	return 0;
@@ -31,8 +31,8 @@ int stdfuncallconv NewCmdQueue(const char* name) {
 	info.index = MinecraftCommandQueue.size() + 1;
 
 	MinecraftCommandQueue.push_back(info);
-	queue.ExecThread = new thread(ExecCmds, queue.index);
-	queue.ExecThread->detach();
+	info.ExecThread = new thread(ExecCmds, info.index);
+	info.ExecThread->detach();
 	return 0;
 }
 int stdfuncallconv NewCmdQueue(string name) {
@@ -41,6 +41,7 @@ int stdfuncallconv NewCmdQueue(string name) {
 
 int stdfuncallconv DeleteCmdQueue(const char* name) {
 	list<MinecraftCommandQueueInfo>::iterator iter;
+	int i = 1;
 	for (iter = MinecraftCommandQueue.begin(); iter != MinecraftCommandQueue.end(); iter++)
 	{
 		if (iter->QueueName == name) {
@@ -48,9 +49,9 @@ int stdfuncallconv DeleteCmdQueue(const char* name) {
 		}
 	}
 
-	for (iter = MinecraftCommandQueue.begin(); iter != MinecraftCommandQueue.end(); iter++)
+	for (iter = MinecraftCommandQueue.begin(); iter != MinecraftCommandQueue.end(); iter++, i++)
 	{
-		iter->index = iter;
+		iter->index = i;
 	}
 	return 0;
 }
@@ -59,6 +60,7 @@ int stdfuncallconv DeleteCmdQueue(string name) {
 }
 int stdfuncallconv DeleteCmdQueue(int index) {
 	list<MinecraftCommandQueueInfo>::iterator iter;
+	int i = 1;
 	for (iter = MinecraftCommandQueue.begin(); iter != MinecraftCommandQueue.end(); iter++)
 	{
 		if (iter->index == index) {
@@ -66,9 +68,9 @@ int stdfuncallconv DeleteCmdQueue(int index) {
 		}
 	}
 
-	for (iter = MinecraftCommandQueue.begin(); iter != MinecraftCommandQueue.end(); iter++)
+	for (iter = MinecraftCommandQueue.begin(); iter != MinecraftCommandQueue.end(); iter++, i++)
 	{
-		iter->index = iter;
+		iter->index = i;
 	}
 
 	return 0;
@@ -143,15 +145,16 @@ int stdfuncallconv SetCmdQueue(pMinecraftCommandQueueInfo newInfo, pMinecraftCom
 int stdfuncallconv NewCmdFront(pMinecraftCommandQueueInfo queue, pMinecraftCommandInfo cmdinfo) {
 	list<MinecraftCommandQueueInfo>::iterator iter;
 	list<MinecraftCommandInfo>::iterator cmditer;
+	int i = 1;
 	for (iter = MinecraftCommandQueue.begin(); iter != MinecraftCommandQueue.end(); iter++)
 	{
 		if ((*iter) == *queue) {
-			iter->queue.push_front(cmdinfo);
+			iter->queue.push_front(*cmdinfo);
 		}
 	}
-	for (cmditer = iter->queue.begin(); iter != iter->queue.end(); iter++)
+	for (cmditer = iter->queue.begin(); cmditer != iter->queue.end(); iter++, i++)
 	{
-		cmditer->index = cmditer;
+		cmditer->index = i;
 	}
 	return 0;
 }
@@ -159,15 +162,16 @@ int stdfuncallconv NewCmdFront(pMinecraftCommandQueueInfo queue, pMinecraftComma
 int stdfuncallconv NewCmdBack(pMinecraftCommandQueueInfo queue, pMinecraftCommandInfo cmdinfo) {
 	list<MinecraftCommandQueueInfo>::iterator iter;
 	list<MinecraftCommandInfo>::iterator cmditer;
+	int i = 1;
 	for (iter = MinecraftCommandQueue.begin(); iter != MinecraftCommandQueue.end(); iter++)
 	{
 		if ((*iter) == *queue) {
-			iter->queue.push_back(cmdinfo);
+			iter->queue.push_back(*cmdinfo);
 		}
 	}
-	for (cmditer = iter->queue.begin(); iter != iter->queue.end(); iter++)
+	for (cmditer = iter->queue.begin(); cmditer != iter->queue.end(); iter++, i++)
 	{
-		cmditer->index = cmditer;
+		cmditer->index = i;
 	}
 	return 0;
 }
@@ -175,6 +179,7 @@ int stdfuncallconv NewCmdBack(pMinecraftCommandQueueInfo queue, pMinecraftComman
 int stdfuncallconv DeleteCmd(pMinecraftCommandQueueInfo queue, pMinecraftCommandInfo cmdinfo) {
 	list<MinecraftCommandQueueInfo>::iterator iter;
 	list<MinecraftCommandInfo>::iterator cmditer;
+	int i = 1;
 	for (iter = MinecraftCommandQueue.begin(); iter != MinecraftCommandQueue.end(); iter++)
 	{
 		if ((*iter) == *queue) {
@@ -186,15 +191,16 @@ int stdfuncallconv DeleteCmd(pMinecraftCommandQueueInfo queue, pMinecraftCommand
 			}
 		}
 	}
-	for (cmditer = iter->queue.begin(); iter != iter->queue.end(); iter++)
+	for (cmditer = iter->queue.begin(); cmditer != iter->queue.end(); iter++, i++)
 	{
-		cmditer->index = cmditer;
+		cmditer->index = i;
 	}
 	return 0;
 }
 int stdfuncallconv DeleteCmd(pMinecraftCommandQueueInfo queue, const char* cmd) {
 	list<MinecraftCommandQueueInfo>::iterator iter;
 	list<MinecraftCommandInfo>::iterator cmditer;
+	int i = 1;
 	for (iter = MinecraftCommandQueue.begin(); iter != MinecraftCommandQueue.end(); iter++)
 	{
 		if ((*iter) == *queue) {
@@ -206,9 +212,9 @@ int stdfuncallconv DeleteCmd(pMinecraftCommandQueueInfo queue, const char* cmd) 
 			}
 		}
 	}
-	for (cmditer = iter->queue.begin(); iter != iter->queue.end(); iter++)
+	for (cmditer = iter->queue.begin(); cmditer != iter->queue.end(); iter++, i++)
 	{
-		cmditer->index = cmditer;
+		cmditer->index = i;
 	}
 	return 0;
 }
@@ -218,6 +224,7 @@ int stdfuncallconv DeleteCmd(pMinecraftCommandQueueInfo queue, string cmd) {
 int stdfuncallconv DeleteCmd(pMinecraftCommandQueueInfo queue, int index) {
 	list<MinecraftCommandQueueInfo>::iterator iter;
 	list<MinecraftCommandInfo>::iterator cmditer;
+	int i = 1;
 	for (iter = MinecraftCommandQueue.begin(); iter != MinecraftCommandQueue.end(); iter++)
 	{
 		if ((*iter) == *queue) {
@@ -229,9 +236,9 @@ int stdfuncallconv DeleteCmd(pMinecraftCommandQueueInfo queue, int index) {
 			}
 		}
 	}
-	for (cmditer = iter->queue.begin(); iter != iter->queue.end(); iter++)
+	for (cmditer = iter->queue.begin(); cmditer != iter->queue.end(); iter++, i++)
 	{
-		cmditer->index = cmditer;
+		cmditer->index = i;
 	}
 	return 0;
 }
@@ -293,22 +300,20 @@ MinecraftCommandInfo stdfuncallconv FirstCmd(pMinecraftCommandQueueInfo queue) {
 	list<MinecraftCommandQueueInfo>::iterator iter;
 	for (iter = MinecraftCommandQueue.begin(); iter != MinecraftCommandQueue.end(); iter++)
 	{
-		if ((*iter) == *oldInfo) {
+		if ((*iter) == *queue) {
 			return *(iter->queue.begin());
 		}
 	}
-	return 0;
 }
 
 MinecraftCommandInfo stdfuncallconv LastCmd(pMinecraftCommandQueueInfo queue) {
 	list<MinecraftCommandQueueInfo>::iterator iter;
 	for (iter = MinecraftCommandQueue.begin(); iter != MinecraftCommandQueue.end(); iter++)
 	{
-		if ((*iter) == *oldInfo) {
+		if ((*iter) == *queue) {
 			return *(iter->queue.end());
 		}
 	}
-	return 0;
 }
 
 #pragma endregion
@@ -318,9 +323,9 @@ int stdfuncallconv ExecCmds(list<MinecraftCommandQueueInfo>::iterator queueiter)
 	list<MinecraftCommandInfo>::iterator cmditer;
 	while (true) {
 		if (queueiter->execute == true) {
-			for (cmditer = iter->queue.begin(); cmditer != iter->queue.end(); cmditer++) {
+			for (cmditer = queueiter->queue.begin(); cmditer != queueiter->queue.end(); cmditer++) {
 				if (cmditer->execute == true) {
-					WriteToPipe(cmditer->cmd, cmditer->cmd.length());
+					WriteToPipe(cmditer->cmd.c_str(), cmditer->cmd.length());
 				}
 			}
 		}

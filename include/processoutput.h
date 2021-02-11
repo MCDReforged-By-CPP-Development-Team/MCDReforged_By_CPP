@@ -7,7 +7,7 @@
 #include"common.h"
 #include"debugprint.h"
 #include"serverparser.h"
-#include"logsys.h"
+#include"output.h"
 #include"utils.h"
 #include"cfgfile.h"
 
