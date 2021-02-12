@@ -1,5 +1,13 @@
 #pragma once
 
+#include<string>
+
+#include"common.h"
+#include"colorlog.h"
+#include"cfgfile.h"
+
+using namespace std;
+
 #define INFO_COMMONMSG 0
 #define INFO_WARNING 1
 #define INFO_ERROR 2
@@ -8,7 +16,6 @@
 
 #define S_STDOUT 0
 #define S_STDERR 1
-
 
 class OutputInterface {
 public:

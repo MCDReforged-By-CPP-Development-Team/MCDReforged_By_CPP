@@ -46,3 +46,5 @@ public:
 
     int stdfuncallconv SavePermission();
 };
+
+bool PermissionFileExisting();

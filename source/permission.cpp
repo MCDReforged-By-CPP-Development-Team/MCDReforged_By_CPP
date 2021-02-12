@@ -35,7 +35,7 @@ int ReadPermissionFile()
     string tinyxmlerror = ("ErrorID:" + Doc.ErrorId());
     tinyxmlerror += "ErrorDesc:";
     tinyxmlerror += Doc.ErrorDesc();
-    if (!bret) {
+    if (!iret) {
         dp("Doc.LoadFile() failed.");
         dp(tinyxmlerror);
         return -1;
@@ -63,7 +63,7 @@ int ReadPermissionFile()
     GetNodePointerByName(pRootEle, "Admin", pElem);
     rettest
     gttemp = gt;
-    auto list_ = splittolist(gt, ";");
+    list_ = splittolist(gt, ";");
     permissions[PERMISSION_ADMIN] = list_;
     dp(gt);
     dp("Read Permission Successful.##PERMISSION_ADMIN");
@@ -71,7 +71,7 @@ int ReadPermissionFile()
     GetNodePointerByName(pRootEle, "Helper", pElem);
     rettest
     gttemp = gt;
-    auto list_ = splittolist(gt, ";");
+    list_ = splittolist(gt, ";");
     permissions[PERMISSION_HELPER] = list_;
     dp(gt);
     dp("Read Permission Successful.###PERMISSION_HELPER");
@@ -79,7 +79,7 @@ int ReadPermissionFile()
     GetNodePointerByName(pRootEle, "User", pElem);
     rettest
     gttemp = gt;
-    auto list_ = splittolist(gt, ";");
+    list_ = splittolist(gt, ";");
     permissions[PERMISSION_USER] = list_;
     dp(gt);
     dp("Read Permission Successful.####PERMISSION_USER");
@@ -87,7 +87,7 @@ int ReadPermissionFile()
     GetNodePointerByName(pRootEle, "Guest", pElem);
     rettest
     gttemp = gt;
-    auto list_ = splittolist(gt, ";");
+    list_ = splittolist(gt, ";");
     permissions[PERMISSION_GUEST] = list_;
     dp(gt);
     dp("Read Permission Successful.#####PERMISSION_GUEST");
@@ -203,7 +203,7 @@ int Permission::SetUserPermission(LPCSTR lpUser, DWORD dwPermission)
         //然后再在给定组内添加该用户
         auto tmpList = permissions.at(dwPermission);
         iret += tmpList.push_back(UserName);
-        permissions[dwPermission] = tmplist;
+        permissions[dwPermission] = tmpList;
         SavePermission();
         return iret;
     }

@@ -5,6 +5,7 @@
 #include "common.h"
 #include "output.h"
 #include "cthread.h"
+#include "debugprint.h"
 #include <string>
 #include <Windows.h>
 #include <thread>
