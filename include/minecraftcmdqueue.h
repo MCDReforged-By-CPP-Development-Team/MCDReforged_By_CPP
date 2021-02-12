@@ -10,8 +10,6 @@
 #include"redirectstdio.h"
 #include"output.h"
 
-OutputInterface cmdout;
-
 using namespace std;
 
 struct MinecraftCommandInfo {

@@ -1,6 +1,8 @@
 ﻿#include"minecraftcmdqueue.h"
 
 list<MinecraftCommandQueueInfo> MinecraftCommandQueue;
+OutputInterface cmdout;
+
 /*
 Minecraft指令队列集合(list)
 	队列1Info 队列1(外层map)
@@ -20,7 +22,7 @@ int stdfuncallconv NewCmdQueue(pMinecraftCommandQueueInfo info) {
 	MinecraftCommandQueueInfo queue = *info;
 	queue.index = MinecraftCommandQueue.size() + 1;
 	MinecraftCommandQueue.push_back(queue);
-	queue.ExecThread = new thread(ExecCmds, queue.index);
+	queue.ExecThread = new thread(ExecCmds, MinecraftCommandQueue.end());
 	queue.ExecThread->detach();
 	return 0;
 }
@@ -31,7 +33,7 @@ int stdfuncallconv NewCmdQueue(const char* name) {
 	info.index = MinecraftCommandQueue.size() + 1;
 
 	MinecraftCommandQueue.push_back(info);
-	info.ExecThread = new thread(ExecCmds, info.index);
+	info.ExecThread = new thread(ExecCmds, MinecraftCommandQueue.end());
 	info.ExecThread->detach();
 	return 0;
 }

@@ -202,7 +202,7 @@ int Permission::SetUserPermission(LPCSTR lpUser, DWORD dwPermission)
         permissions[dwUserPermission] = UserList;
         //然后再在给定组内添加该用户
         auto tmpList = permissions.at(dwPermission);
-        iret += tmpList.push_back(UserName);
+        tmpList.push_back(UserName);
         permissions[dwPermission] = tmpList;
         SavePermission();
         return iret;
@@ -241,6 +241,11 @@ int stdfuncallconv Permission::GetPermissionGroup(DWORD dwGroup, list<string>* R
     }
     _result = *Result;
     SavePermission();
+    return 0;
+}
+
+int Permission::SavePermission()
+{
     return 0;
 }
 
