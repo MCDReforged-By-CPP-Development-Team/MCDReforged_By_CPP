@@ -7,6 +7,8 @@
 #include<guiddef.h>
 
 #include"common.h"
+#include"utils.h"
+#include"cfgfile.h"
 
 using namespace std;
 
@@ -18,8 +20,7 @@ class MCDRCPPPlugin {
 public:
 	GUID pluginGuid;
 	string pluginName;
-	int stdfuncallconv Load();
-	int stdfuncallconv Remove();
+	string pluginPath;
 	MCDRCPPPlugin(LPCSTR pluginPath);
 	~MCDRCPPPlugin();
 private:
@@ -29,8 +30,9 @@ private:
 };
 
 int stdfuncallconv GeneratePluginList();
-int stdfuncallconv LoadPlugin(LPCSTR pluginName);
+int stdfuncallconv LoadPlugin(MCDRCPPPlugin plugin);
 int stdfuncallconv LoadAllPlugins();
 int stdfuncallconv RemovePlugin(LPCSTR pluginName);
 int stdfuncallconv RemoveAllPlugins();
 int stdfuncallconv GetPluginInfo(LPCSTR pluginName);
+int stdfuncallconv ReadPluginCfg();

@@ -1,11 +1,11 @@
-#include"output.h"
+#include"include/output.h"
 #include"logsys.h"
 
 MCDRCPPLog Log;
 
 int stdfuncallconv OutputInterface::Init(string logfilepath)
 {
-	return LogSys.InitLogSystem(logfilepath);
+	return Log.InitLogSystem(logfilepath);
 }
 
 int stdfuncallconv OutputInterface::Output(const char* outstr, const char* msger, int msgtype, int stream, bool nextline)

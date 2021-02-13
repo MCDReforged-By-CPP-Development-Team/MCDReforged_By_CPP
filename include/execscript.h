@@ -8,7 +8,6 @@ using namespace std;
 
 struct Script {
 	int scriptType;
-	string scriptNamr;
+	string scriptName;
 	string scriptPath;
-	HANDLE scriptHandle;
 };

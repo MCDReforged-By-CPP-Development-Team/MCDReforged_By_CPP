@@ -63,7 +63,7 @@ int ReadPermissionFile()
     GetNodePointerByName(pRootEle, "Admin", pElem);
     rettest
     gttemp = gt;
-    auto list_ = splittolist(gt, ";");
+    list_ = splittolist(gt, ";");
     permissions[PERMISSION_ADMIN] = list_;
     dp(gt);
     dp("Read Permission Successful.##PERMISSION_ADMIN");
@@ -71,7 +71,7 @@ int ReadPermissionFile()
     GetNodePointerByName(pRootEle, "Helper", pElem);
     rettest
     gttemp = gt;
-    auto list_ = splittolist(gt, ";");
+    list_ = splittolist(gt, ";");
     permissions[PERMISSION_HELPER] = list_;
     dp(gt);
     dp("Read Permission Successful.###PERMISSION_HELPER");
@@ -79,7 +79,7 @@ int ReadPermissionFile()
     GetNodePointerByName(pRootEle, "User", pElem);
     rettest
     gttemp = gt;
-    auto list_ = splittolist(gt, ";");
+    list_ = splittolist(gt, ";");
     permissions[PERMISSION_USER] = list_;
     dp(gt);
     dp("Read Permission Successful.####PERMISSION_USER");
@@ -87,7 +87,7 @@ int ReadPermissionFile()
     GetNodePointerByName(pRootEle, "Guest", pElem);
     rettest
     gttemp = gt;
-    auto list_ = splittolist(gt, ";");
+    list_ = splittolist(gt, ";");
     permissions[PERMISSION_GUEST] = list_;
     dp(gt);
     dp("Read Permission Successful.#####PERMISSION_GUEST");
@@ -246,10 +246,7 @@ int stdfuncallconv Permission::GetPermissionGroup(DWORD dwGroup, list<string>* R
 
 int Permission::SavePermission()
 {
-    int iret = NULL;
-    iret = CreatePermissionFile();
     return 0;
-
 }
 
 
