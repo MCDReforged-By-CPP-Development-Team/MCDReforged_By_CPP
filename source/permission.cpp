@@ -35,7 +35,7 @@ int ReadPermissionFile()
     string tinyxmlerror = ("ErrorID:" + Doc.ErrorId());
     tinyxmlerror += "ErrorDesc:";
     tinyxmlerror += Doc.ErrorDesc();
-    if (!bret) {
+    if (!iret) {
         dp("Doc.LoadFile() failed.");
         dp(tinyxmlerror);
         return -1;
@@ -202,8 +202,8 @@ int Permission::SetUserPermission(LPCSTR lpUser, DWORD dwPermission)
         permissions[dwUserPermission] = UserList;
         //然后再在给定组内添加该用户
         auto tmpList = permissions.at(dwPermission);
-        iret += tmpList.push_back(UserName);
-        permissions[dwPermission] = tmplist;
+        tmpList.push_back(UserName);
+        permissions[dwPermission] = tmpList;
         SavePermission();
         return iret;
     }
@@ -242,6 +242,14 @@ int stdfuncallconv Permission::GetPermissionGroup(DWORD dwGroup, list<string>* R
     _result = *Result;
     SavePermission();
     return 0;
+}
+
+int Permission::SavePermission()
+{
+    int iret = NULL;
+    iret = CreatePermissionFile();
+    return 0;
+
 }
 
 
