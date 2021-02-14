@@ -246,7 +246,74 @@ int stdfuncallconv Permission::GetPermissionGroup(DWORD dwGroup, list<string>* R
 
 int Permission::SavePermission()
 {
-    return 0;
+    int iret = false;
+    CreatePermissionFile();
+    TiXmlDocument* pDoc = new TiXmlDocument;
+    if (NULL == pDoc)
+    {
+        return false;
+    }
+    TiXmlDeclaration* pDeclaration = new TiXmlDeclaration("1.0", "UTF-8", " ");
+    if (NULL == pDeclaration)
+    {
+        return false;
+    }
+    dp("create doc and decl successfully.");
+    pDoc->LinkEndChild(pDeclaration);
+    TiXmlElement* pRootEle = new TiXmlElement("Permissions");
+    if (NULL == pRootEle)
+    {
+        return false;
+    }
+    pDoc->LinkEndChild(pRootEle);
+    TiXmlElement* pOwnerEle = new TiXmlElement("Owner");
+    if (NULL == pOwnerEle)
+    {
+        return false;
+    }
+    TiXmlText* pOwnerText = new TiXmlText(makestring(permissions.at(PERMISSION_OWNER), ";").c_str());
+    pOwnerEle->LinkEndChild(pOwnerText);
+    pRootEle->LinkEndChild(pOwnerEle);
+
+    TiXmlElement* pAdminEle = new TiXmlElement("Admin");
+    if (NULL == pAdminEle)
+    {
+        return false;
+    }
+    TiXmlText* pAdminText = new TiXmlText(makestring(permissions.at(PERMISSION_ADMIN), ";").c_str());
+    pAdminEle->LinkEndChild(pOwnerText);
+    pRootEle->LinkEndChild(pAdminEle);
+
+    TiXmlElement* pHelperEle = new TiXmlElement("Helper");
+    if (NULL == pHelperEle)
+    {
+        return false;
+    }
+    TiXmlText* pHelperText = new TiXmlText(makestring(permissions.at(PERMISSION_HELPER), ";").c_str());
+    pHelperEle->LinkEndChild(pHelperText);
+    pRootEle->LinkEndChild(pHelperEle);
+
+    TiXmlElement* pGuestEle = new TiXmlElement("Guest");
+    if (NULL == pGuestEle)
+    {
+        return false;
+    }
+    TiXmlText* pGuestText = new TiXmlText(makestring(permissions.at(PERMISSION_GUEST), ";").c_str());
+    pGuestEle->LinkEndChild(pGuestText);
+    pRootEle->LinkEndChild(pGuestEle);
+
+    TiXmlElement* pUserEle = new TiXmlElement("User");
+    if (NULL == pUserEle)
+    {
+        return false;
+    }
+    TiXmlText* pUserText = new TiXmlText(makestring(permissions.at(PERMISSION_USER), ";").c_str());
+    pUserEle->LinkEndChild(pUserText);
+    pRootEle->LinkEndChild(pUserEle);
+
+    iret = pDoc->SaveFile();
+    return iret;
+
 }
 
 
