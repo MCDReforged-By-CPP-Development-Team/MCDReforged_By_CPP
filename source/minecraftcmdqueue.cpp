@@ -335,7 +335,7 @@ int stdfuncallconv ExecCmds(list<MinecraftCommandQueueInfo>::iterator queueiter)
 	return 0;
 }
 
-void DisplayStatus()
+void stdfuncallconv DisplayStatus()
 {
 	list<MinecraftCommandQueueInfo>::iterator iter;
 	list<MinecraftCommandInfo>::iterator cmditer;
