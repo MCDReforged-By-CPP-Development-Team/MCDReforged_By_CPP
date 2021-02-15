@@ -246,6 +246,8 @@ int stdfuncallconv Permission::GetPermissionGroup(DWORD dwGroup, list<string>* R
 
 int Permission::SavePermission()
 {
+    int iret = NULL;
+    iret = CreatePermissionFile();
     return 0;
 }
 
