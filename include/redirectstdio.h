@@ -2,10 +2,13 @@
 #include<Windows.h>
 #include<thread>
 #include<vector>
+
 #include"common.h"
 #include"cfgfile.h"
 #include"debugprint.h"
 #include"processoutput.h"
+#include"output.h"
+
 using namespace std;
 
 #define NEWBUFFERSIZE 0x100

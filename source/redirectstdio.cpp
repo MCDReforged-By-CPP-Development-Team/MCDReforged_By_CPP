@@ -1,6 +1,8 @@
 ﻿#include"redirectstdio.h"
 #include"utils.h"
+
 RedirectInformation writeinf;
+OutputInterface redout;
 
 DWORD stdfuncallconv ServerSTDOUT(REDIRECT_INFORMATION priInfo, HANDLE hProc)
 {
@@ -58,6 +60,8 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
     sa.nLength = sizeof(SECURITY_ATTRIBUTES);
     sa.bInheritHandle = TRUE;
     sa.lpSecurityDescriptor = NULL;
+
+    UINT serverexitcode = 0;
 
     //产生一个用于stdin的管道，得到两个HANDLE:  hStdInRead用于子进程读出数据，hStdInWrite用于主程序写入数据  
     //其中saAttr是一个STARTUPINFO结构体，定义见CreatePipe函数说明  
@@ -144,12 +148,15 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
     inf.hStdOutRead = hStdOutRead;
     inf.hStdOutWrite = hStdOutWrite;
 
-    dp("pid:" + pi.dwProcessId);
-    dp("tid:" + pi.dwThreadId);
     thread ServerOut(ServerSTDOUT, inf, pi.hProcess);
     ServerOut.detach();
     Sleep(1);
-    ResumeThread(pi.hThread);
+
+    if (ResumeThread(pi.hThread) == -1) {
+        redout.error("Cannot Start Minecraft Server!");
+        TerminateProcess(pi.hProcess, serverexitcode);
+        return -1;
+    }
     
     dp("##############################################");
     delete[] startcmd;
