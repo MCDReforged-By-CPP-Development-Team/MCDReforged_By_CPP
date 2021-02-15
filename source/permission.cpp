@@ -187,7 +187,7 @@ int Permission::SetUserPermission(LPCSTR lpUser, DWORD dwPermission)
         DWORD dwUserPermission = GetUserPermission(lpUser);
         auto UserList = permissions.at(dwUserPermission);
         string usertmp = lpUser;
-        iret = UserList.remove(usertmp);
+        UserList.remove(usertmp);
         permissions[dwPermission] = UserList;
         SavePermission();
         return iret;
@@ -198,7 +198,7 @@ int Permission::SetUserPermission(LPCSTR lpUser, DWORD dwPermission)
         DWORD dwUserPermission = GetUserPermission(lpUser);
         auto UserList = permissions.at(dwUserPermission);
         string UserName = lpUser;
-        iret += UserList.remove(UserName);
+        UserList.remove(UserName);
         permissions[dwUserPermission] = UserList;
         //然后再在给定组内添加该用户
         auto tmpList = permissions.at(dwPermission);

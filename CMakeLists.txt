@@ -7,13 +7,19 @@
 cmake_minimum_required(VERSION 3.16)
 project(MCDReforged_By_CPP)
 
-set(CMAKE_CXX_STANDARD 20)
-#set(CMAKE_SYSTEM_VERSION 10.0.18362.959)
+set(CMAKE_HOST_SYSTEM_VERSION "10.0.17763.0")
+
+#set(CMAKE_CXX_STANDARD 20)
+#C++ 17 以上版本都会报错 所以把他注释掉
+
+
 aux_source_directory(./source DIR_SRCS)
 aux_source_directory(./include DIR_INC)
 aux_source_directory(./tinyxml2-8.0.0 DIR_TNY)
 
 IF(WIN32)
+
+    #message(CMAKE_SYSTEM_VERSION)
     MESSAGE(STATUS Cmaking on windowsx86_64)
     set(PYINCLUDE "c:/Program Files/Python38/include")
     set(PYLIB "c:/Program Files/Python38/libs")
