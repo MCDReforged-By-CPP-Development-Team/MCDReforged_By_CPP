@@ -80,7 +80,7 @@ bool gstb() {
 int stdfuncallconv LoadConfig::SettingHelper()
 {
     int ivar;
-    bool bvar;
+    bool bvar = true;
     string svar;
 
     Out.mlout("Welcome to SettingHelper.", "欢迎使用配置文件助手");
@@ -248,9 +248,10 @@ int stdfuncallconv LoadConfig::SetToCfg()
     {
         return false;
     }
-    pRootEle->LinkEndChild(pScriptpath);
+    dp(Set.GetString(scrpath).c_str());
     TiXmlText* pScrippath = new TiXmlText(Set.GetString(scrpath).c_str());
     pScriptpath->LinkEndChild(pScrippath);
+    pRootEle->LinkEndChild(pScriptpath);
 
     TiXmlElement* pLanguage = new TiXmlElement("Language"); 
     if (NULL == pLanguage) return false; 
@@ -261,6 +262,7 @@ int stdfuncallconv LoadConfig::SetToCfg()
     pLanguage->LinkEndChild(pLanguageValue);
 
     pDoc->SaveFile(CFGFILENAME);
+    system("pause");
     return true;
 }
 
@@ -400,7 +402,7 @@ int LoadConfig::ReadCfgFile() {
 
     GetNodePointerByName(pRootEle, "ScriptPath", pElem);
     rettest
-    GlobalSettings.SetString(scrpath, gt);
+    GlobalSettings.SetString(scrpath, pElem->GetText());
     dp(gt);
     dp("Read Config Successful.");
 
