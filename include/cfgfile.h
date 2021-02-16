@@ -29,7 +29,7 @@ using namespace std;
 #define enablemccmdqueue 7
 #define javapath 8
 #define serverdir 9
-#define servername 10
+#define startcmd 10
 #define cpppluginpath 11
 #define pypluginpath 12
 #define scrpath 13
