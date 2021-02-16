@@ -80,7 +80,7 @@ bool gstb() {
 int stdfuncallconv LoadConfig::SettingHelper()
 {
     int ivar;
-    bool bvar = true;
+    bool bvar;
     string svar;
 
     Out.mlout("Welcome to SettingHelper.", "欢迎使用配置文件助手");
@@ -248,10 +248,9 @@ int stdfuncallconv LoadConfig::SetToCfg()
     {
         return false;
     }
-    dp(Set.GetString(scrpath).c_str());
+    pRootEle->LinkEndChild(pScriptpath);
     TiXmlText* pScrippath = new TiXmlText(Set.GetString(scrpath).c_str());
     pScriptpath->LinkEndChild(pScrippath);
-    pRootEle->LinkEndChild(pScriptpath);
 
     TiXmlElement* pLanguage = new TiXmlElement("Language"); 
     if (NULL == pLanguage) return false; 
@@ -262,7 +261,6 @@ int stdfuncallconv LoadConfig::SetToCfg()
     pLanguage->LinkEndChild(pLanguageValue);
 
     pDoc->SaveFile(CFGFILENAME);
-    system("pause");
     return true;
 }
 
@@ -310,112 +308,116 @@ int LoadConfig::ReadCfgFile() {
 
     TiXmlElement* pElem = NULL;
 
-    GetNodePointerByName(pRootEle, "LoadCppPlugins", pElem);
-    rettest
-    GlobalSettings.SetBool(loadcppplugins, stb);
-    dp(gt);
-    dp("Read Config Successful.");
+    try {
+        GetNodePointerByName(pRootEle, "LoadCppPlugins", pElem);
+        rettest
+            GlobalSettings.SetBool(loadcppplugins, stb);
+        dp(gt);
+        dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, "LoadPythonPlugins", pElem);
-    rettest
-    GlobalSettings.SetBool(loadpyplugins, stb);
-    dp(gt);
-    dp("Read Config Successful.");  
+        GetNodePointerByName(pRootEle, "LoadPythonPlugins", pElem);
+        rettest
+            GlobalSettings.SetBool(loadpyplugins, stb);
+        dp(gt);
+        dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, "LoadCppPluginsConfig", pElem);
-    rettest
-    GlobalSettings.SetBool(readcpppluginscfg, stb);
-    dp(gt);
-    dp("Read Config Successful.");
+        GetNodePointerByName(pRootEle, "LoadCppPluginsConfig", pElem);
+        rettest
+            GlobalSettings.SetBool(readcpppluginscfg, stb);
+        dp(gt);
+        dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, "LoadPythonPluginsConfig", pElem);
-    rettest
-    GlobalSettings.SetBool(readpypluginscfg, stb);
-    dp(gt);
-    dp("Read Config Successful.");
+        GetNodePointerByName(pRootEle, "LoadPythonPluginsConfig", pElem);
+        rettest
+            GlobalSettings.SetBool(readpypluginscfg, stb);
+        dp(gt);
+        dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, "CppPluginsDir", pElem);
-    rettest
-    GlobalSettings.SetBool(cpppluginpath, stb);
-    dp(gt);
-    dp("Read Config Successful.");
+        GetNodePointerByName(pRootEle, "CppPluginsDir", pElem);
+        rettest
+            GlobalSettings.SetBool(cpppluginpath, stb);
+        dp(gt);
+        dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, "PythonPluginsDir", pElem);
-    rettest
-    GlobalSettings.SetBool(pypluginpath, stb);
-    dp(gt);
-    dp("Read Config Successful.");
+        GetNodePointerByName(pRootEle, "PythonPluginsDir", pElem);
+        rettest
+            GlobalSettings.SetBool(pypluginpath, stb);
+        dp(gt);
+        dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, "ExecInitScript", pElem);
-    rettest
-    GlobalSettings.SetBool(execinitscr, stb);
-    dp(gt);
-    dp("Read Config Successful.");
+        GetNodePointerByName(pRootEle, "ExecInitScript", pElem);
+        rettest
+            GlobalSettings.SetBool(execinitscr, stb);
+        dp(gt);
+        dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, "LoadCppPlugins", pElem);
-    rettest
-    GlobalSettings.SetBool(exectimerscr, stb);
-    dp(gt);
-    dp("Read Config Successful.");
+        GetNodePointerByName(pRootEle, "LoadCppPlugins", pElem);
+        rettest
+            GlobalSettings.SetBool(exectimerscr, stb);
+        dp(gt);
+        dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, "ServerDir", pElem);
-    rettest
-    GlobalSettings.SetString(serverdir, gt);
-    dp(gt);
-    dp("Read Config Successful.");
+        GetNodePointerByName(pRootEle, "ServerDir", pElem);
+        rettest
+            GlobalSettings.SetString(serverdir, gt);
+        dp(gt);
+        dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, "ServerStartupCommand", pElem);
-    rettest
-    GlobalSettings.SetString(servername, gt);
-    dp(gt);
-    dp("Read Config Successful.");
+        GetNodePointerByName(pRootEle, "ServerStartupCommand", pElem);
+        rettest
+            GlobalSettings.SetString(servername, gt);
+        dp(gt);
+        dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, "JavaPath", pElem);
-    rettest
-    GlobalSettings.SetString(javapath, gt);
-    dp(gt);
-    dp("Read Config Successful.");
+        GetNodePointerByName(pRootEle, "JavaPath", pElem);
+        rettest
+            GlobalSettings.SetString(javapath, gt);
+        dp(gt);
+        dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, "EnableMinecraftCommandQueue", pElem);
-    rettest
-    GlobalSettings.SetBool(enablemccmdqueue, stb);
-    dp(gt);
-    dp("Read Config Successful.");
+        GetNodePointerByName(pRootEle, "EnableMinecraftCommandQueue", pElem);
+        rettest
+            GlobalSettings.SetBool(enablemccmdqueue, stb);
+        dp(gt);
+        dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, "ServerParser", pElem);
-    rettest
-    GlobalSettings.SetInt(parsertype, StringToParserCode(pElem->GetText()));
-    dp(gt);
-    dp("Read Config Successful.");
+        GetNodePointerByName(pRootEle, "ServerParser", pElem);
+        rettest
+            GlobalSettings.SetInt(parsertype, StringToParserCode(pElem->GetText()));
+        dp(gt);
+        dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, "InstructionPrefix", pElem);
-    rettest
-    GlobalSettings.SetString(insprefix, gt);
-    dp(gt);
-    dp("Read Config Successful.");
+        GetNodePointerByName(pRootEle, "InstructionPrefix", pElem);
+        rettest
+            GlobalSettings.SetString(insprefix, gt);
+        dp(gt);
+        dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, "LogFilePath", pElem);
-    rettest
-    GlobalSettings.SetString(logpath, gt);
-    dp(gt);
-    dp("Read Config Successful.");
+        GetNodePointerByName(pRootEle, "LogFilePath", pElem);
+        rettest
+            GlobalSettings.SetString(logpath, gt);
+        dp(gt);
+        dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, "ScriptPath", pElem);
-    rettest
-    GlobalSettings.SetString(scrpath, pElem->GetText());
-    dp(gt);
-    dp("Read Config Successful.");
+        GetNodePointerByName(pRootEle, "ScriptPath", pElem);
+        rettest
+            GlobalSettings.SetString(scrpath, gt);
+        dp(gt);
+        dp("Read Config Successful.");
 
-    GetNodePointerByName(pRootEle, "Language", pElem);
-    rettest
-    if (gt == "en_US") {
-        GlobalSettings.SetInt(lang, LANG_EN_US);
+        GetNodePointerByName(pRootEle, "Language", pElem);
+        rettest
+            if (gt == "en_US") {
+                GlobalSettings.SetInt(lang, LANG_EN_US);
+            }
+            else if (gt == "zh_CN") {
+                GlobalSettings.SetInt(lang, LANG_ZH_CN);
+            }
+        dp("Read Config Successful.");
     }
-    else if (gt == "zh_CN") {
-        GlobalSettings.SetInt(lang, LANG_ZH_CN);
+    catch (...) {
+        Out.fatal("Can't Read Config File!");
     }
-    dp("Read Config Successful.");
-
     dp("exiting readcfg");
     return iret;
 }

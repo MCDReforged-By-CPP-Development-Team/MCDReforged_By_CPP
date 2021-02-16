@@ -64,3 +64,8 @@ int stdfuncallconv GetPluginInfo(LPCSTR pluginName)
 {
 	return 0;
 }
+
+int stdfuncallconv ReadPluginCfg()
+{
+	return 0;
+}

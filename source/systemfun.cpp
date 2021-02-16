@@ -29,31 +29,6 @@ int stdfuncallconv Initialize(){
     dp(CreateDirectory(GlobalSettings.GetString(cpppluginpath).c_str(), NULL));
     dp(CreateDirectory(GlobalSettings.GetString(pypluginpath).c_str(), NULL));
 
-#ifdef DEBUG_FUNC_ENABLE
-    dp("Test OutputInterface.");
-    sysinitOut.msg("Test");
-    sysinitOut.warning("Test");
-    sysinitOut.error("Test");
-    sysinitOut.fatal("Test");
-    sysinitOut.undef("Test");
-    dp("Test Colorlog");
-    log.out("C", RED_FOREGROUND);
-    log.out("o", GREEN_FOREGROUND);
-    log.out("l", BLUE_FOREGROUND);
-    log.out("o", LIME_FOREGROUND);
-    log.out("r", PURPLE_FOREGROUND);
-    log.out("L", YELLOW_FOREGEOUND);
-    log.out("o", RED_FOREGROUND);
-    log.out("g", GREEN_FOREGROUND);
-    cout << endl;
-    dp("Test Pytools & MultiThread");
-    Pytools pytTools(sysinitOut);
-    pytTools.InstallPyLibAsync("colorama");
-    Sleep(1000);
-    dp(GlobalSettings.GetString(servername));
-    dp(GlobalSettings.GetString(javapath));
-#endif
-    system("pause");
     auto openserverret = OpenServerAndRedirectIO(&inf);
 
     string strUserInput;
@@ -72,12 +47,12 @@ int stdfuncallconv AnalyzeServerOutput(char* output) {
     return 0;
 }
 
-int stdfuncallconv Finalize() {
+int stdfuncallconv Finalize(int exitcode) {
     CloseRedirect(&inf);
     cout << "Give me 3 second to prepare exiting...";
     cout << endl; 
     Sleep(3000);
-    return 0;
+    exit(exitcode);
 }
 
 int stdfuncallconv DetectDir() {

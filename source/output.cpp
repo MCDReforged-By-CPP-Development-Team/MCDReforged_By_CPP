@@ -1,5 +1,6 @@
-#include"include/output.h"
+#include"output.h"
 #include"logsys.h"
+#include"systemfun.h"
 
 MCDRCPPLog Log;
 
@@ -92,7 +93,9 @@ int stdfuncallconv OutputInterface::error(const char* outstr, const char* msger)
 
 int stdfuncallconv OutputInterface::fatal(const char* outstr, const char* msger)
 {
-	return Output(outstr, msger, INFO_FATAL, S_STDERR);
+	Output(outstr, msger, INFO_FATAL, S_STDERR);
+	Finalize(-1);
+	return 0;
 }
 
 int stdfuncallconv OutputInterface::undef(const char* outstr, const char* msger)
@@ -117,7 +120,9 @@ int stdfuncallconv OutputInterface::error(string outstr, string msger)
 
 int stdfuncallconv OutputInterface::fatal(string outstr, string msger)
 {
-	return Output(outstr.c_str(), msger.c_str(), INFO_FATAL, S_STDERR);
+	Output(outstr.c_str(), msger.c_str(), INFO_FATAL, S_STDERR);
+	Finalize(-1);
+	return 0;
 }
 
 int stdfuncallconv OutputInterface::undef(string outstr, string msger)

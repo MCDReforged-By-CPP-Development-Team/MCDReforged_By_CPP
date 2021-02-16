@@ -26,6 +26,7 @@ using namespace std;
 struct Advancement;
 struct PlayerMsg;
 struct ServerParser;
+struct Info;
 
 class BaseParser {
 public:

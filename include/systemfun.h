@@ -14,6 +14,6 @@ SysInit.h
 using namespace std;
 
 int stdfuncallconv Initialize();
-int stdfuncallconv Finalize();
+int stdfuncallconv Finalize(int exitcode = 0);
 int stdfuncallconv DetectDir();
 int stdfuncallconv WelcomeMessage();
