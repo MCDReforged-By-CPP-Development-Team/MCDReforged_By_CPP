@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include<Windows.h>
 #include<string>
@@ -35,13 +35,13 @@ class Permission
 public:
 	Permission();
 	~Permission();
-    //»ñÈ¡Ö¸¶¨ÓÃ»§µÄÈ¨ÏŞ µ±ÓÃ»§²»´æÔÚÊ±·µ»ØNULL
+    //è·å–æŒ‡å®šç”¨æˆ·çš„æƒé™ å½“ç”¨æˆ·ä¸å­˜åœ¨æ—¶è¿”å›NULL
 	DWORD stdfuncallconv GetUserPermission(LPCSTR lpUser);
-    //Éè¶¨Ö¸¶¨ÓÃ»§µÄÈ¨ÏŞ 
-    //×¢Òâ£ºµ±dwPermissionsÎªNULLÊ±½«´Ó¸ÃÓÃ»§ËùÔÚÈ¨ÏŞ×éÖĞÉ¾³ı¸ÃÓÃ»§
+    //è®¾å®šæŒ‡å®šç”¨æˆ·çš„æƒé™ 
+    //æ³¨æ„ï¼šå½“dwPermissionsä¸ºNULLæ—¶å°†ä»è¯¥ç”¨æˆ·æ‰€åœ¨æƒé™ç»„ä¸­åˆ é™¤è¯¥ç”¨æˆ·
     int stdfuncallconv SetUserPermission(LPCSTR lpUser, DWORD dwPermission);
 
-    //»ñÈ¡Ö¸¶¨È¨ÏŞ×éÄÚËùÓĞ³ÉÔ±
+    //è·å–æŒ‡å®šæƒé™ç»„å†…æ‰€æœ‰æˆå‘˜
     int stdfuncallconv GetPermissionGroup(DWORD dwGroup, list<string> *Result);
 
     int stdfuncallconv SavePermission();

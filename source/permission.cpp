@@ -1,8 +1,8 @@
-#include"permission.h"
+ï»¿#include"permission.h"
 
 map<DWORD, list<string>> permissions;
 
-bool GetNodePointerByName(TiXmlElement* pRootEle, const char* strNodeName, TiXmlElement*& Node)    //À´×ÔCSDN£ºhttps://blog.csdn.net/masikkk/article/details/14191933?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf
+bool GetNodePointerByName(TiXmlElement* pRootEle, const char* strNodeName, TiXmlElement*& Node)    //æ¥è‡ªCSDNï¼šhttps://blog.csdn.net/masikkk/article/details/14191933?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf
 {
     if (0 == strcmp(strNodeName, pRootEle->Value()))
     {
@@ -183,7 +183,7 @@ int Permission::SetUserPermission(LPCSTR lpUser, DWORD dwPermission)
     }
     if (dwPermission == NULL)
     {
-        //´Ó¸ÃÓÃ»§ËùÔÚÈ¨ÏŞ×éÖĞÉ¾³ı¸ÃÓÃ»§
+        //ä»è¯¥ç”¨æˆ·æ‰€åœ¨æƒé™ç»„ä¸­åˆ é™¤è¯¥ç”¨æˆ·
         DWORD dwUserPermission = GetUserPermission(lpUser);
         auto UserList = permissions.at(dwUserPermission);
         string usertmp = lpUser;
@@ -194,13 +194,13 @@ int Permission::SetUserPermission(LPCSTR lpUser, DWORD dwPermission)
     }
     else
     {
-        //ÏÈ´Ó¸ÃÓÃ»§ËùÔÚÈ¨ÏŞ×éÖĞÉ¾³ı¸ÃÓÃ»§
+        //å…ˆä»è¯¥ç”¨æˆ·æ‰€åœ¨æƒé™ç»„ä¸­åˆ é™¤è¯¥ç”¨æˆ·
         DWORD dwUserPermission = GetUserPermission(lpUser);
         auto UserList = permissions.at(dwUserPermission);
         string UserName = lpUser;
         UserList.remove(UserName);
         permissions[dwUserPermission] = UserList;
-        //È»ºóÔÙÔÚ¸ø¶¨×éÄÚÌí¼Ó¸ÃÓÃ»§
+        //ç„¶åå†åœ¨ç»™å®šç»„å†…æ·»åŠ è¯¥ç”¨æˆ·
         auto tmpList = permissions.at(dwPermission);
         tmpList.push_back(UserName);
         permissions[dwPermission] = tmpList;

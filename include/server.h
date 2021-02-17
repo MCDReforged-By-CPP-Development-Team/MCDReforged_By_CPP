@@ -1,10 +1,10 @@
-#pragma once
+﻿#pragma once
 
 #include<Windows.h>
 
 #include"redirectstdio.h"
 #include"common.h"
-
+//真tm是个巨坑 插件开发核心代码
 class ServerInterface {
 public:
 	int stdfuncallconv start();
