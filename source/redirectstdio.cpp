@@ -54,7 +54,7 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
     SECURITY_ATTRIBUTES sa;
     RedirectInformation inf;
 
-    string servercmdline = sets.GetString(servername);
+    string servercmdline = sets.GetString(startcmd);
     string jvmpath = sets.GetString(javapath);
     string serverdir_ = sets.GetString(serverdir);
     sa.nLength = sizeof(SECURITY_ATTRIBUTES);
@@ -100,11 +100,11 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
       dp(startupcmd);
     }   
 
-    LPSTR startcmd = new char[startupcmd.length() + 1];
-    memset(startcmd, '\0', startupcmd.length() + 1);
-    strcat_s(startcmd, startupcmd.length() + 1, startupcmd.c_str());
+    LPSTR _startcmd = new char[startupcmd.length() + 1];
+    memset(_startcmd, '\0', startupcmd.length() + 1);
+    strcat_s(_startcmd, startupcmd.length() + 1, startupcmd.c_str());
     dp("#");
-    dp(startcmd);
+    dp(_startcmd);
 
     ZeroMemory(&si, sizeof(STARTUPINFO));
     si.cb = sizeof(STARTUPINFO);
@@ -123,7 +123,7 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
     // from MSDN
 
     BOOL bSuc = CreateProcess(NULL
-        , startcmd
+        , _startcmd
         , NULL
         , NULL
         , TRUE
@@ -151,7 +151,7 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
     thread ServerOut(ServerSTDOUT, inf, pi.hProcess);
     ServerOut.detach();
     Sleep(1);
-
+    
     if (ResumeThread(pi.hThread) == -1) {
         redout.error("Cannot Start Minecraft Server!");
         TerminateProcess(pi.hProcess, serverexitcode);
@@ -159,8 +159,8 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
     }
     
     dp("##############################################");
-    delete[] startcmd;
-    startcmd = NULL;
+    delete[] _startcmd;
+    _startcmd = NULL;
     dp("###############################################");
 
     writeinf = inf;
