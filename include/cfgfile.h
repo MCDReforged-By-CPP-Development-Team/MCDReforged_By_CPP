@@ -9,7 +9,7 @@ cfgfile.h
 #include<strstream>
 #include<string>
 
-#include"common.h"
+#include"globaldef.h"
 #include"output.h"
 #include"serverparser.h"
 #include"debugprint.h"

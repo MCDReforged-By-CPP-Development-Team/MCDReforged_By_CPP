@@ -2,7 +2,7 @@
 
 #include<string>
 
-#include"common.h"
+#include"globaldef.h"
 #include"colorlog.h"
 #include"cfgfile.h"
 

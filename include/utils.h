@@ -1,11 +1,15 @@
 #pragma once
 
-#include"common.h"
+#include"globaldef.h"
+
 #include<vector>
 #include<string>
 #include<iostream>
 #include<Windows.h>
 #include<list>
+#include<guiddef.h>
+#include<strstream>
+
 using namespace std;
 
 //用指定字符串{pattern}切片{str}
@@ -33,3 +37,9 @@ vector<string> stdfuncallconv ListFiles(string path,string ext);
 
 //字符串a中含有字符串b
 bool have(string a, string b);
+
+//生成GUID
+string stdfuncallconv CreateGuid(GUID* pguid);
+
+//比较MCDRCPP版本
+int stdfuncallconv CompareVersion(string Ver1, string Ver2);

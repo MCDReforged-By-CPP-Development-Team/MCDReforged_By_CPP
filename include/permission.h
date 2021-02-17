@@ -5,9 +5,10 @@
 #include<iostream>
 #include<map>
 #include<list>
+
 #include"utils.h"
 #include"logsys.h"
-#include"common.h"
+#include"globaldef.h"
 #include"cfgfile.h"
 #include"tinyxml2-8.0.0/tinystr.h"  
 #include"tinyxml2-8.0.0/tinyxml.h"

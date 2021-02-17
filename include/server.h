@@ -3,7 +3,7 @@
 #include<Windows.h>
 
 #include"redirectstdio.h"
-#include"common.h"
+#include"globaldef.h"
 //真tm是个巨坑 插件开发核心代码
 class ServerInterface {
 public:

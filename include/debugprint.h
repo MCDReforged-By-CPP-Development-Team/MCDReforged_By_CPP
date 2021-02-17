@@ -4,7 +4,7 @@
 #include<iostream>
 #include<ctime>
 
-#include"common.h"
+#include"globaldef.h"
 
 #define DEBUGPRINTSTR "[DebugPrint]"
 #ifdef DEBUG_FUNC_ENABLE

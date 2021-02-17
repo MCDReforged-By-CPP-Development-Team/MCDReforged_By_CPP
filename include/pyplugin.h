@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-#include "common.h"
+#include "globaldef.h"
 
 #ifndef __MACH__
 #include <Python.h>

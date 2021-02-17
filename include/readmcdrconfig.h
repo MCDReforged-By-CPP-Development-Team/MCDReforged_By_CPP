@@ -4,7 +4,7 @@
 
 #include"output.h"
 #include"yaml.h"
-#include"common.h"
+#include"globaldef.h"
 #include"cfgfile.h"
 #include"permission.h"
 

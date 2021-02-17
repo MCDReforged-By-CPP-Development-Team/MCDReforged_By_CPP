@@ -191,3 +191,38 @@ template<class T1, class T2> vector<T1> del(vector<T1> a, T2 to_be_removed_obj)
     return a;
 }
 
+string stdfuncallconv CreateGuid(GUID* pguid)
+{
+    char buffer[GUID_LEN] = { 0 };
+    GUID guid;
+    if (CoCreateGuid(&guid))
+    {
+        return "";
+    }
+    _snprintf(buffer, sizeof(buffer), "%08X-%04X-%04x-%02X%02X-%02X%02X%02X%02X%02X%02X",
+        guid.Data1, guid.Data2, guid.Data3,
+        guid.Data4[0], guid.Data4[1], guid.Data4[2],
+        guid.Data4[3], guid.Data4[4], guid.Data4[5],
+        guid.Data4[6], guid.Data4[7]);
+
+    *pguid = guid;
+    return string(buffer);
+}
+
+int stdfuncallconv CompareVersion(string Ver1, string Ver2) {
+    Ver1.erase(Ver1.find('.'));
+    Ver1.erase(Ver1.find('.'));
+    Ver2.erase(Ver2.find('.'));
+    Ver2.erase(Ver2.find('.'));
+    
+    strstream sstr1, sstr2;
+    sstr1 << Ver1;
+    sstr2 << Ver2;
+    int iver1, iver2;
+    sstr1 >> iver1;
+    sstr2 >> iver2;
+
+    if (iver1 > iver2) return 1;
+    else if (iver1 < iver2) return -1;
+    else return 0;
+}
