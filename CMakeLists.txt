@@ -12,10 +12,10 @@ set(CMAKE_HOST_SYSTEM_VERSION "10.0.17763.0")
 #set(CMAKE_CXX_STANDARD 20)
 #C++ 17 以上版本都会报错 所以把他注释掉
 
-
 aux_source_directory(./source DIR_SRCS)
 aux_source_directory(./include DIR_INC)
 aux_source_directory(./tinyxml2-8.0.0 DIR_TNY)
+aux_source_directory(./yaml-cpp DIR_YML)
 
 IF(WIN32)
 
@@ -25,28 +25,33 @@ IF(WIN32)
     set(PYLIB "c:/Program Files/Python38/libs")
 
     link_directories(${PYLIB})
+    link_directories(lib)
     #link_libraries(此编译选项为玄学选项，请填写自己计算机的python lib 路径. ps: 系统环境变量不能用，我试过了 请不要把这个选项改动后推到github)
 
     include_directories(${PYINCLUDE})
     include_directories(.)
     include_directories(include)
     include_directories(tinyxml2-8.0.0)
+    include_directories(yaml-cpp)
 
     add_executable(MCDReforged_By_CPP
             ${PYINCLUDE}/Python.h
             ${DIR_SRCS}
             ${DIR_INC}
-            ${DIR_TNY} )
+            ${DIR_TNY} 
+            ${DIR_YML} )
             #温馨提示:这里会自动搜寻source,include和tinyxml2-8.0.0,因此除非特殊情况,不要手动更改或使用vs的自动更改修改此处
 ELSEIF(APPLE)
     MESSAGE(STATUS Cmaking on APPLE MacOS)
     include_directories(.)
     include_directories(include)
     include_directories(tinyxml2-8.0.0)
+    include_directories(yaml-cpp)
 
     add_executable(MCDReforged_By_CPP
             ${DIR_SRCS}
             ${DIR_INC}
-            ${DIR_TNY})
+            ${DIR_TNY}
+            ${DIR_YML} )
             #同上
 ENDIF()

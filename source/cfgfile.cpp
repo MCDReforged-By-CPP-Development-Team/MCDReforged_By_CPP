@@ -164,7 +164,7 @@ readjavapath:
     Out.mlout("Now you need to type in your Minecraft server startup parameters(Enter parameters only. No \" java\" are in the string you typed in. For example:-Xms1G -Xmx2G -jar minecraft_server.jar nogui)",
         "Minecraft服务器启动参数?(不需要包含Java路径,如:-Xms1G -Xmx2G -jar minecraft_server.jar nogui)");   //strMinecraftServerStartupCommandLine
     getline(cin, svar); 
-    GlobalSettings.SetString(servername, svar);
+    GlobalSettings.SetString(startcmd, svar);
 
     Out.mlout("C++ plugins' folder name?(\"plugins\" is recommended)",
         "C++插件文件夹名(推荐使用\"plugins\")");   //strCppPluginPath
@@ -237,7 +237,7 @@ int stdfuncallconv LoadConfig::SetToCfg()
     SETTOCFG_S("CppPluginsDir", CppPluginsDir, cpppluginpath);
     SETTOCFG_S("PythonPluginsDir", PyPluginsDir, pypluginpath);
     SETTOCFG_S("ServerDir", ServerDir, serverdir);
-    SETTOCFG_S("ServerStartupCommand", ServerStartupCommand, servername);
+    SETTOCFG_S("ServerStartupCommand", ServerStartupCommand, startcmd);
     SETTOCFG_S("JavaPath", JavaPath, javapath);
     SETTOCFG_S("InstructionPrefix", InstructionPrefix, insprefix);
     SETTOCFG_S("LogFilePath", LogFilePath, logpath);
@@ -365,7 +365,7 @@ int LoadConfig::ReadCfgFile() {
 
         GetNodePointerByName(pRootEle, "ServerStartupCommand", pElem);
         rettest
-            GlobalSettings.SetString(servername, gt);
+            GlobalSettings.SetString(startcmd, gt);
         dp(gt);
         dp("Read Config Successful.");
 
@@ -478,6 +478,14 @@ int LoadConfig::StringToParserCode(string parserName) {
     if (parserName == "WaterfallParser") {
         return WATERFALL_PARSER_CODE;
     }
+
+    if (parserName == "Beta18Parser") {
+        return BETA18_PARSER_CODE;
+    }
+
+    if (parserName == "ForgeParser") {
+        return FORGE_PARSER_CODE;
+    }
     return VANILLA_PARSER_CODE;
 }
 
@@ -539,7 +547,7 @@ string stdfuncallconv Settings::GetString(int set)
     case serverdir:
         return strServerWorkingDir;
         break;
-    case servername:
+    case startcmd:
         return strMinecraftServerStartupCommandLine;
         break;
     case cpppluginpath:
@@ -621,7 +629,7 @@ void stdfuncallconv Settings::SetString(int set, string value)
     case serverdir:
         strServerWorkingDir = value;
         break;
-    case servername:
+    case startcmd:
         strMinecraftServerStartupCommandLine = value;
         break;
     case cpppluginpath:
@@ -655,7 +663,7 @@ void stdfuncallconv Settings::SetString(int set, LPSTR value)
     case serverdir:
         strServerWorkingDir = value;
         break;
-    case servername:
+    case startcmd:
         strMinecraftServerStartupCommandLine = value;
         break;
     case cpppluginpath:
@@ -689,7 +697,7 @@ void stdfuncallconv Settings::SetString(int set, LPCSTR value)
     case serverdir:
         strServerWorkingDir = value;
         break;
-    case servername:
+    case startcmd:
         strMinecraftServerStartupCommandLine = value;
         break;
     case cpppluginpath:
@@ -699,7 +707,7 @@ void stdfuncallconv Settings::SetString(int set, LPCSTR value)
         strPyPluginPath = value;
         break;
     case scrpath:
-        strScriptPath;
+        strScriptPath = value;
         break;
     case insprefix:
         strInstructionPrefix = value;
