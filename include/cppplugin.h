@@ -5,6 +5,7 @@
 #include<vector>
 #include<Windows.h>
 #include<guiddef.h>
+#include<algorithm>
 
 #include"globaldef.h"
 #include"utils.h"
@@ -77,7 +78,7 @@ int stdfuncallconv GetPluginInfo(LPCSTR pluginName);
 int stdfuncallconv ReadPluginCfg(MCDRCPPPlugin plugin);
 /*
 <?xml version="1.0" encoding="UTF-8"?>
-<CppPluginConfig>
+<CppPluginInfo>
 	<Dependency></Dependency>
 	<LoadPlugin></LoadPlugin>
 	<PluginName></PluginName>
@@ -94,7 +95,7 @@ int stdfuncallconv ReadPluginCfg(MCDRCPPPlugin plugin);
 	<RegisterCommands>
 		...
 	</RegisterCommands>
-</CppPluginConfig>
+</CppPluginInfo>
 */
 
 bool stdfuncallconv GetNodePointerByName(TiXmlElement* pRootEle, const char* strNodeName, TiXmlElement*& Node);

@@ -26,7 +26,8 @@ string makestring(list<string> list_ , string spiliter);
 bool CheckFolderExist(const string& strPath);
 
 //从vector中删除指定的某一个元素 
-template<class T1, class T2> vector<T1> del(vector<T1> a, T2 to_be_removed_obj);
+template<class T1, class T2> 
+vector<T1> del(vector<T1> a, T2 to_be_removed_obj);
 
 //列出指定路径下的所有文件
 vector<string> stdfuncallconv ListFiles(string path);

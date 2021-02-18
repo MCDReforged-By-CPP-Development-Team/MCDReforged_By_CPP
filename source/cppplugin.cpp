@@ -79,22 +79,25 @@ int stdfuncallconv ReadPluginCfg(MCDRCPPPlugin plugin)
 	MCDRCPPPluginConfigIns cfgins;
 
 	string pluginPaths = cppset.GetString(cpppluginpath);
+	string temp;
 
 	vector<string> splitedpluginpath = split(pluginPaths, ";");
 	vector<string> cfgfiles;
-	vector<string> temp;
+	vector<string> tempvec;
 	vector<string>::iterator iter, tempiter;
 
 	int iret = 0;
 
 	for (iter = splitedpluginpath.begin(); iter != splitedpluginpath.end(); iter++) {
-		temp = ListFiles(*iter, ".xml");
-		for (tempiter = temp.begin(); tempiter != temp.end(); tempiter++) {
-			cfgfiles.push_back(*tempiter);
+		tempvec = ListFiles(*iter, ".xml");
+		for (tempiter = tempvec.begin(); tempiter != tempvec.end(); tempiter++) {
+			temp = iter->append(*tempiter);
+			cfgfiles.push_back(temp);
 		}
 	}
 
 	for (iter = cfgfiles.begin(); iter != cfgfiles.end(); iter++) {
+		dp(iter->append("[Current Plugin Config]"));
 		TiXmlDocument Doc(iter->c_str());
 
 		bool bret = Doc.LoadFile(TIXML_ENCODING_UTF8);
@@ -142,6 +145,16 @@ int stdfuncallconv ReadPluginCfg(MCDRCPPPlugin plugin)
 			continue;
 		}
 		cfgins.dependency = true;
+
+		GetNodePointerByName(pRootEle, "LoadPlugin", pElem);
+		temp = pElem->GetText();
+		transform(temp.begin(), temp.end(), temp.begin(), ::toupper);
+		if (temp == "TRUE") cfgins.loadPlugin = true;
+		else if (temp == "FALSE") cfgins.loadPlugin = false;
+		else cfgins.loadPlugin = true;
+
+		GetNodePointerByName(pRootEle, "PluginName", pElem);
+		cfgins.pluginName = pElem->GetText();
 	}
 	return 0;
 }
