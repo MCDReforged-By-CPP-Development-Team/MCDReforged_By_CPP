@@ -7,6 +7,8 @@
 //真tm是个巨坑 插件开发核心代码
 class ServerInterface {
 public:
+	ServerInterface();
+	~ServerInterface();
 	int stdfuncallconv start();
 	int stdfuncallconv stop();
 	int stdfuncallconv restart();

@@ -25,22 +25,6 @@ register_plugin_info
 on_load on_remove on_info on_user_info server_start server_startup mcdr_start mcdr_stop on_player_join on_player_left
 */
 
-class MCDRCPPPlugin {
-public:
-	GUID pluginGuid;
-	string pluginName;
-	string pluginPath;
-	string pluginVersion;
-	HINSTANCE pluginIns;
-	MCDRCPPPlugin(LPCSTR pluginPath);
-	~MCDRCPPPlugin();
-	MCDRCPPPluginConfigIns cfgins;
-	MCDRCPPPluginInfo info;
-private:
-	bool isLoaded;
-	//eventlistener用函数指针
-};
-
 struct ListenerFunc {
 	string ListenerFuncName;
 	string RealFuncName;
@@ -59,28 +43,32 @@ struct MCDRCPPPluginConfigIns {
 	string pluginVersion;
 
 	vector<ListenerFunc> listenerFuncNames;
-	
+
 	bool loadPlugin;
 	bool dependency;
+};
+
+
+class MCDRCPPPlugin {
+public:
+	GUID pluginGuid;
+	string pluginName;
+	string pluginPath;
+	string pluginVersion;
+	HINSTANCE pluginIns;
+	MCDRCPPPlugin(LPCSTR pluginPath);
+	~MCDRCPPPlugin();
+	MCDRCPPPluginConfigIns cfgins;
+	MCDRCPPPluginInfo info;
+private:
+	bool isLoaded;
+	//eventlistener用函数指针
 };
 
 typedef ListenerFunc* PListenerFunc;
 typedef MCDRCPPPluginInfo* PMCDRCPPPluginInfo;
 typedef MCDRCPPPluginConfigIns* PMCDRCPPPluginConfigIns;
 typedef MCDRCPPPlugin* PMCDRCPPPlugin;
-
-typedef MCDRCPPPluginInfo(*register_plugin_info)();
-typedef int(*funcptr_on_load)(ServerInterface server_interface, MCDRCPPPlugin prev_module);
-typedef int(*funcptr_on_remove)(ServerInterface server_interface);
-typedef int(*funcptr_on_info)(ServerInterface server_interface, Info info);
-typedef int(*funcptr_on_user_info)(ServerInterface server_interface, Info info);
-typedef int(*funcptr_server_start)(ServerInterface server_interface);
-typedef int(*funcptr_server_startup)(ServerInterface server_interface);
-typedef int(*funcptr_server_stop)(ServerInterface server_interface, int server_return_code);
-typedef int(*funcptr_mcdrcpp_start)(ServerInterface server_interface);
-typedef int(*funcptr_mcdrcpp_stop)(ServerInterface server_interface);
-typedef int(*funcptr_on_player_join)(ServerInterface server_interface, string player, Info info);
-typedef int(*funcptr_on_player_left)(ServerInterface server_interface, string player);
 
 int stdfuncallconv GeneratePluginList();
 int stdfuncallconv LoadPlugin(MCDRCPPPlugin plugin);
@@ -90,6 +78,7 @@ int stdfuncallconv RemoveAllPlugins();
 int stdfuncallconv GetPluginInfo(LPCSTR pluginName);
 int stdfuncallconv ReadPluginCfg();
 string _fc FindListenerFuncRealName(LPCSTR funcName);
+
 /*
 <?xml version="1.0" encoding="UTF-8"?>
 <CppPluginInfo>

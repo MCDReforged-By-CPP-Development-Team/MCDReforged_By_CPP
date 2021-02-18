@@ -3,6 +3,19 @@
 vector<MCDRCPPPlugin> CppPluginList;
 vector<MCDRCPPPluginConfigIns> CppPluginCfgList;
 
+typedef MCDRCPPPluginInfo(*register_plugin_info)();
+typedef int(*funcptr_on_load) (ServerInterface server_interface, MCDRCPPPlugin prev_module);
+typedef int(*funcptr_on_remove) (ServerInterface server_interface);
+typedef int(*funcptr_on_info) (ServerInterface server_interface, Info info);
+typedef int(*funcptr_on_user_info) (ServerInterface server_interface, Info info);
+typedef int(*funcptr_server_start) (ServerInterface server_interface);
+typedef int(*funcptr_server_startup) (ServerInterface server_interface);
+typedef int(*funcptr_server_stop) (ServerInterface server_interface, int server_return_code);
+typedef int(*funcptr_mcdrcpp_start) (ServerInterface server_interface);
+typedef int(*funcptr_mcdrcpp_stop) (ServerInterface server_interface);
+typedef int(*funcptr_on_player_join) (ServerInterface server_interface, string player, Info info);
+typedef int(*funcptr_on_player_left) (ServerInterface server_interface, string player);
+
 MCDRCPPPlugin::MCDRCPPPlugin(LPCSTR pluginPath)
 {
 	this->pluginPath = pluginPath;
@@ -38,7 +51,7 @@ int stdfuncallconv GeneratePluginList()
 
 int stdfuncallconv LoadPlugin(MCDRCPPPlugin plugin)
 {
-	int iret;
+	int iret;	
 	ServerInterface si;
 	if (plugin.cfgins.loadPlugin) {
 		string path = plugin.pluginPath;
@@ -49,7 +62,7 @@ int stdfuncallconv LoadPlugin(MCDRCPPPlugin plugin)
 		funcptr_on_load onload;
 		onload = (funcptr_on_load)GetProcAddress(plugin.pluginIns, FindListenerFuncRealName("on_load").c_str());
 
-		iret = onload(si, );
+		iret = onload(si, plugin);
 	}
 
 	return 0;

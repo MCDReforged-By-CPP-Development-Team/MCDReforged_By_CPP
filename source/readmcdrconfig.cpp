@@ -1,4 +1,5 @@
 ﻿#include"readmcdrconfig.h"
+using namespace YAML;
 
 int stdfuncallconv ReadMCDRConfig_0()
 {

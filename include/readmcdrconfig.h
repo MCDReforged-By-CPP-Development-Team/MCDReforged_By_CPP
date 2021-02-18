@@ -8,7 +8,7 @@
 #include"cfgfile.h"
 #include"permission.h"
 
-using namespace YAML;
+
 using namespace std;
 
 int stdfuncallconv ReadMCDRConfig_0();
