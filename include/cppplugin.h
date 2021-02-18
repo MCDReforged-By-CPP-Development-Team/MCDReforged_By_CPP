@@ -13,6 +13,7 @@
 #include"serverparser.h"
 #include"server.h"
 #include"debugprint.h"
+#include"xmlfunc.h"
 
 #include"tinyxml2-8.0.0/tinystr.h"  
 #include"tinyxml2-8.0.0/tinyxml.h"
@@ -40,6 +41,11 @@ private:
 	//eventlistener”√∫Ø ˝÷∏’Î
 };
 
+struct ListenerFunc {
+	string ListenerFuncName;
+	string RealFuncName;
+};
+
 struct MCDRCPPPluginInfo {
 	GUID pluginGuid;
 	string pluginName;
@@ -52,11 +58,16 @@ struct MCDRCPPPluginConfigIns {
 	string pluginName;
 	string pluginVersion;
 
-	vector<string> listenerFuncNames;
+	vector<ListenerFunc> listenerFuncNames;
 	
 	bool loadPlugin;
 	bool dependency;
 };
+
+typedef ListenerFunc* PListenerFunc;
+typedef MCDRCPPPluginInfo* PMCDRCPPPluginInfo;
+typedef MCDRCPPPluginConfigIns* PMCDRCPPPluginConfigIns;
+typedef MCDRCPPPlugin* PMCDRCPPPlugin;
 
 typedef MCDRCPPPluginInfo(*register_plugin_info)();
 typedef int(*funcptr_on_load)(ServerInterface server_interface, MCDRCPPPlugin prev_module);
@@ -77,7 +88,8 @@ int stdfuncallconv LoadAllPlugins();
 int stdfuncallconv RemovePlugin(LPCSTR pluginName);
 int stdfuncallconv RemoveAllPlugins();
 int stdfuncallconv GetPluginInfo(LPCSTR pluginName);
-int stdfuncallconv ReadPluginCfg(MCDRCPPPlugin plugin);
+int stdfuncallconv ReadPluginCfg();
+string _fc FindListenerFuncRealName(LPCSTR funcName);
 /*
 <?xml version="1.0" encoding="UTF-8"?>
 <CppPluginInfo>
@@ -99,5 +111,3 @@ int stdfuncallconv ReadPluginCfg(MCDRCPPPlugin plugin);
 	</RegisterCommands>
 </CppPluginInfo>
 */
-
-bool stdfuncallconv GetNodePointerByName(TiXmlElement* pRootEle, const char* strNodeName, TiXmlElement*& Node);

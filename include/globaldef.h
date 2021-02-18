@@ -13,3 +13,4 @@ globaldef.h by noFe
 #define DEBUG_FUNC_ENABLE   //正式版的时候把这个宏删掉 awa
 #define HINTMSG "Some English setences in this program might follow Chinese grammar rules \n which will make it is hard to understand.(Chinglish lol)"
 #define GUID_LEN 64
+#define _fc _fastcall

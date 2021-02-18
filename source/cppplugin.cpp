@@ -38,13 +38,20 @@ int stdfuncallconv GeneratePluginList()
 
 int stdfuncallconv LoadPlugin(MCDRCPPPlugin plugin)
 {
-	string path = plugin.pluginPath;
-	plugin.pluginIns = LoadLibrary(path.c_str());
+	int iret;
+	ServerInterface si;
+	if (plugin.cfgins.loadPlugin) {
+		string path = plugin.pluginPath;
+		plugin.pluginIns = LoadLibrary(path.c_str());
 
-	if (plugin.pluginIns == NULL) return -1;
+		if (plugin.pluginIns == NULL) return -1;
 
-	funcptr_on_load onload;
-	onload = (funcptr_on_load)GetProcAddress(plugin.pluginIns, );
+		funcptr_on_load onload;
+		onload = (funcptr_on_load)GetProcAddress(plugin.pluginIns, FindListenerFuncRealName("on_load").c_str());
+
+		iret = onload(si, );
+	}
+
 	return 0;
 }
 
@@ -73,7 +80,7 @@ int stdfuncallconv GetPluginInfo(LPCSTR pluginName)
 	return 0;
 }
 
-int stdfuncallconv ReadPluginCfg(MCDRCPPPlugin plugin)
+int stdfuncallconv ReadPluginCfg()
 {
 	Settings cppset;
 	MCDRCPPPluginConfigIns cfgins;
@@ -182,10 +189,27 @@ int stdfuncallconv ReadPluginCfg(MCDRCPPPlugin plugin)
 				for (TiXmlNode* tempNode = tempElem->FirstChild()
 					; tempNode != NULL
 					; tempNode = tempNode->NextSibling()) {
-					temp = "";
-					temp.append(tempNode->ToElement()->Value()).append("=").append(tempNode->ToElement()->GetText());
-					cfgins.listenerFuncNames.push_back(temp);
+					ListenerFunc templf;
+					templf.ListenerFuncName = tempNode->ToElement()->Value();
+					templf.RealFuncName = tempNode->ToElement()->GetText();
+					cfgins.listenerFuncNames.push_back(templf);
 				}
+				break;
+			}
+		}
+
+		CppPluginCfgList.push_back(cfgins);
+		ZeroMemory(&cfgins, sizeof(MCDRCPPPluginConfigIns));
+	}
+
+	for (vector<MCDRCPPPlugin>::iterator pluginlistiter = CppPluginList.begin()
+		; pluginlistiter != CppPluginList.end()
+		; pluginlistiter++) {
+		for (vector<MCDRCPPPluginConfigIns>::iterator plugincfglistiter = CppPluginCfgList.begin()
+			; plugincfglistiter != CppPluginCfgList.end()
+			; plugincfglistiter++) {
+			if (pluginlistiter->pluginGuid == plugincfglistiter->pluginGuid) { 
+				pluginlistiter->cfgins = *plugincfglistiter;
 				break;
 			}
 		}
@@ -193,27 +217,17 @@ int stdfuncallconv ReadPluginCfg(MCDRCPPPlugin plugin)
 	return 0;
 }
 
-bool stdfuncallconv GetNodePointerByName(TiXmlElement* pRootEle, const char* strNodeName, TiXmlElement*& Node)    //https://blog.csdn.net/masikkk/article/details/14191933?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.add_param_isCf
+string _fc FindListenerFuncRealName(LPCSTR funcName)
 {
-	if (0 == strcmp(strNodeName, pRootEle->Value()))
-	{
-		Node = pRootEle;
-		return true;
-	}
+	vector<MCDRCPPPlugin>::iterator iter;
+	vector<ListenerFunc>::iterator funcnameiter;
 
-	TiXmlElement* pEle = pRootEle;
-	for (pEle = pRootEle->FirstChildElement(); pEle; pEle = pEle->NextSiblingElement())
-	{
-		if (0 != strcmp(pEle->Value(), strNodeName))
-		{
-			GetNodePointerByName(pEle, strNodeName, Node);
-		}
-		else
-		{
-			Node = pEle;
-			return true;
+	for (iter = CppPluginList.begin(); iter != CppPluginList.end(); iter++) {
+		for (funcnameiter = iter->cfgins.listenerFuncNames.begin(); funcnameiter != iter->cfgins.listenerFuncNames.end(); funcnameiter++) {
+			if (funcnameiter->ListenerFuncName == funcName) return string(funcnameiter->RealFuncName);
 		}
 	}
 
-	return false;
+	return " ";
 }
+
