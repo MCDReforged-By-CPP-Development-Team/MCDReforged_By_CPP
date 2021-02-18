@@ -2,7 +2,7 @@
 
 #ifndef __PYTOOLS__
 
-#include "common.h"
+#include "globaldef.h"
 #include "output.h"
 #include "cthread.h"
 #include "debugprint.h"

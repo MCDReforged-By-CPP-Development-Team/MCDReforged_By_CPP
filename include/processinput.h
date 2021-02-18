@@ -5,7 +5,7 @@
 
 #include"cfgfile.h"
 #include"redirectstdio.h"
-#include"common.h"
+#include"globaldef.h"
 #include"debugprint.h"
 #include"cmdsys.h"
 

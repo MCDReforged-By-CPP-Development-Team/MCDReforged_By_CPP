@@ -3,7 +3,7 @@
 #include<thread>
 #include<vector>
 
-#include"common.h"
+#include"globaldef.h"
 #include"cfgfile.h"
 #include"debugprint.h"
 #include"processoutput.h"

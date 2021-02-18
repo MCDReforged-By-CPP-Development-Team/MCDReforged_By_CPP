@@ -1,4 +1,4 @@
-#include"readmcdrconfig.h"
+﻿#include"readmcdrconfig.h"
 
 int stdfuncallconv ReadMCDRConfig_0()
 {
@@ -70,6 +70,7 @@ int stdfuncallconv ReadMCDRConfig_1()
 
 int stdfuncallconv ReadMCDRPermission()
 {
+	Node config = LoadFile("config.yml");
 	vector<string>::iterator iter;
 	std::vector<string> owner = config["owner"].as<std::vector<string>>();
 	std::vector<string> admin = config["admin"].as<std::vector<string>>();
@@ -78,10 +79,10 @@ int stdfuncallconv ReadMCDRPermission()
 	std::vector<string> guest = config["guest"].as<std::vector<string>>();
 	Permission per;
 
-	for (iter = owner.begin, iter != owner.end(), iter++) per.SetUserPermission(iter->c_str(), PERMISSION_OWNER);
-	for (iter = admin.begin, iter != admin.end(), iter++) per.SetUserPermission(iter->c_str(), PERMISSION_ADMIN);
-	for (iter = helper.begin, iter != helper.end(), iter++) per.SetUserPermission(iter->c_str(), PERMISSION_HELPER);
-	for (iter = user.begin, iter != user.end(), iter++) per.SetUserPermission(iter->c_str(), PERMISSION_USER);
-	for (iter = guest.begin, iter != guest.end(), iter++) per.SetUserPermission(iter->c_str(), PERMISSION_GUEST);
+	for (iter = owner.begin(); iter != owner.end(); iter++) per.SetUserPermission(iter->c_str(), PERMISSION_OWNER);
+	for (iter = admin.begin(); iter != admin.end(); iter++) per.SetUserPermission(iter->c_str(), PERMISSION_ADMIN);
+	for (iter = helper.begin(); iter != helper.end(); iter++) per.SetUserPermission(iter->c_str(), PERMISSION_HELPER);
+	for (iter = user.begin(); iter != user.end(); iter++) per.SetUserPermission(iter->c_str(), PERMISSION_USER);
+	for (iter = guest.begin(); iter != guest.end(); iter++) per.SetUserPermission(iter->c_str(), PERMISSION_GUEST);
 	return 0;
 }

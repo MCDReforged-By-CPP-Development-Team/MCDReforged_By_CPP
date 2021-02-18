@@ -5,7 +5,7 @@
 #include<string>
 #include<thread>
 
-#include"common.h"
+#include"globaldef.h"
 #include"debugprint.h"
 #include"redirectstdio.h"
 #include"output.h"

@@ -4,7 +4,7 @@
 
 #include"cppplugin.h"
 #include"pyplugin.h"
-#include"common.h"
+#include"globaldef.h"
 #include"debugprint.h"
 #include"serverparser.h"
 #include"output.h"

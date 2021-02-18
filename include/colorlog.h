@@ -7,7 +7,7 @@
 #include <iostream>
 #include <string>	
 #include "Windows.h"
-#include "common.h"
+#include "globaldef.h"
 
 using namespace std;
 

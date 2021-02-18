@@ -5,7 +5,7 @@
 #include<ctime>
 #include<Windows.h>
 
-#include"common.h"
+#include"globaldef.h"
 #include"debugprint.h"
 
 using namespace std;

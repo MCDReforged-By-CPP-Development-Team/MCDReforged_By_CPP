@@ -9,10 +9,12 @@ cfgfile.h
 #include<strstream>
 #include<string>
 
-#include"common.h"
+#include"globaldef.h"
 #include"output.h"
 #include"serverparser.h"
 #include"debugprint.h"
+#include"xmlfunc.h"
+
 #include"tinyxml2-8.0.0/tinystr.h"  
 #include"tinyxml2-8.0.0/tinyxml.h"
 
@@ -126,7 +128,6 @@ private:
 	int stdfuncallconv CreateCfgFile();
 	bool stdfuncallconv ConfigFileExisting();
 	bool stdfuncallconv StringToBool(string Temp);
-	bool stdfuncallconv GetNodePointerByName(TiXmlElement* pRootEle, const char* strNodeName, TiXmlElement*& Node);
 	int stdfuncallconv StringToParserCode(string parserName);
 public:
 	static int stdfuncallconv LoadConfigFile();

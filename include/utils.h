@@ -1,11 +1,15 @@
 #pragma once
 
-#include"common.h"
+#include"globaldef.h"
+
 #include<vector>
 #include<string>
 #include<iostream>
 #include<Windows.h>
 #include<list>
+#include<guiddef.h>
+#include<strstream>
+
 using namespace std;
 
 //用指定字符串{pattern}切片{str}
@@ -25,7 +29,8 @@ string makestring(vector<string> list_, string spiliter);
 bool CheckFolderExist(const string& strPath);
 
 //从vector中删除指定的某一个元素 
-template<class T1, class T2> vector<T1> del(vector<T1> a, T2 to_be_removed_obj);
+template<class T1, class T2> 
+vector<T1> del(vector<T1> a, T2 to_be_removed_obj);
 
 //列出指定路径下的所有文件
 vector<string> stdfuncallconv ListFiles(string path);
@@ -35,3 +40,9 @@ vector<string> stdfuncallconv ListFiles(string path,string ext);
 
 //字符串a中含有字符串b
 bool have(string a, string b);
+
+//生成GUID
+string stdfuncallconv CreateGuid(GUID* pguid);
+
+//比较MCDRCPP版本
+int stdfuncallconv CompareVersion(string Ver1, string Ver2);

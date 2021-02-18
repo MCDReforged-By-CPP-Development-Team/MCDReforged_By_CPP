@@ -5,7 +5,7 @@
 #include<ctime>
 #include<iostream>
 
-#include"common.h"
+#include"globaldef.h"
 #include"debugprint.h"
 
 #pragma region Marcos

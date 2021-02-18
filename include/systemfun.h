@@ -8,7 +8,7 @@ SysInit.h
 #include<Windows.h>
 #include<iostream>
 
-#include"common.h"
+#include"globaldef.h"
 #include"debugprint.h"
 
 using namespace std;

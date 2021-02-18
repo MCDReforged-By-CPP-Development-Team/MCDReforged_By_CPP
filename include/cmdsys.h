@@ -5,7 +5,7 @@
 #include<Windows.h>
 
 #include"output.h"
-#include"common.h"
+#include"globaldef.h"
 #include"cfgfile.h"
 #include"debugprint.h"
 #include"utils.h"
