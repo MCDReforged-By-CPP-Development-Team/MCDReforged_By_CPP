@@ -171,7 +171,8 @@ DWORD stdfuncallconv Permission::GetUserPermission(LPCSTR lpUser)
             }
         }
     }
-	return false;
+    return false;
+	//return PERMISSION_USER; //不在permission文件中的用户的默认权限
 }
 
 int Permission::SetUserPermission(LPCSTR lpUser, DWORD dwPermission)
@@ -194,22 +195,29 @@ int Permission::SetUserPermission(LPCSTR lpUser, DWORD dwPermission)
     }
     else
     {
-        //先从该用户所在权限组中删除该用户
-        DWORD dwUserPermission = GetUserPermission(lpUser);
-        auto UserList = permissions.at(dwUserPermission);
-        string UserName = lpUser;
-        UserList.remove(UserName);
-        permissions[dwUserPermission] = UserList;
-        //然后再在给定组内添加该用户
-        auto tmpList = permissions.at(dwPermission);
-        tmpList.push_back(UserName);
-        permissions[dwPermission] = tmpList;
-        SavePermission();
-        return iret;
+        if (GetUserPermission(lpUser) != false)//用户是否存在
+        {
+            //先从该用户所在权限组中删除该用户
+            DWORD dwUserPermission = GetUserPermission(lpUser);
+            auto UserList = permissions.at(dwUserPermission);
+            string UserName = lpUser;
+            UserList.remove(UserName);
+            permissions[dwUserPermission] = UserList;
+            //然后再在给定组内添加该用户
+            auto tmpList = permissions.at(dwPermission);
+            tmpList.push_back(UserName);
+            permissions[dwPermission] = tmpList;
+            SavePermission();
+            return iret;
+        }
+        else
+        {
+            return iret;
+        }
     }
     
     
-    return 0;
+    return iret;
 }
 
 int stdfuncallconv Permission::GetPermissionGroup(DWORD dwGroup, list<string>* Result)

@@ -63,7 +63,7 @@ string makestring(list<string> list_ , string spiliter)
             result.append(spiliter);
         }
     }
-    return string();
+    return result;
 }
 
 string makestring(vector<string> list_, string spiliter)
@@ -81,7 +81,7 @@ string makestring(vector<string> list_, string spiliter)
             result.append(spiliter);
         }
     }
-    return string();
+    return result;
 }
 
 
