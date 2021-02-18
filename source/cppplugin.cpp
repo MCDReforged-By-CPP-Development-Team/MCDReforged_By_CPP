@@ -147,6 +147,10 @@ int stdfuncallconv ReadPluginCfg(MCDRCPPPlugin plugin)
 		cfgins.dependency = true;
 
 		GetNodePointerByName(pRootEle, "LoadPlugin", pElem);
+		if (pElem == NULL) {
+			iret--;
+			continue;
+		}
 		temp = pElem->GetText();
 		transform(temp.begin(), temp.end(), temp.begin(), ::toupper);
 		if (temp == "TRUE") cfgins.loadPlugin = true;
@@ -154,7 +158,37 @@ int stdfuncallconv ReadPluginCfg(MCDRCPPPlugin plugin)
 		else cfgins.loadPlugin = true;
 
 		GetNodePointerByName(pRootEle, "PluginName", pElem);
+		if (pElem == NULL) {
+			iret--;
+			continue;
+		}
 		cfgins.pluginName = pElem->GetText();
+
+		GetNodePointerByName(pRootEle, "PluginVersion", pElem);
+		if (pElem == NULL) {
+			iret--;
+			continue;
+		}
+		cfgins.pluginVersion = pElem->GetText();
+		temp = cfgins.pluginVersion;
+
+		GetNodePointerByName(pRootEle, "EventListenerFuncName", pElem);
+		TiXmlElement* tempElem = new TiXmlElement(*pElem);
+
+
+		for (; tempElem != NULL; tempElem = tempElem->NextSiblingElement()) {
+			TiXmlAttribute* attribute = tempElem->FirstAttribute(); 
+			if (cfgins.pluginVersion == attribute->Value()) {
+				for (TiXmlNode* tempNode = tempElem->FirstChild()
+					; tempNode != NULL
+					; tempNode = tempNode->NextSibling()) {
+					temp = "";
+					temp.append(tempNode->ToElement()->Value()).append("=").append(tempNode->ToElement()->GetText());
+					cfgins.listenerFuncNames.push_back(temp);
+				}
+				break;
+			}
+		}
 	}
 	return 0;
 }

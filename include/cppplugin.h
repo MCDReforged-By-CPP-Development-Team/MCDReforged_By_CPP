@@ -33,6 +33,8 @@ public:
 	HINSTANCE pluginIns;
 	MCDRCPPPlugin(LPCSTR pluginPath);
 	~MCDRCPPPlugin();
+	MCDRCPPPluginConfigIns cfgins;
+	MCDRCPPPluginInfo info;
 private:
 	bool isLoaded;
 	//eventlistener”√∫Ø ˝÷∏’Î
@@ -87,11 +89,11 @@ int stdfuncallconv ReadPluginCfg(MCDRCPPPlugin plugin);
 	<EventListenerFuncName Version="0.0.1">
 		<on_load>OnLoad</on_load>
 		...
-	</EvenrListenerFuncName>
+	</EventListenerFuncName>
 	<EventListenerFuncName Version="0.0.2">
 		<on_load>OnLoad</on_load>
 		...
-	</EvenrListenerFuncName>
+	</EventListenerFuncName>
 	<RegisterCommands>
 		...
 	</RegisterCommands>
