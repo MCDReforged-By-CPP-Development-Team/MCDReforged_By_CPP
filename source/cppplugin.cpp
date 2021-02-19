@@ -3,7 +3,7 @@
 vector<MCDRCPPPlugin> CppPluginList;
 vector<MCDRCPPPluginConfigIns> CppPluginCfgList;
 
-typedef MCDRCPPPluginInfo(*register_plugin_info)();
+typedef MCDRCPPPluginInfo(*funcptr_register_plugin_info)();
 typedef int(*funcptr_on_load) (ServerInterface server_interface, MCDRCPPPlugin prev_module);
 typedef int(*funcptr_on_remove) (ServerInterface server_interface);
 typedef int(*funcptr_on_info) (ServerInterface server_interface, Info info);
@@ -15,22 +15,6 @@ typedef int(*funcptr_mcdrcpp_start) (ServerInterface server_interface);
 typedef int(*funcptr_mcdrcpp_stop) (ServerInterface server_interface);
 typedef int(*funcptr_on_player_join) (ServerInterface server_interface, string player, Info info);
 typedef int(*funcptr_on_player_left) (ServerInterface server_interface, string player);
-
-MCDRCPPPlugin::MCDRCPPPlugin(LPCSTR pluginPath)
-{
-	this->pluginPath = pluginPath;
-	this->isLoaded = false;
-	this->pluginIns = NULL;
-
-	GUID guid;
-	ZeroMemory(&guid, sizeof(GUID));
-	this->pluginGuid = guid;
-}
-
-MCDRCPPPlugin::~MCDRCPPPlugin()
-{
-	CloseHandle(this->pluginIns);
-}
 
 int stdfuncallconv GeneratePluginList()
 {
@@ -49,7 +33,7 @@ int stdfuncallconv GeneratePluginList()
 	return 0;
 }
 
-int stdfuncallconv LoadPlugin(MCDRCPPPlugin plugin)
+int stdfuncallconv LoadPlugin(MCDRCPPPlugin plugin, PMCDRCPPPlugin outplu)
 {
 	int iret;	
 	ServerInterface si;
@@ -59,10 +43,27 @@ int stdfuncallconv LoadPlugin(MCDRCPPPlugin plugin)
 
 		if (plugin.pluginIns == NULL) return -1;
 
-		funcptr_on_load onload;
-		onload = (funcptr_on_load)GetProcAddress(plugin.pluginIns, FindListenerFuncRealName("on_load").c_str());
+		funcptr_on_load fp_onload;
+		fp_onload = (funcptr_on_load)GetProcAddress(plugin.pluginIns, FindListenerFuncRealName("on_load").c_str());
 
-		iret = onload(si, plugin);
+		iret = fp_onload(si, plugin);
+
+		MCDRCPPPluginInfo reginfo;
+		funcptr_register_plugin_info fp_regplugininfo;
+		reginfo = fp_regplugininfo();
+		(plugin).info = reginfo;
+		plugin.info = reginfo;
+
+		if (plugin.info.pluginGuid != plugin.cfgins.pluginGuid) plugin.pluginGuid = plugin.cfgins.pluginGuid; 
+		else plugin.pluginGuid = plugin.info.pluginGuid;
+
+		if (plugin.info.pluginName != plugin.cfgins.pluginName) plugin.pluginName = plugin.cfgins.pluginName;
+		else plugin.pluginName = plugin.info.pluginName;
+
+		if (plugin.info.pluginVersion != plugin.cfgins.pluginVersion) plugin.pluginVersion = plugin.cfgins.pluginVersion;
+		else plugin.pluginVersion = plugin.info.pluginVersion;
+
+		*outplu = plugin;
 	}
 
 	return 0;
@@ -70,12 +71,16 @@ int stdfuncallconv LoadPlugin(MCDRCPPPlugin plugin)
 
 int stdfuncallconv LoadAllPlugins()
 {
-	int iRet = 0;
+	int iret;
 	vector<MCDRCPPPlugin>::iterator iter;
+	MCDRCPPPlugin plu;
+
 	for (iter = CppPluginList.begin(); iter != CppPluginList.end(); iter++) {
-		iRet = LoadPlugin(*iter);
+		iret = LoadPlugin(*iter, &plu);
+		CppPluginList.erase(iter);
+		CppPluginList.insert(iter - 1, plu);
 	}
-	return iRet;
+	return iret;
 }
 
 int stdfuncallconv RemovePlugin(LPCSTR pluginName)
@@ -241,6 +246,95 @@ string _fc FindListenerFuncRealName(LPCSTR funcName)
 		}
 	}
 
-	return " ";
+	return "";
 }
 
+#pragma region con_de_op_func
+
+MCDRCPPPluginInfo::MCDRCPPPluginInfo()
+{
+
+}
+MCDRCPPPluginInfo::MCDRCPPPluginInfo(GUID guid, LPCSTR name, LPCSTR ver)
+{
+
+}
+MCDRCPPPluginInfo::MCDRCPPPluginInfo(PMCDRCPPPluginInfo)
+{
+
+}
+void MCDRCPPPluginInfo::operator=(MCDRCPPPluginInfo b)
+{
+	this->pluginGuid = b.pluginGuid;
+	this->pluginName = b.pluginName;
+	this->pluginVersion = b.pluginVersion;
+}
+
+MCDRCPPPlugin::MCDRCPPPlugin(LPCSTR pluginPath)
+{
+	this->pluginPath = pluginPath;
+	this->pluginName = "";
+	this->pluginVersion = "";
+	this->isLoaded = false;
+	this->pluginIns = NULL;
+
+	GUID guid;
+	ZeroMemory(&guid, sizeof(GUID));
+	this->pluginGuid = guid;
+}
+MCDRCPPPlugin::MCDRCPPPlugin(PMCDRCPPPlugin plugin)
+{
+
+}
+MCDRCPPPlugin::MCDRCPPPlugin()
+{
+	this->pluginPath = "";
+	this->pluginName = "";
+	this->pluginVersion = "";
+	this->isLoaded = false;
+	this->pluginIns = NULL;
+
+	GUID guid;
+	ZeroMemory(&guid, sizeof(GUID));
+	this->pluginGuid = guid;
+}
+MCDRCPPPlugin::~MCDRCPPPlugin()
+{
+	CloseHandle(this->pluginIns);
+}
+void MCDRCPPPlugin::operator=(MCDRCPPPlugin b)
+{
+
+}
+
+ListenerFunc::ListenerFunc()
+{
+
+}
+ListenerFunc::ListenerFunc(LPCSTR listener, LPCSTR real)
+{
+
+}
+ListenerFunc::ListenerFunc(PListenerFunc)
+{
+
+}
+void ListenerFunc::operator=(ListenerFunc b)
+{
+
+}
+
+MCDRCPPPluginConfigIns::MCDRCPPPluginConfigIns()
+{
+
+}
+MCDRCPPPluginConfigIns::MCDRCPPPluginConfigIns(PListenerFunc)
+{
+
+}
+void MCDRCPPPluginConfigIns::operator=(MCDRCPPPluginConfigIns b)
+{
+
+}
+
+#pragma endregion
