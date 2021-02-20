@@ -4,12 +4,14 @@
 
 #include"redirectstdio.h"
 #include"globaldef.h"
+#include"processinput.h"
+
 //真tm是个巨坑 插件开发核心代码
 class ServerInterface {
 public:
 	ServerInterface();
 	~ServerInterface();
-	int stdfuncallconv start();
+	int stdfuncallconv start(PREDIRECT_INFORMATION priInf);
 	int stdfuncallconv stop();
 	int stdfuncallconv restart();
 	int stdfuncallconv wait_for_start();

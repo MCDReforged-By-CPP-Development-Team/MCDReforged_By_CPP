@@ -8,5 +8,7 @@ Settings set;
 int main(int argc, char** argv) {
 	WelcomeMessage();
 	Initialize();
+	RunServer();
+	DealWithUserInput();
 	return Finalize();
 }
