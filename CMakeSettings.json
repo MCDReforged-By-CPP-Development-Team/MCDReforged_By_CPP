@@ -1,12 +1,12 @@
 ﻿{
   "configurations": [
     {
-      "buildCommandArgs": "",
+      "buildCommandArgs": "-v",
       "buildRoot": "C:\\MCDRCPP-Build\\${name}",
       "cmakeCommandArgs": "",
       "ctestCommandArgs": "",
       "generator": "Ninja",
-      "inheritEnvironments": [ "msvc_x64" ],
+      "inheritEnvironments": [ "msvc_x86" ],
       "installRoot": "${projectDir}\\out\\install\\${name}",
       "name": "x64-Debug",
       "variables": [
@@ -14,6 +14,11 @@
           "name": "CMAKE_MAKE_PROGRAM",
           "value": "c:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/Common7/IDE/CommonExtensions/Microsoft/CMake/Ninja/ninja.exe",
           "type": "FILEPATH"
+        },
+        {
+          "name": "CMAKE_EXE_LINKER_FLAGS",
+          "value": "/machine:X86",
+          "type": "STRING"
         }
       ],
       "configurationType": "RelWithDebInfo"

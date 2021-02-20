@@ -3,7 +3,7 @@
 #include<vector>
 
 #include"output.h"
-#include"yaml.h"
+#include"yamlcpp/yaml-cpp/yaml.h"
 #include"globaldef.h"
 #include"cfgfile.h"
 #include"permission.h"

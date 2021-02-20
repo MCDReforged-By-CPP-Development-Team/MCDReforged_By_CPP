@@ -10,6 +10,7 @@
 #include"logsys.h"
 #include"globaldef.h"
 #include"cfgfile.h"
+#include"xmlfunc.h"
 #include"tinyxml2-8.0.0/tinystr.h"  
 #include"tinyxml2-8.0.0/tinyxml.h"
 

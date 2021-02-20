@@ -5,7 +5,7 @@
 #include"processinput.h"
 Settings set;
 
-int main(int argc, char* argv) {
+int main(int argc, char** argv) {
 	WelcomeMessage();
 	Initialize();
 	return Finalize();

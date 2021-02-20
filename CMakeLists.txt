@@ -15,24 +15,23 @@ set(CMAKE_HOST_SYSTEM_VERSION "10.0.17763.0")
 aux_source_directory(./source DIR_SRCS)
 aux_source_directory(./include DIR_INC)
 aux_source_directory(./tinyxml2-8.0.0 DIR_TNY)
-aux_source_directory(./yaml-cpp DIR_YML)
+aux_source_directory(./yamlcpp DIR_YML)
 
 IF(WIN32)
-
+    # C:\MCDRCPP-Build\${name}
     #message(CMAKE_SYSTEM_VERSION)
     MESSAGE(STATUS Cmaking on windowsx86_64)
     set(PYINCLUDE "c:/Program Files/Python38/include")
     set(PYLIB "c:/Program Files/Python38/libs")
     link_directories(${PYLIB})
     #link_directories(lib)
-    link_directories(${CMAKE_CURRENT_BINARY_DIR}/lib)
+    #link_directories(${CMAKE_CURRENT_BINARY_DIR}/lib)
     #link_libraries(此编译选项为玄学选项，请填写自己计算机的python lib 路径. ps: 系统环境变量不能用，我试过了 请不要把这个选项改动后推到github)
-
     include_directories(${PYINCLUDE})
     include_directories(.)
     include_directories(include)
     include_directories(tinyxml2-8.0.0)
-    include_directories(yaml-cpp)
+    include_directories(yamlcpp)
 
     add_executable(MCDReforged_By_CPP
             ${PYINCLUDE}/Python.h
@@ -46,7 +45,7 @@ ELSEIF(APPLE)
     include_directories(.)
     include_directories(include)
     include_directories(tinyxml2-8.0.0)
-    include_directories(yaml-cpp)
+    include_directories(yamlcpp)
 
     add_executable(MCDReforged_By_CPP
             ${DIR_SRCS}
