@@ -25,18 +25,43 @@ register_plugin_info
 on_load on_remove on_info on_user_info server_start server_startup mcdr_start mcdr_stop on_player_join on_player_left
 */
 
+struct ListenerFunc;
+struct MCDRCPPPluginInfo;
+struct MCDRCPPPluginConfigIns;
+class MCDRCPPPlugin;
+
+typedef ListenerFunc* PListenerFunc;
+typedef MCDRCPPPluginInfo* PMCDRCPPPluginInfo;
+typedef MCDRCPPPluginConfigIns* PMCDRCPPPluginConfigIns;
+typedef MCDRCPPPlugin* PMCDRCPPPlugin;
+
 struct ListenerFunc {
+public:
 	string ListenerFuncName;
 	string RealFuncName;
+
+	ListenerFunc();
+	ListenerFunc(LPCSTR listener, LPCSTR real);
+	ListenerFunc(PListenerFunc);
+
+	void operator= (ListenerFunc b);
 };
 
 struct MCDRCPPPluginInfo {
+public:
 	GUID pluginGuid;
 	string pluginName;
 	string pluginVersion;
+
+	MCDRCPPPluginInfo();
+	MCDRCPPPluginInfo(GUID guid, LPCSTR name, LPCSTR ver);
+	MCDRCPPPluginInfo(PMCDRCPPPluginInfo);
+
+	void operator=(MCDRCPPPluginInfo b);
 };
 
 struct MCDRCPPPluginConfigIns {
+public:
 	GUID pluginGuid;
 
 	string pluginName;
@@ -46,8 +71,12 @@ struct MCDRCPPPluginConfigIns {
 
 	bool loadPlugin;
 	bool dependency;
-};
 
+	MCDRCPPPluginConfigIns();
+	MCDRCPPPluginConfigIns(PListenerFunc);
+
+	void operator= (MCDRCPPPluginConfigIns b);
+};
 
 class MCDRCPPPlugin {
 public:
@@ -56,22 +85,24 @@ public:
 	string pluginPath;
 	string pluginVersion;
 	HINSTANCE pluginIns;
-	MCDRCPPPlugin(LPCSTR pluginPath);
-	~MCDRCPPPlugin();
+
 	MCDRCPPPluginConfigIns cfgins;
 	MCDRCPPPluginInfo info;
+
+	MCDRCPPPlugin(LPCSTR pluginPath);
+	MCDRCPPPlugin(PMCDRCPPPlugin plugin);
+	MCDRCPPPlugin();
+	~MCDRCPPPlugin();
+
+	void operator=(MCDRCPPPlugin b);
+
 private:
 	bool isLoaded;
 	//eventlistener”√∫Ø ˝÷∏’Î
 };
 
-typedef ListenerFunc* PListenerFunc;
-typedef MCDRCPPPluginInfo* PMCDRCPPPluginInfo;
-typedef MCDRCPPPluginConfigIns* PMCDRCPPPluginConfigIns;
-typedef MCDRCPPPlugin* PMCDRCPPPlugin;
-
 int stdfuncallconv GeneratePluginList();
-int stdfuncallconv LoadPlugin(MCDRCPPPlugin plugin);
+int stdfuncallconv LoadPlugin(MCDRCPPPlugin plugin, PMCDRCPPPlugin outplu);
 int stdfuncallconv LoadAllPlugins();
 int stdfuncallconv RemovePlugin(LPCSTR pluginName);
 int stdfuncallconv RemoveAllPlugins();
