@@ -1,6 +1,6 @@
 ﻿#include"systemfun.h"
 
-RedirectInformation riInf;
+RedirectInformation riInfo;
 ServerInterface siInterface;
 int stdfuncallconv Initialize(){
     Sleep(1000);
@@ -38,7 +38,7 @@ int stdfuncallconv DealWithUserInput() {
 
 
 int stdfuncallconv Finalize(int iexitcode) {
-    CloseRedirect(&riInf);
+    CloseRedirect(&riInfo);
     cout << "Give me 3 second to prepare exiting...";
     cout << endl; 
     Sleep(3000);
@@ -59,6 +59,6 @@ int stdfuncallconv WelcomeMessage() {
 
 int stdfuncallconv RunServer()
 {
-    siInterface.start(&riInf);
+    siInterface.start(&riInfo);
     return 0;
 }

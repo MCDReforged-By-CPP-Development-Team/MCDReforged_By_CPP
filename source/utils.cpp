@@ -1,6 +1,6 @@
 #include "utils.h"
 
-bool have(string a, string b)
+bool stdfuncallconv have(string a, string b)
 {
     if (a.find(b) != string::npos)
     {
@@ -225,4 +225,14 @@ int stdfuncallconv CompareVersion(string Ver1, string Ver2) {
     if (iver1 > iver2) return 1;
     else if (iver1 < iver2) return -1;
     else return 0;
+}
+
+string stdfuncallconv GetInputString()
+{
+    
+}
+
+CHAR stdfuncallconv GetInputChar()
+{
+    
 }

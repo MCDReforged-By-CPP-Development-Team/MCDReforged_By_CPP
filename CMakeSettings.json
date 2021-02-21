@@ -6,7 +6,7 @@
       "cmakeCommandArgs": "",
       "ctestCommandArgs": "",
       "generator": "Ninja",
-      "inheritEnvironments": [ "msvc_x86" ],
+      "inheritEnvironments": [ "msvc_x86_x64" ],
       "installRoot": "${projectDir}\\out\\install\\${name}",
       "name": "x64-Debug",
       "variables": [
