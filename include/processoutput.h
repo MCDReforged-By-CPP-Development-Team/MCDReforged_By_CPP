@@ -2,7 +2,7 @@
 #include<Windows.h>
 #include<vector>
 
-#include"cppplugin.h"
+//#include"cppplugin.h"
 #include"pyplugin.h"
 #include"globaldef.h"
 #include"debugprint.h"

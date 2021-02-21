@@ -39,10 +39,18 @@ vector<string> stdfuncallconv ListFiles(string path);
 vector<string> stdfuncallconv ListFiles(string path,string ext);
 
 //字符串a中含有字符串b
-bool have(string a, string b);
+bool stdfuncallconv have(string a, string b);
 
 //生成GUID
 string stdfuncallconv CreateGuid(GUID* pguid);
 
 //比较MCDRCPP版本
 int stdfuncallconv CompareVersion(string Ver1, string Ver2);
+
+//获取用户输入字符串，以\n为结尾
+string stdfuncallconv GetInputString();
+
+//获取用户输入字符
+CHAR stdfuncallconv GetInputChar();
+
+
