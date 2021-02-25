@@ -229,10 +229,12 @@ int stdfuncallconv CompareVersion(string Ver1, string Ver2) {
 
 string stdfuncallconv GetInputString()
 {
-    
+    string result;
+    return result;
 }
 
 CHAR stdfuncallconv GetInputChar()
 {
-    
+    CHAR ch = '0';
+    return ch;
 }
