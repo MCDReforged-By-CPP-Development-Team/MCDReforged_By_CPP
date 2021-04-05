@@ -57,9 +57,21 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
     string servercmdline = sets.GetString(startcmd);
     string jvmpath = sets.GetString(javapath);
     string serverdir_ = sets.GetString(serverdir);
+    string servercwd = sets.GetString(serverdir);
+
     sa.nLength = sizeof(SECURITY_ATTRIBUTES);
     sa.bInheritHandle = TRUE;
     sa.lpSecurityDescriptor = NULL;
+
+    if (servercwd.find(':') == string::npos) {
+        TCHAR _szPath[MAX_PATH + 1] = { 0 };
+        GetModuleFileName(NULL, _szPath, MAX_PATH);
+
+        string strPath = _szPath;
+        strPath.erase(strPath.find_last_of('\\'), strPath.find_last_not_of(':'));
+        strPath.append("\\").append(servercwd);
+        servercwd = strPath;
+    }
 
     UINT serverexitcode = 0;
 
@@ -122,6 +134,8 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
     // STARTF_USESTDHANDLES:The hStdInput, hStdOutput, and hStdError members contain additional information.
     // from MSDN
 
+    dp(servercwd);
+
     BOOL bSuc = CreateProcess(NULL
         , _startcmd
         , NULL
@@ -129,7 +143,7 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
         , TRUE
         , CREATE_SUSPENDED
         , NULL
-        , NULL
+        , servercwd.c_str()
         , &si
         , &pi);
     

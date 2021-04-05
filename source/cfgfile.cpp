@@ -241,7 +241,7 @@ int stdfuncallconv LoadConfig::SetToCfg()
     SETTOCFG_S("JavaPath", JavaPath, javapath);
     SETTOCFG_S("InstructionPrefix", InstructionPrefix, insprefix);
     SETTOCFG_S("LogFilePath", LogFilePath, logpath);
-    //SETTOCFG_S("ScriptPath", ScriptPath, scrpath);
+    SETTOCFG_S("ScriptPath", ScriptPath, scrpath);
 
     TiXmlElement* pScriptpath = new TiXmlElement("ScriptPath");
     if (pScriptpath ==  NULL)
@@ -614,7 +614,7 @@ void stdfuncallconv Settings::SetString(int set, string value)
         strPyPluginPath = value;
         break;
     case scrpath:
-        strScriptPath;
+        strScriptPath = value;
         break;
     case insprefix:
         strInstructionPrefix = value;

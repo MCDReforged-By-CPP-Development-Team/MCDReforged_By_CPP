@@ -14,4 +14,3 @@ globaldef.h by noFe
 #define HINTMSG "Some English setences in this program might follow Chinese grammar rules \n which will make it is hard to understand.(Chinglish lol)"
 #define GUID_LEN 64
 #define _fc stdfuncallconv
-
