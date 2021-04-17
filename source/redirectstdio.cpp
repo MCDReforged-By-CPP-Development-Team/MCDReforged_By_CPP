@@ -59,6 +59,9 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
     string serverdir_ = sets.GetString(serverdir);
     string servercwd = sets.GetString(serverdir);
 
+    dp("jvmpath:" + jvmpath);
+    dp("servercmdline" + servercmdline);
+
     sa.nLength = sizeof(SECURITY_ATTRIBUTES);
     sa.bInheritHandle = TRUE;
     sa.lpSecurityDescriptor = NULL;
@@ -90,7 +93,7 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
     if (servercmdline.find(".bat") != string::npos || servercmdline.find(".cmd") != string::npos)//判断启动命令是否为bat或cmd文件
     {
         startupcmd = servercmdline;
-        dp(startupcmd);
+        dp("startupcmd:" + startupcmd);
     }
     else//不是bat或cmd文件
     { 
@@ -107,9 +110,10 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
           {
                servcmd.append(i + " ");//不含有 .jar 的直接append
           }
+          dp("startupcmd:" + startupcmd);
       }
       startupcmd.append(servcmd);
-      dp(startupcmd);
+      dp("startupcmd:" + startupcmd);
     }   
 
     LPSTR _startcmd = new char[startupcmd.length() + 1];
