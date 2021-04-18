@@ -94,17 +94,16 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
     {
         startupcmd = servercmdline;
         dp("startupcmd:" + startupcmd);
-    }
-    else//不是bat或cmd文件
+    } else//不是bat或cmd文件
     { 
       vector < string > vecstr = split(servercmdline, " ");//切丝
       startupcmd.append(jvmpath).append(" ");
       string servcmd;
       for (auto i : vecstr)//循环
       {
-          if (have(i,"jar"))
+          if (have(i,".jar"))
           {
-               servcmd.append(serverdir_ + "\\" + i + " ");//加上服务器jar文件所在目录然后append
+               servcmd.append(servercwd + "\\" + i + " ");//加上服务器jar文件所在目录然后append
           }
           else
           {

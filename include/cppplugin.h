@@ -95,10 +95,10 @@ public:
 	~MCDRCPPPlugin();
 
 	void operator=(MCDRCPPPlugin b);
+};
 
-private:
-	bool isLoaded;
-	//eventlistener”√∫Ø ˝÷∏’Î
+class MCDRCPPPluginIns {
+
 };
 
 int stdfuncallconv GeneratePluginList();
