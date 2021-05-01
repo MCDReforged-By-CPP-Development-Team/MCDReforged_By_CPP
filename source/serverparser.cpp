@@ -22,10 +22,11 @@ struct Advancement {
 
 int stdfuncallconv VanillaParser::Parse(string rawText, ServerParser* pResult)
 {
+	string parsestr = rawText;
 	//[hh:mm:ss] [thread/cate]: [sender]content
-	regex time("\[\d{2,}:\d{2,}:\d{2,}\]");	//[hh:mm:ss]
-	regex info("\[[(0-9)(a-z)(A-Z)(_)\s]+/\w+\]");	//[thread/cate]
-	regex sender("\[\w+\]");	//[sender]
+	regex time("\[\d{2,}:\d{2,}:\d{2,}\] ");	//[hh:mm:ss]
+	regex info("\[[(0-9)(a-z)(A-Z)(_)\s]+\\[(0-9)(a-z)(A-Z)(_)\s]+]: ");	//[thread/cate]
+	regex sender("\[[(0-9)(a-z)(A-Z)(_)\s]+]");	//[sender]
 	regex content(".*");	//content
 	smatch m;
 	bool found;
@@ -33,8 +34,17 @@ int stdfuncallconv VanillaParser::Parse(string rawText, ServerParser* pResult)
 	dp(rawText);
 	try
 	{
-		found = regex_search(rawText, m, time);
+		found = regex_search(parsestr, m, time);
 		dp(m.str(0));
+		if (found) {
+			parsestr = ReplaceString(parsestr, m.str(0), "");
+		}
+
+		found = regex_search(parsestr, m, info);
+		dp(m.str(0));
+		if (found) {
+			parsestr = ReplaceString(parsestr, m.str(0), "");
+		}
 	}
 	catch (const std::exception&)
 	{

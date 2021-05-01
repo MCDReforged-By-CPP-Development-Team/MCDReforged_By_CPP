@@ -146,7 +146,7 @@ readjavapath:
     getline(cin, svar);
     if (svar == "autofind") {
         svar = getenv("JAVA_HOME");
-        svar.append("\\bin\\javaw.exe");
+        svar.append("bin\\javaw.exe");
         Out.msg("Java path : " + svar);
         Out.mlout("If the Java path is correct,type \"Y\" or \"y\" to confirm. If the Java path is wrong,type \"N\" or \"n\" to type the path manually."
             , "如Java路径正确,输入\"Y\"或\"y\"确认.输入\"N\"或\"n\"手动输入路径.");

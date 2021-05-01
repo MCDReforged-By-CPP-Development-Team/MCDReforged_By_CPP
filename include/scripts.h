@@ -22,17 +22,6 @@ using namespace std;
 #define SCRPR_NORMAL 1
 #define SCRPR_LOW 2
 
-class ScriptFile {
-public:
-	int stdfuncallconv LoadFromDisk(string scrPath);
-	ScriptInstance stdfuncallconv CreateIns();
-private:
-	string scrPath;
-	string scrName;
-	bool isIllegal;
-	bool autoRun;
-};
-
 class ScriptInstance {
 public:
 	int stdfuncallconv SetState(int value);
@@ -44,6 +33,18 @@ private:
 	int state;
 	int priority;
 	int age;
+};
+
+
+class ScriptFile {
+public:
+	int stdfuncallconv LoadFromDisk(string scrPath);
+	ScriptInstance stdfuncallconv CreateIns();
+private:
+	string scrPath;
+	string scrName;
+	bool isIllegal;
+	bool autoRun;
 };
 
 typedef ScriptInstance* pScriptInstance;

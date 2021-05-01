@@ -81,6 +81,7 @@ public:
 class MCDRCPPPlugin {
 public:
 	GUID pluginGuid;
+	bool isLoaded;
 	string pluginName;
 	string pluginPath;
 	string pluginVersion;

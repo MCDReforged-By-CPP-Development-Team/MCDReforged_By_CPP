@@ -167,7 +167,6 @@ int stdfuncallconv OpenServerAndRedirectIO(PREDIRECT_INFORMATION priInformation)
 
     thread ServerOut(ServerSTDOUT, inf, pi.hProcess);
     ServerOut.detach();
-    Sleep(1);
     
     if (ResumeThread(pi.hThread) == -1) {
         redout.error("Cannot Start Minecraft Server!");

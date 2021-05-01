@@ -7,6 +7,7 @@
 
 #include"globaldef.h"
 #include"debugprint.h"
+#include"utils.h"
 
 #pragma region Marcos
 

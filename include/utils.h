@@ -9,6 +9,9 @@
 #include<list>
 #include<guiddef.h>
 #include<strstream>
+#include<windows.h>
+#include<TlHelp32.h>
+#include<Psapi.h>
 
 using namespace std;
 
@@ -53,4 +56,6 @@ string stdfuncallconv GetInputString();
 //获取用户输入字符
 CHAR stdfuncallconv GetInputChar();
 
+HANDLE stdfuncallconv GetProcessHandle(LPCSTR lpName);
 
+string stdfuncallconv ReplaceString(string rawstr, string deststr, string repstr);
