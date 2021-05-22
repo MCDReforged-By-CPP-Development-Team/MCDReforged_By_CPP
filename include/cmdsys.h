@@ -1,10 +1,12 @@
 #pragma once
 
 #include<string>
+#ifndef H_CMDSYS
+#define H_CMDSYS
+
 #include<vector>
 #include<Windows.h>
 
-#include"output.h"
 #include"globaldef.h"
 #include"cfgfile.h"
 #include"debugprint.h"
@@ -38,3 +40,5 @@ typedef MCDRCommand* PMCDRCommand;
 
 int stdfuncallconv NewMCDRCommand(string command);
 int stdfuncallconv ExecCmdQueue();
+
+#endif // !H_CMDSYS

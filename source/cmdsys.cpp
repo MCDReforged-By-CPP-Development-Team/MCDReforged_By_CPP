@@ -1,4 +1,5 @@
 ﻿#include"cmdsys.h"
+#include"output.h"
 
 vector<MCDRCommand> MCDRCommandQueue;
 OutputInterface logger;

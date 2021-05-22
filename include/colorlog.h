@@ -1,8 +1,7 @@
 ﻿#pragma once
 
-#ifndef __COLORLOG
-#define __COLORLOG
-#endif // !COLOLRLOG
+#ifndef H_COLORLOG
+#define H_COLORLOG
 
 #include <iostream>
 #include <string>	
@@ -33,3 +32,4 @@ private:
 
 };
 
+#endif // !COLOLRLOG

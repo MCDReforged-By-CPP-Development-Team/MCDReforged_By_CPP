@@ -92,3 +92,16 @@ int stdfuncallconv ForgeParser::Parse(string rawText)
 {
 	return 0;
 }
+
+int stdfuncallconv ParseServerOutput(const char* str)
+{
+	string convstr(str);
+	return ParseServerOutput(convstr);
+}
+
+int stdfuncallconv ParseServerOutput(string str) 
+{
+	parseList.push_back(str);
+	dp(str);
+	return 0;
+}

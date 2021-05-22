@@ -4,6 +4,7 @@
 #include<string>
 #include<ctime>
 #include<iostream>
+#include<vector>
 
 #include"globaldef.h"
 #include"debugprint.h"
@@ -28,6 +29,11 @@ struct Advancement;
 struct PlayerMsg;
 struct ServerParser;
 struct Info;
+
+vector<string> parseList;
+
+int stdfuncallconv ParseServerOutput(const char* str);
+int stdfuncallconv ParseServerOutput(string str);
 
 class BaseParser {
 public:

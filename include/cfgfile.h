@@ -1,4 +1,7 @@
-﻿/*
+﻿#ifndef H_CFGFILE
+#define H_CFGFILE
+
+/*
 cfgfile.h
 包含读取配置文件的类及成员函数声明
 */
@@ -134,3 +137,5 @@ public:
 	int stdfuncallconv SettingHelper();
     int stdfuncallconv SetToCfg();
 };
+
+#endif // !H_CFGFILE
