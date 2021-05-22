@@ -43,7 +43,7 @@ int stdfuncallconv ProcessServerOutput::ProcessOutput(LPSTR output, int reserved
     }
 
     //for (auto iter = splitedoutput.cbegin(); iter != splitedoutput.cend(); iter++) {
-    //    serverparser->Parse(*iter, )
+    //    serverparser->Parse(*iter);
     //}
 
 	return 0;

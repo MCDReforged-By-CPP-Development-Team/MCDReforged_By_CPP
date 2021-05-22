@@ -1,5 +1,5 @@
 ﻿#include"serverparser.h"
-
+//#include"events.h"
 
 struct PlayerMsg {
 	string playerName;
@@ -20,7 +20,7 @@ struct Advancement {
 	}
 };
 
-int stdfuncallconv VanillaParser::Parse(string rawText, ServerParser* pResult)
+int stdfuncallconv VanillaParser::Parse(string rawText)
 {
 	string parsestr = rawText;
 	//[hh:mm:ss] [thread/cate]: [sender]content
@@ -58,37 +58,37 @@ BaseParser::~BaseParser()
 {
 }
 
-int stdfuncallconv BukkitParser::Parse(string rawText, ServerParser* pResult)
+int stdfuncallconv BukkitParser::Parse(string rawText)
 {
 	return 0;
 }
 
-int stdfuncallconv Bukkit14Parser::Parse(string rawText, ServerParser* pResult)
+int stdfuncallconv Bukkit14Parser::Parse(string rawText)
 {
 	return 0;
 }
 
-int stdfuncallconv BungeeCordParser::Parse(string rawText, ServerParser* pResult)
+int stdfuncallconv BungeeCordParser::Parse(string rawText)
 {
 	return 0;
 }
 
-int stdfuncallconv CatParser::Parse(string rawText, ServerParser* pResult)
+int stdfuncallconv CatParser::Parse(string rawText)
 {
 	return 0;
 }
 
-int stdfuncallconv WaterfallParser::Parse(string rawText, ServerParser* pResult)
+int stdfuncallconv WaterfallParser::Parse(string rawText)
 {
 	return 0;
 }
 
-int stdfuncallconv Beta18Parser::Parse(string rawText, ServerParser* pResult)
+int stdfuncallconv Beta18Parser::Parse(string rawText)
 {
 	return 0;
 }
 
-int stdfuncallconv ForgeParser::Parse(string rawText, ServerParser* pResult)
+int stdfuncallconv ForgeParser::Parse(string rawText)
 {
 	return 0;
 }

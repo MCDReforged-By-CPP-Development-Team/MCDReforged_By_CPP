@@ -45,7 +45,7 @@ HANDLE stdfuncallconv GetProcessHandle(LPCSTR lpName)
     return hProcess;
 }
 
-string ReplaceString(string rawstr, string deststr, string repstr)
+string stdfuncallconv ReplaceString(string rawstr, string deststr, string repstr)
 {
     string text = rawstr;
     int iter = text.find(deststr);
